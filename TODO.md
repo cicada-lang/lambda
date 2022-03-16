@@ -1,4 +1,10 @@
-- [use sexp] untyped lambda calculus
+- setup sexp parser
 
-  to learn about how to implement equivalence
-  between functions with recursion.
+- `exp`
+- `exps`
+
+- `value`
+- `values`
+
+- `Value.equivalent`
+- `Value.equivalent` -- handle recursion
