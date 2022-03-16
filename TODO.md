@@ -3,6 +3,8 @@
 - `exp`
 - `exps`
 
+- `Exp.evaluate`
+
 - `value`
 - `values`
 
