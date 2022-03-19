@@ -1,7 +1,11 @@
+- `exps/var` -- use our Error
+
 - `exps/fn`
 - `exps/fn-value`
 
 - `neutral`
+
+- `exps/var-neutral`
 
 - `exps/ap`
 - `exps/ap-neutral`
