@@ -1,12 +1,19 @@
+import { Env } from "../env"
+import { Exp } from "../exp"
+import { Mod } from "../mod"
 import { Value } from "../value"
-import { Closure } from "./closure"
 
 export class FnValue extends Value {
-  constructor(public ret_cl: Closure) {
+  constructor(
+    public mod: Mod,
+    public env: Env,
+    public name: string,
+    public ret: Exp
+  ) {
     super()
   }
 
   apply(arg: Value): Value {
-    return this.ret_cl.apply(arg)
+    return this.ret.evaluate(this.mod, this.env.extend(this.name, arg))
   }
 }

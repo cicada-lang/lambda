@@ -4,7 +4,6 @@ import * as Exps from "../exps"
 import { Mod } from "../mod"
 import { Span } from "../span"
 import { Value } from "../value"
-import { Closure } from "./closure"
 
 export class Fn extends Exp {
   constructor(public name: string, public ret: Exp, public span: Span) {
@@ -12,7 +11,7 @@ export class Fn extends Exp {
   }
 
   evaluate(mod: Mod, env: Env): Value {
-    return new Exps.FnValue(new Closure(mod, env, this.name, this.ret))
+    return new Exps.FnValue(mod, env, this.name, this.ret)
   }
 
   format(): string {

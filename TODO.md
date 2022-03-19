@@ -1,7 +1,4 @@
-- inline `Closure`
-
 - `Value` -- `format` -- for testing
-
 
 # equivalent
 
