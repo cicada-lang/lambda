@@ -1,1 +1,1 @@
-export * from "./def-stmt"
+export * from "./define-stmt"
