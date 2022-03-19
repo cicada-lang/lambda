@@ -1,8 +1,3 @@
-# command line tools
-
-- setup command line tools
-- [command] `lambda <file>`
-
 # test
 
 - test command line tools

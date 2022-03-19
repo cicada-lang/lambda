@@ -5,6 +5,9 @@
   "files": [
     "lib"
   ],
+  "bin": {
+    "lambda": "bin/lambda.js"
+  },
   "scripts": {
     "build": "tsc",
     "watch": "tsc --watch",

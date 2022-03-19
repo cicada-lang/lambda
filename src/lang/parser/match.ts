@@ -1,10 +1,10 @@
 import { match, matchList, matchSymbol } from "@cicada-lang/sexp/lib/match"
-import { v, cons } from "@cicada-lang/sexp/lib/pattern-exp"
+import { cons, v } from "@cicada-lang/sexp/lib/pattern-exp"
 import { Sexp } from "@cicada-lang/sexp/lib/sexp"
 import { Exp } from "../exp"
+import * as Exps from "../exps"
 import { Stmt } from "../stmt"
 import * as Stmts from "../stmts"
-import * as Exps from "../exps"
 
 export function matchStmt(sexp: Sexp): Stmt {
   return match<Stmt>(sexp, [
