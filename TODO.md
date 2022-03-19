@@ -1,3 +1,6 @@
+- `ThunkValue`
+- `ThunkValue` -- has `cache`
+
 - `Value` -- `equivalent`
 - `Value` -- `equivalent` -- can handle recursion
 

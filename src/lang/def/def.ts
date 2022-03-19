@@ -4,9 +4,14 @@ import { Mod } from "../mod"
 import { Value } from "../value"
 
 export class Def {
+  cache?: Value
+
   constructor(public mod: Mod, public name: string, public exp: Exp) {}
 
   refer(): Value {
-    return this.exp.evaluate(this.mod, new Env())
+    if (this.cache !== undefined) return this.cache
+    const value = this.exp.evaluate(this.mod, new Env())
+    this.cache = value
+    return value
   }
 }
