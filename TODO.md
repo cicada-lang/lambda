@@ -1,5 +1,3 @@
-- `def` has `mod`
-
 - `stmt`
 - `stmts`
 
