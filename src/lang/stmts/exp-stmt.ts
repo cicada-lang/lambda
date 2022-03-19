@@ -11,6 +11,6 @@ export class ExpStmt extends Stmt {
 
   async execute(mod: Mod): Promise<void> {
     const value = this.exp.evaluate(mod, new Env())
-    console.dir(value, { depth: null })
+    console.log(value.format())
   }
 }

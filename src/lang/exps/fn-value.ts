@@ -16,4 +16,8 @@ export class FnValue extends Value {
   apply(arg: Value): Value {
     return this.ret.evaluate(this.mod, this.env.extend(this.name, arg))
   }
+
+  format(): string {
+    return `(lambda (${this.name}) ${this.ret.format()})`
+  }
 }

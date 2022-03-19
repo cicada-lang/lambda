@@ -1,6 +1,5 @@
-- `Value` -- `format` -- for testing
+- `Value` -- `equivalent`
+- `Value` -- `equivalent` -- can handle recursion
 
-# equivalent
-
-- `Value` can `equivalent`
-- `Value` can `equivalent` -- handle recursion
+- `Value` -- `normalize`
+- `Value` -- `normalize` -- can handle recursion

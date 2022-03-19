@@ -5,3 +5,7 @@
 (define (two f x) (f (f x)))
 
 (define (add1 n f x) (n (f x)))
+
+id
+
+(add1 (add1 two))
