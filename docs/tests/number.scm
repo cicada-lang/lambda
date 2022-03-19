@@ -4,8 +4,8 @@
 (define (one f x) (f x))
 (define (two f x) (f (f x)))
 
+(define four (add1 (add1 two)))
+
 (define (add1 n f x) (n (f x)))
 
-id
-
-(add1 (add1 two))
+four
