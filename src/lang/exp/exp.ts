@@ -1,3 +1,6 @@
+import { Env } from "../env"
+import { Value } from "../value"
+
 export abstract class Exp {
-  // evaluate(mod: Mod, env: Env):
+  abstract evaluate(env: Env): Value
 }

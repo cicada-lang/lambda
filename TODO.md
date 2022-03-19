@@ -1,21 +1,20 @@
-- `exp` can `evaluate`
-
 - `exps/fn`
+- `exps/fn-value`
+
+- `neutral`
+
 - `exps/ap`
+- `exps/ap-neutral`
 
 - `stmts`
 
 - `parser/match` -- `matchStmt`
 - `parser/match` -- `matchExp`
 
-- `Exp.evaluate`
-
-- `values`
-
 - `def` can `refer`
 
-- `Value` -- `equivalent`
-- `Value` -- `equivalent` -- handle recursion
+- `Value` can `equivalent`
+- `Value` can `equivalent` -- handle recursion
 
 # command line tools
 
