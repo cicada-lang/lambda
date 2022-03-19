@@ -1,4 +1,9 @@
-- `Value` -- `readback` -- for testing
+- `Exp` -- `format`
+
+- inline `Closure`
+
+- `Value` -- `format` -- for testing
+
 
 # equivalent
 
