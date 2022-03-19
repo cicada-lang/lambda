@@ -1,5 +1,5 @@
 import { Mod } from "../mod"
-import { Span } from "../parser/span"
+import { Span } from "../span"
 
 export abstract class Stmt {
   abstract span: Span

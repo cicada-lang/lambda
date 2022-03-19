@@ -1,4 +1,4 @@
-import { Span } from "../parser/span"
+import { Span } from "../span"
 import { Stmt } from "../stmt"
 
 export class DefStmt extends Stmt {
