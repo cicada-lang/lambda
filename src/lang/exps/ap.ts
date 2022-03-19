@@ -1,7 +1,7 @@
 import { Env } from "../env"
 import { Exp } from "../exp"
-import { Value } from "../value"
 import { Span } from "../span"
+import { Value } from "../value"
 
 export class Ap extends Exp {
   constructor(public span: Span) {

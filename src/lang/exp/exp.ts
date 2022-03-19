@@ -1,6 +1,6 @@
 import { Env } from "../env"
-import { Value } from "../value"
 import { Span } from "../span"
+import { Value } from "../value"
 
 export abstract class Exp {
   abstract span: Span
