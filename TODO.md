@@ -1,5 +1,4 @@
-- `stmt`
-- `stmts`
+- mock parser
 
 - `exp`
 - `exps`
@@ -8,6 +7,7 @@
 - `var-exp`
 
 - `defs` -- `fn-def`
+- `stmts`
 
 - `Exp.evaluate`
 
