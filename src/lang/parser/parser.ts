@@ -1,10 +1,8 @@
 import { ParsingError } from "@cicada-lang/sexp/lib/errors"
-import { Parser as SexpParser } from "@cicada-lang/sexp/lib/parser"
+import { Parser } from "@cicada-lang/sexp/lib/parser"
 import { Stmt } from "../stmt"
 import { matchStmt } from "./match"
 
-export class Parser {
-}
 const parser = Parser.create({
   quotes: [
     { mark: "'", symbol: "quote" },
