@@ -14,4 +14,8 @@ export class Fn extends Exp {
   evaluate(mod: Mod, env: Env): Value {
     return new Exps.FnValue(new Closure(mod, env, this.name, this.ret))
   }
+
+  format(): string {
+    return `(lambda (${this.name}) ${this.ret.format()})`
+  }
 }

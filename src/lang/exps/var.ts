@@ -25,4 +25,8 @@ export class Var extends Exp {
 
     throw new LangError(`Unknown name: ${this.name}`, this.span)
   }
+
+  format(): string {
+    return this.name
+  }
 }

@@ -1,5 +1,3 @@
-- `Exp` -- `format`
-
 - inline `Closure`
 
 - `Value` -- `format` -- for testing

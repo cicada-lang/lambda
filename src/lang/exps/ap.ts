@@ -22,4 +22,8 @@ export class Ap extends Exp {
       this.span
     )
   }
+
+  format(): string {
+    return `(${this.target.format()} ${this.arg.format()})`
+  }
 }

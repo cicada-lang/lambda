@@ -6,4 +6,5 @@ import { Value } from "../value"
 export abstract class Exp {
   abstract span: Span
   abstract evaluate(mod: Mod, env: Env): Value
+  abstract format(): string
 }
