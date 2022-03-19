@@ -1,6 +1,4 @@
-# test
-
-- test command line tools
+- `Value` -- `readback` -- for testing
 
 # equivalent
 
