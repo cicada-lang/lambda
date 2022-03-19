@@ -1,4 +1,4 @@
-- `exp`
+- `exp` can `evaluate`
 
 - `exps/fn`
 - `exps/ap`
@@ -13,7 +13,7 @@
 - `value`
 - `values`
 
-- `def` has `refer`
+- `def` can `refer`
 
 - `Value.equivalent`
 - `Value.equivalent` -- handle recursion
