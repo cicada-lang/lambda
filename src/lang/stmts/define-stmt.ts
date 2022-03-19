@@ -9,6 +9,6 @@ export class DefineStmt extends Stmt {
   }
 
   async execute(mod: Mod): Promise<void> {
-    // TODO
+    mod.define(this.name, this.exp)
   }
 }

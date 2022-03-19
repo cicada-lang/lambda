@@ -1,5 +1,3 @@
-- `DefineStmt` -- `execute`
-
 - `parser/match` -- `matchStmt`
 - `parser/match` -- `matchExp`
 
