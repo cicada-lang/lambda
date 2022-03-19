@@ -1,13 +1,11 @@
-- `exps/var` -- use our Error
-
-- `exps/fn`
+- `exps/fn` -- `evaluate`
 - `exps/fn-value`
 
 - `neutral`
 
 - `exps/var-neutral`
 
-- `exps/ap`
+- `exps/ap` -- `evaluate`
 - `exps/ap-neutral`
 
 - `stmts`

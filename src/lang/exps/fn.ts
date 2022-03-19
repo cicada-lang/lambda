@@ -4,7 +4,7 @@ import { Span } from "../span"
 import { Value } from "../value"
 
 export class Fn extends Exp {
-  constructor(public span: Span) {
+  constructor(public name: string, public ret: Exp, public span: Span) {
     super()
   }
 
