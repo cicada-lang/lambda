@@ -1,3 +1,5 @@
+- our Parser extends SexpParser
+
 - `exp` can `evaluate`
 
 - `exps/fn`
