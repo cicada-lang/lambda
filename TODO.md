@@ -1,7 +1,3 @@
-- `matchStmt`
-
-  - with `ExpStmt`
-
 - `matchExp`
 
 - `def` can `refer`

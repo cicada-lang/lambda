@@ -1,7 +1,7 @@
 import { Env } from "../env"
-import { Mod } from "../mod"
 import { Exp } from "../exp"
 import * as Exps from "../exps"
+import { Mod } from "../mod"
 import { Span } from "../span"
 import { Value } from "../value"
 import { Closure } from "./closure"
