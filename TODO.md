@@ -1,12 +1,11 @@
-- `exps/fn` -- `evaluate`
 - `exps/fn-value`
-
-- `neutral`
-
-- `exps/var-neutral`
+- `exps/fn` -- `evaluate`
 
 - `exps/ap` -- `evaluate`
+- `neutral`
 - `exps/ap-neutral`
+
+- `exps/var-neutral`
 
 - `stmts`
 
