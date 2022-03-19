@@ -1,3 +1,3 @@
-export * from "./var-exp"
-export * from "./fn-exp"
-export * from "./ap-exp"
+export * from "./var"
+export * from "./fn"
+export * from "./ap"

@@ -1,8 +1,7 @@
 - `exp`
-- `exps`
-- `fn-exp`
-- `ap-exp`
-- `var-exp`
+
+- `exps/fn`
+- `exps/ap`
 
 - `stmts`
 
