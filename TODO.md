@@ -1,15 +1,11 @@
-- `exps/ap` -- `evaluate`
-- `neutral`
-- `exps/ap-neutral`
-
-- `exps/var-neutral`
-
 - `stmts`
 
 - `parser/match` -- `matchStmt`
 - `parser/match` -- `matchExp`
 
 - `def` can `refer`
+
+# equivalent
 
 - `Value` can `equivalent`
 - `Value` can `equivalent` -- handle recursion
