@@ -1,9 +1,10 @@
 import { match, matchList, matchSymbol } from "@cicada-lang/sexp/lib/match"
-import { v } from "@cicada-lang/sexp/lib/pattern-exp"
+import { v, cons } from "@cicada-lang/sexp/lib/pattern-exp"
 import { Sexp } from "@cicada-lang/sexp/lib/sexp"
 import { Exp } from "../exp"
 import { Stmt } from "../stmt"
 import * as Stmts from "../stmts"
+import * as Exps from "../exps"
 
 export function matchStmt(sexp: Sexp): Stmt {
   return match<Stmt>(sexp, [
@@ -22,6 +23,28 @@ function matchExps(sexp: Sexp): Array<Exp> {
 
 function matchExp(sexp: Sexp): Exp {
   return match<Exp>(sexp, [
-    // TODO
+    [v("name"), ({ name }) => new Exps.Var(matchSymbol(name), sexp.span)],
+    [
+      cons(v("target"), v("args")),
+      ({ target, args }) => {
+        let result = matchExp(target)
+        for (const arg of matchList(args, matchExp)) {
+          result = new Exps.Ap(result, arg, sexp.span)
+        }
+
+        return result
+      },
+    ],
+    [
+      ["lambda", v("names"), v("exp")],
+      ({ names, exp }) => {
+        let fn: Exp = matchExp(exp)
+        for (const name of [...matchList(names, matchSymbol)].reverse()) {
+          fn = new Exps.Fn(name, fn, sexp.span)
+        }
+
+        return fn
+      },
+    ],
   ])
 }
