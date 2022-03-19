@@ -1,4 +1,5 @@
 import { Env } from "../env"
+import { Mod } from "../mod"
 import { LangError } from "../errors"
 import { Exp } from "../exp"
 import * as Exps from "../exps"
@@ -10,10 +11,10 @@ export class Ap extends Exp {
     super()
   }
 
-  evaluate(env: Env): Value {
-    const target = this.target.evaluate(env)
+  evaluate(mod: Mod, env: Env): Value {
+    const target = this.target.evaluate(mod, env)
     if (target instanceof Exps.FnValue) {
-      return target.apply(this.arg.evaluate(env))
+      return target.apply(this.arg.evaluate(mod, env))
     }
 
     throw new LangError(

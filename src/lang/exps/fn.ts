@@ -1,4 +1,5 @@
 import { Env } from "../env"
+import { Mod } from "../mod"
 import { Exp } from "../exp"
 import * as Exps from "../exps"
 import { Span } from "../span"
@@ -10,7 +11,7 @@ export class Fn extends Exp {
     super()
   }
 
-  evaluate(env: Env): Value {
-    return new Exps.FnValue(new Closure(env, this.name, this.ret))
+  evaluate(mod: Mod, env: Env): Value {
+    return new Exps.FnValue(new Closure(mod, env, this.name, this.ret))
   }
 }

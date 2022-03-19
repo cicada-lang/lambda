@@ -1,11 +1,18 @@
-import { match, matchList } from "@cicada-lang/sexp/lib/match"
+import { match, matchSymbol, matchList } from "@cicada-lang/sexp/lib/match"
+import { v, str } from "@cicada-lang/sexp/lib/pattern-exp"
 import { Sexp } from "@cicada-lang/sexp/lib/sexp"
 import { Exp } from "../exp"
 import { Stmt } from "../stmt"
+import * as Stmts from "../stmts"
 
 export function matchStmt(sexp: Sexp): Stmt {
   return match<Stmt>(sexp, [
-    // TODO
+    [
+      ["define", v("name"), v("exp")],
+      ({ name, exp }) =>
+        new Stmts.DefineStmt(matchSymbol(name), matchExp(exp), sexp.span),
+    ],
+    [v("exp"), ({ exp }) => new Stmts.ExpStmt(matchExp(exp), sexp.span)],
   ])
 }
 

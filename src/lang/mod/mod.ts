@@ -1,5 +1,6 @@
 import { Def } from "../def"
 import { Exp } from "../exp"
+import { Env } from "../env"
 
 export class Mod {
   defs: Map<string, Def> = new Map()
