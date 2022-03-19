@@ -1,7 +1,8 @@
 import { Module } from "../module"
+import { Exp } from "../exp"
 
-export abstract class Def {
-  abstract mod: Module
-  abstract name: string
-  // abstract refer(): Value
+export class Def {
+  constructor(public mod: Module, public name: string, exp: Exp) {}
+
+  // refer(): Value
 }

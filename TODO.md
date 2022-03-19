@@ -4,7 +4,6 @@
 - `ap-exp`
 - `var-exp`
 
-- `defs` -- `fn-def`
 - `stmts`
 
 - `parser/match` -- `matchStmt`
