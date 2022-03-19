@@ -1,6 +1,3 @@
-import { Env } from "../env"
-import { Exp } from "../exp"
-import { Span } from "../span"
 import { Value } from "../value"
 import { Closure } from "./closure"
 

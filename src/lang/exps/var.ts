@@ -1,8 +1,8 @@
 import { Env } from "../env"
+import { LangError } from "../errors"
 import { Exp } from "../exp"
 import { Span } from "../span"
 import { Value } from "../value"
-import { LangError } from "../errors"
 
 export class Var extends Exp {
   constructor(public name: string, public span: Span) {
