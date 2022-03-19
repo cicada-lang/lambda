@@ -1,6 +1,6 @@
-- setup `docs/tests/`
-
-- `mod`
+- `module`
+- `def`
+- `defs`
 
 - `stmt`
 - `stmts`
