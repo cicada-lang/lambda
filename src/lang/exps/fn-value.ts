@@ -1,7 +1,9 @@
 import { Env } from "../env"
 import { Exp } from "../exp"
+import * as Exps from "../exps"
 import { Mod } from "../mod"
 import { Value } from "../value"
+import { freshen } from "../../ut/freshen"
 
 export class FnValue extends Value {
   constructor(
@@ -18,7 +20,10 @@ export class FnValue extends Value {
   }
 
   readback(used: Set<string>): Exp {
-    throw new Error("TODO")
+    const freshName = freshen(used, this.name)
+    const variable = new Exps.NotYetValue(new Exps.VarNeutral(freshName))
+    const ret = Exps.Ap.apply(this, variable)
+    return new Exps.Fn(freshName, ret.readback(new Set([...used, freshName])))
   }
 
   format(): string {
