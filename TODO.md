@@ -1,5 +1,3 @@
-- `neutral`
-
 - `var-neutral`
 - `ap-neutral`
 
