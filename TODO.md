@@ -1,4 +1,4 @@
-- improve `exp.format()`
+- improve `exp.format()` -- for `Ap`
 
 - `ThunkValue` -- for call-by-need
 - `ThunkValue` -- has `cache`
