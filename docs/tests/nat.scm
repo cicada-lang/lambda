@@ -62,15 +62,18 @@ two
 (lteq three four)
 (lteq three two)
 
-;; (define (factorial n)
-;;   (if (zero? n)
-;;     one
-;;     (mul n (factorial (sub1 n)))))
+(define (factorial-rec n)
+  (if (zero? n)
+    one
+    (mul n (factorial-rec (sub1 n)))))
 
-;; (factorial zero)
-;; (factorial one)
-;; (factorial two)
-;; (factorial three)
+(factorial-rec zero)
+(factorial-rec one)
+(factorial-rec two)
+(factorial-rec three)
+
+;; TODO Why the following evaluation loop?
+;; factorial-rec
 
 (define (factorial/rec rec n)
   (if (zero? n)
@@ -80,7 +83,7 @@ two
 (define factorial
   (factorial/rec factorial/rec))
 
-;; TODO Why the following loop?
+;; TODO Why the following definition causes loop?
 ;; (define (factorial n)
 ;;   (factorial/rec factorial/rec))
 
