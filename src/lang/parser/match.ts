@@ -16,15 +16,14 @@ export function matchStmt(sexp: Sexp): Stmt {
           fn = new Exps.Fn(name, fn)
         }
 
-        return new Stmts.DefineStmt(matchSymbol(name), fn, sexp.span)
+        return new Stmts.DefineStmt(matchSymbol(name), fn)
       },
     ],
     [
       ["define", v("name"), v("exp")],
-      ({ name, exp }) =>
-        new Stmts.DefineStmt(matchSymbol(name), matchExp(exp), sexp.span),
+      ({ name, exp }) => new Stmts.DefineStmt(matchSymbol(name), matchExp(exp)),
     ],
-    [v("exp"), ({ exp }) => new Stmts.EvaluateStmt(matchExp(exp), sexp.span)],
+    [v("exp"), ({ exp }) => new Stmts.EvaluateStmt(matchExp(exp))],
   ])
 }
 

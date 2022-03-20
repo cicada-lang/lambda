@@ -1,11 +1,10 @@
 import { Env } from "../env"
 import { Exp } from "../exp"
 import { Mod } from "../mod"
-import { Span } from "../span"
 import { Stmt } from "../stmt"
 
 export class EvaluateStmt extends Stmt {
-  constructor(public exp: Exp, public span: Span) {
+  constructor(public exp: Exp) {
     super()
   }
 
