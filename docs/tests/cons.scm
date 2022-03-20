@@ -1,4 +1,4 @@
-(import "./boolean.scm" true false if and or not)
+(import "./boolean.scm" true false)
 
 (define (cons a d f) (f a d))
 (define (car p) (p true))
