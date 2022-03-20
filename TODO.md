@@ -1,3 +1,5 @@
+- handle `AxiosError`
+
 - play with fix & Y
 - play with birds
 
