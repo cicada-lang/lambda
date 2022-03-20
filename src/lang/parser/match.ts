@@ -1,5 +1,10 @@
-import { match, matchList, matchSymbol } from "@cicada-lang/sexp/lib/match"
-import { cons, v } from "@cicada-lang/sexp/lib/pattern-exp"
+import {
+  match,
+  matchList,
+  matchSymbol,
+  matchString,
+} from "@cicada-lang/sexp/lib/match"
+import { cons, list, v } from "@cicada-lang/sexp/lib/pattern-exp"
 import { Sexp } from "@cicada-lang/sexp/lib/sexp"
 import { Exp } from "../exp"
 import * as Exps from "../exps"
@@ -23,12 +28,29 @@ export function matchStmt(sexp: Sexp): Stmt {
       ["define", v("name"), v("exp")],
       ({ name, exp }) => new Stmts.DefineStmt(matchSymbol(name), matchExp(exp)),
     ],
+    [
+      list(["import", v("url")], v("entries")),
+      ({ url, entries }) =>
+        new Stmts.ImportStmt(
+          matchString(url),
+          matchList(entries, matchImportEntry)
+        ),
+    ],
     [v("exp"), ({ exp }) => new Stmts.EvaluateStmt(matchExp(exp))],
   ])
 }
 
-function matchExps(sexp: Sexp): Array<Exp> {
-  return matchList(sexp, matchExp)
+function matchImportEntry(sexp: Sexp): Stmts.ImportEntry {
+  return match<Stmts.ImportEntry>(sexp, [
+    [
+      ["rename", v("name"), v("rename")],
+      ({ name, rename }) => ({
+        name: matchSymbol(name),
+        rename: matchSymbol(rename),
+      }),
+    ],
+    [v("name"), ({ name }) => matchSymbol(name)],
+  ])
 }
 
 function matchExp(sexp: Sexp): Exp {
