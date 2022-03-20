@@ -14,18 +14,18 @@ export class Fn extends Exp {
   }
 
   format(): string {
-    const { names, exp } = formatAux([], this)
-    return `(lambda (${names.join(" ")}) ${exp})`
+    const { names, ret } = formatFn([this.name], this.ret)
+    return `(lambda (${names.join(" ")}) ${ret})`
   }
 }
 
-function formatAux(
+function formatFn(
   names: Array<string>,
-  exp: Exp
-): { names: Array<string>; exp: string } {
-  if (exp instanceof Fn) {
-    return formatAux([...names, exp.name], exp.ret)
+  ret: Exp
+): { names: Array<string>; ret: string } {
+  if (ret instanceof Fn) {
+    return formatFn([...names, ret.name], ret.ret)
   } else {
-    return { names, exp: exp.format() }
+    return { names, ret: ret.format() }
   }
 }

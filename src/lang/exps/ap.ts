@@ -15,7 +15,8 @@ export class Ap extends Exp {
   }
 
   format(): string {
-    return `(${this.target.format()} ${this.arg.format()})`
+    const { target, args } = formatAp(this.target, [this.arg.format()])
+    return `(${target} ${args.join(" ")})`
   }
 
   static apply(target: Value, arg: Value): Value {
@@ -30,5 +31,16 @@ export class Ap extends Exp {
     throw new LangError(
       `I expect the target to be a function, instead of ${target.constructor.name}`
     )
+  }
+}
+
+function formatAp(
+  target: Exp,
+  args: Array<string>
+): { target: string; args: Array<string> } {
+  if (target instanceof Ap) {
+    return formatAp(target.target, [target.arg.format(), ...args])
+  } else {
+    return { target: target.format(), args }
   }
 }

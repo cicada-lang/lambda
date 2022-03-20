@@ -35,17 +35,6 @@ function matchExps(sexp: Sexp): Array<Exp> {
 function matchExp(sexp: Sexp): Exp {
   return match<Exp>(sexp, [
     [
-      cons(v("target"), v("args")),
-      ({ target, args }) => {
-        let result = matchExp(target)
-        for (const arg of matchList(args, matchExp)) {
-          result = new Exps.Ap(result, arg)
-        }
-
-        return result
-      },
-    ],
-    [
       ["lambda", v("names"), v("exp")],
       ({ names, exp }) => {
         let fn = matchExp(exp)
@@ -54,6 +43,17 @@ function matchExp(sexp: Sexp): Exp {
         }
 
         return fn
+      },
+    ],
+    [
+      cons(v("target"), v("args")),
+      ({ target, args }) => {
+        let result = matchExp(target)
+        for (const arg of matchList(args, matchExp)) {
+          result = new Exps.Ap(result, arg)
+        }
+
+        return result
       },
     ],
     [v("name"), ({ name }) => new Exps.Var(matchSymbol(name))],
