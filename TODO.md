@@ -1,4 +1,4 @@
-- `not-yet-value` -- fix `FnValue` -- `apply`
+- fix `FnValue` -- `apply` -- by `not-yet-value`
 
 - `fn-value` -- `readback`
 - `evaluate-stmt` use `readback`
