@@ -8,4 +8,7 @@
 
 (define (add1 n f x) (n (f x)))
 
-four
+zero
+add1
+(add1 zero)
+(add1 (add1 zero))

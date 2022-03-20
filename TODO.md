@@ -1,11 +1,18 @@
-- `ThunkValue`
+- `neutral`
+
+- `var-neutral`
+- `ap-neutral`
+
+- `not-yet-value`
+
+- `Value` -- `readback`
+- `Value` -- `readback` -- can handle recursion
+
+- `Value` -- `equal`
+- `Value` -- `equal` -- can handle recursion
+
+- `(assert-equal)`
+- `(assert-not-equal)`
+
+- `ThunkValue` -- for call-by-need
 - `ThunkValue` -- has `cache`
-
-- `Value` -- `normalize`
-- `Value` -- `normalize` -- can handle recursion
-
-- `Value` -- `equivalent`
-- `Value` -- `equivalent` -- can handle recursion
-
-- `(equal!)`
-- `(not-equal!)`

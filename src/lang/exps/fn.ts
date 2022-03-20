@@ -11,7 +11,7 @@ export class Fn extends Exp {
   }
 
   evaluate(mod: Mod, env: Env): Value {
-    return new Exps.FnValue(mod, env, this.name, this.ret)
+    return new Exps.FnValue(mod, env, this.name, this.ret, this.span)
   }
 
   format(): string {
