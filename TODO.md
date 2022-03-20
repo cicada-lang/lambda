@@ -1,3 +1,8 @@
+- improve `exp.format()`
+
+- `ThunkValue` -- for call-by-need
+- `ThunkValue` -- has `cache`
+
 - `Value` -- `readback` -- can handle recursion
 
 - `Value` -- `equal`
@@ -5,6 +10,3 @@
 
 - `(assert-equal)`
 - `(assert-not-equal)`
-
-- `ThunkValue` -- for call-by-need
-- `ThunkValue` -- has `cache`
