@@ -1,11 +1,12 @@
 import { Command } from "@enchanterjs/enchanter/lib/command"
 import { CommandRunner } from "@enchanterjs/enchanter/lib/command-runner"
+import { CommonHelpCommand } from "@enchanterjs/enchanter/lib/commands"
 import ty from "@xieyuheng/ty"
 import fs from "fs"
 import { ModLoader } from "../../lang/mod"
 import { createUrl } from "../../ut/url"
 
-type Args = { file: string }
+type Args = { file?: string }
 type Opts = {}
 
 export class RunCommand extends Command<Args, Opts> {
@@ -13,7 +14,7 @@ export class RunCommand extends Command<Args, Opts> {
 
   description = "Run a file"
 
-  args = { file: ty.string() }
+  args = { file: ty.optional(ty.string()) }
   opts = {}
 
   // prettier-ignore
@@ -42,7 +43,12 @@ export class RunCommand extends Command<Args, Opts> {
     },
   })
 
-  async execute(argv: Args & Opts): Promise<void> {
+  async execute(argv: Args & Opts, runner: CommandRunner): Promise<void> {
+    if (!argv.file) {
+      new CommonHelpCommand().execute(argv as any, runner)
+      return
+    }
+
     await this.loader.load(createUrl(argv.file))
   }
 }
