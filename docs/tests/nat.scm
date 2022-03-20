@@ -77,8 +77,12 @@ two
     one
     (mul n (rec rec (sub1 n)))))
 
-(define (factorial n)
-  (factorial/rec factorial/rec n))
+(define factorial
+  (factorial/rec factorial/rec))
+
+;; TODO Why the following loop?
+;; (define (factorial n)
+;;   (factorial/rec factorial/rec))
 
 (factorial zero)
 (factorial one)
