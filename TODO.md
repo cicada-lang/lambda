@@ -1,5 +1,3 @@
-- `ModLoader` has `cache`
-
 - `ImportStmt`
 
 - `(import)` -- like js' `import` -- put `url` at the end

@@ -5,6 +5,7 @@ import { Value } from "../value"
 
 export class Mod {
   loader = new ModLoader()
+  cache: Map<string, Mod> = new Map()
   defs: Map<string, Def> = new Map()
 
   constructor(public url: URL) {}
@@ -14,7 +15,14 @@ export class Mod {
       url = this.resolve(url)
     }
 
-    return await this.loader.load(url)
+    const found = this.cache.get(url.href)
+    if (found !== undefined) {
+      return found
+    }
+
+    const mod = await this.loader.load(url)
+    this.cache.set(url.href, mod)
+    return mod
   }
 
   resolve(href: string): URL {
