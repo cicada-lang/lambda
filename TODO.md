@@ -1,6 +1,6 @@
-- `ap-neutral`
+- `not-yet-value` -- fix `FnValue` -- `apply`
 
-- `not-yet-value`
+- `fn-value` -- `readback`
 
 - `Value` -- `readback` -- can handle recursion
 
