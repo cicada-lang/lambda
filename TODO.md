@@ -1,11 +1,6 @@
 - play with fix & Y
 - play with birds
 
-# lazy
-
-- `LazyValue` -- for call-by-need
-- `LazyValue` -- has `cache`
-
 # recursion
 
 - `Value` -- `readback` -- can handle recursion

@@ -61,3 +61,26 @@ two
 
 (lteq three four)
 (lteq three two)
+
+;; (define (factorial n)
+;;   (if (zero? n)
+;;     one
+;;     (mul n (factorial (sub1 n)))))
+
+;; (factorial zero)
+;; (factorial one)
+;; (factorial two)
+;; (factorial three)
+
+(define (factorial-aux recur n)
+  (if (zero? n)
+    one
+    (mul n (recur recur (sub1 n)))))
+
+(define (factorial n)
+  (factorial-aux factorial-aux n))
+
+(factorial zero)
+(factorial one)
+(factorial two)
+(factorial three)

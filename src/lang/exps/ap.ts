@@ -11,7 +11,10 @@ export class Ap extends Exp {
   }
 
   evaluate(mod: Mod, env: Env): Value {
-    return Ap.apply(this.target.evaluate(mod, env), this.arg.evaluate(mod, env))
+    return Ap.apply(
+      this.target.evaluate(mod, env),
+      new Exps.LazyValue(mod, env, this.arg)
+    )
   }
 
   format(): string {
@@ -20,6 +23,10 @@ export class Ap extends Exp {
   }
 
   static apply(target: Value, arg: Value): Value {
+    if (target instanceof Exps.LazyValue) {
+      return Ap.apply(target.active(), arg)
+    }
+
     if (target instanceof Exps.NotYetValue) {
       return new Exps.NotYetValue(new Exps.ApNeutral(target.neutral, arg))
     }
