@@ -1,5 +1,14 @@
-- `ThunkValue` -- for call-by-need
-- `ThunkValue` -- has `cache`
+- play with church number
+- play with church list
+- play with fix
+- play with Y
+
+# lazy
+
+- `LazyValue` -- for call-by-need
+- `LazyValue` -- has `cache`
+
+# recursion
 
 - `Value` -- `readback` -- can handle recursion
 
