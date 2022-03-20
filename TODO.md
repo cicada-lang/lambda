@@ -1,4 +1,3 @@
-- play with cons
 - play with fix & Y
 - play with birds
 

@@ -19,6 +19,7 @@ two
 
 (mul two two)
 (add two two)
+(add-alt two two)
 (add1 three)
 
 (define four (add1 three))
@@ -32,14 +33,14 @@ two
 
 (import "./boolean.scm" true false if and or not)
 
-(define (zero-p n) (n (lambda (x) false) true))
+(define (zero? n) (n (lambda (x) false) true))
 
-(zero-p zero)
-(zero-p one)
-(zero-p two)
+(zero? zero)
+(zero? one)
+(zero? two)
 
 (define (sub1 n)
-  (n (lambda (g k) (zero-p (g one) k (add (g k) one)))
+  (n (lambda (g k) (zero? (g one) k (add (g k) one)))
      (lambda (_) zero)
      zero))
 
@@ -56,7 +57,7 @@ two
 (sub three three)
 (sub three four)
 
-(define (lteq m n) (zero-p (sub m n)))
+(define (lteq m n) (zero? (sub m n)))
 
 (lteq three four)
 (lteq three two)
