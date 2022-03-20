@@ -1,5 +1,3 @@
-(define (id x) x)
-
 (define (zero f x) x)
 (define (one f x) (f x))
 (define (two f x) (f (f x)))
