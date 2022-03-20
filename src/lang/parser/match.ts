@@ -24,7 +24,7 @@ export function matchStmt(sexp: Sexp): Stmt {
       ({ name, exp }) =>
         new Stmts.DefineStmt(matchSymbol(name), matchExp(exp), sexp.span),
     ],
-    [v("exp"), ({ exp }) => new Stmts.ExpStmt(matchExp(exp), sexp.span)],
+    [v("exp"), ({ exp }) => new Stmts.EvaluateStmt(matchExp(exp), sexp.span)],
   ])
 }
 

@@ -4,7 +4,7 @@ import { Mod } from "../mod"
 import { Span } from "../span"
 import { Stmt } from "../stmt"
 
-export class ExpStmt extends Stmt {
+export class EvaluateStmt extends Stmt {
   constructor(public exp: Exp, public span: Span) {
     super()
   }
