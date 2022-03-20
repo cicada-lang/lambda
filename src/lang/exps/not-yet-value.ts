@@ -1,9 +1,7 @@
-import { Env } from "../env"
 import { Exp } from "../exp"
-import { Mod } from "../mod"
+import { Neutral } from "../neutral"
 import { Span } from "../span"
 import { Value } from "../value"
-import { Neutral } from "../neutral"
 
 export class NotYetValue extends Value {
   constructor(public neutral: Neutral, public span: Span) {
