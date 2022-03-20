@@ -49,6 +49,11 @@ export class RunCommand extends Command<Args, Opts> {
       return
     }
 
-    await this.loader.load(createUrl(argv.file))
+    try {
+      await this.loader.load(createUrl(argv.file))
+    } catch (error) {
+      if (!(error instanceof Error)) console.error(error)
+      else console.error(error.message)
+    }
   }
 }
