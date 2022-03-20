@@ -10,8 +10,4 @@ export class NotYetValue extends Value {
   readback(used: Set<string>): Exp {
     return this.neutral.readback(used)
   }
-
-  format(): string {
-    return this.neutral.format()
-  }
 }

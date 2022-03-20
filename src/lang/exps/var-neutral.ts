@@ -10,8 +10,4 @@ export class VarNeutral extends Neutral {
   readback(used: Set<string>): Exp {
     return new Exps.Var(this.name)
   }
-
-  format(): string {
-    return this.name
-  }
 }

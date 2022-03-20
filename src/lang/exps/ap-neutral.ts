@@ -11,8 +11,4 @@ export class ApNeutral extends Neutral {
   readback(used: Set<string>): Exp {
     return new Exps.Ap(this.target.readback(used), this.arg.readback(used))
   }
-
-  format(): string {
-    return `(${this.target.format()} ${this.arg.format()})`
-  }
 }

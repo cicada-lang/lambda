@@ -25,8 +25,4 @@ export class FnValue extends Value {
     const ret = Exps.Ap.apply(this, variable)
     return new Exps.Fn(freshName, ret.readback(new Set([...used, freshName])))
   }
-
-  format(): string {
-    return `(lambda (${this.name}) ${this.ret.format()})`
-  }
 }
