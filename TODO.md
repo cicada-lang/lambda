@@ -1,7 +1,6 @@
-- play with fix
-- play with Y
-
 - play with cons
+- play with fix & Y
+- play with birds
 
 # lazy
 
