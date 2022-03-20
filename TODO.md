@@ -1,8 +1,6 @@
 - play with fix
 - play with Y
 
-- play with number and boolean
-
 - play with cons
 
 # lazy

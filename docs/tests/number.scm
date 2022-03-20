@@ -29,3 +29,34 @@ two
 
 (power two four)
 (power four two)
+
+(import "./boolean.scm" true false if and or not)
+
+(define (zero-p n) (n (lambda (x) false) true))
+
+(zero-p zero)
+(zero-p one)
+(zero-p two)
+
+(define (sub1 n)
+  (n (lambda (g k) (zero-p (g one) k (add (g k) one)))
+     (lambda (_) zero)
+     zero))
+
+(sub1 three)
+(sub1 (sub1 three))
+(sub1 (sub1 (sub1 three)))
+(sub1 (sub1 (sub1 (sub1 three))))
+
+(define (sub m n) (n sub1 m))
+
+(sub three zero)
+(sub three one)
+(sub three two)
+(sub three three)
+(sub three four)
+
+(define (lteq m n) (zero-p (sub m n)))
+
+(lteq three four)
+(lteq three two)

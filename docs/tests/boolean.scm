@@ -1,16 +1,8 @@
-(define (true then else) then)
-(define (false then else) else)
+(define (true t f) t)
+(define (false t f) f)
 
-(define (if boolean then else) (boolean then else))
+(define (if p t f) (p t f))
 
 (define (and x y) (if x y false))
 (define (or x y) (if x true y))
 (define (not x) (if x false true))
-
-true
-false
-
-if
-
-(and true false)
-(not (not (or true false)))
