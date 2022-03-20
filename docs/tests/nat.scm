@@ -72,15 +72,19 @@ two
 ;; (factorial two)
 ;; (factorial three)
 
-(define (factorial-aux recur n)
+(define (factorial/rec rec n)
   (if (zero? n)
     one
-    (mul n (recur recur (sub1 n)))))
+    (mul n (rec rec (sub1 n)))))
 
 (define (factorial n)
-  (factorial-aux factorial-aux n))
+  (factorial/rec factorial/rec n))
 
 (factorial zero)
 (factorial one)
 (factorial two)
 (factorial three)
+
+;; (define omega
+;;   ((lambda (x) (x x))
+;;    (lambda (x) (x x))))

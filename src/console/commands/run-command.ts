@@ -2,8 +2,8 @@ import { Command } from "@enchanterjs/enchanter/lib/command"
 import { CommandRunner } from "@enchanterjs/enchanter/lib/command-runner"
 import ty from "@xieyuheng/ty"
 import fs from "fs"
-import Path from "path"
 import { ModLoader } from "../../lang/mod"
+import { createUrl } from "../../ut/url"
 
 type Args = { file: string }
 type Opts = {}
@@ -23,20 +23,26 @@ export class RunCommand extends Command<Args, Opts> {
     return [
       `The ${blue(this.name)} command run a file.`,
       ``,
-      blue(`  ${runner.name} ${this.name} docs/tests/number.scm`),
+      blue(`  ${runner.name} ${this.name} docs/tests/nat.scm`),
+      ``,
+      `It is the default command, thus you can drop the command name.`,
+      ``,
+      blue(`  ${runner.name} docs/tests/nat.scm`),
+      ``,
+      `It can also run a file from a URL.`,
+      ``,
+      blue(`  ${runner.name} https://readonly.link/files/cicada-lang/lambda/-/docs/tests/nat.scm`),
       ``,
     ].join("\n")
   }
 
-  async execute(argv: Args & Opts): Promise<void> {
-    const file = Path.resolve(argv.file)
-    const url = new URL(`file:${file}`)
-    const loader = new ModLoader({
-      urlLoaders: {
-        "file:": (url: URL) => fs.promises.readFile(url.pathname, "utf8"),
-      },
-    })
+  loader = new ModLoader({
+    urlLoaders: {
+      "file:": (url: URL) => fs.promises.readFile(url.pathname, "utf8"),
+    },
+  })
 
-    const mod = await loader.load(url)
+  async execute(argv: Args & Opts): Promise<void> {
+    await this.loader.load(createUrl(argv.file))
   }
 }

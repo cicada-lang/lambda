@@ -3,7 +3,9 @@
 An implementation of [(Untyped) Lambda Calculus](https://en.wikipedia.org/wiki/Lambda_calculus) in JavaScript.
 
 - Use [S-expression](https://github.com/cicada-lang/sexp) as overall syntax.
-- Allow recursive definitions, to study of equivalence relation between recursive functions.
+- Use callby-need Lazy evaluation.
+- Allow recursive definitions.
+  - Aiming to study of the equivalence relation between recursive functions.
 
 ## Usage
 
