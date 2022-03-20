@@ -1,8 +1,8 @@
 import {
   match,
   matchList,
-  matchSymbol,
   matchString,
+  matchSymbol,
 } from "@cicada-lang/sexp/lib/match"
 import { cons, list, v } from "@cicada-lang/sexp/lib/pattern-exp"
 import { Sexp } from "@cicada-lang/sexp/lib/sexp"
