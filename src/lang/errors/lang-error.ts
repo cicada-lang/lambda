@@ -1,3 +1,5 @@
-import { ParsingError } from "@cicada-lang/sexp/lib/errors"
-
-export class LangError extends ParsingError {}
+export class LangError extends Error {
+  constructor(public message: string) {
+    super(message)
+  }
+}

@@ -1,7 +1,6 @@
 import { Env } from "../env"
 import { Exp } from "../exp"
 import { Mod } from "../mod"
-import { Span } from "../span"
 import { Value } from "../value"
 
 export class FnValue extends Value {
@@ -9,8 +8,7 @@ export class FnValue extends Value {
     public mod: Mod,
     public env: Env,
     public name: string,
-    public ret: Exp,
-    public span: Span
+    public ret: Exp
   ) {
     super()
   }

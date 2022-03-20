@@ -2,11 +2,10 @@ import { Env } from "../env"
 import { LangError } from "../errors"
 import { Exp } from "../exp"
 import { Mod } from "../mod"
-import { Span } from "../span"
 import { Value } from "../value"
 
 export class Var extends Exp {
-  constructor(public name: string, public span: Span) {
+  constructor(public name: string) {
     super()
   }
 
@@ -23,7 +22,7 @@ export class Var extends Exp {
       return value
     }
 
-    throw new LangError(`Unknown name: ${this.name}`, this.span)
+    throw new LangError(`Unknown name: ${this.name}`)
   }
 
   format(): string {

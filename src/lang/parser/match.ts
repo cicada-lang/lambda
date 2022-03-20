@@ -13,7 +13,7 @@ export function matchStmt(sexp: Sexp): Stmt {
       ({ name, args, exp }) => {
         let fn = matchExp(exp)
         for (const name of [...matchList(args, matchSymbol)].reverse()) {
-          fn = new Exps.Fn(name, fn, sexp.span)
+          fn = new Exps.Fn(name, fn)
         }
 
         return new Stmts.DefineStmt(matchSymbol(name), fn, sexp.span)
@@ -39,7 +39,7 @@ function matchExp(sexp: Sexp): Exp {
       ({ target, args }) => {
         let result = matchExp(target)
         for (const arg of matchList(args, matchExp)) {
-          result = new Exps.Ap(result, arg, sexp.span)
+          result = new Exps.Ap(result, arg)
         }
 
         return result
@@ -50,12 +50,12 @@ function matchExp(sexp: Sexp): Exp {
       ({ names, exp }) => {
         let fn = matchExp(exp)
         for (const name of [...matchList(names, matchSymbol)].reverse()) {
-          fn = new Exps.Fn(name, fn, sexp.span)
+          fn = new Exps.Fn(name, fn)
         }
 
         return fn
       },
     ],
-    [v("name"), ({ name }) => new Exps.Var(matchSymbol(name), sexp.span)],
+    [v("name"), ({ name }) => new Exps.Var(matchSymbol(name))],
   ])
 }

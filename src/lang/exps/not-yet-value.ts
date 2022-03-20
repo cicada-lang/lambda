@@ -1,10 +1,9 @@
 import { Exp } from "../exp"
 import { Neutral } from "../neutral"
-import { Span } from "../span"
 import { Value } from "../value"
 
 export class NotYetValue extends Value {
-  constructor(public neutral: Neutral, public span: Span) {
+  constructor(public neutral: Neutral) {
     super()
   }
 
