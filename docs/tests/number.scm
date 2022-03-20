@@ -12,3 +12,4 @@ zero
 add1
 (add1 zero)
 (add1 (add1 zero))
+(add1 (add1 (add1 zero)))

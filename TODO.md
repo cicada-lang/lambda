@@ -1,5 +1,3 @@
-- `evaluate-stmt` use `readback`
-
 - `Value` -- `readback` -- can handle recursion
 
 - `Value` -- `equal`

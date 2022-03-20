@@ -8,7 +8,7 @@ export class NotYetValue extends Value {
   }
 
   readback(used: Set<string>): Exp {
-    throw this.neutral.readback(used)
+    return this.neutral.readback(used)
   }
 
   format(): string {

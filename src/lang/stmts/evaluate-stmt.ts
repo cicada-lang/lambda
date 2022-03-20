@@ -11,6 +11,7 @@ export class EvaluateStmt extends Stmt {
 
   async execute(mod: Mod): Promise<void> {
     const value = this.exp.evaluate(mod, new Env())
-    console.log(value.format())
+    const exp = value.readback(new Set())
+    console.log(exp.format())
   }
 }
