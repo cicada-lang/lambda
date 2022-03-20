@@ -1,4 +1,4 @@
-- `HttpModLoader` -- built-in `Mod`
+- `ModLoader` has `cache`
 
 - `ImportStmt`
 

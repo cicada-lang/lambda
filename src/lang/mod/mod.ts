@@ -4,7 +4,7 @@ import { ModLoader } from "../mod"
 import { Value } from "../value"
 
 export class Mod {
-  loaders: Map<string, ModLoader> = new Map()
+  loader = new ModLoader()
   defs: Map<string, Def> = new Map()
 
   constructor(public url: URL) {}
@@ -14,12 +14,7 @@ export class Mod {
       url = this.resolve(url)
     }
 
-    const loader = this.loaders.get(url.protocol)
-    if (loader === undefined) {
-      throw new Error(`Unknown protocol: ${url.protocol}`)
-    }
-
-    return await loader.load(url)
+    return await this.loader.load(url)
   }
 
   resolve(href: string): URL {

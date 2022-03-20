@@ -1,8 +1,9 @@
 import { Command } from "@enchanterjs/enchanter/lib/command"
 import { CommandRunner } from "@enchanterjs/enchanter/lib/command-runner"
 import ty from "@xieyuheng/ty"
+import fs from "fs"
 import Path from "path"
-import { FileModLoader } from "../../lang/mod/mod-loaders/file-mod-loader"
+import { ModLoader } from "../../lang/mod"
 
 type Args = { file: string }
 type Opts = {}
@@ -30,7 +31,12 @@ export class RunCommand extends Command<Args, Opts> {
   async execute(argv: Args & Opts): Promise<void> {
     const file = Path.resolve(argv.file)
     const url = new URL(`file:${file}`)
-    const loader = new FileModLoader()
+    const loader = new ModLoader({
+      urlLoaders: {
+        "files:": (url: URL) => fs.promises.readFile(url.pathname, "utf8"),
+      },
+    })
+
     const mod = await loader.load(url)
   }
 }
