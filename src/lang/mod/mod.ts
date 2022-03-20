@@ -4,11 +4,13 @@ import { ModLoader } from "../mod"
 import { Value } from "../value"
 
 export class Mod {
-  loader = new ModLoader()
+  loader: ModLoader
   cache: Map<string, Mod> = new Map()
   defs: Map<string, Def> = new Map()
 
-  constructor(public url: URL) {}
+  constructor(public url: URL, options: { loader: ModLoader }) {
+    this.loader = options.loader
+  }
 
   async load(url: URL | string): Promise<Mod> {
     if (typeof url === "string") {

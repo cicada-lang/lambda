@@ -49,7 +49,7 @@ function matchImportEntry(sexp: Sexp): Stmts.ImportEntry {
         rename: matchSymbol(rename),
       }),
     ],
-    [v("name"), ({ name }) => matchSymbol(name)],
+    [v("name"), ({ name }) => ({ name: matchSymbol(name) })],
   ])
 }
 

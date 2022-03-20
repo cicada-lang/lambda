@@ -33,7 +33,7 @@ export class RunCommand extends Command<Args, Opts> {
     const url = new URL(`file:${file}`)
     const loader = new ModLoader({
       urlLoaders: {
-        "files:": (url: URL) => fs.promises.readFile(url.pathname, "utf8"),
+        "file:": (url: URL) => fs.promises.readFile(url.pathname, "utf8"),
       },
     })
 
