@@ -1,10 +1,6 @@
-- `var-neutral`
 - `ap-neutral`
 
 - `not-yet-value`
-
-- `Value` -- `readback`
-- `Neutral` -- `readback`
 
 - `Value` -- `readback` -- can handle recursion
 
