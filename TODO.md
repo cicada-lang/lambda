@@ -1,7 +1,3 @@
-- `(import)` -- like js' `import` -- put `url` at the end
-
-  - need support from sexp's matchers
-
 - play with church number
 - play with church list
 - play with fix
