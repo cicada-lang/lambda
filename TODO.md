@@ -1,9 +1,9 @@
+- `Value` -- `readback` -- can handle recursion
+
 - play with fix & Y
 - play with birds
 
 # recursion
-
-- `Value` -- `readback` -- can handle recursion
 
 - `Value` -- `equal`
 - `Value` -- `equal` -- can handle recursion

@@ -84,8 +84,7 @@ two
   (factorial/rec factorial/rec))
 
 ;; TODO Why the following definition causes loop?
-;; (define (factorial n)
-;;   (factorial/rec factorial/rec))
+;; factorial
 
 (factorial zero)
 (factorial one)
