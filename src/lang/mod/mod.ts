@@ -11,17 +11,10 @@ export class Mod {
     this.loader = options.loader
   }
 
-  async load(
-    url: URL | string,
-    options?: {
-      text?: string
-    }
-  ): Promise<Mod> {
-    if (typeof url === "string") {
-      url = this.resolve(url)
-    }
-
-    return await this.loader.load(url, options)
+  async load(url: URL | string): Promise<Mod> {
+    return await this.loader.load(
+      typeof url === "string" ? this.resolve(url) : url
+    )
   }
 
   resolve(href: string): URL {
