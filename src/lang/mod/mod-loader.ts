@@ -1,5 +1,5 @@
 import { ParsingError } from "@cicada-lang/sexp/lib/errors"
-import { builtinUrlLoaders, UrlLoader } from "../../ut/url"
+import { builtinUrlLoaders, UrlLoader } from "../../ut/url-loader"
 import { Mod } from "../mod"
 import { Parser } from "../parser"
 

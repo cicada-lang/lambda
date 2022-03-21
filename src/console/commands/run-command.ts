@@ -4,7 +4,7 @@ import { CommonHelpCommand } from "@enchanterjs/enchanter/lib/commands"
 import ty from "@xieyuheng/ty"
 import fs from "fs"
 import { ModLoader } from "../../lang/mod"
-import { createUrl } from "../../ut/url"
+import { createUrl } from "../../ut/create-url"
 
 type Args = { file?: string }
 type Opts = {}
