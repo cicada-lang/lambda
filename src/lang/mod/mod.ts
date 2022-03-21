@@ -4,6 +4,7 @@ import { ModLoader } from "../mod"
 import { Value } from "../value"
 
 export class Mod {
+  output = ''
   loader: ModLoader
   defs: Map<string, Def> = new Map()
 
