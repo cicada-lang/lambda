@@ -5,26 +5,23 @@ import { Value } from "../value"
 
 export class Mod {
   loader: ModLoader
-  cache: Map<string, Mod> = new Map()
   defs: Map<string, Def> = new Map()
 
   constructor(public url: URL, options: { loader: ModLoader }) {
     this.loader = options.loader
   }
 
-  async load(url: URL | string): Promise<Mod> {
+  async load(
+    url: URL | string,
+    options?: {
+      text?: string
+    }
+  ): Promise<Mod> {
     if (typeof url === "string") {
       url = this.resolve(url)
     }
 
-    const found = this.cache.get(url.href)
-    if (found !== undefined) {
-      return found
-    }
-
-    const mod = await this.loader.load(url)
-    this.cache.set(url.href, mod)
-    return mod
+    return await this.loader.load(url, options)
   }
 
   resolve(href: string): URL {

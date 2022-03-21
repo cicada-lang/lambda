@@ -4,6 +4,7 @@ import { Mod } from "../mod"
 import { Parser } from "../parser"
 
 export class ModLoader {
+  cache: Map<string, Mod> = new Map()
   urlLoaders: Record<string, UrlLoader>
 
   constructor(options?: { urlLoaders?: Record<string, UrlLoader> }) {
@@ -31,10 +32,20 @@ export class ModLoader {
     return await load(url)
   }
 
-  async load(url: URL): Promise<Mod> {
+  async load(
+    url: URL,
+    options?: {
+      text?: string
+    }
+  ): Promise<Mod> {
+    const found = this.cache.get(url.href)
+    if (found !== undefined) {
+      return found
+    }
+
     const mod = new Mod(url, { loader: this })
     const parser = new Parser()
-    const text = await this.loadText(url)
+    const text = options?.text ?? (await this.loadText(url))
 
     try {
       const stmts = parser.parseStmts(text)
@@ -42,6 +53,7 @@ export class ModLoader {
         await stmt.execute(mod)
       }
 
+      this.cache.set(url.href, mod)
       return mod
     } catch (error) {
       if (error instanceof ParsingError) {
