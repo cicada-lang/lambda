@@ -11,6 +11,10 @@
     - (A) `evaluate` takes `occurred`
       - does not works, because the names are not top-level
       - maybe ok if we used `occurred` to record occurred values -- instead of occurred names
+        - use lisp-style syntax to mark circle
+          - we need to somehow record all parent values during `readback`
+            - or record a list of expression builders,
+              if a circle occurred, we find the builder and wrap it.
 
     - (B) `readback` blocks occurred names in `env`
       - but it also blocks all other names that are used more then once
@@ -26,6 +30,7 @@
   - (A) `equal` records the path during recurse down two expressions
     - one lambda counts an edge of the path
     - `FnValue` has hash -- take `env` into account
+      - be careful about recursive definitions in `env` during hashing
 
 - `(assert-equal)`
 - `(assert-not-equal)`
