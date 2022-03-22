@@ -42,7 +42,7 @@ export class ReadbackCtx {
       effect(state)
     }
 
-    const exp = state.expStack.pop()
+    const exp = state.popExpOrFail()
     if (exp === undefined) {
       throw new InternalError(`state.expStack is empty`)
     }
@@ -53,4 +53,17 @@ export class ReadbackCtx {
 
 export class ReadbackState {
   expStack: Array<Exp> = []
+
+  pushExp(exp: Exp): void {
+    this.expStack.push(exp)
+  }
+
+  popExpOrFail(): Exp {
+    const exp = this.expStack.pop()
+    if (exp === undefined) {
+      throw new InternalError(`expStack is empty`)
+    }
+
+    return exp
+  }
 }

@@ -12,7 +12,7 @@ export class VarNeutral extends Neutral {
 
   readback(ctx: ReadbackCtx): ReadbackCtx {
     return ctx.effect((state) => {
-      state.expStack.push(new Exps.Var(this.name))
+      state.pushExp(new Exps.Var(this.name))
     })
   }
 }

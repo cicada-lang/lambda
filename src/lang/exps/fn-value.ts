@@ -45,8 +45,8 @@ export class FnValue extends Value {
     ctx = ctx.useName(freshName)
     ctx = ret.readback(ctx)
     return ctx.effect((state) => {
-      const ret = state.expStack.pop() as Exp
-      state.expStack.push(new Exps.Fn(freshName, ret))
+      const ret = state.popExpOrFail()
+      state.pushExp(new Exps.Fn(freshName, ret))
     })
   }
 }
