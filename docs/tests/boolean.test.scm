@@ -7,3 +7,6 @@ if
 
 (and true false)
 (not (not (or true false)))
+
+(lambda (x)
+  (not (not (or true false))))

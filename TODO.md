@@ -1,6 +1,6 @@
 - `Value` -- `readback` -- can handle recursion
 
-  - (A) `evaluate` takes `occurred` -- record occurred values -- instead of occurred names
+  - (A) `readback` takes `occurred` -- record occurred values -- instead of occurred names
 
     - use lisp-style syntax to mark circle
       - we need to somehow record all parent values during `readback`
