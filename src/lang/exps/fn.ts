@@ -9,6 +9,10 @@ export class Fn extends Exp {
     super()
   }
 
+  freeNames(boundNames: Set<string>): Set<string> {
+    return this.ret.freeNames(new Set([...boundNames, this.name]))
+  }
+
   evaluate(mod: Mod, env: Env): Value {
     return new Exps.FnValue(mod, env, this.name, this.ret)
   }

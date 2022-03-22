@@ -10,6 +10,13 @@ export class Ap extends Exp {
     super()
   }
 
+  freeNames(boundNames: Set<string>): Set<string> {
+    return new Set([
+      ...this.target.freeNames(boundNames),
+      ...this.arg.freeNames(boundNames),
+    ])
+  }
+
   evaluate(mod: Mod, env: Env): Value {
     return Ap.apply(
       this.target.evaluate(mod, env),

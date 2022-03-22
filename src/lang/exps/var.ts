@@ -9,6 +9,10 @@ export class Var extends Exp {
     super()
   }
 
+  freeNames(boundNames: Set<string>): Set<string> {
+    return boundNames.has(this.name) ? new Set() : new Set([this.name])
+  }
+
   evaluate(mod: Mod, env: Env): Value {
     let value = undefined
 
