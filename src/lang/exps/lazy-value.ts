@@ -10,6 +10,10 @@ export class LazyValue extends Value {
     super()
   }
 
+  get preHash(): string {
+    return this.active().preHash
+  }
+
   active(): Value {
     if (this.cache !== undefined) {
       return this.cache

@@ -8,6 +8,10 @@ export class ApNeutral extends Neutral {
     super()
   }
 
+  get preHash(): string {
+    return `(${this.target.preHash} ${this.arg.preHash})`
+  }
+
   readback(used: Set<string>): Exp {
     return new Exps.Ap(this.target.readback(used), this.arg.readback(used))
   }

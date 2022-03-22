@@ -6,6 +6,8 @@ import { Mod } from "../mod"
 import { Value } from "../value"
 
 export class FnValue extends Value {
+  preHash: string
+
   constructor(
     public mod: Mod,
     public env: Env,
@@ -13,6 +15,7 @@ export class FnValue extends Value {
     public ret: Exp
   ) {
     super()
+    this.preHash = ret.format()
   }
 
   apply(arg: Value): Value {

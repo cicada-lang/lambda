@@ -1,4 +1,4 @@
-- `FnValue` can `is` -- take `env` into account
+- `FnValue` has `preHash` -- take `env` into account -- only `freeNames` of target `exp`
 
   - be careful about recursive definitions in `env` during hashing
 
