@@ -15,7 +15,22 @@ export class FnValue extends Value {
     public ret: Exp
   ) {
     super()
-    this.preHash = ret.format()
+    this.preHash = this.createPreHash()
+  }
+
+  createPreHash(): string {
+    const freeNames: Array<string> = [
+      ...this.ret.freeNames(new Set([this.name])),
+    ].sort()
+
+    const envPreHash = freeNames
+      .map((freeName) => {
+        const value = this.env.lookup(freeName)
+        return value ? `(${freeName} ${value.preHash})` : `(${freeName})`
+      })
+      .join(" ")
+
+    return `(lambda (${this.name}) ${this.ret.format()} ${envPreHash}))`
   }
 
   apply(arg: Value): Value {

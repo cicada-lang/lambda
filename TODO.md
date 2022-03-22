@@ -1,6 +1,4 @@
-- `FnValue` has `preHash` -- take `env` into account -- only `freeNames` of target `exp`
-
-  - be careful about recursive definitions in `env` during hashing
+- `(display-pre-hash)` to debug `FnValue.preHash`
 
 - `Value` -- `readback` -- can handle recursion
 
