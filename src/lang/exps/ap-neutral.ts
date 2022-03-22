@@ -4,11 +4,12 @@ import { ReadbackCtx } from "../readback"
 import { Value } from "../value"
 
 export class ApNeutral extends Neutral {
-  preHash: string
-
   constructor(public target: Neutral, public arg: Value) {
     super()
-    this.preHash = `(${target.preHash} ${arg.preHash})`
+  }
+
+  get preHash(): string {
+    return `(${this.target.preHash} ${this.arg.preHash})`
   }
 
   readback(ctx: ReadbackCtx): ReadbackCtx {

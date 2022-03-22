@@ -4,7 +4,7 @@
 
     - use lisp-style syntax to mark circle
 
-      - we need a pair of new expressions -- `Exps.CircleWrapper` and `Exps.CircleReference`
+      - we need a pair of new expressions -- `Exps.CircleWrapper` and `Exps.CircleRef`
 
       - we need to record a list of effects to build expression,
         if a circle occurred, we find the effect and wrap it.

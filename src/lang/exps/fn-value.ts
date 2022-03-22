@@ -8,8 +8,6 @@ import { Value } from "../value"
 import { isLogicVar } from "../value/is-logic-var"
 
 export class FnValue extends Value {
-  preHash: string
-
   constructor(
     public mod: Mod,
     public env: Env,
@@ -17,10 +15,9 @@ export class FnValue extends Value {
     public ret: Exp
   ) {
     super()
-    this.preHash = this.createPreHash()
   }
 
-  createPreHash(): string {
+  get preHash(): string {
     const freeNames: Array<string> = [
       ...this.ret.freeNames(new Set([this.name])),
     ].sort()
@@ -30,7 +27,7 @@ export class FnValue extends Value {
         const value = this.env.lookup(freeName)
         if (value === undefined) return `(${freeName})`
         if (isLogicVar(value)) return `(${freeName})`
-        return `(${freeName} {value.preHash})`
+        return `(${freeName} ${value.preHash})`
       })
       .join(" ")
 
@@ -42,8 +39,18 @@ export class FnValue extends Value {
   }
 
   readback(ctx: ReadbackCtx): ReadbackCtx {
-    if (ctx.meetCircle(this)) {
-      console.log("meetCircle")
+    const foundEffect = ctx.checkCircle(this)
+    if (foundEffect !== undefined) {
+      console.log("checkCircle:", this.preHash)
+      ctx = ctx.replaceEffect(foundEffect, (state) => {
+        foundEffect(state)
+        const exp = state.popExpOrFail()
+        state.pushExp(new Exps.CircleWrapper(exp, this))
+      })
+
+      return ctx.effect((state) => {
+        state.pushExp(new Exps.CircleRef(this))
+      })
     }
 
     const freshName = freshen(ctx.usedNames, this.name)

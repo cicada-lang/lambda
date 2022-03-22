@@ -48,10 +48,26 @@ export class ReadbackCtx {
     })
   }
 
-  meetCircle(value: Value): boolean {
-    return this.parents.some((parent) => {
-      return parent.value.hash === value.hash
-    })
+  replaceEffect(
+    oldEffect: ReadbackEffect,
+    newEffect: ReadbackEffect
+  ): ReadbackCtx {
+    const index = this.effects.findIndex((effect) => effect === oldEffect)
+    if (index === -1) {
+      throw new InternalError("Can not find effect")
+    }
+
+    const effects = [...this.effects]
+    effects[index] = newEffect
+    return new ReadbackCtx({ ...this, effects })
+  }
+
+  checkCircle(value: Value): ReadbackEffect | undefined {
+    const found = this.parents.find(
+      (parent) => parent.value.hash === value.hash
+    )
+    if (found === undefined) return undefined
+    return found.effect
   }
 
   build(): Exp {
