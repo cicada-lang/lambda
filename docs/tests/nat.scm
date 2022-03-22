@@ -76,7 +76,7 @@ two
 
 (display-pre-hash factorial-rec)
 ;; TODO Why the following evaluation loop?
-;; factorial-rec
+factorial-rec
 
 (define (factorial/rec rec n)
   (if (zero? n)
