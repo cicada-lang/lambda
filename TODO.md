@@ -15,6 +15,7 @@
           - we need to somehow record all parent values during `readback`
             - or record a list of expression builders,
               if a circle occurred, we find the builder and wrap it.
+              - use `(factorial/rec factorial/rec)` as example
 
     - (B) `readback` blocks occurred names in `env`
       - but it also blocks all other names that are used more then once
