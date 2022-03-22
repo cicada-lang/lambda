@@ -30,7 +30,7 @@ export class FnValue extends Value {
       })
       .join(" ")
 
-    return `(lambda (${this.name}) ${this.ret.format()} ${envPreHash}))`
+    return `(lambda-pre-hash (${this.name}) ${this.ret.format()} ${envPreHash})`
   }
 
   apply(arg: Value): Value {

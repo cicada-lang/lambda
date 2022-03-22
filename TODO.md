@@ -1,5 +1,3 @@
-- `(display-pre-hash)` to debug `FnValue.preHash`
-
 - `Value` -- `readback` -- can handle recursion
 
   - [note] When we have recursive definitions, `readback` does not find normal forms.

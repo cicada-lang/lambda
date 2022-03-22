@@ -40,6 +40,10 @@ export function matchStmt(sexp: Sexp): Stmt {
       ["display-free-names", v("exp")],
       ({ exp }) => new Stmts.DisplayFreeNamesStmt(matchExp(exp)),
     ],
+    [
+      ["display-pre-hash", v("exp")],
+      ({ exp }) => new Stmts.DisplayPreHashStmt(matchExp(exp)),
+    ],
     [v("exp"), ({ exp }) => new Stmts.EvaluateStmt(matchExp(exp))],
   ])
 }

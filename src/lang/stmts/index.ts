@@ -1,4 +1,5 @@
 export * from "./define-stmt"
 export * from "./display-free-names-stmt"
+export * from "./display-pre-hash-stmt"
 export * from "./evaluate-stmt"
 export * from "./import-stmt"

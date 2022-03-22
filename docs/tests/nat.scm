@@ -95,6 +95,9 @@ two
      one
      (mul n (rec rec (sub1 n))))))
 
+(display-pre-hash factorial-rec)
+(display-pre-hash (factorial/rec factorial/rec))
+
 ;; (factorial/rec factorial/rec)
 
 ;; ((lambda (rec n)
