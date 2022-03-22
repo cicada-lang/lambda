@@ -41,7 +41,7 @@ export class FnValue extends Value {
   readback(ctx: ReadbackCtx): ReadbackCtx {
     const foundEffect = ctx.checkCircle(this)
     if (foundEffect !== undefined) {
-      console.log("checkCircle:", this.preHash)
+      console.log("checkCircle")
       ctx = ctx.replaceEffect(foundEffect, (state) => {
         foundEffect(state)
         const exp = state.popExpOrFail()
