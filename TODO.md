@@ -1,5 +1,3 @@
-- `(display-free-names ...)` to test `Exp.freeNames`
-
 - `FnValue` can `is` -- take `env` into account
 
   - be careful about recursive definitions in `env` during hashing

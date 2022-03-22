@@ -36,6 +36,10 @@ export function matchStmt(sexp: Sexp): Stmt {
           matchList(entries, matchImportEntry)
         ),
     ],
+    [
+      ["display-free-names", v("exp")],
+      ({ exp }) => new Stmts.DisplayFreeNamesStmt(matchExp(exp)),
+    ],
     [v("exp"), ({ exp }) => new Stmts.EvaluateStmt(matchExp(exp))],
   ])
 }

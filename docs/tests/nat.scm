@@ -89,6 +89,12 @@ two
 (define factorial
   (factorial/rec factorial/rec))
 
+(display-free-names
+ (lambda (rec n)
+   (if (zero? n)
+     one
+     (mul n (rec rec (sub1 n))))))
+
 ;; (factorial/rec factorial/rec)
 
 ;; ((lambda (rec n)
