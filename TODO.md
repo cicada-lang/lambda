@@ -1,4 +1,4 @@
-- extract `ReadbackState` -- uses side-effect
+- `Value.readback` & `Neutral.readback` -- replace `used` with `ctx: ReadbackCtx`
 
 - `Value` -- `readback` -- can handle recursion
 
