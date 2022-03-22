@@ -3,7 +3,7 @@ import { Env } from "../env"
 import { Exp } from "../exp"
 import * as Exps from "../exps"
 import { Mod } from "../mod"
-import { ReadbackCtx } from "../readback"
+import { ReadbackCtx, ReadbackEffect } from "../readback"
 import { Value } from "../value"
 
 export class FnValue extends Value {
@@ -24,6 +24,7 @@ export class FnValue extends Value {
       ...this.ret.freeNames(new Set([this.name])),
     ].sort()
 
+    // console.log({freeNames})
     const envPreHash = freeNames
       .map((freeName) => {
         const value = this.env.lookup(freeName)
@@ -39,14 +40,20 @@ export class FnValue extends Value {
   }
 
   readback(ctx: ReadbackCtx): ReadbackCtx {
+    if (ctx.meetCircle(this)) {
+      console.log("meetCircle")
+    }
+
     const freshName = freshen(ctx.usedNames, this.name)
     const variable = new Exps.NotYetValue(new Exps.VarNeutral(freshName))
     const ret = Exps.Ap.apply(this, variable)
     ctx = ctx.useName(freshName)
-    ctx = ret.readback(ctx)
-    return ctx.effect((state) => {
+    const effect: ReadbackEffect = (state) => {
       const ret = state.popExpOrFail()
       state.pushExp(new Exps.Fn(freshName, ret))
-    })
+    }
+    ctx = ctx.parent(this, effect)
+    ctx = ret.readback(ctx)
+    return ctx.effect(effect)
   }
 }

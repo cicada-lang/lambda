@@ -6,13 +6,24 @@ import { Value } from "../value"
 
 export class LazyValue extends Value {
   cache?: Value
+  preHash: string
 
   constructor(public mod: Mod, public env: Env, public exp: Exp) {
     super()
+    this.preHash = this.createPreHash()
   }
 
-  get preHash(): string {
-    return this.active().preHash
+  createPreHash(): string {
+    const freeNames: Array<string> = [...this.exp.freeNames(new Set())].sort()
+
+    const envPreHash = freeNames
+      .map((freeName) => {
+        const value = this.env.lookup(freeName)
+        return value ? `(${freeName} ${value.preHash})` : `(${freeName})`
+      })
+      .join(" ")
+
+    return `(lazy-pre-hash ${this.exp.format()} ${envPreHash})`
   }
 
   active(): Value {
