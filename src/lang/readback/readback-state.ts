@@ -1,15 +1,21 @@
 import { InternalError } from "../errors"
 import { Exp } from "../exp"
+import { Value } from "../value"
 
 export type ReadbackEffect = (state: ReadbackState) => void
 
+type EffectEntry = {
+  effect: ReadbackEffect
+  value?: Value
+}
+
 export class ReadbackCtx {
   usedNames: Set<string>
-  effects: Array<ReadbackEffect>
+  effects: Array<EffectEntry>
 
   constructor(options: {
     usedNames: Set<string>
-    effects: Array<ReadbackEffect>
+    effects: Array<EffectEntry>
   }) {
     this.usedNames = options.usedNames
     this.effects = options.effects
@@ -32,13 +38,13 @@ export class ReadbackCtx {
   effect(effect: ReadbackEffect): ReadbackCtx {
     return new ReadbackCtx({
       ...this,
-      effects: [...this.effects, effect],
+      effects: [...this.effects, { effect }],
     })
   }
 
   build(): Exp {
     const state = new ReadbackState()
-    for (const effect of this.effects) {
+    for (const { effect } of this.effects) {
       effect(state)
     }
 
