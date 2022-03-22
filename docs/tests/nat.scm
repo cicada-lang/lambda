@@ -80,8 +80,34 @@ two
     one
     (mul n (rec rec (sub1 n)))))
 
+(define factorial/rec
+  (lambda (rec n)
+    (if (zero? n)
+      one
+      (mul n (rec rec (sub1 n))))))
+
 (define factorial
   (factorial/rec factorial/rec))
+
+;; (factorial/rec factorial/rec)
+
+;; ((lambda (rec n)
+;;    (if (zero? n)
+;;      one
+;;      (mul n (rec rec (sub1 n)))))
+;;  factorial/rec)
+
+;; (lambda (n)
+;;   (if (zero? n)
+;;     one
+;;     (mul n (factorial/rec factorial/rec (sub1 n)))))
+
+;; (circle #1
+;;  (lambda (n)
+;;    (if (zero? n)
+;;      one
+;;      (mul n (#1 (sub1 n))))))
+
 
 ;; TODO Why the following definition causes loop?
 ;; factorial

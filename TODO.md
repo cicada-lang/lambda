@@ -1,3 +1,7 @@
+- `FnValue` has hash -- take `env` into account
+
+  - be careful about recursive definitions in `env` during hashing
+
 - `Value` -- `readback` -- can handle recursion
 
   - [note] When we have recursive definitions, `readback` does not find normal forms.
@@ -15,7 +19,6 @@
           - we need to somehow record all parent values during `readback`
             - or record a list of expression builders,
               if a circle occurred, we find the builder and wrap it.
-              - use `(factorial/rec factorial/rec)` as example
 
     - (B) `readback` blocks occurred names in `env`
       - but it also blocks all other names that are used more then once
@@ -30,8 +33,6 @@
 
   - (A) `equal` records the path during recurse down two expressions
     - one lambda counts an edge of the path
-    - `FnValue` has hash -- take `env` into account
-      - be careful about recursive definitions in `env` during hashing
 
 - `(assert-equal)`
 - `(assert-not-equal)`
