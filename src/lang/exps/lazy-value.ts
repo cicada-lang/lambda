@@ -3,6 +3,7 @@ import { Exp } from "../exp"
 import { Mod } from "../mod"
 import { ReadbackCtx } from "../readback"
 import { Value } from "../value"
+import { isLogicVar } from "../value/is-logic-var"
 
 export class LazyValue extends Value {
   cache?: Value
@@ -19,7 +20,9 @@ export class LazyValue extends Value {
     const envPreHash = freeNames
       .map((freeName) => {
         const value = this.env.lookup(freeName)
-        return value ? `(${freeName} ${value.preHash})` : `(${freeName})`
+        if (value === undefined) return `(${freeName})`
+        if (isLogicVar(value)) return `(${freeName})`
+        return `(${freeName} {value.preHash})`
       })
       .join(" ")
 

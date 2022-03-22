@@ -5,6 +5,7 @@ import * as Exps from "../exps"
 import { Mod } from "../mod"
 import { ReadbackCtx, ReadbackEffect } from "../readback"
 import { Value } from "../value"
+import { isLogicVar } from "../value/is-logic-var"
 
 export class FnValue extends Value {
   preHash: string
@@ -24,11 +25,12 @@ export class FnValue extends Value {
       ...this.ret.freeNames(new Set([this.name])),
     ].sort()
 
-    // console.log({freeNames})
     const envPreHash = freeNames
       .map((freeName) => {
         const value = this.env.lookup(freeName)
-        return value ? `(${freeName} ${value.preHash})` : `(${freeName})`
+        if (value === undefined) return `(${freeName})`
+        if (isLogicVar(value)) return `(${freeName})`
+        return `(${freeName} {value.preHash})`
       })
       .join(" ")
 
