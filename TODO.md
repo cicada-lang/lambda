@@ -1,23 +1,13 @@
+- extract `ReadbackState` -- uses side-effect
+
 - `Value` -- `readback` -- can handle recursion
 
-  - [note] When we have recursive definitions, `readback` does not find normal forms.
+  - (A) `evaluate` takes `occurred` -- record occurred values -- instead of occurred names
 
-  - handle top-level recursive definitions -- `factorial-rec`
-
-    - (A) `evaluate` takes `occurred` -- to mark occurred top-level names
-
-  - handle fix point recursive constructions -- `(factorial/rec factorial/rec)`
-
-    - (A) `evaluate` takes `occurred`
-      - does not works, because the names are not top-level
-      - maybe ok if we used `occurred` to record occurred values -- instead of occurred names
-        - use lisp-style syntax to mark circle
-          - we need to somehow record all parent values during `readback`
-            - or record a list of expression builders,
-              if a circle occurred, we find the builder and wrap it.
-
-    - (B) `readback` blocks occurred names in `env`
-      - but it also blocks all other names that are used more then once
+    - use lisp-style syntax to mark circle
+      - we need to somehow record all parent values during `readback`
+        - or record a list of expression builders,
+          if a circle occurred, we find the builder and wrap it.
 
 - play with fix & Y
 - play with birds

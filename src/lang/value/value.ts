@@ -10,5 +10,7 @@ export abstract class Value {
     return crypto.createHash("sha256").update(this.preHash).digest("base64")
   }
 
+  // NOTE When we have recursive definitions,
+  //  `readback` does not find normal forms.
   abstract readback(used: Set<string>): Exp
 }
