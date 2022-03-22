@@ -1,5 +1,5 @@
 const crypto = require("crypto-browserify")
-import { Exp } from "../exp"
+import { ReadbackCtx } from "../readback"
 
 export abstract class Value {
   instanceofValue = true
@@ -12,5 +12,5 @@ export abstract class Value {
 
   // NOTE When we have recursive definitions,
   //  `readback` does not find normal forms.
-  abstract readback(used: Set<string>): Exp
+  abstract readback(ctx: ReadbackCtx): ReadbackCtx
 }

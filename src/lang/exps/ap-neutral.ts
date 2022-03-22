@@ -1,6 +1,7 @@
 import { Exp } from "../exp"
 import * as Exps from "../exps"
 import { Neutral } from "../neutral"
+import { ReadbackCtx } from "../readback"
 import { Value } from "../value"
 
 export class ApNeutral extends Neutral {
@@ -12,7 +13,13 @@ export class ApNeutral extends Neutral {
     return `(${this.target.preHash} ${this.arg.preHash})`
   }
 
-  readback(used: Set<string>): Exp {
-    return new Exps.Ap(this.target.readback(used), this.arg.readback(used))
+  readback(ctx: ReadbackCtx): ReadbackCtx {
+    ctx = this.arg.readback(ctx)
+    ctx = this.target.readback(ctx)
+    return ctx.effect((state) => {
+      const target = state.expStack.pop() as Exp
+      const arg = state.expStack.pop() as Exp
+      state.expStack.push(new Exps.Ap(target, arg))
+    })
   }
 }

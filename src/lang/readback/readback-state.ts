@@ -4,21 +4,35 @@ import { Exp } from "../exp"
 export type ReadbackEffect = (state: ReadbackState) => void
 
 export class ReadbackCtx {
-  used: Array<string>
+  usedNames: Set<string>
   effects: Array<ReadbackEffect>
 
   constructor(options: {
-    used: Array<string>
+    usedNames: Set<string>
     effects: Array<ReadbackEffect>
   }) {
-    this.used = options.used
+    this.usedNames = options.usedNames
     this.effects = options.effects
+  }
+
+  static init(): ReadbackCtx {
+    return new ReadbackCtx({
+      usedNames: new Set(),
+      effects: [],
+    })
+  }
+
+  useName(name: string): ReadbackCtx {
+    return new ReadbackCtx({
+      ...this,
+      usedNames: new Set([name, ...this.usedNames]),
+    })
   }
 
   effect(effect: ReadbackEffect): ReadbackCtx {
     return new ReadbackCtx({
       ...this,
-      effects: [effect, ...this.effects],
+      effects: [...this.effects, effect],
     })
   }
 

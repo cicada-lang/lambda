@@ -3,6 +3,7 @@ import { Env } from "../env"
 import { Exp } from "../exp"
 import * as Exps from "../exps"
 import { Mod } from "../mod"
+import { ReadbackCtx } from "../readback"
 import { Value } from "../value"
 
 export class FnValue extends Value {
@@ -37,10 +38,15 @@ export class FnValue extends Value {
     return this.ret.evaluate(this.mod, this.env.extend(this.name, arg))
   }
 
-  readback(used: Set<string>): Exp {
-    const freshName = freshen(used, this.name)
+  readback(ctx: ReadbackCtx): ReadbackCtx {
+    const freshName = freshen(ctx.usedNames, this.name)
     const variable = new Exps.NotYetValue(new Exps.VarNeutral(freshName))
     const ret = Exps.Ap.apply(this, variable)
-    return new Exps.Fn(freshName, ret.readback(new Set([...used, freshName])))
+    ctx = ctx.useName(freshName)
+    ctx = ret.readback(ctx)
+    return ctx.effect((state) => {
+      const ret = state.expStack.pop() as Exp
+      state.expStack.push(new Exps.Fn(freshName, ret))
+    })
   }
 }

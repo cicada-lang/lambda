@@ -1,6 +1,6 @@
-import { Exp } from "../exp"
 import * as Exps from "../exps"
 import { Neutral } from "../neutral"
+import { ReadbackCtx } from "../readback"
 
 export class VarNeutral extends Neutral {
   preHash: string
@@ -10,7 +10,9 @@ export class VarNeutral extends Neutral {
     this.preHash = name
   }
 
-  readback(used: Set<string>): Exp {
-    return new Exps.Var(this.name)
+  readback(ctx: ReadbackCtx): ReadbackCtx {
+    return ctx.effect((state) => {
+      state.expStack.push(new Exps.Var(this.name))
+    })
   }
 }

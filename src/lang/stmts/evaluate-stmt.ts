@@ -1,6 +1,7 @@
 import { Env } from "../env"
 import { Exp } from "../exp"
 import { Mod } from "../mod"
+import { ReadbackCtx } from "../readback"
 import { Stmt } from "../stmt"
 
 export class EvaluateStmt extends Stmt {
@@ -10,7 +11,7 @@ export class EvaluateStmt extends Stmt {
 
   async execute(mod: Mod): Promise<void> {
     const value = this.exp.evaluate(mod, new Env())
-    const exp = value.readback(new Set())
+    const exp = value.readback(ReadbackCtx.init()).build()
     const output = exp.format()
     console.log(output)
     mod.output += output + "\n"

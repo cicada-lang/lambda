@@ -1,5 +1,5 @@
-import { Exp } from "../exp"
 import { Neutral } from "../neutral"
+import { ReadbackCtx } from "../readback"
 import { Value } from "../value"
 
 export class NotYetValue extends Value {
@@ -10,7 +10,7 @@ export class NotYetValue extends Value {
     this.preHash = neutral.preHash
   }
 
-  readback(used: Set<string>): Exp {
-    return this.neutral.readback(used)
+  readback(ctx: ReadbackCtx): ReadbackCtx {
+    return this.neutral.readback(ctx)
   }
 }

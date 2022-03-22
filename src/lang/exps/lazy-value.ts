@@ -1,6 +1,7 @@
 import { Env } from "../env"
 import { Exp } from "../exp"
 import { Mod } from "../mod"
+import { ReadbackCtx } from "../readback"
 import { Value } from "../value"
 
 export class LazyValue extends Value {
@@ -24,7 +25,7 @@ export class LazyValue extends Value {
     return value
   }
 
-  readback(used: Set<string>): Exp {
-    return this.active().readback(used)
+  readback(ctx: ReadbackCtx): ReadbackCtx {
+    return this.active().readback(ctx)
   }
 }

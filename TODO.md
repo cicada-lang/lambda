@@ -1,5 +1,3 @@
-- `Value.readback` & `Neutral.readback` -- replace `used` with `ctx: ReadbackCtx`
-
 - `Value` -- `readback` -- can handle recursion
 
   - (A) `evaluate` takes `occurred` -- record occurred values -- instead of occurred names

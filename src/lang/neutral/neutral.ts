@@ -1,8 +1,8 @@
-import { Exp } from "../exp"
+import { ReadbackCtx } from "../readback"
 
 export abstract class Neutral {
   instanceofNeutral = true
 
   abstract preHash: string
-  abstract readback(used: Set<string>): Exp
+  abstract readback(ctx: ReadbackCtx): ReadbackCtx
 }
