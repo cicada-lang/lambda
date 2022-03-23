@@ -1,5 +1,6 @@
 import { freshen } from "../../ut/freshen"
 import { Env } from "../env"
+import { EqualCtx } from "../equal"
 import { Exp } from "../exp"
 import * as Exps from "../exps"
 import { Mod } from "../mod"
@@ -39,7 +40,7 @@ export class FnValue extends Value {
     return new Exps.Fn(freshName, ret.readback(ctx))
   }
 
-  equal(ctx: ReadbackCtx, that: Value): boolean {
+  equal(ctx: EqualCtx, that: Value): boolean {
     if (that instanceof Exps.LazyValue) {
       return this.equal(ctx, that.active(ctx.parents))
     }

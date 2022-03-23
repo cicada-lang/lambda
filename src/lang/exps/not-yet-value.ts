@@ -1,3 +1,4 @@
+import { EqualCtx } from "../equal"
 import { Exp } from "../exp"
 import * as Exps from "../exps"
 import { Neutral } from "../neutral"
@@ -13,7 +14,7 @@ export class NotYetValue extends Value {
     return that instanceof NotYetValue && this.neutral.is(that.neutral)
   }
 
-  equal(ctx: ReadbackCtx, that: Value): boolean {
+  equal(ctx: EqualCtx, that: Value): boolean {
     if (that instanceof Exps.LazyValue) {
       return this.equal(ctx, that.active(ctx.parents))
     }

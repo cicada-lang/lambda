@@ -1,3 +1,4 @@
+import { EqualCtx } from "../equal"
 import { Exp } from "../exp"
 import { ReadbackCtx } from "../readback"
 
@@ -9,5 +10,5 @@ export abstract class Value {
   // NOTE When we have recursive definitions,
   //  `readback` does not find normal forms.
   abstract readback(ctx: ReadbackCtx): Exp
-  abstract equal(ctx: ReadbackCtx, that: Value): boolean
+  abstract equal(ctx: EqualCtx, that: Value): boolean
 }
