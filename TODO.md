@@ -1,6 +1,8 @@
 - `Value` -- `readback` -- can handle recursion
 
-  - (A) `readback` takes `occurred` -- record occurred values -- instead of occurred names
+  - (A) `evaluate` and `apply` takes `occurred` -- record parent values
+
+    - return `ap-rec-neutral` on recursive application
 
     - use lisp-style syntax to mark circle
 
