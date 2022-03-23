@@ -4,12 +4,12 @@ import { Neutral } from "../neutral"
 import { ReadbackCtx } from "../readback"
 
 export class VarNeutral extends Neutral {
-  constructor(public name: string) {
+  constructor(public name: string, public originalName: string) {
     super()
   }
 
   is(that: Neutral): boolean {
-    return that instanceof VarNeutral && that.name === this.name
+    return that instanceof VarNeutral && that.originalName === this.originalName
   }
 
   readback(ctx: ReadbackCtx): Exp {

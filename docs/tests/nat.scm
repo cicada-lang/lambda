@@ -81,7 +81,46 @@
 
 ;; TODO readback loop
 
-;; factorial-rec
+;; (assert-equal factorial-rec factorial-rec)
+
+(define (rec x) x)
+
+(assert-equal
+ (lambda (n)
+   (if (zero? n)
+     one
+     (mul n (rec (sub1 n)))))
+
+ (lambda (n)
+   ((zero? n)
+    one
+    (mul n (rec (sub1 n)))))
+
+ (lambda (n)
+   ((n (lambda (x) false) true)
+    one
+    (mul n (rec (sub1 n)))))
+
+ (lambda (n)
+   ((n (lambda (x) false) true)
+    (lambda (f x) (f x))
+    (lambda (f) (n ((rec (sub1 n)) f)))))
+
+ (lambda (n)
+   ((n (lambda (x) (lambda (t f) f)) (lambda (t f) t))
+    (lambda (f x) (f x))
+    (lambda (f) (n ((rec (sub1 n)) f)))))
+
+ (lambda (n)
+   ((n (lambda (x) (lambda (t f) f)) (lambda (t f) t))
+    (lambda (f x) (f x))
+    (lambda (f)
+      (n ((rec
+           (n (lambda (g k)
+                (zero? (g one) k (add (g k) one)))
+              (lambda (_) zero)
+              zero))
+          f))))))
 
 ;; (lambda (n)
 ;;   (if (zero? n)

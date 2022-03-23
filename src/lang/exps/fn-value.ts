@@ -34,7 +34,7 @@ export class FnValue extends Value {
     const freshName = freshen(ctx.usedNames, this.name)
     ctx = ctx.useName(freshName)
     ctx = ctx.parent(this)
-    const v = new Exps.VarNeutral(freshName)
+    const v = new Exps.VarNeutral(freshName, this.name)
     const arg = new Exps.NotYetValue(v)
     const ret = Exps.Ap.apply(this, arg, ctx.parents)
     return new Exps.Fn(freshName, ret.readback(ctx))
@@ -48,7 +48,7 @@ export class FnValue extends Value {
     const freshName = freshen(ctx.usedNames, this.name)
     ctx = ctx.useName(freshName)
     ctx = ctx.parent(this)
-    const v = new Exps.VarNeutral(freshName)
+    const v = new Exps.VarNeutral(freshName, this.name)
     const arg = new Exps.NotYetValue(v)
 
     const ret = Exps.Ap.apply(this, arg, ctx.parents)

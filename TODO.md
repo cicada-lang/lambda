@@ -6,6 +6,8 @@
 
     - one lambda counts an `edge` of the `path`
 
+- no `parents` in `ReadbackCtx`
+
 # recursion
 
 - `Value` -- `readback` -- limit length by a `count`
