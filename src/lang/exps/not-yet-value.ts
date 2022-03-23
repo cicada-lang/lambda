@@ -7,8 +7,8 @@ export class NotYetValue extends Value {
     super()
   }
 
-  get preHash(): string {
-    return this.neutral.preHash
+  is(that: Value): boolean {
+    return that instanceof NotYetValue && this.neutral.is(that.neutral)
   }
 
   readback(ctx: ReadbackCtx): ReadbackCtx {

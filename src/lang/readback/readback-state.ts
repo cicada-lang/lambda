@@ -63,9 +63,7 @@ export class ReadbackCtx {
   }
 
   checkCircle(value: Value): ReadbackEffect | undefined {
-    const found = this.parents.find(
-      (parent) => parent.value === value
-    )
+    const found = this.parents.find((parent) => parent.value.is(value))
     if (found === undefined) return undefined
     return found.effect
   }

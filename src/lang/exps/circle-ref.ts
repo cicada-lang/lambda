@@ -18,6 +18,6 @@ export class CircleRef extends Exp {
   }
 
   format(): string {
-    return this.value.hash
+    return "CircleRef-TODO"
   }
 }

@@ -3,6 +3,6 @@ import { ReadbackCtx } from "../readback"
 export abstract class Neutral {
   instanceofNeutral = true
 
-  abstract preHash: string
+  abstract is(that: Neutral): boolean
   abstract readback(ctx: ReadbackCtx): ReadbackCtx
 }

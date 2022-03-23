@@ -8,8 +8,12 @@ export class ApNeutral extends Neutral {
     super()
   }
 
-  get preHash(): string {
-    return `(${this.target.preHash} ${this.arg.preHash})`
+  is(that: Neutral): boolean {
+    return (
+      that instanceof ApNeutral &&
+      that.target.is(this.target) &&
+      that.arg.is(this.arg)
+    )
   }
 
   readback(ctx: ReadbackCtx): ReadbackCtx {

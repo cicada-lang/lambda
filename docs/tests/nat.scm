@@ -44,7 +44,6 @@ two
      (lambda (_) zero)
      zero))
 
-(display-pre-hash sub1)
 
 (sub1 three)
 (sub1 (sub1 three))
@@ -74,7 +73,6 @@ two
 (factorial-rec two)
 (factorial-rec three)
 
-(display-pre-hash factorial-rec)
 ;; TODO Why the following evaluation loop?
 ;; factorial-rec
 
@@ -97,8 +95,6 @@ two
    (if (zero? n)
      one
      (mul n (rec rec (sub1 n))))))
-
-(display-pre-hash (factorial/rec factorial/rec))
 
 ;; (factorial/rec factorial/rec)
 

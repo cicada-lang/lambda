@@ -17,21 +17,16 @@ export class FnValue extends Value {
     super()
   }
 
-  get preHash(): string {
-    const freeNames: Array<string> = [
-      ...this.ret.freeNames(new Set([this.name])),
-    ].sort()
-
-    const envPreHash = freeNames
-      .map((freeName) => {
-        const value = this.env.lookup(freeName)
-        if (value === undefined) return `(${freeName})`
-        if (isLogicVar(value)) return `(${freeName})`
-        return `(${freeName} ${value.preHash})`
-      })
-      .join(" ")
-
-    return `(lambda-pre-hash (${this.name}) ${this.ret.format()} ${envPreHash})`
+  is(that: Value): boolean {
+    const result = (
+      that instanceof FnValue &&
+      that.name === this.name &&
+      that.ret.format() === this.ret.format()
+    )
+    if (result) {
+      console.log(this.env, that.env)
+    }
+    return result
   }
 
   apply(arg: Value): Value {

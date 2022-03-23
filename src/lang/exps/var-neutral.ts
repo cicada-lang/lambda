@@ -7,8 +7,8 @@ export class VarNeutral extends Neutral {
     super()
   }
 
-  get preHash(): string {
-    return this.name
+  is(that: Neutral): boolean {
+    return that instanceof VarNeutral && that.name === this.name
   }
 
   readback(ctx: ReadbackCtx): ReadbackCtx {

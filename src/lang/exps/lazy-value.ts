@@ -12,24 +12,9 @@ export class LazyValue extends Value {
     super()
   }
 
-  get preHash(): string {
-    return this.active().preHash
+  is(that: Value): boolean {
+    return that.is(this.active())
   }
-
-  // get preHash(): string {
-  //   const freeNames: Array<string> = [...this.exp.freeNames(new Set())].sort()
-
-  //   const envPreHash = freeNames
-  //     .map((freeName) => {
-  //       const value = this.env.lookup(freeName)
-  //       if (value === undefined) return `(${freeName})`
-  //       if (isLogicVar(value)) return `(${freeName})`
-  //       return `(${freeName} ${value.preHash})`
-  //     })
-  //     .join(" ")
-
-  //   return `(lazy-pre-hash ${this.exp.format()} ${envPreHash})`
-  // }
 
   active(): Value {
     if (this.cache !== undefined) {
