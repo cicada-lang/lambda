@@ -29,7 +29,6 @@ export class FnValue extends Value {
   readback(ctx: ReadbackCtx): Exp {
     const freshName = freshen(ctx.usedNames, this.name)
     ctx = ctx.useName(freshName)
-    ctx = ctx.parent(this)
     const v = new Exps.VarNeutral(freshName, this.name)
     const arg = new Exps.NotYetValue(v)
     const ret = Exps.Ap.apply(this, arg)

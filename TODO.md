@@ -1,5 +1,3 @@
-- no `parents` in `ReadbackCtx`
-
 - `EqualCtx` -- with `parentPairs` `leftParents` `rightParents`
 
 - `Ap.equalApply`

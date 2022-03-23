@@ -1,7 +1,7 @@
 import { Env } from "../env"
+import { EqualCtx } from "../equal"
 import { Exp } from "../exp"
 import { Mod } from "../mod"
-import { ReadbackCtx } from "../readback"
 import { Stmt } from "../stmt"
 
 export class AssertEqualStmt extends Stmt {
@@ -18,7 +18,7 @@ export class AssertEqualStmt extends Stmt {
   private assertEqual(mod: Mod, left: Exp, right: Exp): void {
     const leftValue = left.evaluate(mod, new Env())
     const rightValue = right.evaluate(mod, new Env())
-    if (!leftValue.equal(ReadbackCtx.init(), rightValue)) {
+    if (!leftValue.equal(EqualCtx.init(), rightValue)) {
       const output = `(not-equal ${left.format()} ${right.format()})`
       console.log(output)
       mod.output += output + "\n"

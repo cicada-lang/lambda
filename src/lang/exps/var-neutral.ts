@@ -1,3 +1,4 @@
+import { EqualCtx } from "../equal"
 import { Exp } from "../exp"
 import * as Exps from "../exps"
 import { Neutral } from "../neutral"
@@ -16,7 +17,7 @@ export class VarNeutral extends Neutral {
     return new Exps.Var(this.name)
   }
 
-  equal(ctx: ReadbackCtx, that: Neutral): boolean {
+  equal(ctx: EqualCtx, that: Neutral): boolean {
     return that instanceof VarNeutral && that.name === this.name
   }
 }

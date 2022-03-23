@@ -1,3 +1,4 @@
+import { EqualCtx } from "../equal"
 import { Exp } from "../exp"
 import * as Exps from "../exps"
 import { Neutral } from "../neutral"
@@ -21,7 +22,7 @@ export class ApNeutral extends Neutral {
     return new Exps.Ap(this.target.readback(ctx), this.arg.readback(ctx))
   }
 
-  equal(ctx: ReadbackCtx, that: Neutral): boolean {
+  equal(ctx: EqualCtx, that: Neutral): boolean {
     return (
       that instanceof ApNeutral &&
       this.target.equal(ctx, that.target) &&
