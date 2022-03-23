@@ -26,10 +26,6 @@ export class FnValue extends Value {
     )
   }
 
-  apply(arg: Value, parents: Array<Value>): Value {
-    return this.ret.evaluate(this.mod, this.env.extend(this.name, arg), parents)
-  }
-
   readback(ctx: ReadbackCtx): Exp {
     const freshName = freshen(ctx.usedNames, this.name)
     ctx = ctx.useName(freshName)

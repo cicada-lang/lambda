@@ -17,13 +17,19 @@ export class Ap extends Exp {
     ])
   }
 
+  // evaluate(mod: Mod, env: Env, parents: Array<Value>): Value {
+  //   const target = this.target.evaluate(mod, env, parents)
+  //   const arg = new Exps.LazyValue(mod, env, this.arg)
+  //   const found = parents.find((parent) => target.is(parent))
+  //   return found !== undefined
+  //     ? new Exps.NotYetValue(new Exps.ApRecNeutral(target, arg))
+  //     : Ap.apply(target, arg, parents)
+  // }
+
   evaluate(mod: Mod, env: Env, parents: Array<Value>): Value {
     const target = this.target.evaluate(mod, env, parents)
     const arg = new Exps.LazyValue(mod, env, this.arg)
-    const found = parents.find((parent) => target.is(parent))
-    return found !== undefined
-      ? new Exps.NotYetValue(new Exps.ApRecNeutral(target, arg))
-      : Ap.apply(target, arg, parents)
+    return Ap.apply(target, arg, parents)
   }
 
   format(): string {
@@ -41,7 +47,11 @@ export class Ap extends Exp {
     }
 
     if (target instanceof Exps.FnValue) {
-      return target.apply(arg, parents)
+      return target.ret.evaluate(
+        target.mod,
+        target.env.extend(target.name, arg),
+        parents
+      )
     }
 
     throw new LangError(

@@ -1,12 +1,16 @@
+- no `parents` in `ReadbackCtx`
+- simple `evaluate` and `Ap.apply`
+
 - `EqualCtx` -- with `parentPairs` `leftParents` `rightParents`
+
+- `Ap.equalApply`
+- `Exp.equalEvaluate`
 
 - `Value` -- `equal` -- can handle recursion
 
   - (A) `equal` records the `path` during recursion
 
     - one lambda counts an `edge` of the `path`
-
-- no `parents` in `ReadbackCtx`
 
 # recursion
 
