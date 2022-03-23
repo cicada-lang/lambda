@@ -21,33 +21,8 @@ export class FnValue extends Value {
       that instanceof FnValue &&
       that.name === this.name &&
       that.ret.format() === this.ret.format() &&
-      this.isEnv(that.env)
+      this.env.is(this.ret.freeNames(new Set([this.name])), that.env)
     )
-  }
-
-  private isEnv(env: Env): boolean {
-    const freeNames = this.ret.freeNames(new Set([this.name]))
-
-    for (const freeName of freeNames) {
-      const thisValue = this.env.lookup(freeName)
-      const thatValue = env.lookup(freeName)
-
-      if (thisValue === undefined && thatValue === undefined) {
-        continue
-      }
-
-      if (
-        thisValue !== undefined &&
-        thatValue !== undefined &&
-        thisValue.is(thatValue)
-      ) {
-        continue
-      }
-
-      return false
-    }
-
-    return true
   }
 
   apply(arg: Value, parents: Array<Value>): Value {
