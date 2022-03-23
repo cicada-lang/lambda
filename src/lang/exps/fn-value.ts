@@ -42,7 +42,6 @@ export class FnValue extends Value {
 
     const freshName = freshen(ctx.usedNames, this.name)
     ctx = ctx.useName(freshName)
-    ctx = ctx.parentPair(this, that)
     const v = new Exps.VarNeutral(freshName, this.name)
     const arg = new Exps.NotYetValue(v)
     return Exps.Ap.equalApply(ctx, this, that, arg)
