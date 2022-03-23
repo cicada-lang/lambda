@@ -2,17 +2,20 @@ import { Value } from "../value"
 
 export class EqualCtx {
   usedNames: Set<string>
-  parents: Array<Value>
+  parentPairs: Array<{ left: Value; right: Value }>
 
-  constructor(options: { usedNames: Set<string>; parents: Array<Value> }) {
+  constructor(options: {
+    usedNames: Set<string>
+    parentPairs: Array<{ left: Value; right: Value }>
+  }) {
     this.usedNames = options.usedNames
-    this.parents = options.parents
+    this.parentPairs = options.parentPairs
   }
 
   static init(): EqualCtx {
     return new EqualCtx({
       usedNames: new Set(),
-      parents: [],
+      parentPairs: [],
     })
   }
 
@@ -23,10 +26,10 @@ export class EqualCtx {
     })
   }
 
-  parent(value: Value): EqualCtx {
+  parentPair(left: Value, right: Value): EqualCtx {
     return new EqualCtx({
       ...this,
-      parents: [...this.parents, value],
+      parentPairs: [...this.parentPairs, { left, right }],
     })
   }
 }

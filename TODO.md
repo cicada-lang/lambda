@@ -1,13 +1,7 @@
-- `EqualCtx` -- with `parentPairs` `leftParents` `rightParents`
+> `Value` -- `equal` -- can handle recursion
 
 - `Ap.equalApply`
 - `Exp.equalEvaluate`
-
-- `Value` -- `equal` -- can handle recursion
-
-  - (A) `equal` records the `path` during recursion
-
-    - one lambda counts an `edge` of the `path`
 
 # recursion
 
