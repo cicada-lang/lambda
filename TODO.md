@@ -1,6 +1,6 @@
 - `Value` -- `readback` -- can handle recursion
 
-  - (A) `evaluate` and `apply` takes `occurred` -- record parent values
+  - (A) `evaluate` and `apply` takes `parents` -- record parent values
 
     - return `ap-rec-neutral` on recursive application
 
