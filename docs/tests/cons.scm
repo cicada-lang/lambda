@@ -7,10 +7,13 @@
 (define (null f) true)
 (define (null? p) (p (lambda (x y) false)))
 
-(null? null)
-(null? (cons null null))
-(null? (car (cons null null)))
-(null? (cdr (cons null null)))
+(assert-equal (null? (cons null null)) false)
+
+(assert-equal
+ (null? (car (cons null null)))
+ (null? (cdr (cons null null)))
+ (null? null)
+ true)
 
 (import "./nat.scm" zero add1)
 
@@ -20,6 +23,10 @@
 (define (sub1 n)
   (car (n shift-add1 (cons zero zero))))
 
-(sub1 (add1 (add1 zero)))
-(sub1 (add1 zero))
-zero
+(assert-equal
+ (sub1 (add1 (add1 zero)))
+ (add1 zero))
+
+(assert-equal
+ (sub1 (add1 zero))
+ zero)

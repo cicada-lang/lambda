@@ -13,70 +13,71 @@
 
 (define (power m n) (m n))
 
-(add1 (add1 zero))
-(add1 one)
-two
+(assert-equal
+ (add1 (add1 zero))
+ (add1 one)
+ two)
 
-(mul two two)
-(add two two)
-(add-alt two two)
-(add1 three)
+(assert-equal
+ (mul two two)
+ (add two two)
+ (add-alt two two)
+ (add1 three))
 
 (define four (add1 three))
 
-(mul two (mul two (mul two two)))
-(mul (mul two two) (mul two two))
-(mul-alt (mul-alt two two) (mul-alt two two))
+(assert-equal
+ (mul two (mul two (mul two two)))
+ (mul (mul two two) (mul two two))
+ (mul-alt (mul-alt two two) (mul-alt two two)))
 
-(power two four)
-(power four two)
+(assert-equal
+ (power two four)
+ (power four two))
 
 (import "./boolean.scm" true false if and or not)
 
 (define (zero? n) (n (lambda (x) false) true))
 
-(zero? zero)
-(zero? one)
-(zero? two)
+(assert-equal (zero? zero) true)
+(assert-equal (zero? one) false)
+(assert-equal (zero? two) false)
 
 (define (sub1 n)
   (n (lambda (g k) (zero? (g one) k (add (g k) one)))
      (lambda (_) zero)
      zero))
 
-(sub1 three)
-(sub1 (sub1 three))
-(sub1 (sub1 (sub1 three)))
-(sub1 (sub1 (sub1 (sub1 three))))
+(assert-equal
+ zero
+ (sub1 one)
+ (sub1 (sub1 two))
+ (sub1 (sub1 (sub1 three)))
+ (sub1 (sub1 (sub1 (sub1 three))))
+ (sub1 (sub1 (sub1 (sub1 (sub1 three))))))
 
 (define (sub m n) (n sub1 m))
 
-(sub three zero)
-(sub three one)
-(sub three two)
-(sub three three)
-(sub three four)
+(assert-equal (sub three zero) three)
+(assert-equal (sub three one) two)
+(assert-equal (sub three two) one)
+(assert-equal (sub three three) zero (sub three four))
 
 (define (lteq m n) (zero? (sub m n)))
 
-(lteq three four)
-(lteq three two)
+(assert-equal (lteq three four) true)
+(assert-equal (lteq four three) false)
 
-;; (define (factorial-rec n)
-;;   (if (zero? n)
-;;     one
-;;     (mul n (factorial-rec (sub1 n)))))
+(define (factorial-rec n)
+  (if (zero? n)
+    one
+    (mul n (factorial-rec (sub1 n)))))
 
-(define factorial-rec
-  (lambda (n)
-    (if (zero? n)
-      one
-      (mul n (factorial-rec (sub1 n))))))
-
-(factorial-rec zero)
-(factorial-rec one)
-(factorial-rec two)
-(factorial-rec three)
+(assert-equal (factorial-rec zero) one)
+(assert-equal (factorial-rec one) one)
+(assert-equal (factorial-rec two) two)
+(assert-equal (factorial-rec three) (mul three two))
+(assert-equal (factorial-rec four) (mul four (mul three two)))
 
 ;; TODO readback loop
 
@@ -120,16 +121,17 @@ two
 (define factorial
   (factorial/rec factorial/rec))
 
-(display-free-names
- (lambda (rec n)
-   (if (zero? n)
-     one
-     (mul n (rec rec (sub1 n))))))
+;; (display-free-names
+;;  (lambda (rec n)
+;;    (if (zero? n)
+;;      one
+;;      (mul n (rec rec (sub1 n))))))
 
-(factorial zero)
-(factorial one)
-(factorial two)
-(factorial three)
+(assert-equal (factorial zero) one)
+(assert-equal (factorial one) one)
+(assert-equal (factorial two) two)
+(assert-equal (factorial three) (mul three two))
+(assert-equal (factorial four) (mul four (mul three two)))
 
 ;; TODO readback loop
 
@@ -147,9 +149,3 @@ two
 ;;   (if (zero? n)
 ;;     one
 ;;     (mul n (factorial/rec factorial/rec (sub1 n)))))
-
-;; (circle #1
-;;  (lambda (n)
-;;    (if (zero? n)
-;;      one
-;;      (mul n (#1 (sub1 n))))))

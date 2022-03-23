@@ -65,7 +65,9 @@ export class FnValue extends Value {
   }
 
   equal(ctx: ReadbackCtx, that: Value): boolean {
-    if (!(that instanceof FnValue)) return false
+    if (that instanceof Exps.LazyValue) {
+      return this.equal(ctx, that.active(ctx.parents))
+    }
 
     const freshName = freshen(ctx.usedNames, this.name)
     ctx = ctx.useName(freshName)

@@ -1,5 +1,6 @@
 import { Env } from "../env"
 import { Exp } from "../exp"
+import * as Exps from "../exps"
 import { Mod } from "../mod"
 import { ReadbackCtx } from "../readback"
 import { Value } from "../value"
@@ -59,6 +60,10 @@ export class LazyValue extends Value {
   }
 
   equal(ctx: ReadbackCtx, that: Value): boolean {
+    if (that instanceof Exps.LazyValue) {
+      return this.equal(ctx, that.active(ctx.parents))
+    }
+
     return that.equal(ctx, this.active(ctx.parents))
   }
 }

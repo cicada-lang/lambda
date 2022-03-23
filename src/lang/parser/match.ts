@@ -40,6 +40,10 @@ export function matchStmt(sexp: Sexp): Stmt {
       ["display-free-names", v("exp")],
       ({ exp }) => new Stmts.DisplayFreeNamesStmt(matchExp(exp)),
     ],
+    [
+      list(["assert-equal"], v("exps")),
+      ({ exps }) => new Stmts.AssertEqualStmt(matchList(exps, matchExp)),
+    ],
     [v("exp"), ({ exp }) => new Stmts.EvaluateStmt(matchExp(exp))],
   ])
 }

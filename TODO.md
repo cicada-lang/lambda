@@ -1,5 +1,3 @@
-- `(assert-equal)`
-
 - `EqualCtx` -- with `parentPairs` `leftParents` `rightParents`
 
 - `Value` -- `equal` -- can handle recursion
