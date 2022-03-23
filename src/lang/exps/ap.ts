@@ -1,4 +1,5 @@
 import { Env } from "../env"
+import { EqualCtx } from "../equal"
 import { LangError } from "../errors"
 import { Exp } from "../exp"
 import * as Exps from "../exps"
@@ -26,6 +27,17 @@ export class Ap extends Exp {
   format(): string {
     const { target, args } = formatAp(this.target, [this.arg.format()])
     return `(${target} ${args.join(" ")})`
+  }
+
+  static equalApply(
+    ctx: EqualCtx,
+    left: Value,
+    right: Value,
+    arg: Value
+  ): boolean {
+    const ret = Exps.Ap.apply(left, arg)
+    const thatRet = Exps.Ap.apply(right, arg)
+    return ret.equal(ctx, thatRet)
   }
 
   static apply(target: Value, arg: Value): Value {
