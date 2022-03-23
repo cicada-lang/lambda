@@ -19,22 +19,25 @@ export class LazyValue extends Value {
     )
   }
 
-  isEnv(env: Env): boolean {
+  private isEnv(env: Env): boolean {
     const freeNames = this.exp.freeNames(new Set())
     for (const freeName of freeNames) {
       const thisValue = this.env.lookup(freeName)
       const thatValue = env.lookup(freeName)
 
+      if (thisValue === undefined && thatValue === undefined) {
+        continue
+      }
+
       if (
-        (thisValue === undefined && thatValue === undefined) ||
-        (thisValue !== undefined &&
-          thatValue !== undefined &&
-          thisValue.is(thatValue))
+        thisValue !== undefined &&
+        thatValue !== undefined &&
+        thisValue.is(thatValue)
       ) {
         continue
-      } else {
-        return false
       }
+
+      return false
     }
 
     return true

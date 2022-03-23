@@ -88,23 +88,24 @@ factorial-rec
 
 ;; TODO readback loop
 
+;; (lambda (n)
+;;   ((zero? n)
+;;    one
+;;    (mul n (factorial-rec (sub1 n)))))
+
+;; (define (id x) x)
+
+;; (lambda (n)
+;;   ((id if) (zero? n)
+;;    one
+;;    (mul n (factorial-rec (sub1 n)))))
+
 ;; ((lambda (if)
 ;;    (lambda (n)
 ;;      (if (zero? n)
 ;;        one
 ;;        (mul n (factorial-rec (sub1 n))))))
 ;;  (lambda (p t f) (p t f)))
-
-;; (lambda (n)
-;;   ((lambda (p t f) (p t f))
-;;    (zero? n)
-;;    one
-;;    (mul n (factorial-rec (sub1 n)))))
-
-;; (lambda (n)
-;;   ((zero? n)
-;;    one
-;;    (mul n (factorial-rec (sub1 n)))))
 
 (define (factorial/rec rec n)
   (if (zero? n)

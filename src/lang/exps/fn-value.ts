@@ -25,22 +25,25 @@ export class FnValue extends Value {
     )
   }
 
-  isEnv(env: Env): boolean {
+  private isEnv(env: Env): boolean {
     const freeNames = this.ret.freeNames(new Set([this.name]))
     for (const freeName of freeNames) {
       const thisValue = this.env.lookup(freeName)
       const thatValue = env.lookup(freeName)
 
+      if (thisValue === undefined && thatValue === undefined) {
+        continue
+      }
+
       if (
-        (thisValue === undefined && thatValue === undefined) ||
-        (thisValue !== undefined &&
-          thatValue !== undefined &&
-          thisValue.is(thatValue))
+        thisValue !== undefined &&
+        thatValue !== undefined &&
+        thisValue.is(thatValue)
       ) {
         continue
-      } else {
-        return false
       }
+
+      return false
     }
 
     return true
@@ -54,8 +57,9 @@ export class FnValue extends Value {
     const freshName = freshen(ctx.usedNames, this.name)
     ctx = ctx.useName(freshName)
     ctx = ctx.parent(this)
-    const variable = new Exps.NotYetValue(new Exps.VarNeutral(freshName))
-    const ret = Exps.Ap.apply(this, variable, ctx.parents)
+    const v = new Exps.VarNeutral(freshName)
+    const arg = new Exps.NotYetValue(v)
+    const ret = Exps.Ap.apply(this, arg, ctx.parents)
     return new Exps.Fn(freshName, ret.readback(ctx))
   }
 }
