@@ -44,7 +44,6 @@ two
      (lambda (_) zero)
      zero))
 
-
 (sub1 three)
 (sub1 (sub1 three))
 (sub1 (sub1 (sub1 three)))
@@ -80,13 +79,20 @@ two
 (factorial-rec two)
 (factorial-rec three)
 
-;; TODO Why the following evaluation loop?
 factorial-rec
 
 (lambda (n)
   (if (zero? n)
     one
     (mul n (factorial-rec (sub1 n)))))
+
+;; TODO readback loop
+
+;; (lambda (n)
+;;   ((lambda (p t f) (p t f))
+;;    (zero? n)
+;;    one
+;;    (mul n (factorial-rec (sub1 n)))))
 
 ;; (lambda (n)
 ;;   ((zero? n)
@@ -113,6 +119,15 @@ factorial-rec
      one
      (mul n (rec rec (sub1 n))))))
 
+(factorial zero)
+(factorial one)
+(factorial two)
+(factorial three)
+
+;; TODO readback loop
+
+;; factorial
+
 ;; (factorial/rec factorial/rec)
 
 ;; ((lambda (rec n)
@@ -131,16 +146,3 @@ factorial-rec
 ;;    (if (zero? n)
 ;;      one
 ;;      (mul n (#1 (sub1 n))))))
-
-
-;; TODO Why the following definition causes loop?
-;; factorial
-
-(factorial zero)
-(factorial one)
-(factorial two)
-(factorial three)
-
-;; (define omega
-;;   ((lambda (x) (x x))
-;;    (lambda (x) (x x))))
