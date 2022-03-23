@@ -112,7 +112,7 @@
     (lambda (f) (n ((rec (sub1 n)) f)))))
 
  (lambda (n)
-   ((n (lambda (x) (lambda (t f) f)) (lambda (t f) t))
+   ((n (lambda (x) (lambda (t f) f)) (lambda (t1 f) t1))
     (lambda (f x) (f x))
     (lambda (f)
       (n ((rec
