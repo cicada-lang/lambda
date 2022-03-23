@@ -88,12 +88,12 @@ factorial-rec
 
 ;; TODO readback loop
 
-((lambda (if)
-   (lambda (n)
-     (if (zero? n)
-       one
-       (mul n (factorial-rec (sub1 n))))))
- (lambda (p t f) (p t f)))
+;; ((lambda (if)
+;;    (lambda (n)
+;;      (if (zero? n)
+;;        one
+;;        (mul n (factorial-rec (sub1 n))))))
+;;  (lambda (p t f) (p t f)))
 
 ;; (lambda (n)
 ;;   ((lambda (p t f) (p t f))
