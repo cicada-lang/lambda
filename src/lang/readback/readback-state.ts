@@ -4,15 +4,24 @@ import { Value } from "../value"
 
 export type ReadbackEffect = (state: ReadbackState) => void
 
+type EffectEntry = {
+  effect: ReadbackEffect
+}
+
+type ParentEntry = {
+  value: Value
+  effect: ReadbackEffect
+}
+
 export class ReadbackCtx {
   usedNames: Set<string>
-  effects: Array<ReadbackEffect>
-  parents: Array<{ value: Value; effect: ReadbackEffect }>
+  effects: Array<EffectEntry>
+  parents: Array<ParentEntry>
 
   constructor(options: {
     usedNames: Set<string>
-    effects: Array<ReadbackEffect>
-    parents: Array<{ value: Value; effect: ReadbackEffect }>
+    effects: Array<EffectEntry>
+    parents: Array<ParentEntry>
   }) {
     this.usedNames = options.usedNames
     this.effects = options.effects
@@ -44,7 +53,7 @@ export class ReadbackCtx {
   effect(effect: ReadbackEffect): ReadbackCtx {
     return new ReadbackCtx({
       ...this,
-      effects: [...this.effects, effect],
+      effects: [...this.effects, { effect }],
     })
   }
 
@@ -52,13 +61,13 @@ export class ReadbackCtx {
     oldEffect: ReadbackEffect,
     newEffect: ReadbackEffect
   ): ReadbackCtx {
-    const index = this.effects.findIndex((effect) => effect === oldEffect)
+    const index = this.effects.findIndex(({ effect }) => effect === oldEffect)
     if (index === -1) {
       throw new InternalError("Can not find effect")
     }
 
     const effects = [...this.effects]
-    effects[index] = newEffect
+    effects[index] = { effect: newEffect }
     return new ReadbackCtx({ ...this, effects })
   }
 
@@ -70,7 +79,7 @@ export class ReadbackCtx {
 
   build(): Exp {
     const state = new ReadbackState()
-    for (const effect of this.effects) {
+    for (const { effect } of this.effects) {
       effect(state)
     }
 

@@ -3,7 +3,6 @@ import { Exp } from "../exp"
 import { Mod } from "../mod"
 import { ReadbackCtx } from "../readback"
 import { Value } from "../value"
-import { isLogicVar } from "../value/is-logic-var"
 
 export class LazyValue extends Value {
   cache?: Value
@@ -13,7 +12,32 @@ export class LazyValue extends Value {
   }
 
   is(that: Value): boolean {
-    return that.is(this.active())
+    return (
+      that instanceof LazyValue &&
+      this.exp.format() == that.exp.format() &&
+      this.isEnv(that.env)
+    )
+  }
+
+  isEnv(env: Env): boolean {
+    const freeNames = this.exp.freeNames(new Set())
+    for (const freeName of freeNames) {
+      const thisValue = this.env.lookup(freeName)
+      const thatValue = env.lookup(freeName)
+
+      if (
+        (thisValue === undefined && thatValue === undefined) ||
+        (thisValue !== undefined &&
+          thatValue !== undefined &&
+          thisValue.is(thatValue))
+      ) {
+        continue
+      } else {
+        return false
+      }
+    }
+
+    return true
   }
 
   active(): Value {

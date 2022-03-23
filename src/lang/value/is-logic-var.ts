@@ -1,5 +1,5 @@
-import { Value } from "../value"
 import * as Exps from "../exps"
+import { Value } from "../value"
 
 export function isLogicVar(value: Value): boolean {
   if (value instanceof Exps.LazyValue) {

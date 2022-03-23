@@ -63,10 +63,16 @@ two
 (lteq three four)
 (lteq three two)
 
-(define (factorial-rec n)
-  (if (zero? n)
-    one
-    (mul n (factorial-rec (sub1 n)))))
+;; (define (factorial-rec n)
+;;   (if (zero? n)
+;;     one
+;;     (mul n (factorial-rec (sub1 n)))))
+
+(define factorial-rec
+  (lambda (n)
+    (if (zero? n)
+      one
+      (mul n (factorial-rec (sub1 n))))))
 
 (factorial-rec zero)
 (factorial-rec one)
@@ -75,6 +81,11 @@ two
 
 ;; TODO Why the following evaluation loop?
 ;; factorial-rec
+
+;; (lambda (n)
+;;   ((n (lambda (x) false) true)
+;;    one
+;;    (mul n (factorial-rec (sub1 n)))))
 
 (define (factorial/rec rec n)
   (if (zero? n)

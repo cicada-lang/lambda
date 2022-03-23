@@ -5,7 +5,6 @@ import * as Exps from "../exps"
 import { Mod } from "../mod"
 import { ReadbackCtx, ReadbackEffect } from "../readback"
 import { Value } from "../value"
-import { isLogicVar } from "../value/is-logic-var"
 
 export class FnValue extends Value {
   constructor(
@@ -18,15 +17,33 @@ export class FnValue extends Value {
   }
 
   is(that: Value): boolean {
-    const result = (
+    return (
       that instanceof FnValue &&
       that.name === this.name &&
-      that.ret.format() === this.ret.format()
+      that.ret.format() === this.ret.format() &&
+      this.isEnv(that.env)
     )
-    if (result) {
-      console.log(this.env, that.env)
+  }
+
+  isEnv(env: Env): boolean {
+    const freeNames = this.ret.freeNames(new Set([this.name]))
+    for (const freeName of freeNames) {
+      const thisValue = this.env.lookup(freeName)
+      const thatValue = env.lookup(freeName)
+
+      if (
+        (thisValue === undefined && thatValue === undefined) ||
+        (thisValue !== undefined &&
+          thatValue !== undefined &&
+          thisValue.is(thatValue))
+      ) {
+        continue
+      } else {
+        return false
+      }
     }
-    return result
+
+    return true
   }
 
   apply(arg: Value): Value {
@@ -50,6 +67,7 @@ export class FnValue extends Value {
 
     const freshName = freshen(ctx.usedNames, this.name)
     const variable = new Exps.NotYetValue(new Exps.VarNeutral(freshName))
+    // TODO The following `apply` is divergent.
     const ret = Exps.Ap.apply(this, variable)
     ctx = ctx.useName(freshName)
     const effect: ReadbackEffect = (state) => {
@@ -57,6 +75,8 @@ export class FnValue extends Value {
       state.pushExp(new Exps.Fn(freshName, ret))
     }
     ctx = ctx.parent(this, effect)
+    // TODO during the following `readback`,
+    //   the `effect` is not pushed yet.
     ctx = ret.readback(ctx)
     return ctx.effect(effect)
   }
