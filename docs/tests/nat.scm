@@ -74,16 +74,22 @@ two
       one
       (mul n (factorial-rec (sub1 n))))))
 
+
 (factorial-rec zero)
 (factorial-rec one)
 (factorial-rec two)
 (factorial-rec three)
 
 ;; TODO Why the following evaluation loop?
-;; factorial-rec
+factorial-rec
+
+(lambda (n)
+  (if (zero? n)
+    one
+    (mul n (factorial-rec (sub1 n)))))
 
 ;; (lambda (n)
-;;   ((n (lambda (x) false) true)
+;;   ((zero? n)
 ;;    one
 ;;    (mul n (factorial-rec (sub1 n)))))
 

@@ -12,7 +12,7 @@ export class CircleWrapper extends Exp {
     return this.exp.freeNames(boundNames)
   }
 
-  evaluate(mod: Mod, env: Env): Value {
+  evaluate(mod: Mod, env: Env, parents: Array<Value>): Value {
     return this.value
   }
 

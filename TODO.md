@@ -1,17 +1,6 @@
 - `Value` -- `readback` -- can handle recursion
 
-  - (A) `evaluate` and `apply` takes `parents` -- record parent values
-
-    - return `ap-rec-neutral` on recursive application
-
-    - use lisp-style syntax to mark circle
-
-      - we need a pair of new expressions -- `Exps.CircleWrapper` and `Exps.CircleRef`
-
-      - we need to record a list of effects to build expression,
-        if a circle occurred, we find the effect and wrap it.
-
-      - we find "circle occur" by viewing the `effects` of `ReadbackCtx` as a path
+- avoid readback stack trick
 
 - play with fix & Y
 - play with birds

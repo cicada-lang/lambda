@@ -13,7 +13,7 @@ export class Var extends Exp {
     return boundNames.has(this.name) ? new Set() : new Set([this.name])
   }
 
-  evaluate(mod: Mod, env: Env): Value {
+  evaluate(mod: Mod, env: Env, parents: Array<Value>): Value {
     let value = undefined
 
     value = env.lookup(this.name)

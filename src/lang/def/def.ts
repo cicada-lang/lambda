@@ -13,7 +13,7 @@ export class Def {
       return this.cache
     }
 
-    const value = this.exp.evaluate(this.mod, new Env())
+    const value = this.exp.evaluate(this.mod, new Env(), [])
     this.cache = value
     return value
   }

@@ -4,7 +4,7 @@ import { Mod } from "../mod"
 import { Value } from "../value"
 
 export class CircleRef extends Exp {
-  constructor(public value: Value) {
+  constructor(public value: Value, public id: string) {
     super()
   }
 
@@ -12,11 +12,11 @@ export class CircleRef extends Exp {
     return new Set()
   }
 
-  evaluate(mod: Mod, env: Env): Value {
+  evaluate(mod: Mod, env: Env, parents: Array<Value>): Value {
     return this.value
   }
 
   format(): string {
-    return "CircleRef-TODO"
+    return `#${this.id}`
   }
 }
