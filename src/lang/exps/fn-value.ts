@@ -27,6 +27,7 @@ export class FnValue extends Value {
 
   private isEnv(env: Env): boolean {
     const freeNames = this.ret.freeNames(new Set([this.name]))
+
     for (const freeName of freeNames) {
       const thisValue = this.env.lookup(freeName)
       const thatValue = env.lookup(freeName)

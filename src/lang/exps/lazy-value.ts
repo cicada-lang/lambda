@@ -21,6 +21,7 @@ export class LazyValue extends Value {
 
   private isEnv(env: Env): boolean {
     const freeNames = this.exp.freeNames(new Set())
+
     for (const freeName of freeNames) {
       const thisValue = this.env.lookup(freeName)
       const thatValue = env.lookup(freeName)
