@@ -13,7 +13,7 @@ export class Fn extends Exp {
     return this.ret.freeNames(new Set([...boundNames, this.name]))
   }
 
-  evaluate(mod: Mod, env: Env, parents: Array<Value>): Value {
+  evaluate(mod: Mod, env: Env): Value {
     return new Exps.FnValue(mod, env, this.name, this.ret)
   }
 

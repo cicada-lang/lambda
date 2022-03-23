@@ -16,8 +16,8 @@ export class AssertEqualStmt extends Stmt {
   }
 
   private assertEqual(mod: Mod, left: Exp, right: Exp): void {
-    const leftValue = left.evaluate(mod, new Env(), [])
-    const rightValue = right.evaluate(mod, new Env(), [])
+    const leftValue = left.evaluate(mod, new Env())
+    const rightValue = right.evaluate(mod, new Env())
     if (!leftValue.equal(ReadbackCtx.init(), rightValue)) {
       const output = `(not-equal ${left.format()} ${right.format()})`
       console.log(output)

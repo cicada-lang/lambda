@@ -21,25 +21,25 @@ export class LazyValue extends Value {
     )
   }
 
-  active(parents: Array<Value>): Value {
+  active(): Value {
     if (this.cache !== undefined) {
       return this.cache
     }
 
-    const value = this.exp.evaluate(this.mod, this.env, parents)
+    const value = this.exp.evaluate(this.mod, this.env)
     this.cache = value
     return value
   }
 
   readback(ctx: ReadbackCtx): Exp {
-    return this.active(ctx.parents).readback(ctx)
+    return this.active().readback(ctx)
   }
 
   equal(ctx: EqualCtx, that: Value): boolean {
     if (that instanceof Exps.LazyValue) {
-      return this.equal(ctx, that.active(ctx.parents))
+      return this.equal(ctx, that.active())
     }
 
-    return that.equal(ctx, this.active(ctx.parents))
+    return that.equal(ctx, this.active())
   }
 }

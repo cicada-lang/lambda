@@ -17,19 +17,10 @@ export class Ap extends Exp {
     ])
   }
 
-  // evaluate(mod: Mod, env: Env, parents: Array<Value>): Value {
-  //   const target = this.target.evaluate(mod, env, parents)
-  //   const arg = new Exps.LazyValue(mod, env, this.arg)
-  //   const found = parents.find((parent) => target.is(parent))
-  //   return found !== undefined
-  //     ? new Exps.NotYetValue(new Exps.ApRecNeutral(target, arg))
-  //     : Ap.apply(target, arg, parents)
-  // }
-
-  evaluate(mod: Mod, env: Env, parents: Array<Value>): Value {
-    const target = this.target.evaluate(mod, env, parents)
+  evaluate(mod: Mod, env: Env): Value {
+    const target = this.target.evaluate(mod, env)
     const arg = new Exps.LazyValue(mod, env, this.arg)
-    return Ap.apply(target, arg, parents)
+    return Ap.apply(target, arg)
   }
 
   format(): string {
@@ -37,9 +28,9 @@ export class Ap extends Exp {
     return `(${target} ${args.join(" ")})`
   }
 
-  static apply(target: Value, arg: Value, parents: Array<Value>): Value {
+  static apply(target: Value, arg: Value): Value {
     if (target instanceof Exps.LazyValue) {
-      return Ap.apply(target.active(parents), arg, parents)
+      return Ap.apply(target.active(), arg)
     }
 
     if (target instanceof Exps.NotYetValue) {
@@ -49,8 +40,7 @@ export class Ap extends Exp {
     if (target instanceof Exps.FnValue) {
       return target.ret.evaluate(
         target.mod,
-        target.env.extend(target.name, arg),
-        parents
+        target.env.extend(target.name, arg)
       )
     }
 

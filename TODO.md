@@ -1,5 +1,4 @@
 - no `parents` in `ReadbackCtx`
-- simple `evaluate` and `Ap.apply`
 
 - `EqualCtx` -- with `parentPairs` `leftParents` `rightParents`
 

@@ -32,13 +32,13 @@ export class FnValue extends Value {
     ctx = ctx.parent(this)
     const v = new Exps.VarNeutral(freshName, this.name)
     const arg = new Exps.NotYetValue(v)
-    const ret = Exps.Ap.apply(this, arg, ctx.parents)
+    const ret = Exps.Ap.apply(this, arg)
     return new Exps.Fn(freshName, ret.readback(ctx))
   }
 
   equal(ctx: EqualCtx, that: Value): boolean {
     if (that instanceof Exps.LazyValue) {
-      return this.equal(ctx, that.active(ctx.parents))
+      return this.equal(ctx, that.active())
     }
 
     const freshName = freshen(ctx.usedNames, this.name)
@@ -47,8 +47,8 @@ export class FnValue extends Value {
     const v = new Exps.VarNeutral(freshName, this.name)
     const arg = new Exps.NotYetValue(v)
 
-    const ret = Exps.Ap.apply(this, arg, ctx.parents)
-    const thatRet = Exps.Ap.apply(that, arg, ctx.parents)
+    const ret = Exps.Ap.apply(this, arg)
+    const thatRet = Exps.Ap.apply(that, arg)
 
     return ret.equal(ctx, thatRet)
   }

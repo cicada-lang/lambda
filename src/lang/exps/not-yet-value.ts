@@ -16,7 +16,7 @@ export class NotYetValue extends Value {
 
   equal(ctx: EqualCtx, that: Value): boolean {
     if (that instanceof Exps.LazyValue) {
-      return this.equal(ctx, that.active(ctx.parents))
+      return this.equal(ctx, that.active())
     }
 
     return that instanceof NotYetValue && this.neutral.equal(ctx, that.neutral)
