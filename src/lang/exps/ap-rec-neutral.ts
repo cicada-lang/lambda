@@ -18,6 +18,14 @@ export class ApRecNeutral extends Neutral {
   }
 
   readback(ctx: ReadbackCtx): Exp {
-    return new Exps.Ap(new Exps.Var("<>"), this.arg.readback(ctx))
+    return new Exps.Ap(this.target.readback(ctx), this.arg.readback(ctx))
+  }
+
+  equal(ctx: ReadbackCtx, that: Neutral): boolean {
+    return (
+      that instanceof ApRecNeutral &&
+      that.target.equal(ctx, this.target) &&
+      that.arg.equal(ctx, this.arg)
+    )
   }
 }

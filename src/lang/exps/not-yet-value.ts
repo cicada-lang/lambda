@@ -12,6 +12,10 @@ export class NotYetValue extends Value {
     return that instanceof NotYetValue && this.neutral.is(that.neutral)
   }
 
+  equal(ctx: ReadbackCtx, that: Value): boolean {
+    return that instanceof NotYetValue && this.neutral.equal(ctx, that.neutral)
+  }
+
   readback(ctx: ReadbackCtx): Exp {
     return this.neutral.readback(ctx)
   }

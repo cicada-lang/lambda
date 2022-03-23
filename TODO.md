@@ -1,16 +1,18 @@
-- `Value` -- `readback` -- can handle recursion
+- `(assert-equal)`
 
-- play with fix & Y
-- play with birds
+- `EqualCtx` -- with `parentPairs` `leftParents` `rightParents`
 
-# recursion
-
-- `Value` -- `equal`
 - `Value` -- `equal` -- can handle recursion
 
   - (A) `equal` records the `path` during recursion
 
     - one lambda counts an `edge` of the `path`
 
-- `(assert-equal)`
-- `(assert-not-equal)`
+# recursion
+
+- `Value` -- `readback` -- limit length by a `count`
+
+# play
+
+- play with fix & Y
+- play with birds

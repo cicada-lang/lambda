@@ -15,4 +15,8 @@ export class VarNeutral extends Neutral {
   readback(ctx: ReadbackCtx): Exp {
     return new Exps.Var(this.name)
   }
+
+  equal(ctx: ReadbackCtx, that: Neutral): boolean {
+    return that instanceof VarNeutral && that.name === this.name
+  }
 }

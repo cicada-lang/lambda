@@ -6,4 +6,5 @@ export abstract class Neutral {
 
   abstract is(that: Neutral): boolean
   abstract readback(ctx: ReadbackCtx): Exp
+  abstract equal(ctx: ReadbackCtx, that: Neutral): boolean
 }

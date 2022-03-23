@@ -73,20 +73,19 @@ two
       one
       (mul n (factorial-rec (sub1 n))))))
 
-
 (factorial-rec zero)
 (factorial-rec one)
 (factorial-rec two)
 (factorial-rec three)
 
-factorial-rec
-
-(lambda (n)
-  (if (zero? n)
-    one
-    (mul n (factorial-rec (sub1 n)))))
-
 ;; TODO readback loop
+
+;; factorial-rec
+
+;; (lambda (n)
+;;   (if (zero? n)
+;;     one
+;;     (mul n (factorial-rec (sub1 n)))))
 
 ;; (lambda (n)
 ;;   ((zero? n)

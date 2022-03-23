@@ -57,4 +57,8 @@ export class LazyValue extends Value {
   readback(ctx: ReadbackCtx): Exp {
     return this.active(ctx.parents).readback(ctx)
   }
+
+  equal(ctx: ReadbackCtx, that: Value): boolean {
+    return that.equal(ctx, this.active(ctx.parents))
+  }
 }

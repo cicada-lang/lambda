@@ -63,4 +63,19 @@ export class FnValue extends Value {
     const ret = Exps.Ap.apply(this, arg, ctx.parents)
     return new Exps.Fn(freshName, ret.readback(ctx))
   }
+
+  equal(ctx: ReadbackCtx, that: Value): boolean {
+    if (!(that instanceof FnValue)) return false
+
+    const freshName = freshen(ctx.usedNames, this.name)
+    ctx = ctx.useName(freshName)
+    ctx = ctx.parent(this)
+    const v = new Exps.VarNeutral(freshName)
+    const arg = new Exps.NotYetValue(v)
+
+    const ret = Exps.Ap.apply(this, arg, ctx.parents)
+    const thatRet = Exps.Ap.apply(that, arg, ctx.parents)
+
+    return ret.equal(ctx, thatRet)
+  }
 }
