@@ -1,7 +1,5 @@
 - `Value` -- `readback` -- can handle recursion
 
-- avoid readback stack trick
-
 - play with fix & Y
 - play with birds
 

@@ -50,7 +50,7 @@ export class LazyValue extends Value {
     return value
   }
 
-  readback(ctx: ReadbackCtx): ReadbackCtx {
-    return this.active(ctx.parents.map(({ value }) => value)).readback(ctx)
+  readback(ctx: ReadbackCtx): Exp {
+    return this.active(ctx.parents).readback(ctx)
   }
 }

@@ -1,3 +1,4 @@
+import { Exp } from "../exp"
 import * as Exps from "../exps"
 import { Neutral } from "../neutral"
 import { ReadbackCtx } from "../readback"
@@ -16,15 +17,7 @@ export class ApRecNeutral extends Neutral {
     )
   }
 
-  readback(ctx: ReadbackCtx): ReadbackCtx {
-    ctx = this.arg.readback(ctx)
-    ctx = ctx.effect((state) => {
-      state.pushExp(new Exps.Var("<>"))
-    })
-    return ctx.effect((state) => {
-      const target = state.popExpOrFail()
-      const arg = state.popExpOrFail()
-      state.pushExp(new Exps.Ap(target, arg))
-    })
+  readback(ctx: ReadbackCtx): Exp {
+    return new Exps.Ap(new Exps.Var("<>"), this.arg.readback(ctx))
   }
 }
