@@ -35,6 +35,7 @@ export class Ap extends Exp {
     right: Value,
     arg: Value
   ): boolean {
+    // TODO
     const ret = Exps.Ap.apply(left, arg)
     const thatRet = Exps.Ap.apply(right, arg)
     return ret.equal(ctx, thatRet)
