@@ -1,3 +1,4 @@
+import { apply } from "../apply"
 import { EqualCtx, equalEvaluate } from "../equal"
 import * as Exps from "../exps"
 import { Value } from "../value"
@@ -23,15 +24,6 @@ export function equalApply(
   }
 
   if (
-    left.target instanceof Exps.NotYetValue &&
-    right.target instanceof Exps.NotYetValue
-  ) {
-    return (
-      left.target.equal(ctx, right.target) && left.arg.equal(ctx, right.arg)
-    )
-  }
-
-  if (
     left.target instanceof Exps.FnValue &&
     right.target instanceof Exps.FnValue
   ) {
@@ -50,5 +42,15 @@ export function equalApply(
     )
   }
 
-  return false
+  // if (
+  //   left.target instanceof Exps.NotYetValue &&
+  //   right.target instanceof Exps.NotYetValue
+  // ) {
+  //   return (
+  //     left.target.neutral.equal(ctx, right.target.neutral) &&
+  //     left.arg.equal(ctx, right.arg)
+  //   )
+  // }
+
+  return apply(left.target, left.arg).equal(ctx, apply(right.target, right.arg))
 }
