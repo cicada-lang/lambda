@@ -1,4 +1,5 @@
 import { Def } from "../def"
+import { Env } from "../env"
 import { Exp } from "../exp"
 import { ModLoader } from "../mod"
 import { Value } from "../value"
@@ -23,12 +24,13 @@ export class Mod {
   }
 
   define(name: string, exp: Exp): void {
-    this.defs.set(name, new Def(this, name, exp))
+    const value = exp.evaluate(this, new Env())
+    this.defs.set(name, new Def(this, name, value))
   }
 
   lookup(name: string): Value | undefined {
     const def = this.defs.get(name)
     if (def === undefined) return undefined
-    return def.refer()
+    return def.value
   }
 }

@@ -2,8 +2,6 @@
 
 - recursion is not an option
 
-  - use `Value` in `Def`
-
 - `Value.readback` -- limit depth -- by `ReadbackCtx`
 - `Exp.equal` -- limit depth -- by `EqualCtx`
 
