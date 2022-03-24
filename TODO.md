@@ -1,12 +1,9 @@
 > scale back the scope
 
-- recursion is not an option
-
 - `Value.readback` -- limit depth -- by `ReadbackCtx`
 - `Exp.equal` -- limit depth -- by `EqualCtx`
 
 - `(assert-not-equal)`
-
 - use `(assert-not-equal)` to do tests
 
 # play
