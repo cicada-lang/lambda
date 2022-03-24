@@ -3,7 +3,9 @@ import { CommandRunner } from "@enchanterjs/enchanter/lib/command-runner"
 import { CommonHelpCommand } from "@enchanterjs/enchanter/lib/commands"
 import ty from "@xieyuheng/ty"
 import fs from "fs"
+import { LangError } from "../../lang/errors"
 import { ModLoader } from "../../lang/mod"
+import { colors } from "../../ut/colors"
 import { createUrl } from "../../ut/create-url"
 
 type Args = { file?: string }
@@ -49,6 +51,15 @@ export class RunCommand extends Command<Args, Opts> {
       return
     }
 
-    await this.loader.load(createUrl(argv.file))
+    try {
+      await this.loader.load(createUrl(argv.file))
+    } catch (error) {
+      if (error instanceof LangError) {
+        console.error(colors.bold(colors.yellow(error.message)))
+        process.exit(1)
+      }
+
+      throw error
+    }
   }
 }

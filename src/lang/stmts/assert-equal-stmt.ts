@@ -1,5 +1,6 @@
 import { Env } from "../env"
 import { EqualCtx } from "../equal"
+import { AssertionError } from "../errors"
 import { Exp } from "../exp"
 import { Mod } from "../mod"
 import { Stmt } from "../stmt"
@@ -19,9 +20,9 @@ export class AssertEqualStmt extends Stmt {
     const leftValue = left.evaluate(mod, new Env())
     const rightValue = right.evaluate(mod, new Env())
     if (!leftValue.equal(EqualCtx.init(), rightValue)) {
-      const output = `((fail assert-equal) ${left.format()} ${right.format()})`
-      console.log(output)
-      mod.output += output + "\n"
+      throw new AssertionError(
+        `((fail assert-equal) ${left.format()} ${right.format()})`
+      )
     }
   }
 }
