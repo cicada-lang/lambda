@@ -9,6 +9,8 @@
 
 - `(assert-not-equal)`
 
+- use `(assert-not-equal)` to do tests
+
 # play
 
 - play with fix & Y
