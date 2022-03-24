@@ -47,7 +47,7 @@ export class ApThunkValue extends Value {
     }
 
     if (that instanceof Exps.ApThunkValue) {
-      return this.equal(ctx, that.active())
+      return this.active().equal(ctx, that.active())
     }
 
     return this.active().equal(ctx, that)
