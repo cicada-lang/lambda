@@ -68,20 +68,20 @@
 (assert-equal (lteq three four) true)
 (assert-equal (lteq four three) false)
 
-(define (factorial-rec n)
+(define (factorial n)
   (if (zero? n)
     one
-    (mul n (factorial-rec (sub1 n)))))
+    (mul n (factorial (sub1 n)))))
 
-(assert-equal (factorial-rec zero) one)
-(assert-equal (factorial-rec one) one)
-(assert-equal (factorial-rec two) two)
-(assert-equal (factorial-rec three) (mul three two))
-(assert-equal (factorial-rec four) (mul four (mul three two)))
+(assert-equal (factorial zero) one)
+(assert-equal (factorial one) one)
+(assert-equal (factorial two) two)
+(assert-equal (factorial three) (mul three two))
+(assert-equal (factorial four) (mul four (mul three two)))
 
 ;; TODO equal loop
 
-;; (assert-equal factorial-rec factorial-rec)
+;; (assert-equal factorial factorial)
 
 (define (rec x) x)
 
@@ -127,27 +127,32 @@
     one
     (mul n (rec rec (sub1 n)))))
 
-(define factorial/rec
-  (lambda (rec n)
-    (if (zero? n)
-      one
-      (mul n (rec rec (sub1 n))))))
-
-(define factorial
-  (factorial/rec factorial/rec))
-
-;; (display-free-names
-;;  (lambda (rec n)
-;;    (if (zero? n)
-;;      one
-;;      (mul n (rec rec (sub1 n))))))
-
-(assert-equal (factorial zero) one)
-(assert-equal (factorial one) one)
-(assert-equal (factorial two) two)
-(assert-equal (factorial three) (mul three two))
-(assert-equal (factorial four) (mul four (mul three two)))
+(assert-equal ((factorial/rec factorial/rec) zero) one)
+(assert-equal ((factorial/rec factorial/rec) one) one)
+(assert-equal ((factorial/rec factorial/rec) two) two)
+(assert-equal ((factorial/rec factorial/rec) three) (mul three two))
+(assert-equal ((factorial/rec factorial/rec) four) (mul four (mul three two)))
 
 ;; TODO equal loop
 
-;; (assert-equal factorial factorial)
+;; (assert-equal (factorial/rec factorial/rec) (factorial/rec factorial/rec))
+
+(define (Y g)
+  ((lambda (x) (g (x x)))
+   (lambda (x) (g (x x)))))
+
+(define (factorial/fix rec n)
+  (if (zero? n)
+    one
+    (mul n (rec (sub1 n)))))
+
+(assert-equal ((Y factorial/fix) zero) one)
+(assert-equal ((Y factorial/fix) one) one)
+(assert-equal ((Y factorial/fix) two) two)
+(assert-equal ((Y factorial/fix) three) (mul three two))
+(assert-equal ((Y factorial/fix) four) (mul four (mul three two)))
+
+;; TODO equal loop
+
+;; (assert-equal (Y factorial/fix) (Y factorial/fix))
+;; (assert-equal (Y factorial/fix) (factorial/fix (Y factorial/fix)))
