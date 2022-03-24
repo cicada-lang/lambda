@@ -4,34 +4,48 @@ import { Value } from "../value"
 
 export function equalApply(
   ctx: EqualCtx,
-  left: Value,
-  right: Value,
-  arg: Value
+  left: { target: Value; arg: Value },
+  right: { target: Value; arg: Value }
 ): boolean {
-  if (left instanceof Exps.LazyValue) {
-    return equalApply(ctx, left.active(), right, arg)
+  if (left.target instanceof Exps.LazyValue) {
+    return equalApply(
+      ctx,
+      { target: left.target.active(), arg: left.arg },
+      right
+    )
   }
 
-  if (right instanceof Exps.LazyValue) {
-    return equalApply(ctx, left, right.active(), arg)
+  if (right.target instanceof Exps.LazyValue) {
+    return equalApply(ctx, left, {
+      target: right.target.active(),
+      arg: right.arg,
+    })
   }
 
-  if (left instanceof Exps.NotYetValue && right instanceof Exps.NotYetValue) {
-    return left.equal(ctx, right)
+  if (
+    left.target instanceof Exps.NotYetValue &&
+    right.target instanceof Exps.NotYetValue
+  ) {
+    return (
+      left.target.equal(ctx, right.target) && left.arg.equal(ctx, right.arg)
+    )
   }
 
-  if (left instanceof Exps.FnValue && right instanceof Exps.FnValue) {
+  if (
+    left.target instanceof Exps.FnValue &&
+    right.target instanceof Exps.FnValue
+  ) {
     return equalEvaluate(
-      ctx.parentPair(left, right),
+      ctx.parentPair(left.target, right.target),
       {
-        mod: left.mod,
-        env: left.env.extend(left.name, arg),
-        exp: left.ret,
+        mod: left.target.mod,
+        env: left.target.env.extend(left.target.name, left.arg),
+        exp: left.target.ret,
       },
       {
-        mod: right.mod,
-        env: right.env.extend(right.name, arg),
-        exp: right.ret,
+        mod: right.target.mod,
+        env: right.target.env.extend(right.target.name, right.arg),
+        exp: right.target.ret,
       }
     )
   }

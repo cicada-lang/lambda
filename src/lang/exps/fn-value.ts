@@ -45,6 +45,6 @@ export class FnValue extends Value {
     ctx = ctx.useName(freshName)
     const v = new Exps.VarNeutral(freshName, this.name)
     const arg = new Exps.NotYetValue(v)
-    return equalApply(ctx, this, that, arg)
+    return equalApply(ctx, { target: this, arg }, { target: that, arg })
   }
 }
