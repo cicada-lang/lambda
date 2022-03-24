@@ -21,7 +21,7 @@ export class Var extends Exp {
       return value
     }
 
-    value = mod.lookup(this.name)
+    value = mod.lookup(env, this.name)
     if (value !== undefined) {
       return value
     }

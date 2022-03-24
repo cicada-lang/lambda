@@ -3,8 +3,14 @@ import { Value } from "../value"
 export class Env {
   values: Map<string, Value>
 
-  constructor(values?: Map<string, Value>) {
-    this.values = values || new Map()
+  constructor(options: { values: Map<string, Value> }) {
+    this.values = options.values
+  }
+
+  static init(): Env {
+    return new Env({
+      values: new Map(),
+    })
   }
 
   get names(): Array<string> {
@@ -16,6 +22,9 @@ export class Env {
   }
 
   extend(name: string, value: Value): Env {
-    return new Env(new Map([...this.values, [name, value]]))
+    return new Env({
+      ...this,
+      values: new Map([...this.values, [name, value]]),
+    })
   }
 }

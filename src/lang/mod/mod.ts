@@ -24,11 +24,11 @@ export class Mod {
   }
 
   define(name: string, exp: Exp): void {
-    const value = exp.evaluate(this, new Env())
+    const value = exp.evaluate(this, Env.init())
     this.defs.set(name, new Def(this, name, value))
   }
 
-  lookup(name: string): Value | undefined {
+  lookup(env: Env, name: string): Value | undefined {
     const def = this.defs.get(name)
     if (def === undefined) return undefined
     return def.value

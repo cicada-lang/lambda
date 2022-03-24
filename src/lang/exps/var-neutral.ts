@@ -5,7 +5,7 @@ import { Neutral } from "../neutral"
 import { ReadbackCtx } from "../readback"
 
 export class VarNeutral extends Neutral {
-  constructor(public name: string, public originalName: string) {
+  constructor(public name: string) {
     super()
   }
 
