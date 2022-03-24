@@ -1,56 +1,24 @@
-import { apply } from "../apply"
-import { EqualCtx, equalEvaluate } from "../equal"
+import { LangError } from "../errors"
 import * as Exps from "../exps"
 import { Value } from "../value"
 
-export function equalApply(
-  ctx: EqualCtx,
-  left: { target: Value; arg: Value },
-  right: { target: Value; arg: Value }
-): boolean {
-  if (left.target instanceof Exps.LazyValue) {
-    return equalApply(
-      ctx,
-      { target: left.target.active(), arg: left.arg },
-      right
+export function equalApply(target: Value, arg: Value): Value {
+  if (target instanceof Exps.LazyValue || target instanceof Exps.ApThunkValue) {
+    return equalApply(target.active(), arg)
+  }
+
+  if (target instanceof Exps.NotYetValue) {
+    return new Exps.NotYetValue(new Exps.ApNeutral(target.neutral, arg))
+  }
+
+  if (target instanceof Exps.FnValue) {
+    return target.ret.equalEvaluate(
+      target.mod,
+      target.env.extend(target.name, arg)
     )
   }
 
-  if (right.target instanceof Exps.LazyValue) {
-    return equalApply(ctx, left, {
-      target: right.target.active(),
-      arg: right.arg,
-    })
-  }
-
-  if (
-    left.target instanceof Exps.FnValue &&
-    right.target instanceof Exps.FnValue
-  ) {
-    return equalEvaluate(
-      ctx.parentPair(left.target, right.target),
-      {
-        mod: left.target.mod,
-        env: left.target.env.extend(left.target.name, left.arg),
-        exp: left.target.ret,
-      },
-      {
-        mod: right.target.mod,
-        env: right.target.env.extend(right.target.name, right.arg),
-        exp: right.target.ret,
-      }
-    )
-  }
-
-  // if (
-  //   left.target instanceof Exps.NotYetValue &&
-  //   right.target instanceof Exps.NotYetValue
-  // ) {
-  //   return (
-  //     left.target.neutral.equal(ctx, right.target.neutral) &&
-  //     left.arg.equal(ctx, right.arg)
-  //   )
-  // }
-
-  return apply(left.target, left.arg).equal(ctx, apply(right.target, right.arg))
+  throw new LangError(
+    `I expect the target to be a function, instead of ${target.constructor.name}`
+  )
 }

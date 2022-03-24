@@ -1,5 +1,6 @@
 export * from "./ap"
 export * from "./ap-neutral"
+export * from "./ap-thunk-value"
 export * from "./fn"
 export * from "./fn-value"
 export * from "./lazy-value"

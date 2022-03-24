@@ -1,3 +1,4 @@
+import * as Exps from "../exps"
 import { Value } from "../value"
 
 export class EqualCtx {
@@ -34,10 +35,19 @@ export class EqualCtx {
   }
 
   checkOccur(left: Value, right: Value): boolean {
+    if (left instanceof Exps.LazyValue || left instanceof Exps.ApThunkValue) {
+      return this.checkOccur(left.active(), right)
+    }
+
+    if (right instanceof Exps.LazyValue || right instanceof Exps.ApThunkValue) {
+      return this.checkOccur(left, right.active())
+    }
+
     return Boolean(
       this.parentPairs.find(
-        (pair) => pair.left.is(left) && pair.right.is(right) ||
-          pair.left.is(right) && pair.right.is(left)
+        (pair) =>
+          (pair.left.is(left) && pair.right.is(right)) ||
+          (pair.left.is(right) && pair.right.is(left))
       )
     )
   }

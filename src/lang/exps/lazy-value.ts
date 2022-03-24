@@ -26,7 +26,7 @@ export class LazyValue extends Value {
       return this.cache
     }
 
-    const value = this.exp.evaluate(this.mod, this.env)
+    const value = this.exp.equalEvaluate(this.mod, this.env)
     this.cache = value
     return value
   }
@@ -36,7 +36,7 @@ export class LazyValue extends Value {
   }
 
   equal(ctx: EqualCtx, that: Value): boolean {
-    if (that instanceof Exps.LazyValue) {
+    if (that instanceof Exps.LazyValue || that instanceof Exps.ApThunkValue) {
       return this.equal(ctx, that.active())
     }
 

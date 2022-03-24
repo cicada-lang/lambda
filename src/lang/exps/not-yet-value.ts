@@ -15,7 +15,7 @@ export class NotYetValue extends Value {
   }
 
   equal(ctx: EqualCtx, that: Value): boolean {
-    if (that instanceof Exps.LazyValue) {
+    if (that instanceof Exps.LazyValue || that instanceof Exps.ApThunkValue) {
       return this.equal(ctx, that.active())
     }
 

@@ -37,7 +37,7 @@ export class FnValue extends Value {
   }
 
   equal(ctx: EqualCtx, that: Value): boolean {
-    if (that instanceof Exps.LazyValue) {
+    if (that instanceof Exps.LazyValue || that instanceof Exps.ApThunkValue) {
       return this.equal(ctx, that.active())
     }
 
@@ -45,6 +45,7 @@ export class FnValue extends Value {
     ctx = ctx.useName(freshName)
     const v = new Exps.VarNeutral(freshName, this.name)
     const arg = new Exps.NotYetValue(v)
-    return equalApply(ctx, { target: this, arg }, { target: that, arg })
+    ctx = ctx.parentPair(this, that)
+    return equalApply(this, arg).equal(ctx, equalApply(that, arg))
   }
 }

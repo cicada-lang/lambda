@@ -17,6 +17,12 @@ export class Ap extends Exp {
     ])
   }
 
+  equalEvaluate(mod: Mod, env: Env): Value {
+    const target = this.target.equalEvaluate(mod, env)
+    const arg = new Exps.LazyValue(mod, env, this.arg)
+    return new Exps.ApThunkValue(target, arg)
+  }
+
   evaluate(mod: Mod, env: Env): Value {
     const target = this.target.evaluate(mod, env)
     const arg = new Exps.LazyValue(mod, env, this.arg)

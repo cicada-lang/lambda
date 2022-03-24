@@ -79,7 +79,7 @@
 (assert-equal (factorial-rec three) (mul three two))
 (assert-equal (factorial-rec four) (mul four (mul three two)))
 
-;; TODO readback loop
+;; TODO equal loop
 
 ;; (assert-equal factorial-rec factorial-rec)
 
@@ -122,30 +122,6 @@
               zero))
           f))))))
 
-;; (lambda (n)
-;;   (if (zero? n)
-;;     one
-;;     (mul n (factorial-rec (sub1 n)))))
-
-;; (lambda (n)
-;;   ((zero? n)
-;;    one
-;;    (mul n (factorial-rec (sub1 n)))))
-
-;; (define (id x) x)
-
-;; (lambda (n)
-;;   ((id if) (zero? n)
-;;    one
-;;    (mul n (factorial-rec (sub1 n)))))
-
-;; ((lambda (if)
-;;    (lambda (n)
-;;      (if (zero? n)
-;;        one
-;;        (mul n (factorial-rec (sub1 n))))))
-;;  (lambda (p t f) (p t f)))
-
 (define (factorial/rec rec n)
   (if (zero? n)
     one
@@ -172,19 +148,6 @@
 (assert-equal (factorial three) (mul three two))
 (assert-equal (factorial four) (mul four (mul three two)))
 
-;; TODO readback loop
+;; TODO equal loop
 
-;; factorial
-
-;; (factorial/rec factorial/rec)
-
-;; ((lambda (rec n)
-;;    (if (zero? n)
-;;      one
-;;      (mul n (rec rec (sub1 n)))))
-;;  factorial/rec)
-
-;; (lambda (n)
-;;   (if (zero? n)
-;;     one
-;;     (mul n (factorial/rec factorial/rec (sub1 n)))))
+;; (assert-equal factorial factorial)

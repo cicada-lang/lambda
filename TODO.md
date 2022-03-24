@@ -1,6 +1,6 @@
-> `Value` -- `equal` -- can handle recursion
+- `Value` -- `equal` -- can handle recursion
 
-- `equalEvaluate`
+  - `equalEvaluate` ?
 
 # recursion
 
