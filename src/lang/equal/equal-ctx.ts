@@ -32,4 +32,13 @@ export class EqualCtx {
       parentPairs: [...this.parentPairs, { left, right }],
     })
   }
+
+  checkOccur(left: Value, right: Value): boolean {
+    return Boolean(
+      this.parentPairs.find(
+        (pair) => pair.left.is(left) && pair.right.is(right) ||
+          pair.left.is(right) && pair.right.is(left)
+      )
+    )
+  }
 }

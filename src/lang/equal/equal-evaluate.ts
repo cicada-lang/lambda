@@ -16,7 +16,9 @@ export function equalEvaluate(
     const rightTarget = right.exp.target.evaluate(right.mod, right.env)
     const rightArg = new Exps.LazyValue(right.mod, right.env, right.exp.arg)
 
-
+    if (ctx.checkOccur(leftTarget, rightTarget)) {
+      return leftArg.equal(ctx, rightArg)
+    }
 
     return equalApply(
       ctx,
