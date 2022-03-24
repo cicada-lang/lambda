@@ -1,6 +1,6 @@
+import { apply } from "../apply"
 import { Env } from "../env"
 import { EqualCtx } from "../equal"
-import { LangError } from "../errors"
 import { Exp } from "../exp"
 import * as Exps from "../exps"
 import { Mod } from "../mod"
@@ -21,7 +21,7 @@ export class Ap extends Exp {
   evaluate(mod: Mod, env: Env): Value {
     const target = this.target.evaluate(mod, env)
     const arg = new Exps.LazyValue(mod, env, this.arg)
-    return Ap.apply(target, arg)
+    return apply(target, arg)
   }
 
   format(): string {
@@ -64,27 +64,6 @@ export class Ap extends Exp {
     }
 
     return false
-  }
-
-  static apply(target: Value, arg: Value): Value {
-    if (target instanceof Exps.LazyValue) {
-      return Ap.apply(target.active(), arg)
-    }
-
-    if (target instanceof Exps.NotYetValue) {
-      return new Exps.NotYetValue(new Exps.ApNeutral(target.neutral, arg))
-    }
-
-    if (target instanceof Exps.FnValue) {
-      return target.ret.evaluate(
-        target.mod,
-        target.env.extend(target.name, arg)
-      )
-    }
-
-    throw new LangError(
-      `I expect the target to be a function, instead of ${target.constructor.name}`
-    )
   }
 }
 

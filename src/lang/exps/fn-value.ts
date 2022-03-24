@@ -1,4 +1,5 @@
 import { freshen } from "../../ut/freshen"
+import { apply } from "../apply"
 import { Env } from "../env"
 import { EqualCtx } from "../equal"
 import { Exp } from "../exp"
@@ -31,7 +32,7 @@ export class FnValue extends Value {
     ctx = ctx.useName(freshName)
     const v = new Exps.VarNeutral(freshName, this.name)
     const arg = new Exps.NotYetValue(v)
-    const ret = Exps.Ap.apply(this, arg)
+    const ret = apply(this, arg)
     return new Exps.Fn(freshName, ret.readback(ctx))
   }
 
