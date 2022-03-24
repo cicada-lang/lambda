@@ -13,10 +13,6 @@ export class Var extends Exp {
     return boundNames.has(this.name) ? new Set() : new Set([this.name])
   }
 
-  equalEvaluate(mod: Mod, env: Env): Value {
-    return this.evaluate(mod, env)
-  }
-
   evaluate(mod: Mod, env: Env): Value {
     let value = undefined
 

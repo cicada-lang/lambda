@@ -3,7 +3,7 @@ import * as Exps from "../exps"
 import { Value } from "../value"
 
 export function apply(target: Value, arg: Value): Value {
-  if (target instanceof Exps.LazyValue || target instanceof Exps.ApThunkValue) {
+  if (target instanceof Exps.LazyValue) {
     return apply(target.active(), arg)
   }
 

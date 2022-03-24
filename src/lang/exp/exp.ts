@@ -7,6 +7,5 @@ export abstract class Exp {
 
   abstract freeNames(boundNames: Set<string>): Set<string>
   abstract evaluate(mod: Mod, env: Env): Value
-  abstract equalEvaluate(mod: Mod, env: Env): Value
   abstract format(): string
 }

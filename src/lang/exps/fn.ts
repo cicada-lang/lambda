@@ -17,10 +17,6 @@ export class Fn extends Exp {
     return new Exps.FnValue(mod, env, this.name, this.ret)
   }
 
-  equalEvaluate(mod: Mod, env: Env): Value {
-    return this.evaluate(mod, env)
-  }
-
   format(): string {
     const { names, ret } = formatFn([this.name], this.ret)
     return `(lambda (${names.join(" ")}) ${ret})`
