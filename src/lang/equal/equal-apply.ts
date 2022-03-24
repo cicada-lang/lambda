@@ -1,4 +1,4 @@
-import { EqualCtx } from "../equal"
+import { EqualCtx, equalEvaluate } from "../equal"
 import * as Exps from "../exps"
 import { Value } from "../value"
 
@@ -21,19 +21,19 @@ export function equalApply(
   }
 
   if (left instanceof Exps.FnValue && right instanceof Exps.FnValue) {
-    ctx = ctx.parentPair(left, right)
-
-    const leftValue = left.ret.evaluate(
-      left.mod,
-      left.env.extend(left.name, arg)
+    return equalEvaluate(
+      ctx.parentPair(left, right),
+      {
+        mod: left.mod,
+        env: left.env.extend(left.name, arg),
+        exp: left.ret,
+      },
+      {
+        mod: right.mod,
+        env: right.env.extend(right.name, arg),
+        exp: right.ret,
+      }
     )
-
-    const rightValue = right.ret.evaluate(
-      right.mod,
-      right.env.extend(right.name, arg)
-    )
-
-    return leftValue.equal(ctx, rightValue)
   }
 
   return false
