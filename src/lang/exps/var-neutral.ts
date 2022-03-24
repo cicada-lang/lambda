@@ -9,10 +9,6 @@ export class VarNeutral extends Neutral {
     super()
   }
 
-  is(that: Neutral): boolean {
-    return that instanceof VarNeutral && that.originalName === this.originalName
-  }
-
   readback(ctx: ReadbackCtx): Exp {
     return new Exps.Var(this.name)
   }

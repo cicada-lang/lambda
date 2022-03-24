@@ -10,10 +10,6 @@ export class NotYetValue extends Value {
     super()
   }
 
-  is(that: Value): boolean {
-    return that instanceof NotYetValue && this.neutral.is(that.neutral)
-  }
-
   equal(ctx: EqualCtx, that: Value): boolean {
     if (that instanceof Exps.LazyValue) {
       return this.equal(ctx, that.active())

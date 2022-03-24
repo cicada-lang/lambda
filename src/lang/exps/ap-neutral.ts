@@ -10,14 +10,6 @@ export class ApNeutral extends Neutral {
     super()
   }
 
-  is(that: Neutral): boolean {
-    return (
-      that instanceof ApNeutral &&
-      that.target.is(this.target) &&
-      that.arg.is(this.arg)
-    )
-  }
-
   readback(ctx: ReadbackCtx): Exp {
     return new Exps.Ap(this.target.readback(ctx), this.arg.readback(ctx))
   }

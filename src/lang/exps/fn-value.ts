@@ -18,15 +18,6 @@ export class FnValue extends Value {
     super()
   }
 
-  is(that: Value): boolean {
-    return (
-      that instanceof FnValue &&
-      that.name === this.name &&
-      that.ret.format() === this.ret.format() &&
-      this.env.is(this.ret.freeNames(new Set([this.name])), that.env)
-    )
-  }
-
   readback(ctx: ReadbackCtx): Exp {
     const freshName = freshen(ctx.usedNames, this.name)
     ctx = ctx.useName(freshName)

@@ -13,14 +13,6 @@ export class LazyValue extends Value {
     super()
   }
 
-  is(that: Value): boolean {
-    return (
-      that instanceof LazyValue &&
-      this.exp.format() == that.exp.format() &&
-      this.env.is(this.exp.freeNames(new Set()), that.env)
-    )
-  }
-
   active(): Value {
     if (this.cache !== undefined) {
       return this.cache

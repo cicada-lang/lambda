@@ -1,8 +1,5 @@
 > scale back the scope
 
-- enough about `Value.is`
-- enough about `(display-free-names)`
-
 - recursion is not an option
 
   - use `Value` in `Def`
