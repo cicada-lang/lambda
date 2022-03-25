@@ -2,10 +2,10 @@
 (import "./nat.scm" zero one two three four)
 (import "./boolean.scm" if true false)
 
-(define (factorial rec n)
+(define (factorial self n)
   (if (zero? n)
     one
-    (mul n (rec rec (sub1 n)))))
+    (mul n (self self (sub1 n)))))
 
 (assert-equal ((factorial factorial) zero) one)
 (assert-equal ((factorial factorial) one) one)
