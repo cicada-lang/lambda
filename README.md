@@ -5,8 +5,9 @@ An implementation of [(Untyped) Lambda Calculus](https://en.wikipedia.org/wiki/L
 - Use [S-expression](https://github.com/cicada-lang/sexp) as overall syntax.
 - Implement call-by-need lazy evaluation.
 - Allow recursive definitions.
-- With a simple module system that can load module from URL.
-- With simple testing statements `(assert-equal)` and `(assert-not-equal)`.
+- A simple module system with only one API -- `(import)`.
+  - It can import module from local file or remote URL.
+- Two simple testing statements `(assert-equal)` and `(assert-not-equal)`.
   - They can handle beta and eta equivalence.
 
 ## Usage
