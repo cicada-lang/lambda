@@ -1,20 +1,9 @@
-# play
+- play with birds -- a little book about birds
 
-- play with birds
+- lambda the ultimate inductive data
 
-  a little book about birds
+  - be good at using lambda to encode inductive datatypes -- learn from kind's blog
 
-- Lambda the Ultimate Inductive Data
+- fixpoint keyword
 
-  - be good at using lambda to encode inductive datatypes
-  - learn from kind's blog
-
-- if we can use lambda to encode inductive datatypes,
-  how about record types (with OOP in mind)?
-
-  - we can view function as special object with an `apply` method,
-    but how about encoding object by lambda?
-
-- we need to learn coq and lean
-
-  - i do not even know coq uses fixpoint
+  - we need to learn coq and lean -- i do not even know coq uses fixpoint
