@@ -2,9 +2,14 @@
 (import "./nat.scm" zero one two three four)
 (import "./boolean.scm" if true false)
 
-(define (fix g)
-  ((lambda (x) (g (x x)))
-   (lambda (x) (g (x x)))))
+;; (fix f) = (f (fix f))
+(define (fix f)
+  ((lambda (x) (f (x x)))
+   (lambda (x) (f (x x)))))
+
+;; (claim factorial (-> (-> Nat Nat) (-> Nat Nat)))
+;; (claim (fix factorial) (-> Nat Nat))
+;; (claim fix (-> (-> A A) A))
 
 (define (factorial rec n)
   (if (zero? n)
