@@ -6,8 +6,8 @@ An implementation of [(Untyped) Lambda Calculus](https://en.wikipedia.org/wiki/L
 - Use callby-need lazy evaluation.
 - Allow recursive definitions.
 - With a simple module system that can load module from URL.
-- With simple testing statements `(assert-equal)` and `(assert-not-equal)`,
-  which can handle beta and eta equivalence.
+- With simple testing statements `(assert-equal)` and `(assert-not-equal)`.
+  - They can handle beta and eta equivalence.
 
 ## Usage
 
