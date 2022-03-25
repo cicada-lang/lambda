@@ -123,10 +123,10 @@ lambda https://readonly.link/files/cicada-lang/lambda/-/docs/tests/boolean.test.
 
 ### Factorial by fixpoint combinator
 
-[ [PLAYGROUND](https://lambda.cicada-lang.org/playground/KGltcG9ydCAiaHR0cHM6Ly9yZWFkb25seS5saW5rL2ZpbGVzL2NpY2FkYS1sYW5nL2xhbWJkYS8tL2RvY3MvdGVzdHMvbmF0LnNjbSIKICB6ZXJvPyBhZGQgbXVsIHN1YjEKICB6ZXJvIG9uZSB0d28gdGhyZWUgZm91cikKCihpbXBvcnQgImh0dHBzOi8vcmVhZG9ubHkubGluay9maWxlcy9jaWNhZGEtbGFuZy9sYW1iZGEvLS9kb2NzL3Rlc3RzL2Jvb2xlYW4uc2NtIgogIHRydWUgZmFsc2UgaWYpCgooZGVmaW5lIChmaXggZykKICAoKGxhbWJkYSAoeCkgKGcgKHggeCkpKQogICAobGFtYmRhICh4KSAoZyAoeCB4KSkpKSkKCihkZWZpbmUgKGZhY3RvcmlhbCByZWMgbikKICAoaWYgKHplcm8_IG4pCiAgICBvbmUKICAgIChtdWwgbiAocmVjIChzdWIxIG4pKSkpKQoKKChmaXggZmFjdG9yaWFsKSB6ZXJvKQooKGZpeCBmYWN0b3JpYWwpIG9uZSkKKChmaXggZmFjdG9yaWFsKSB0d28pCigoZml4IGZhY3RvcmlhbCkgdGhyZWUpCigoZml4IGZhY3RvcmlhbCkgZm91cikK)
+[ [PLAYGROUND](https://lambda.cicada-lang.org/playground/KGltcG9ydCAiaHR0cHM6Ly9yZWFkb25seS5saW5rL2ZpbGVzL2NpY2FkYS1sYW5nL2xhbWJkYS8tL2RvY3MvdGVzdHMvbmF0LnNjbSIKICB6ZXJvPyBhZGQgbXVsIHN1YjEKICB6ZXJvIG9uZSB0d28gdGhyZWUgZm91cikKCihpbXBvcnQgImh0dHBzOi8vcmVhZG9ubHkubGluay9maWxlcy9jaWNhZGEtbGFuZy9sYW1iZGEvLS9kb2NzL3Rlc3RzL2Jvb2xlYW4uc2NtIgogIHRydWUgZmFsc2UgaWYpCgo7OyBOT1RFIGB4YCBpcyBgZmAncyBmaXhwb2ludCBpZiBgKGYgeCkgPSB4YAo7OyAgIEluIGxhbWJkYSBjYWxjdWx1cywgd2UgaGF2ZSBmdW5jdGlvbiBgZml4YAo7OyAgIHdoaWNoIGNhbiBmaW5kIGZpeHBvaW50IG9mIGFueSBmdW5jdGlvbi4KOzsgICAgICAoZiAoZml4IGYpKSA9IChmaXggZikKOzsgICBUaGUgZm9sbG93aW5nIGBmaXhgIGlzIG9uZSB3YXkgb2YgZGVmaW5pbmcgYGZpeGAuCgooZGVmaW5lIChmaXggZikKICAoKGxhbWJkYSAoeCkgKGYgKHggeCkpKQogICAobGFtYmRhICh4KSAoZiAoeCB4KSkpKSkKCjs7IChjbGFpbSBmYWN0b3JpYWwtd3JhcCAoLT4gKC0-IE5hdCBOYXQpICgtPiBOYXQgTmF0KSkpCjs7IChjbGFpbSAoZml4IGZhY3RvcmlhbC13cmFwKSAoLT4gTmF0IE5hdCkpCjs7IChjbGFpbSBmaXggKC0-ICgtPiBBIEEpIEEpKQoKKGRlZmluZSAoZmFjdG9yaWFsLXdyYXAgZmFjdG9yaWFsKQogIChsYW1iZGEgKG4pCiAgICAoaWYgKHplcm8_IG4pCiAgICAgIG9uZQogICAgICAobXVsIG4gKGZhY3RvcmlhbCAoc3ViMSBuKSkpKSkpCgooZGVmaW5lIGZhY3RvcmlhbCAoZml4IGZhY3RvcmlhbC13cmFwKSkKCihmYWN0b3JpYWwgemVybykKKGZhY3RvcmlhbCBvbmUpCihmYWN0b3JpYWwgdHdvKQooZmFjdG9yaWFsIHRocmVlKQooZmFjdG9yaWFsIGZvdXIp)
 | [WIKIPEDIA](https://en.wikipedia.org/wiki/Fixed-point_combinator) ]
 
-[**docs/tests/factorial-fix.scm**](docs/tests/factorial-fix.scm)
+[**docs/tests/factorial-wrap.scm**](docs/tests/factorial-wrap.scm)
 
 ```scheme
 (import "https://readonly.link/files/cicada-lang/lambda/-/docs/tests/nat.scm"
@@ -136,20 +136,33 @@ lambda https://readonly.link/files/cicada-lang/lambda/-/docs/tests/boolean.test.
 (import "https://readonly.link/files/cicada-lang/lambda/-/docs/tests/boolean.scm"
   true false if)
 
-(define (fix g)
-  ((lambda (x) (g (x x)))
-   (lambda (x) (g (x x)))))
+;; NOTE `x` is `f`'s fixpoint if `(f x) = x`
+;;   In lambda calculus, we have function `fix`
+;;   which can find fixpoint of any function.
+;;      (f (fix f)) = (fix f)
+;;   The following `fix` is one way of defining `fix`.
 
-(define (factorial rec n)
-  (if (zero? n)
-    one
-    (mul n (rec (sub1 n)))))
+(define (fix f)
+  ((lambda (x) (f (x x)))
+   (lambda (x) (f (x x)))))
 
-((fix factorial) zero)
-((fix factorial) one)
-((fix factorial) two)
-((fix factorial) three)
-((fix factorial) four)
+;; (claim factorial-wrap (-> (-> Nat Nat) (-> Nat Nat)))
+;; (claim (fix factorial-wrap) (-> Nat Nat))
+;; (claim fix (-> (-> A A) A))
+
+(define (factorial-wrap factorial)
+  (lambda (n)
+    (if (zero? n)
+      one
+      (mul n (factorial (sub1 n))))))
+
+(define factorial (fix factorial-wrap))
+
+(factorial zero)
+(factorial one)
+(factorial two)
+(factorial three)
+(factorial four)
 ```
 
 ### Cons the magnificent
