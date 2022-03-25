@@ -14,7 +14,7 @@
 
 ;; (claim factorial-wrap (-> (-> Nat Nat) (-> Nat Nat)))
 ;; (claim (fix factorial-wrap) (-> Nat Nat))
-;; (claim fix (-> (-> A A) A))
+;; (claim fix (forall (A) (-> (-> A A) A)))
 
 (define (factorial-wrap factorial)
   (lambda (n)
