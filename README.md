@@ -3,7 +3,7 @@
 An implementation of [(Untyped) Lambda Calculus](https://en.wikipedia.org/wiki/Lambda_calculus) in JavaScript.
 
 - Use [S-expression](https://github.com/cicada-lang/sexp) as overall syntax.
-- Use callby-need lazy evaluation.
+- Implement call-by-need lazy evaluation.
 - Allow recursive definitions.
 - With a simple module system that can load module from URL.
 - With simple testing statements `(assert-equal)` and `(assert-not-equal)`.
