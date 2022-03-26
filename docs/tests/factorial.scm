@@ -1,5 +1,5 @@
-(import "./nat.scm" zero? add mul sub1)
-(import "./nat.scm" zero one two three four)
+(import "./nat-church.scm" zero? add mul sub1)
+(import "./nat-church.scm" zero one two three four)
 (import "./boolean.scm" if true false)
 
 ;; (claim factorial (-> Nat Nat))

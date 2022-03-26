@@ -1,16 +1,7 @@
-# docs
-
-> It worth setup up a better documentation system now (with the help of readonly.link)
-> - because updating code and playground links is painful
-
-- readonly.link code block can link to playground
-- play with birds -- a little book about birds
-
 # play
 
 > Be really good at using lambda to encode inductive datatypes
 
-- rename `nat.scm` to `nat-church.scm` -- to replace `nat.scm`
 - `nat-church.scm` re-org function to be symmetric to `nat-scott.scm` and `nat-parigot.scm`
 - `nat-parigot.scm`
 
@@ -20,6 +11,15 @@
 
 - learn Aaron Stump's cedille: https://cedille.github.io
 - learn Fu Peng's gottlob: https://github.com/Fermat/gottlob
+
+# docs
+
+> It worth setup up a better documentation system now (with the help of readonly.link)
+> - because updating code and playground links is painful
+
+- readonly.link code block can link to playground
+  - maybe we should do this for `suki` instead of `lambda`?
+- play with birds -- a little book about birds
 
 # idea
 

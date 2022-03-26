@@ -1,4 +1,4 @@
-(import "./nat.scm" zero add1)
+(import "./nat-church.scm" zero add1)
 (import "./cons.scm" cons car cdr)
 
 (define (shift-add1 x)

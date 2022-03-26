@@ -40,11 +40,11 @@ lambda https://readonly.link/files/cicada-lang/lambda/-/docs/tests/boolean.test.
 
 ## Examples
 
+Please see [docs/tests](docs/tests) for more examples.
+
 ### Boolean
 
 [ [PLAYGROUND](https://lambda.cicada-lang.org/playground/KGRlZmluZSAodHJ1ZSB0IGYpIHQpCihkZWZpbmUgKGZhbHNlIHQgZikgZikKCihkZWZpbmUgKGlmIHAgdCBmKSAocCB0IGYpKQoKKGRlZmluZSAoYW5kIHggeSkgKGlmIHggeSBmYWxzZSkpCihkZWZpbmUgKG9yIHggeSkgKGlmIHggdHJ1ZSB5KSkKKGRlZmluZSAobm90IHgpIChpZiB4IGZhbHNlIHRydWUpKQoKKGFuZCB0cnVlIGZhbHNlKQoobm90IChub3QgKG9yIHRydWUgZmFsc2UpKSk) ]
-
-[**docs/tests/boolean.scm**](docs/tests/boolean.scm)
 
 ```scheme
 (define (true t f) t)
@@ -64,8 +64,6 @@ lambda https://readonly.link/files/cicada-lang/lambda/-/docs/tests/boolean.test.
 
 [ [PLAYGROUND](https://lambda.cicada-lang.org/playground/KGRlZmluZSAoemVybyBmIHgpIHgpCihkZWZpbmUgKG9uZSBmIHgpIChmIHgpKQooZGVmaW5lICh0d28gZiB4KSAoZiAoZiB4KSkpCihkZWZpbmUgKHRocmVlIGYgeCkgKGYgKGYgKGYgeCkpKSkKCihkZWZpbmUgKGFkZDEgbiBmIHgpIChmIChuIGYgeCkpKQoKKGRlZmluZSBmb3VyIChhZGQxIHRocmVlKSkKCihkZWZpbmUgKGFkZCBtIG4gZiB4KSAobSBmIChuIGYgeCkpKQooZGVmaW5lIChtdWwgbSBuIGYpIChtIChuIGYpKSkKCihpbXBvcnQgImh0dHBzOi8vcmVhZG9ubHkubGluay9maWxlcy9jaWNhZGEtbGFuZy9sYW1iZGEvLS9kb2NzL3Rlc3RzL2Jvb2xlYW4uc2NtIgogIHRydWUgZmFsc2UgaWYgYW5kIG9yIG5vdCkKCihkZWZpbmUgKHplcm8_IG4pIChuIChsYW1iZGEgKHgpIGZhbHNlKSB0cnVlKSkKCihkZWZpbmUgKHN1YjEgbikKICAobiAobGFtYmRhIChnIGspICh6ZXJvPyAoZyBvbmUpIGsgKGFkZCAoZyBrKSBvbmUpKSkKICAgICAobGFtYmRhIChfKSB6ZXJvKQogICAgIHplcm8pKQoKKGRlZmluZSAoc3ViIG0gbikgKG4gc3ViMSBtKSkKCihzdWIgZm91ciB0d28pCihzdWIgdGhyZWUgb25lKQ)
 | [WIKIPEDIA](https://en.wikipedia.org/wiki/Church_encoding) ]
-
-[**docs/tests/nat.scm**](docs/tests/nat.scm)
 
 ```scheme
 (define (zero f x) x)
@@ -100,8 +98,6 @@ lambda https://readonly.link/files/cicada-lang/lambda/-/docs/tests/boolean.test.
 
 [ [PLAYGROUND](https://lambda.cicada-lang.org/playground/KGltcG9ydCAiaHR0cHM6Ly9yZWFkb25seS5saW5rL2ZpbGVzL2NpY2FkYS1sYW5nL2xhbWJkYS8tL2RvY3MvdGVzdHMvbmF0LnNjbSIKICB6ZXJvPyBhZGQgbXVsIHN1YjEKICB6ZXJvIG9uZSB0d28gdGhyZWUgZm91cikKCihpbXBvcnQgImh0dHBzOi8vcmVhZG9ubHkubGluay9maWxlcy9jaWNhZGEtbGFuZy9sYW1iZGEvLS9kb2NzL3Rlc3RzL2Jvb2xlYW4uc2NtIgogIHRydWUgZmFsc2UgaWYpCgooZGVmaW5lIChmYWN0b3JpYWwgbikKICAoaWYgKHplcm8_IG4pCiAgICBvbmUKICAgIChtdWwgbiAoZmFjdG9yaWFsIChzdWIxIG4pKSkpKQoKKGZhY3RvcmlhbCB6ZXJvKQooZmFjdG9yaWFsIG9uZSkKKGZhY3RvcmlhbCB0d28pCihmYWN0b3JpYWwgdGhyZWUpCg) ]
 
-[**docs/tests/factorial.scm**](docs/tests/factorial.scm)
-
 ```scheme
 (import "https://readonly.link/files/cicada-lang/lambda/-/docs/tests/nat.scm"
   zero? add mul sub1
@@ -125,8 +121,6 @@ lambda https://readonly.link/files/cicada-lang/lambda/-/docs/tests/boolean.test.
 
 [ [PLAYGROUND](https://lambda.cicada-lang.org/playground/KGltcG9ydCAiaHR0cHM6Ly9yZWFkb25seS5saW5rL2ZpbGVzL2NpY2FkYS1sYW5nL2xhbWJkYS8tL2RvY3MvdGVzdHMvbmF0LnNjbSIKICB6ZXJvPyBhZGQgbXVsIHN1YjEKICB6ZXJvIG9uZSB0d28gdGhyZWUgZm91cikKCihpbXBvcnQgImh0dHBzOi8vcmVhZG9ubHkubGluay9maWxlcy9jaWNhZGEtbGFuZy9sYW1iZGEvLS9kb2NzL3Rlc3RzL2Jvb2xlYW4uc2NtIgogIHRydWUgZmFsc2UgaWYpCgo7OyBOT1RFIGB4YCBpcyBgZmAncyBmaXhwb2ludCBpZiBgKGYgeCkgPSB4YAo7OyAgIEluIGxhbWJkYSBjYWxjdWx1cywgd2UgaGF2ZSBmdW5jdGlvbiBgZml4YAo7OyAgIHdoaWNoIGNhbiBmaW5kIGZpeHBvaW50IG9mIGFueSBmdW5jdGlvbi4KOzsgICAgICAoZiAoZml4IGYpKSA9IChmaXggZikKOzsgICBUaGUgZm9sbG93aW5nIGBmaXhgIGlzIG9uZSB3YXkgb2YgZGVmaW5pbmcgYGZpeGAuCgooZGVmaW5lIChmaXggZikKICAoKGxhbWJkYSAoeCkgKGYgKHggeCkpKQogICAobGFtYmRhICh4KSAoZiAoeCB4KSkpKSkKCjs7IChjbGFpbSBmYWN0b3JpYWwtd3JhcCAoLT4gKC0-IE5hdCBOYXQpICgtPiBOYXQgTmF0KSkpCjs7IChjbGFpbSAoZml4IGZhY3RvcmlhbC13cmFwKSAoLT4gTmF0IE5hdCkpCjs7IChjbGFpbSBmaXggKGZvcmFsbCAoQSkgKC0-ICgtPiBBIEEpIEEpKSkKCihkZWZpbmUgKGZhY3RvcmlhbC13cmFwIGZhY3RvcmlhbCkKICAobGFtYmRhIChuKQogICAgKGlmICh6ZXJvPyBuKQogICAgICBvbmUKICAgICAgKG11bCBuIChmYWN0b3JpYWwgKHN1YjEgbikpKSkpKQoKKGRlZmluZSBmYWN0b3JpYWwgKGZpeCBmYWN0b3JpYWwtd3JhcCkpCgooZmFjdG9yaWFsIHplcm8pCihmYWN0b3JpYWwgb25lKQooZmFjdG9yaWFsIHR3bykKKGZhY3RvcmlhbCB0aHJlZSkKKGZhY3RvcmlhbCBmb3VyKQ)
 | [WIKIPEDIA](https://en.wikipedia.org/wiki/Fixed-point_combinator) ]
-
-[**docs/tests/factorial-wrap.scm**](docs/tests/factorial-wrap.scm)
 
 ```scheme
 (import "https://readonly.link/files/cicada-lang/lambda/-/docs/tests/nat.scm"
@@ -168,8 +162,6 @@ lambda https://readonly.link/files/cicada-lang/lambda/-/docs/tests/boolean.test.
 ### Cons the magnificent
 
 [ [PLAYGROUND](https://lambda.cicada-lang.org/playground/KGltcG9ydCAiaHR0cHM6Ly9yZWFkb25seS5saW5rL2ZpbGVzL2NpY2FkYS1sYW5nL2xhbWJkYS8tL2RvY3MvdGVzdHMvYm9vbGVhbi5zY20iCiAgdHJ1ZSBmYWxzZSkKCihkZWZpbmUgKGNvbnMgYSBkIGYpIChmIGEgZCkpCihkZWZpbmUgKGNhciBwKSAocCB0cnVlKSkKKGRlZmluZSAoY2RyIHApIChwIGZhbHNlKSkKCihkZWZpbmUgKG51bGwgZikgdHJ1ZSkKKGRlZmluZSAobnVsbD8gcCkgKHAgKGxhbWJkYSAoeCB5KSBmYWxzZSkpKQoKOzsgTk9URSBBIGJldHRlciB3YXkgdG8gZGVmaW5lIGBzdWIxYCBmb3IgQ2h1cmNoIE51bWVyYWxzLgoKKGltcG9ydCAiaHR0cHM6Ly9yZWFkb25seS5saW5rL2ZpbGVzL2NpY2FkYS1sYW5nL2xhbWJkYS8tL2RvY3MvdGVzdHMvbmF0LnNjbSIKICB6ZXJvIGFkZDEpCgooZGVmaW5lIChzaGlmdC1hZGQxIHgpCiAgKGNvbnMgKGNkciB4KSAoYWRkMSAoY2RyIHgpKSkpCgooZGVmaW5lIChzdWIxIG4pCiAgKGNhciAobiBzaGlmdC1hZGQxIChjb25zIHplcm8gemVybykpKSkKCihzdWIxIChhZGQxIChhZGQxIHplcm8pKSkKKHN1YjEgKGFkZDEgemVybykpCnplcm8) ]
-
-[**docs/tests/cons.scm**](docs/tests/cons.scm)
 
 ```scheme
 (import "https://readonly.link/files/cicada-lang/lambda/-/docs/tests/boolean.scm"
