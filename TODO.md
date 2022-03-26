@@ -2,8 +2,6 @@
 
 > Be really good at using lambda to encode inductive datatypes
 
-- read Aaron Stump's talk "Lambda Encodings Reborn"
-
 - learn Aaron Stump's cedille: https://cedille.github.io
 - learn Fu Peng's gottlob: https://github.com/Fermat/gottlob
 
@@ -15,6 +13,14 @@
 - readonly.link code block can link to playground
   - maybe we should do this for `suki` instead of `lambda`?
 - play with birds -- a little book about birds
+
+# problems
+
+- how to do term-graph implementation?
+
+  Normal forms of Parigot numerals are exponential in size,
+  but a reasonable term-graph implementation
+  should be able to keep them linear via sharing.
 
 # idea
 
