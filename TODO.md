@@ -1,18 +1,31 @@
+# docs
+
+> It worth setup up a better documentation system now (with the help of readonly.link)
+> - because updating code and playground links is painful
+
+- readonly.link code block can link to playground
+- play with birds -- a little book about birds
+
 # play
 
-- lambda the ultimate inductive data
+> Be really good at using lambda to encode inductive datatypes
 
-  - be good at using lambda to encode inductive datatypes -- learn from kind's blog
+- rename `nat.scm` to `nat-church.scm` -- to replace `nat.scm`
+- `nat-church.scm` re-org function to be symmetric to `nat-scott.scm` and `nat-parigot.scm`
+- `nat-parigot.scm`
 
-- play with birds -- a little book about birds
+- read Fu Peng's lam note.
+
+- read Aaron Stump's talk "Lambda Encodings Reborn"
+
+- learn Aaron Stump's cedille: https://cedille.github.io
+- learn Fu Peng's gottlob: https://github.com/Fermat/gottlob
 
 # idea
 
 - add `fixpoint` as keyword to define recursive function (can be NbE-ed?)
-
   - we need to learn coq and lean -- i do not even know coq uses fixpoint
 
-- encode record
-
-  how to use lambda to encode tuple?
-  if we have "reocrd-lambda", can we use it to encode record?
+- add `object` and `class` to the language
+  - view lambda as special object
+  - since object is about name and orderlessness, it is orthogonal to lambda
