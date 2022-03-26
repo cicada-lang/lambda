@@ -2,10 +2,6 @@
 
 > Be really good at using lambda to encode inductive datatypes
 
-- `nat-parigot.scm`
-
-- read Fu Peng's lam note.
-
 - read Aaron Stump's talk "Lambda Encodings Reborn"
 
 - learn Aaron Stump's cedille: https://cedille.github.io

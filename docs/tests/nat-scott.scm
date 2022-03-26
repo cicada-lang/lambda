@@ -1,5 +1,5 @@
 (define zero (lambda (base step) base))
-(define (add1 n) (lambda (base step) (step n)))
+(define (add1 prev) (lambda (base step) (step prev)))
 (define (case-nat n base step) (n base step))
 
 (define one (add1 zero))

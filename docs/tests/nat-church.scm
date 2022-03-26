@@ -1,5 +1,5 @@
 (define zero (lambda (base step) base))
-(define (add1 n) (lambda (base step) (step (n base step))))
+(define (add1 prev) (lambda (base step) (step (prev base step))))
 (define (iter-nat n base step) (n base step))
 
 (define one (add1 zero))
@@ -65,7 +65,7 @@
 (assert-equal (sub1 one) zero)
 (assert-equal (sub1 zero) zero)
 
-;; NOTE The `sub1` about is `O(n)`, 
+;; NOTE The `sub1` about is `O(n)`,
 ;; while `sub1` for Scott encoding is `O(3)`.
 
 (define (sub m n) (iter-nat n m sub1))
