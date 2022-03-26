@@ -1,4 +1,5 @@
-> After about ten years of study, I finally know how little I know about Lambda Calculus.
+> After about ten years of study, I finally know <br>
+> how little I know about Lambda Calculus.
 >
 > Congratulations.
 >
