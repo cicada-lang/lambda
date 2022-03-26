@@ -1,10 +1,11 @@
 (define (zero f x) x)
-
-(define (one f x) (f x))
-(define (two f x) (f (f x)))
-(define (three f x) (f (f (f x))))
-
 (define (add1 n f x) (f (n f x)))
+
+(define one (add1 zero))
+(define two (add1 one))
+(define three (add1 two))
+(define four (add1 three))
+
 (define (add m n f x) (m f (n f x)))
 (define (add-alt m n) (m add1 n))
 

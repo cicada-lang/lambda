@@ -2,7 +2,7 @@
 
 > Be really good at using lambda to encode inductive datatypes
 
-- `nat-church.scm` re-org function to be symmetric to `nat-scott.scm` and `nat-parigot.scm`
+- `nat-church.scm` -- re-org function to be symmetric to `nat-scott.scm` and `nat-parigot.scm`
 - `nat-parigot.scm`
 
 - read Fu Peng's lam note.
