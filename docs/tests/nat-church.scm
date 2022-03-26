@@ -32,9 +32,9 @@
 
 (define (mul m n) (iter-nat m zero (add n)))
 
-(assert-equal
- (add two two)
- (mul two two))
+(assert-equal (mul two five) ten)
+(assert-equal (mul three three) nine)
+(assert-equal (add two two) (mul two two))
 
 (assert-equal
  (mul two (mul two (mul two two)))

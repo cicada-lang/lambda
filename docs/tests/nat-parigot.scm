@@ -6,6 +6,12 @@
 (define two (add1 one))
 (define three (add1 two))
 (define four (add1 three))
+(define five (add1 four))
+(define six (add1 five))
+(define seven (add1 six))
+(define eight (add1 seven))
+(define nine (add1 eight))
+(define ten (add1 nine))
 
 (define (add m n)
   (rec-nat
@@ -13,10 +19,8 @@
    n
    (lambda (prev almost) (add1 almost))))
 
-(assert-equal
- (add1 three)
- (add two two))
-
+(assert-equal (add two five) seven)
+(assert-equal (add three three) six)
 
 (define (mul m n)
   (rec-nat
@@ -24,9 +28,9 @@
    zero
    (lambda (prev almost) (add n almost))))
 
-(assert-equal
- (add two two)
- (mul two two))
+(assert-equal (mul two five) ten)
+(assert-equal (mul three three) nine)
+(assert-equal (add two two) (mul two two))
 
 (assert-equal
  (mul two (mul two (mul two two)))
