@@ -1,53 +1,53 @@
-(define (zero f x) x)
-(define (add1 n f x) (f (n f x)))
+(define zero (lambda (base step) base))
+(define (add1 n) (lambda (base step) (step (n base step))))
+(define (iter-nat n base step) (n base step))
 
 (define one (add1 zero))
 (define two (add1 one))
 (define three (add1 two))
 (define four (add1 three))
 
-(define (add m n f x) (m f (n f x)))
-(define (add-alt m n) (m add1 n))
-
-(define (mul m n f) (m (n f)))
-(define (mul-alt m n) (m (add n) zero))
-
-(define (power m n) (m n))
+(define (add m n) (iter-nat m n add1))
 
 (assert-equal
  (add1 (add1 zero))
  (add1 one)
  two)
 
+(define (mul m n) (iter-nat m zero (add n)))
+
 (assert-equal
  (mul two two)
  (add two two)
- (add-alt two two)
  (add1 three))
-
-(define four (add1 three))
 
 (assert-equal
  (mul two (mul two (mul two two)))
- (mul (mul two two) (mul two two))
- (mul-alt (mul-alt two two) (mul-alt two two)))
+ (mul (mul two two) (mul two two)))
+
+(define (power-of m n) (iter-nat m one (mul n)))
+(define (power m n) (power-of n m))
 
 (assert-equal
  (power two four)
- (power four two))
+ (mul (mul two two) (mul two two))
+ (power four two)
+ (mul four four))
 
 (import "./boolean.scm" true false if and or not)
 
-(define (zero? n) (n (lambda (x) false) true))
+(define (zero? n) (iter-nat n true (lambda (x) false)))
 
 (assert-equal (zero? zero) true)
 (assert-equal (zero? one) false)
 (assert-equal (zero? two) false)
 
 (define (sub1 n)
-  (n (lambda (g k) (zero? (g one) k (add (g k) one)))
-     (lambda (_) zero)
-     zero))
+  (iter-nat
+   n
+   (lambda (_) zero)
+   (lambda (g k) (zero? (g one) k (add (g k) one)))
+   zero))
 
 (assert-equal
  zero
@@ -57,7 +57,7 @@
  (sub1 (sub1 (sub1 (sub1 three))))
  (sub1 (sub1 (sub1 (sub1 (sub1 three))))))
 
-(define (sub m n) (n sub1 m))
+(define (sub m n) (iter-nat n m sub1))
 
 (assert-equal (sub three zero) three)
 (assert-equal (sub three one) two)
