@@ -10,16 +10,27 @@
 (define (add m n) (iter-nat m n add1))
 
 (assert-equal
- (add1 (add1 zero))
- (add1 one)
- two)
+ (add1 three)
+ (add two two))
+
+;; NOTE The above `add` is `O(n)`,
+;; Rosser has a `O(C)` which takes
+;; four beta-reduction steps for any inputs
+;; (assuming inputs are in normal forms).
+
+(define (add-rosser m n)
+  (lambda (base step)
+    (iter-nat m (iter-nat n base step) step)))
+
+(assert-equal
+ (add1 three)
+ (add-rosser two two))
 
 (define (mul m n) (iter-nat m zero (add n)))
 
 (assert-equal
- (mul two two)
  (add two two)
- (add1 three))
+ (mul two two))
 
 (assert-equal
  (mul two (mul two (mul two two)))
