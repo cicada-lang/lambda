@@ -4,6 +4,8 @@ An implementation of [(Untyped) Lambda Calculus](https://en.wikipedia.org/wiki/L
 
 > After about ten years of study, I finally know how little I know about Lambda Calculus.
 >
+> Congratulations.
+>
 > -- Xie Yuheng
 
 - Use [S-expression](https://github.com/cicada-lang/sexp) as overall syntax.
