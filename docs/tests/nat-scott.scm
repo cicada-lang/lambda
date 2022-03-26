@@ -31,3 +31,20 @@
 
 (assert-equal (add one one) two)
 (assert-equal (add two two) four)
+
+(define (mul-wrap mul)
+  (lambda (m n)
+    (case-nat
+     m
+     zero
+     (lambda (prev) (add n (mul prev n))))))
+
+(define mul (fix mul-wrap))
+
+(assert-equal
+ (add two two)
+ (mul two two))
+
+(assert-equal
+ (mul two (mul two (mul two two)))
+ (mul (mul two two) (mul two two)))
