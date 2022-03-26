@@ -43,6 +43,9 @@
 (define (power-of m n) (iter-nat m one (mul n)))
 (define (power m n) (power-of n m))
 
+(assert-equal (power two three) eight)
+(assert-equal (power three two) nine)
+
 (assert-equal
  (power two four)
  (mul (mul two two) (mul two two))
