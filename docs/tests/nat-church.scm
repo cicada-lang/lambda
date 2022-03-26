@@ -53,20 +53,17 @@
 (assert-equal (zero? one) false)
 (assert-equal (zero? two) false)
 
-(define (sub1 n)
-  (iter-nat
-   n
-   (lambda (_) zero)
-   (lambda (g k) (zero? (g one) k (add (g k) one)))
-   zero))
+(import "./cons.scm" cons car cdr)
 
-(assert-equal
- zero
- (sub1 one)
- (sub1 (sub1 two))
- (sub1 (sub1 (sub1 three)))
- (sub1 (sub1 (sub1 (sub1 three))))
- (sub1 (sub1 (sub1 (sub1 (sub1 three))))))
+(define (shift-add1 x)
+  (cons (cdr x) (add1 (cdr x))))
+
+(define (sub1 n)
+  (car (iter-nat n (cons zero zero) shift-add1)))
+
+(assert-equal (sub1 two) one)
+(assert-equal (sub1 one) zero)
+(assert-equal (sub1 zero) zero)
 
 (define (sub m n) (iter-nat n m sub1))
 

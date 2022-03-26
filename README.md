@@ -60,38 +60,19 @@ Please see [docs/tests](docs/tests) for more examples.
 (not (not (or true false)))
 ```
 
-### Church Numerals
+### Natural Number by Church encoding
 
-[ [PLAYGROUND](https://lambda.cicada-lang.org/playground/KGRlZmluZSAoemVybyBmIHgpIHgpCihkZWZpbmUgKG9uZSBmIHgpIChmIHgpKQooZGVmaW5lICh0d28gZiB4KSAoZiAoZiB4KSkpCihkZWZpbmUgKHRocmVlIGYgeCkgKGYgKGYgKGYgeCkpKSkKCihkZWZpbmUgKGFkZDEgbiBmIHgpIChmIChuIGYgeCkpKQoKKGRlZmluZSBmb3VyIChhZGQxIHRocmVlKSkKCihkZWZpbmUgKGFkZCBtIG4gZiB4KSAobSBmIChuIGYgeCkpKQooZGVmaW5lIChtdWwgbSBuIGYpIChtIChuIGYpKSkKCihpbXBvcnQgImh0dHBzOi8vcmVhZG9ubHkubGluay9maWxlcy9jaWNhZGEtbGFuZy9sYW1iZGEvLS9kb2NzL3Rlc3RzL2Jvb2xlYW4uc2NtIgogIHRydWUgZmFsc2UgaWYgYW5kIG9yIG5vdCkKCihkZWZpbmUgKHplcm8_IG4pIChuIChsYW1iZGEgKHgpIGZhbHNlKSB0cnVlKSkKCihkZWZpbmUgKHN1YjEgbikKICAobiAobGFtYmRhIChnIGspICh6ZXJvPyAoZyBvbmUpIGsgKGFkZCAoZyBrKSBvbmUpKSkKICAgICAobGFtYmRhIChfKSB6ZXJvKQogICAgIHplcm8pKQoKKGRlZmluZSAoc3ViIG0gbikgKG4gc3ViMSBtKSkKCihzdWIgZm91ciB0d28pCihzdWIgdGhyZWUgb25lKQ)
+[ [PLAYGROUND](https://lambda.cicada-lang.org/playground/KGRlZmluZSB6ZXJvIChsYW1iZGEgKGJhc2Ugc3RlcCkgYmFzZSkpCihkZWZpbmUgKGFkZDEgbikgKGxhbWJkYSAoYmFzZSBzdGVwKSAoc3RlcCAobiBiYXNlIHN0ZXApKSkpCihkZWZpbmUgKGl0ZXItbmF0IG4gYmFzZSBzdGVwKSAobiBiYXNlIHN0ZXApKQoKKGRlZmluZSBvbmUgKGFkZDEgemVybykpCihkZWZpbmUgdHdvIChhZGQxIG9uZSkpCihkZWZpbmUgdGhyZWUgKGFkZDEgdHdvKSkKKGRlZmluZSBmb3VyIChhZGQxIHRocmVlKSkKCihkZWZpbmUgKGFkZCBtIG4pIChpdGVyLW5hdCBtIG4gYWRkMSkpCgooYWRkIHR3byB0d28p)
 | [WIKIPEDIA](https://en.wikipedia.org/wiki/Church_encoding) ]
 
 ```scheme
-(define (zero f x) x)
-(define (one f x) (f x))
-(define (two f x) (f (f x)))
-(define (three f x) (f (f (f x))))
+(define zero (lambda (base step) base))
+(define (add1 n) (lambda (base step) (step (n base step))))
+(define (iter-nat n base step) (n base step))
 
-(define (add1 n f x) (f (n f x)))
+(define (add m n) (iter-nat m n add1))
 
-(define four (add1 three))
-
-(define (add m n f x) (m f (n f x)))
-(define (mul m n f) (m (n f)))
-
-(import "https://readonly.link/files/cicada-lang/lambda/-/docs/tests/boolean.scm"
-  true false if and or not)
-
-(define (zero? n) (n (lambda (x) false) true))
-
-(define (sub1 n)
-  (n (lambda (g k) (zero? (g one) k (add (g k) one)))
-     (lambda (_) zero)
-     zero))
-
-(define (sub m n) (n sub1 m))
-
-(sub four two)
-(sub three one)
+(add two two)
 ```
 
 ### Factorial
@@ -99,7 +80,7 @@ Please see [docs/tests](docs/tests) for more examples.
 [ [PLAYGROUND](https://lambda.cicada-lang.org/playground/KGltcG9ydCAiaHR0cHM6Ly9yZWFkb25seS5saW5rL2ZpbGVzL2NpY2FkYS1sYW5nL2xhbWJkYS8tL2RvY3MvdGVzdHMvbmF0LnNjbSIKICB6ZXJvPyBhZGQgbXVsIHN1YjEKICB6ZXJvIG9uZSB0d28gdGhyZWUgZm91cikKCihpbXBvcnQgImh0dHBzOi8vcmVhZG9ubHkubGluay9maWxlcy9jaWNhZGEtbGFuZy9sYW1iZGEvLS9kb2NzL3Rlc3RzL2Jvb2xlYW4uc2NtIgogIHRydWUgZmFsc2UgaWYpCgooZGVmaW5lIChmYWN0b3JpYWwgbikKICAoaWYgKHplcm8_IG4pCiAgICBvbmUKICAgIChtdWwgbiAoZmFjdG9yaWFsIChzdWIxIG4pKSkpKQoKKGZhY3RvcmlhbCB6ZXJvKQooZmFjdG9yaWFsIG9uZSkKKGZhY3RvcmlhbCB0d28pCihmYWN0b3JpYWwgdGhyZWUpCg) ]
 
 ```scheme
-(import "https://readonly.link/files/cicada-lang/lambda/-/docs/tests/nat.scm"
+(import "https://readonly.link/files/cicada-lang/lambda/-/docs/tests/nat-church.scm"
   zero? add mul sub1
   zero one two three four)
 
@@ -123,7 +104,7 @@ Please see [docs/tests](docs/tests) for more examples.
 | [WIKIPEDIA](https://en.wikipedia.org/wiki/Fixed-point_combinator) ]
 
 ```scheme
-(import "https://readonly.link/files/cicada-lang/lambda/-/docs/tests/nat.scm"
+(import "https://readonly.link/files/cicada-lang/lambda/-/docs/tests/nat-church.scm"
   zero? add mul sub1
   zero one two three four)
 
@@ -159,35 +140,23 @@ Please see [docs/tests](docs/tests) for more examples.
 (factorial four)
 ```
 
-### Cons the magnificent
+### Cons the Magnificent
 
-[ [PLAYGROUND](https://lambda.cicada-lang.org/playground/KGltcG9ydCAiaHR0cHM6Ly9yZWFkb25seS5saW5rL2ZpbGVzL2NpY2FkYS1sYW5nL2xhbWJkYS8tL2RvY3MvdGVzdHMvYm9vbGVhbi5zY20iCiAgdHJ1ZSBmYWxzZSkKCihkZWZpbmUgKGNvbnMgYSBkIGYpIChmIGEgZCkpCihkZWZpbmUgKGNhciBwKSAocCB0cnVlKSkKKGRlZmluZSAoY2RyIHApIChwIGZhbHNlKSkKCihkZWZpbmUgKG51bGwgZikgdHJ1ZSkKKGRlZmluZSAobnVsbD8gcCkgKHAgKGxhbWJkYSAoeCB5KSBmYWxzZSkpKQoKOzsgTk9URSBBIGJldHRlciB3YXkgdG8gZGVmaW5lIGBzdWIxYCBmb3IgQ2h1cmNoIE51bWVyYWxzLgoKKGltcG9ydCAiaHR0cHM6Ly9yZWFkb25seS5saW5rL2ZpbGVzL2NpY2FkYS1sYW5nL2xhbWJkYS8tL2RvY3MvdGVzdHMvbmF0LnNjbSIKICB6ZXJvIGFkZDEpCgooZGVmaW5lIChzaGlmdC1hZGQxIHgpCiAgKGNvbnMgKGNkciB4KSAoYWRkMSAoY2RyIHgpKSkpCgooZGVmaW5lIChzdWIxIG4pCiAgKGNhciAobiBzaGlmdC1hZGQxIChjb25zIHplcm8gemVybykpKSkKCihzdWIxIChhZGQxIChhZGQxIHplcm8pKSkKKHN1YjEgKGFkZDEgemVybykpCnplcm8) ]
+[ [PLAYGROUND](https://lambda.cicada-lang.org/playground/OzsgTk9URSBUZW1wb3JhcmlseSBzYXZlIGBjYXJgIGFuZCBgY2RyYCB0byBhIGxhbWJkYSwKOzsgICBhcHBseSB0aGlzIGxhbWJkYSB0byBhIGZ1bmN0aW9uIC0tIGBmYCwKOzsgICB3aWxsIGFwcGx5IGBmYCB0byB0aGUgc2F2ZWQgYGNhcmAgYW5kIGBjZHJgCihkZWZpbmUgKGNvbnMgY2FyIGNkcikgKGxhbWJkYSAoZikgKGYgY2FyIGNkcikpKQooZGVmaW5lIChjYXIgcGFpcikgKHBhaXIgKGxhbWJkYSAoY2FyIGNkcikgY2FyKSkpCihkZWZpbmUgKGNkciBwYWlyKSAocGFpciAobGFtYmRhIChjYXIgY2RyKSBjZHIpKSkKCihpbXBvcnQgImh0dHBzOi8vcmVhZG9ubHkubGluay9maWxlcy9jaWNhZGEtbGFuZy9sYW1iZGEvLS9kb2NzL3Rlc3RzL2Jvb2xlYW4uc2NtIgogIHRydWUgZmFsc2UpCgooZGVmaW5lIChudWxsIGYpIHRydWUpCihkZWZpbmUgKG51bGw_IHBhaXIpIChwYWlyIChsYW1iZGEgKGNhciBjZHIpIGZhbHNlKSkpCgooYXNzZXJ0LWVxdWFsCiAobnVsbD8gbnVsbCkKIChudWxsIChsYW1iZGEgKGNhciBjZHIpIGZhbHNlKSkKIHRydWUpCgooYXNzZXJ0LWVxdWFsCiAobnVsbD8gKGNvbnMgbnVsbCBudWxsKSkKICgoY29ucyBudWxsIG51bGwpIChsYW1iZGEgKGNhciBjZHIpIGZhbHNlKSkKICgobGFtYmRhIChjYXIgY2RyKSBmYWxzZSkgbnVsbCBudWxsKQogZmFsc2Up) ]
 
 ```scheme
+;; NOTE Temporarily save `car` and `cdr` to a lambda,
+;;   apply this lambda to a function -- `f`,
+;;   will apply `f` to the saved `car` and `cdr`
+(define (cons car cdr) (lambda (f) (f car cdr)))
+(define (car pair) (pair (lambda (car cdr) car)))
+(define (cdr pair) (pair (lambda (car cdr) cdr)))
+
 (import "https://readonly.link/files/cicada-lang/lambda/-/docs/tests/boolean.scm"
   true false)
 
-(define (cons a d f) (f a d))
-(define (car p) (p true))
-(define (cdr p) (p false))
-
 (define (null f) true)
-(define (null? p) (p (lambda (x y) false)))
-
-;; NOTE A better way to define `sub1` for Church Numerals.
-
-(import "https://readonly.link/files/cicada-lang/lambda/-/docs/tests/nat.scm"
-  zero add1)
-
-(define (shift-add1 x)
-  (cons (cdr x) (add1 (cdr x))))
-
-(define (sub1 n)
-  (car (n shift-add1 (cons zero zero))))
-
-(sub1 (add1 (add1 zero)))
-(sub1 (add1 zero))
-zero
+(define (null? pair) (pair (lambda (car cdr) false)))
 ```
 
 ## Development
