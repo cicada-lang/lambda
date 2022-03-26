@@ -6,12 +6,17 @@
 (define two (add1 one))
 (define three (add1 two))
 (define four (add1 three))
+(define five (add1 four))
+(define six (add1 five))
+(define seven (add1 six))
+(define eight (add1 seven))
+(define nine (add1 eight))
+(define ten (add1 nine))
 
 (define (add m n) (iter-nat m n add1))
 
-(assert-equal
- (add1 three)
- (add two two))
+(assert-equal (add two five) seven)
+(assert-equal (add three three) six)
 
 ;; NOTE The above `add` is `O(n)`,
 ;; Rosser has a `O(4)` `add`, which takes
@@ -22,9 +27,8 @@
   (lambda (base step)
     (iter-nat m (iter-nat n base step) step)))
 
-(assert-equal
- (add1 three)
- (add-rosser two two))
+(assert-equal (add-rosser two five) seven)
+(assert-equal (add-rosser three three) six)
 
 (define (mul m n) (iter-nat m zero (add n)))
 
