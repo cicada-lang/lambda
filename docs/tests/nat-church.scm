@@ -14,7 +14,7 @@
  (add two two))
 
 ;; NOTE The above `add` is `O(n)`,
-;; Rosser has a `O(C)` which takes
+;; Rosser has a `O(4)` `add`, which takes
 ;; four beta-reduction steps for any inputs
 ;; (assuming inputs are in normal forms).
 
@@ -64,6 +64,9 @@
 (assert-equal (sub1 two) one)
 (assert-equal (sub1 one) zero)
 (assert-equal (sub1 zero) zero)
+
+;; NOTE The `sub1` about is `O(n)`, 
+;; while `sub1` for Scott encoding is `O(3)`.
 
 (define (sub m n) (iter-nat n m sub1))
 
