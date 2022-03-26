@@ -2,6 +2,10 @@
 
 An implementation of [(Untyped) Lambda Calculus](https://en.wikipedia.org/wiki/Lambda_calculus) in JavaScript.
 
+> After about ten years of study, I finally know how little I know about Lambda Calculus.
+>
+> -- Xie Yuheng
+
 - Use [S-expression](https://github.com/cicada-lang/sexp) as overall syntax.
 - Implement call-by-need lazy evaluation.
 - Allow recursive definitions.
