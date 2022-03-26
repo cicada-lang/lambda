@@ -16,17 +16,25 @@
 ;;   (f (fix f))
 
 ;; NOTE Another way of defining `fix`.
-;;   (define (A x y) (y (x x y)))
-;;   (define fix (A A))
+
+(define (turing-half x y) (y (x x y)))
+(define turing-fix (turing-half turing-half))
+
 ;; We will have
-;;   (fix f) =
-;;   (A A f) =
-;;   (f (A A f)) =
-;;   (f (fix f))
+;;   (turing-fix f) =
+;;   (turing-half turing-half f) =
+;;   (f (turing-half turing-half f)) =
+;;   (f (turing-fix f))
 
 ;; (claim factorial-wrap (-> (-> Nat Nat) (-> Nat Nat)))
 ;; (claim (fix factorial-wrap) (-> Nat Nat))
 ;; (claim fix (forall (A) (-> (-> A A) A)))
+
+;; NOTE In general,
+;;   recursive definition
+;;     f = (wrapper f)
+;;   can be written non-recursively
+;;     f = (fix wrapper)
 
 (define (factorial-wrap factorial)
   (lambda (n)
