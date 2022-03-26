@@ -8,9 +8,21 @@
 ;;      (f (fix f)) = (fix f)
 ;;   The following `fix` is one way of defining `fix`.
 
-(define (fix f)
-  ((lambda (x) (f (x x)))
-   (lambda (x) (f (x x)))))
+(define (fix f) ((lambda (x) (f (x x))) (lambda (x) (f (x x)))))
+
+;; We have
+;;   (fix f) =
+;;   (f ((lambda (x) (f (x x))) (lambda (x) (f (x x))))) =
+;;   (f (fix f))
+
+;; NOTE Another way of defining `fix`.
+;;   (define (A x y) (y (x x y)))
+;;   (define fix (A A))
+;; We will have
+;;   (fix f) =
+;;   (A A f) =
+;;   (f (A A f)) =
+;;   (f (fix f))
 
 ;; (claim factorial-wrap (-> (-> Nat Nat) (-> Nat Nat)))
 ;; (claim (fix factorial-wrap) (-> Nat Nat))
