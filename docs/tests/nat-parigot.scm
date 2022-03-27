@@ -1,6 +1,6 @@
 (define zero (lambda (base step) base))
 (define (add1 prev) (lambda (base step) (step prev (prev base step))))
-(define (rec-nat n base step) (n base step))
+(define (rec-Nat n base step) (n base step))
 
 (define one (add1 zero))
 (define two (add1 one))
@@ -14,19 +14,17 @@
 (define ten (add1 nine))
 
 (define (add m n)
-  (rec-nat
-   m
-   n
-   (lambda (prev almost) (add1 almost))))
+  (rec-Nat m
+    n
+    (lambda (prev almost) (add1 almost))))
 
 (assert-equal (add two five) seven)
 (assert-equal (add three three) six)
 
 (define (mul m n)
-  (rec-nat
-   m
-   zero
-   (lambda (prev almost) (add n almost))))
+  (rec-Nat m
+    zero
+    (lambda (prev almost) (add n almost))))
 
 (assert-equal (mul two five) ten)
 (assert-equal (mul three three) nine)
@@ -37,10 +35,9 @@
  (mul (mul two two) (mul two two)))
 
 (define (sub1 n)
-  (rec-nat
-   n
-   zero
-   (lambda (prev almost) prev)))
+  (rec-Nat n
+    zero
+    (lambda (prev almost) prev)))
 
 (assert-equal (sub1 three) two)
 (assert-equal (sub1 two) one)
@@ -48,10 +45,9 @@
 (assert-equal (sub1 zero) zero)
 
 (define (factorial n)
-  (rec-nat
-   n
-   one
-   (lambda (prev almost) (mul (add1 prev) almost))))
+  (rec-Nat n
+    one
+    (lambda (prev almost) (mul (add1 prev) almost))))
 
 (assert-equal (factorial zero) one)
 (assert-equal (factorial one) one)

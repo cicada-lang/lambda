@@ -1,6 +1,6 @@
 (define zero (lambda (base step) base))
 (define (add1 prev) (lambda (base step) (step prev)))
-(define (which-nat n base step) (n base step))
+(define (which-Nat n base step) (n base step))
 
 (define one (add1 zero))
 (define two (add1 one))
@@ -14,10 +14,9 @@
 (define ten (add1 nine))
 
 (define (sub1 n)
-  (which-nat
-   n
-   zero
-   (lambda (prev) prev)))
+  (which-Nat n
+    zero
+    (lambda (prev) prev)))
 
 (assert-equal (sub1 three) two)
 (assert-equal (sub1 two) one)
@@ -28,10 +27,9 @@
 
 (define (add-wrap add)
   (lambda (m n)
-    (which-nat
-     m
-     n
-     (lambda (prev) (add1 (add prev n))))))
+    (which-Nat m
+      n
+      (lambda (prev) (add1 (add prev n))))))
 
 (define add (fix add-wrap))
 
@@ -42,10 +40,9 @@
 
 (define (mul-wrap mul)
   (lambda (m n)
-    (which-nat
-     m
-     zero
-     (lambda (prev) (add n (mul prev n))))))
+    (which-Nat m
+      zero
+      (lambda (prev) (add n (mul prev n))))))
 
 (define mul (fix mul-wrap))
 

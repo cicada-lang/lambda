@@ -68,9 +68,9 @@ Please see [docs/tests](docs/tests) for more examples.
 ```scheme
 (define zero (lambda (base step) base))
 (define (add1 n) (lambda (base step) (step (n base step))))
-(define (iter-nat n base step) (n base step))
+(define (iter-Nat n base step) (n base step))
 
-(define (add m n) (iter-nat m n add1))
+(define (add m n) (iter-Nat m n add1))
 
 (add two two)
 ```
