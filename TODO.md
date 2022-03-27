@@ -1,6 +1,6 @@
+- try to type `nat-scott.scm`
 - try to type `nat-church.scm`
 - try to type `nat-parigot.scm`
-- try to type `nat-scott.scm`
 - try to type `nat-self.scm`
 
 # play
