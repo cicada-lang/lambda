@@ -6,5 +6,5 @@
 (assert-equal (not (not true)) true)
 
 (assert-equal
- (lambda (x) (not (not true)))
- (lambda (x) true))
+  (lambda (x) (not (not true)))
+  (lambda (x) true))

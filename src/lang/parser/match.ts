@@ -48,6 +48,10 @@ export function matchStmt(sexp: Sexp): Stmt {
       list(["assert-not-equal"], v("exps")),
       ({ exps }) => new Stmts.AssertNotEqualStmt(matchList(exps, matchExp)),
     ],
+    [
+      list(["comments"], v("exps")),
+      ({ exps }) => new Stmts.CommentsStmt(matchList(exps, matchExp)),
+    ],
     [v("exp"), ({ exp }) => new Stmts.EvaluateStmt(matchExp(exp))],
   ])
 }

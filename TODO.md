@@ -1,5 +1,3 @@
-- add `(comments)` stmt
-
 # play
 
 > Be really good at using lambda to encode inductive datatypes

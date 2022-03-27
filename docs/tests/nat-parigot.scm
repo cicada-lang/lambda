@@ -31,8 +31,8 @@
 (assert-equal (add two two) (mul two two))
 
 (assert-equal
- (mul two (mul two (mul two two)))
- (mul (mul two two) (mul two two)))
+  (mul two (mul two (mul two two)))
+  (mul (mul two two) (mul two two)))
 
 (define (sub1 n)
   (rec-Nat n

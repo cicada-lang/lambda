@@ -37,8 +37,8 @@
 (assert-equal (add two two) (mul two two))
 
 (assert-equal
- (mul two (mul two (mul two two)))
- (mul (mul two two) (mul two two)))
+  (mul two (mul two (mul two two)))
+  (mul (mul two two) (mul two two)))
 
 (define (power-of m n) (iter-Nat m one (mul n)))
 (define (power m n) (power-of n m))
@@ -47,10 +47,10 @@
 (assert-equal (power three two) nine)
 
 (assert-equal
- (power two four)
- (mul (mul two two) (mul two two))
- (power four two)
- (mul four four))
+  (power two four)
+  (mul (mul two two) (mul two two))
+  (power four two)
+  (mul four four))
 
 (import "./boolean.scm" true false if and or not)
 
@@ -96,23 +96,23 @@
       (even? (sub1 n))))
 
 (assert-equal
- (even? zero)
- (even? two)
- (even? four)
- true)
+  (even? zero)
+  (even? two)
+  (even? four)
+  true)
 
 (assert-equal
- (even? one)
- (even? three)
- false)
+  (even? one)
+  (even? three)
+  false)
 
 (assert-equal
- (odd? zero)
- (odd? two)
- (odd? four)
- false)
+  (odd? zero)
+  (odd? two)
+  (odd? four)
+  false)
 
 (assert-equal
- (odd? one)
- (odd? three)
- true)
+  (odd? one)
+  (odd? three)
+  true)

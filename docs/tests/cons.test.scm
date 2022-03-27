@@ -4,7 +4,7 @@
 (assert-equal (null? (cons null null)) false)
 
 (assert-equal
- (null? (car (cons null null)))
- (null? (cdr (cons null null)))
- (null? null)
- true)
+  (null? (car (cons null null)))
+  (null? (cdr (cons null null)))
+  (null? null)
+  true)

@@ -1,16 +1,16 @@
-;; (comments
-;;  (define Nat (forall (X) (-> (-> X X) (-> X X)))))
+(comments
+  (define Nat (forall (X) (-> (-> X X) (-> X X)))))
 
 (define zero (lambda (base step) base))
 (define (add1 prev) (lambda (base step) (step (prev base step))))
 
-;; (comments
-;;  (claim iter-Nat
-;;    (forall (X)
-;;      (Pi ((n Nat)
-;;           (base X)
-;;           (step (-> X X)))
-;;        X))))
+(comments
+  (claim iter-Nat
+    (forall (X)
+      (Pi ((n Nat)
+           (base X)
+           (step (-> X X)))
+        X))))
 
 (define (iter-Nat n base step) (n base step))
 
@@ -37,8 +37,8 @@
 (assert-equal (add two two) (mul two two))
 
 (assert-equal
- (mul two (mul two (mul two two)))
- (mul (mul two two) (mul two two)))
+  (mul two (mul two (mul two two)))
+  (mul (mul two two) (mul two two)))
 
 (define (power-of m n) (iter-Nat m one (mul n)))
 (define (power m n) (power-of n m))
@@ -47,7 +47,7 @@
 (assert-equal (power three two) nine)
 
 (assert-equal
- (power two four)
- (mul (mul two two) (mul two two))
- (power four two)
- (mul four four))
+  (power two four)
+  (mul (mul two two) (mul two two))
+  (power four two)
+  (mul four four))
