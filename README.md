@@ -1,10 +1,3 @@
-> After about ten years of study, I finally know <br>
-> how little I know about Lambda Calculus.
->
-> Congratulations.
->
-> -- Xie Yuheng
-
 # Lambda Calculus
 
 An implementation of [(Untyped) Lambda Calculus](https://en.wikipedia.org/wiki/Lambda_calculus) in JavaScript.
