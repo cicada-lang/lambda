@@ -67,4 +67,40 @@
                      (motive (add1 prev))))))
       (motive (add1 prev))))
 
-  It seems we can not solve Nat from zero and add1's types.)
+
+  It seems we are defining one Nat for each n.
+  Here comes self types.
+
+  (define Nat
+    (Self (target)
+      (Pi ((motive (-> Nat Type))
+           (base (motive zero))
+           (step (Pi ((prev Nat))
+                   (-> (motive prev)
+                       (motive (add1 prev))))))
+        (motive target))))
+
+  The following type checking must pass
+
+  (check Nat (Self (target)
+               (Pi ((motive (-> Nat Type))
+                    (base (motive zero))
+                    (step (Pi ((prev Nat))
+                            (-> (motive prev)
+                                (motive (add1 prev))))))
+                 (motive target))))
+
+  (check add1 (-> (Self (target)
+                    (Pi ((motive (-> Nat Type))
+                         (base (motive zero))
+                         (step (Pi ((prev Nat))
+                                 (-> (motive prev)
+                                     (motive (add1 prev))))))
+                      (motive target)))
+                  (Self (target)
+                    (Pi ((motive (-> Nat Type))
+                         (base (motive zero))
+                         (step (Pi ((prev Nat))
+                                 (-> (motive prev)
+                                     (motive (add1 prev))))))
+                      (motive target))))))
