@@ -2,6 +2,24 @@
 (define (add1 prev) (lambda (base step) (step prev)))
 (define (which-Nat n base step) (n base step))
 
+(comments
+  (claim zero
+    (forall (X)
+      (-> X (-> Nat X) X)))
+
+  (define Nat
+    (forall (X)
+      (-> X (-> Nat X) X)))
+
+  (claim add1
+    (-> Nat Nat)
+    (forall (X)
+      (-> Nat (-> X (-> Nat X) X))))
+
+  (claim which-Nat
+    (forall (X)
+      (-> Nat (-> X (-> Nat X) X)))))
+
 (define one (add1 zero))
 (define two (add1 one))
 (define three (add1 two))

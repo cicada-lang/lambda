@@ -2,6 +2,21 @@
 (define (add1 prev) (lambda (base step) (step prev (prev base step))))
 (define (rec-Nat n base step) (n base step))
 
+
+(comments
+  (claim zero
+    (forall (X)
+      (-> X (-> Nat X X) X)))
+
+  (define Nat
+    (forall (X)
+      (-> X (-> Nat X X) X)))
+
+  (claim add1
+    (-> Nat Nat)
+    (forall (X)
+      (-> Nat (-> X (-> Nat X X) X)))))
+
 (define one (add1 zero))
 (define two (add1 one))
 (define three (add1 two))

@@ -2,6 +2,30 @@
 (define (add1 prev) (lambda (base step) (step (prev base step))))
 (define (iter-Nat n base step) (n base step))
 
+(comments
+  The type of zero is the Nat.
+
+  We know
+
+  (claim zero
+    (forall (X)
+      (-> X (-> X X) X)))
+
+  Thus
+
+  (define Nat
+    (forall (X)
+      (-> X (-> X X) X)))
+
+  (claim add1
+    (-> Nat Nat)
+    (forall (X)
+      (-> Nat (-> X (-> X X) X))))
+
+  (claim iter-Nat
+    (forall (X)
+      (-> Nat (-> X (-> X X) X)))))
+
 (define one (add1 zero))
 (define two (add1 one))
 (define three (add1 two))
