@@ -62,13 +62,17 @@ Please see [docs/tests](docs/tests) for more examples.
 
 ### Natural Number by Church encoding
 
-[ [PLAYGROUND](https://lambda.cicada-lang.org/playground/KGRlZmluZSB6ZXJvIChsYW1iZGEgKGJhc2Ugc3RlcCkgYmFzZSkpCihkZWZpbmUgKGFkZDEgbikgKGxhbWJkYSAoYmFzZSBzdGVwKSAoc3RlcCAobiBiYXNlIHN0ZXApKSkpCihkZWZpbmUgKGl0ZXItbmF0IG4gYmFzZSBzdGVwKSAobiBiYXNlIHN0ZXApKQoKKGRlZmluZSBvbmUgKGFkZDEgemVybykpCihkZWZpbmUgdHdvIChhZGQxIG9uZSkpCihkZWZpbmUgdGhyZWUgKGFkZDEgdHdvKSkKKGRlZmluZSBmb3VyIChhZGQxIHRocmVlKSkKCihkZWZpbmUgKGFkZCBtIG4pIChpdGVyLW5hdCBtIG4gYWRkMSkpCgooYWRkIHR3byB0d28p)
+[ [PLAYGROUND](https://lambda.cicada-lang.org/playground/KGRlZmluZSB6ZXJvIChsYW1iZGEgKGJhc2Ugc3RlcCkgYmFzZSkpCihkZWZpbmUgKGFkZDEgbikgKGxhbWJkYSAoYmFzZSBzdGVwKSAoc3RlcCAobiBiYXNlIHN0ZXApKSkpCihkZWZpbmUgKGl0ZXItTmF0IG4gYmFzZSBzdGVwKSAobiBiYXNlIHN0ZXApKQoKKGRlZmluZSBvbmUgKGFkZDEgemVybykpCihkZWZpbmUgdHdvIChhZGQxIG9uZSkpCihkZWZpbmUgdGhyZWUgKGFkZDEgdHdvKSkKCihkZWZpbmUgKGFkZCBtIG4pIChpdGVyLU5hdCBtIG4gYWRkMSkpCgooYWRkIHR3byB0d28p)
 | [WIKIPEDIA](https://en.wikipedia.org/wiki/Church_encoding) ]
 
 ```scheme
 (define zero (lambda (base step) base))
 (define (add1 n) (lambda (base step) (step (n base step))))
 (define (iter-Nat n base step) (n base step))
+
+(define one (add1 zero))
+(define two (add1 one))
+(define three (add1 two))
 
 (define (add m n) (iter-Nat m n add1))
 
