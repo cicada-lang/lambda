@@ -29,7 +29,3 @@
 
 - add `fixpoint` as keyword to define recursive function (can be NbE-ed?)
   - we need to learn coq and lean -- i do not even know coq uses fixpoint
-
-- add `object` and `class` to the language
-  - view lambda as special object
-  - since object is about name and orderlessness, it is orthogonal to lambda
