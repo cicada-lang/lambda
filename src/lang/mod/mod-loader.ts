@@ -13,9 +13,7 @@ export class ModLoader {
 
   async load(url: URL, options?: { text?: string }): Promise<Mod> {
     const found = this.cache.get(url.href)
-    if (found !== undefined) {
-      return found
-    }
+    if (found !== undefined) return found
 
     const mod = new Mod(url, { loader: this })
     const parser = new Parser()
@@ -23,10 +21,7 @@ export class ModLoader {
 
     try {
       const stmts = parser.parseStmts(text)
-      for (const stmt of stmts) {
-        await stmt.execute(mod)
-      }
-
+      for (const stmt of stmts) await stmt.execute(mod)
       this.cache.set(url.href, mod)
       return mod
     } catch (error) {
