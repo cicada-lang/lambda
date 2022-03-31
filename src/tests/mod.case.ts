@@ -1,6 +1,6 @@
 import { TestCase } from "@xieyuheng/test-case"
-import { ModLoader } from "../lang/mod"
 import * as Exps from "../lang/exps"
+import { ModLoader } from "../lang/mod"
 
 export default class extends TestCase {
   async "A ModLoader can load Mod from url"() {
