@@ -1,5 +1,3 @@
-- `mod-loader` has `fetcher` instead of `urlLoaders`
-- remove `urlLoaders` and related code
 - `tests/mod.case.ts`
 
 - a framework for loading module from markdown files

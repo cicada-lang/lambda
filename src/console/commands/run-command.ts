@@ -19,6 +19,15 @@ export class RunCommand extends Command<Args, Opts> {
   args = { file: ty.optional(ty.string()) }
   opts = {}
 
+  loader = new ModLoader()
+
+  constructor() {
+    super()
+    this.loader.fetcher.register("file:", (url) =>
+      fs.promises.readFile(url.pathname, "utf8")
+    )
+  }
+
   // prettier-ignore
   help(runner: CommandRunner): string {
     const { blue } = this.colors
@@ -38,12 +47,6 @@ export class RunCommand extends Command<Args, Opts> {
       ``,
     ].join("\n")
   }
-
-  loader = new ModLoader({
-    urlLoaders: {
-      "file:": (url: URL) => fs.promises.readFile(url.pathname, "utf8"),
-    },
-  })
 
   async execute(argv: Args & Opts, runner: CommandRunner): Promise<void> {
     if (!argv.file) {
