@@ -1,5 +1,6 @@
 - `mod-loader` has `fetcher` instead of `urlLoaders`
-- tests/mod.case.ts
+- remove `urlLoaders` and related code
+- `tests/mod.case.ts`
 
 - a framework for loading module from markdown files
   - how to use tdd to design a good API of this?
