@@ -16,14 +16,18 @@ export class ModLoader {
     if (found !== undefined) return found
 
     const mod = new Mod(url, { loader: this })
-    const parser = new Parser()
     const text = options?.text ?? (await this.fetcher.fetch(url))
 
+    await this.executeText(url, mod, text)
+    this.cache.set(url.href, mod)
+    return mod
+  }
+
+  private async executeText(url: URL, mod: Mod, text: string): Promise<void> {
     try {
+      const parser = new Parser()
       const stmts = parser.parseStmts(text)
       for (const stmt of stmts) await stmt.execute(mod)
-      this.cache.set(url.href, mod)
-      return mod
     } catch (error) {
       if (error instanceof ParsingError) {
         const report = error.span.report(text)
