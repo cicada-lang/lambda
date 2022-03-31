@@ -1,4 +1,3 @@
-- extract `Fetcher` class -- handle http by default, can be extended to handle other url protocol
 - `mod-loader` has `fetcher` instead of `urlLoaders`
 - tests/mod.case.ts
 
