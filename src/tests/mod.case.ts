@@ -1,5 +1,4 @@
 import { TestCase } from "@xieyuheng/test-case"
-import { Mod } from "../lang/mod"
 
 export default class extends TestCase {
   "test add"() {
