@@ -1,5 +1,3 @@
-- `tests/mod.case.ts`
-
 - a framework for loading module from markdown files
   - how to use tdd to design a good API of this?
   - for using in readonly.link

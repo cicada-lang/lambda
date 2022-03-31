@@ -28,7 +28,7 @@ export class Mod {
     this.defs.set(name, new Def(this, name, value))
   }
 
-  lookup(env: Env, name: string): Value | undefined {
+  lookup(name: string): Value | undefined {
     const def = this.defs.get(name)
     if (def === undefined) return undefined
     return def.value
