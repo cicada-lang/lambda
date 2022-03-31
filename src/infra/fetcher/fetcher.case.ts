@@ -2,16 +2,14 @@ import { TestCase } from "@xieyuheng/test-case"
 import { Fetcher } from "../fetcher"
 
 export default class extends TestCase {
-  // can handle http by default
+  fetcher = new Fetcher()
 
-  // can be extended to handle other url protocol
-
-  ["test add"]() {
+  "can handle http and https by default"() {
     this.assertEquals(1 + 1, 2)
     this.assertNotEquals(1 + 1, 3)
   }
 
-  ["test mul"]() {
+  "can be extended to handle other url protocol"() {
     this.assertEquals(3 * 3, 9)
   }
 }

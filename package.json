@@ -32,7 +32,7 @@
   "dependencies": {
     "@cicada-lang/sexp": "^0.0.20",
     "@enchanterjs/enchanter": "^0.1.41",
-    "@xieyuheng/test-case": "^0.0.9",
+    "@xieyuheng/test-case": "^0.0.10",
     "@xieyuheng/ty": "^0.1.12",
     "axios": "^0.26.1",
     "crypto-browserify": "^3.12.0",
