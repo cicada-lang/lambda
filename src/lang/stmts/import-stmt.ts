@@ -12,7 +12,7 @@ export class ImportStmt extends Stmt {
   }
 
   async execute(mod: Mod): Promise<void> {
-    const importedMod = await mod.load(this.path)
+    const importedMod = await mod.import(this.path)
     for (const { name, rename } of this.entries) {
       const def = importedMod.defs.get(name)
       if (def === undefined) {

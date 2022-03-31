@@ -11,6 +11,7 @@
   "scripts": {
     "build": "tsc",
     "watch": "tsc --watch",
+    "test:test-case": "enchanter test 'test-case run' 'lib/**/*.case.js'",
     "test:js": "enchanter test node 'lib/**/*.test.js'",
     "test:lambda": "enchanter test './bin/lambda.js run' 'docs/tests/**/*.scm'",
     "test": "npm-run-all test:*",

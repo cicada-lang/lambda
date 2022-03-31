@@ -13,13 +13,13 @@ export class Mod {
     this.loader = options.loader
   }
 
-  async load(url: URL | string): Promise<Mod> {
+  async import(url: URL | string): Promise<Mod> {
     return await this.loader.load(
       typeof url === "string" ? this.resolve(url) : url
     )
   }
 
-  resolve(href: string): URL {
+  private resolve(href: string): URL {
     return new URL(href, this.url)
   }
 
