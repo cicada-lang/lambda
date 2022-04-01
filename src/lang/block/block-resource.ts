@@ -1,14 +1,7 @@
-import { Env } from "../env"
 import { Block } from "./block"
 
 export class BlockResource {
-  blocks: Array<Block> = []
-  counter: number = 0
-  backups: Array<{ env: Env }> = []
-
-  constructor(blocks: Array<Block>) {
-    this.blocks = blocks
-  }
+  constructor(public blocks: Array<Block>) {}
 
   get outputs(): Array<string> {
     return this.blocks.flatMap(({ stmts }) => stmts.map(({ output }) => output))
