@@ -7,8 +7,7 @@ export class DefineStmt extends Stmt {
     super()
   }
 
-  async execute(mod: Mod): Promise<undefined | string> {
+  async execute(mod: Mod): Promise<void | string> {
     mod.define(this.name, this.exp)
-    return undefined
   }
 }

@@ -10,12 +10,10 @@ export class AssertNotEqualStmt extends Stmt {
     super()
   }
 
-  async execute(mod: Mod): Promise<undefined | string> {
+  async execute(mod: Mod): Promise<void | string> {
     for (let i = 0; i < this.exps.length - 1; i++) {
       this.assertNotEqual(mod, this.exps[i], this.exps[i + 1])
     }
-
-    return undefined
   }
 
   private assertNotEqual(mod: Mod, left: Exp, right: Exp): void {

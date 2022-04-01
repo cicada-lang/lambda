@@ -1,6 +1,7 @@
-- `Block.undo` -- NOTE Also undo all blocks after it
 - `Stmt.undo`
 - `BlockResource.after`
+- `Block.undo` -- NOTE Also undo all blocks after it
+
 - `BlockParser` can be extended to handle `.md` file
 
 # play

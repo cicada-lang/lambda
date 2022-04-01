@@ -17,9 +17,12 @@ export class Block {
 
   async execute(mod: Mod, options?: { silent?: boolean }): Promise<void> {
     for (const entry of this.entries) {
-      entry.output = await entry.stmt.execute(mod)
-      if (entry.output && !options?.silent) {
-        console.log(entry.output)
+      const output = await entry.stmt.execute(mod)
+      if (output) {
+        entry.output = output
+        if (!options?.silent) {
+          console.log(entry.output)
+        }
       }
     }
   }
