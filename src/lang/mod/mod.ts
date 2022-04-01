@@ -6,7 +6,6 @@ import { ModLoader } from "../mod"
 import { Value } from "../value"
 
 export class Mod {
-  output = ""
   defs: Map<string, Def> = new Map()
   loader: ModLoader
   blocks: BlockResource

@@ -1,5 +1,3 @@
-- `Mod` should not have `output`
-
 - `BlockParser` can be extended to handle `.md` file
 
 # play
