@@ -1,10 +1,5 @@
-- `BlockLoader` has `BlockParser`
-- `BlockLoader` route to `BlockParser`
-
-- `Mod` has `blocks: BlockResource`
-
 - `ModLoader` has `BlockLoader`
-
+- `Mod` has `blocks: BlockResource`
 - `BlockParser` can be extended to handle `.md` file
 
 # play

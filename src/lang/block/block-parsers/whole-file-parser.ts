@@ -2,7 +2,7 @@ import { Block, BlockParser, BlockResource } from "../../block"
 import { Parser } from "../../parser"
 
 export class WholeFileParser extends BlockParser {
-  parse(text: string): BlockResource {
+  parseBlocks(text: string): BlockResource {
     const parser = new Parser()
     const stmts = parser.parseStmts(text)
     const entries = stmts.map((stmt) => ({ stmt }))
