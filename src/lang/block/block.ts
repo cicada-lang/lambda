@@ -1,16 +1,18 @@
+import { BlockResource } from "../block"
 import { Mod } from "../mod"
 import { Stmt } from "../stmt"
 
-export type StmtEntry = {
+export type BlockEntry = {
   stmt: Stmt
   output?: string
 }
 
 export class Block {
   constructor(
+    public blocks: BlockResource,
     public id: number,
     public code: string,
-    public entries: Array<StmtEntry>
+    public entries: Array<BlockEntry>
   ) {}
 
   async execute(mod: Mod, options?: { silent?: boolean }): Promise<void> {

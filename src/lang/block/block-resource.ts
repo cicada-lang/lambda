@@ -1,7 +1,13 @@
-import { Block } from "./block"
+import { Block, BlockEntry } from "./block"
 
 export class BlockResource {
-  constructor(public blocks: Array<Block>) {}
+  blocks: Array<Block> = []
+
+  put(id: number, code: string, entries: Array<BlockEntry>): Block {
+    const block = new Block(this, id, code, entries)
+    this.blocks.push(block)
+    return block
+  }
 
   all(): Array<Block> {
     return this.blocks
