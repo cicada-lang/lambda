@@ -24,9 +24,12 @@ export class ModLoader {
     return mod
   }
 
-  async loadAndExecute(url: URL, options?: { code?: string }): Promise<Mod> {
+  async loadAndExecute(
+    url: URL,
+    options?: { code?: string; silent?: boolean }
+  ): Promise<Mod> {
     const mod = await this.load(url, options)
-    await mod.executeAllBlocks()
+    await mod.executeAllBlocks(options)
     return mod
   }
 }

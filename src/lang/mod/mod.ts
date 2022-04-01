@@ -42,14 +42,9 @@ export class Mod {
     return def.value
   }
 
-  async executeAllBlocks(): Promise<void> {
+  async executeAllBlocks(options?: { silent?: boolean }): Promise<void> {
     for (const block of this.blocks.all()) {
-      for (const entry of block.entries) {
-        entry.output = await entry.stmt.execute(this)
-        if (entry.output) {
-          console.log(entry.output)
-        }
-      }
+      await block.execute(this, options)
     }
   }
 }
