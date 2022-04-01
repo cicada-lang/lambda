@@ -27,6 +27,20 @@ export class Block {
     }
   }
 
+  async undo(mod: Mod): Promise<void> {
+    const blocks = [this, ...this.blocks.after(this)].reverse()
+    for (const block of blocks) {
+      await block.undoOne(mod)
+    }
+  }
+
+  async undoOne(mod: Mod): Promise<void> {
+    for (const entry of this.entries) {
+      await entry.stmt.undo(mod)
+      delete entry.output
+    }
+  }
+
   get outputs(): Array<string | undefined> {
     return this.entries.map(({ output }) => output)
   }

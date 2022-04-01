@@ -9,6 +9,12 @@ export class BlockResource {
     return block
   }
 
+  after(block: Block): Array<Block> {
+    const index = this.blocks.findIndex(({ id }) => id === block.id)
+    if (index === -1) return []
+    return this.blocks.slice(index)
+  }
+
   all(): Array<Block> {
     return this.blocks
   }
