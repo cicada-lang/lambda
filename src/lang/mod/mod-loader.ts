@@ -11,26 +11,26 @@ export class ModLoader {
     this.fetcher = options?.fetcher || new Fetcher()
   }
 
-  async load(url: URL, options?: { text?: string }): Promise<Mod> {
+  async load(url: URL, options?: { code?: string }): Promise<Mod> {
     const found = this.cache.get(url.href)
     if (found !== undefined) return found
 
     const mod = new Mod(url, { loader: this })
-    const text = options?.text ?? (await this.fetcher.fetch(url))
+    const code = options?.code ?? (await this.fetcher.fetch(url))
 
-    await this.executeText(url, mod, text)
+    await this.executeCode(url, mod, code)
     this.cache.set(url.href, mod)
     return mod
   }
 
-  private async executeText(url: URL, mod: Mod, text: string): Promise<void> {
+  private async executeCode(url: URL, mod: Mod, code: string): Promise<void> {
     try {
       const parser = new Parser()
-      const stmts = parser.parseStmts(text)
+      const stmts = parser.parseStmts(code)
       for (const stmt of stmts) await stmt.execute(mod)
     } catch (error) {
       if (error instanceof ParsingError) {
-        const report = error.span.report(text)
+        const report = error.span.report(code)
         console.error(report)
       }
 
