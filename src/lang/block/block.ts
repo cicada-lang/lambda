@@ -2,7 +2,7 @@ import { Stmt } from "../stmt"
 
 export type StmtEntry = {
   stmt: Stmt
-  output: string
+  output?: string
 }
 
 export class Block {
