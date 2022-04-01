@@ -1,6 +1,10 @@
+- `BlockLoader` has `BlockParser`
+- `BlockLoader` route to `BlockParser`
+
 - `Mod` has `blocks: BlockResource`
-- `ModLoader` has `blockParser: BlockParser`
-- `BlockParser` to view all files as one `Block` first
+
+- `ModLoader` has `BlockLoader`
+
 - `BlockParser` can be extended to handle `.md` file
 
 # play
