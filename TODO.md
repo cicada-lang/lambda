@@ -1,4 +1,3 @@
-- `ModLoader` has `BlockLoader`
 - `Mod` has `blocks: BlockResource`
 - `BlockParser` can be extended to handle `.md` file
 

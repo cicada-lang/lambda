@@ -5,7 +5,7 @@ type Route = {
   parser: BlockParser
 }
 
-export class BlockLoaser {
+export class BlockLoader {
   routes: Array<Route> = []
   fallbackParser?: BlockParser
 

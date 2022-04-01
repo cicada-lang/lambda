@@ -2,10 +2,17 @@ import { Fetcher } from "../../infra/fetcher"
 import { ParsingError } from "../errors"
 import { Mod } from "../mod"
 import { Parser } from "../parser"
+import { BlockLoader } from "../block"
+import * as BlockParsers from "../block/block-parsers"
 
 export class ModLoader {
   cache: Map<string, Mod> = new Map()
   fetcher = new Fetcher()
+  blockLoader = new BlockLoader()
+
+  constructor() {
+    this.blockLoader.fallback(new BlockParsers.WholeFileParser())
+  }
 
   async load(url: URL, options?: { code?: string }): Promise<Mod> {
     const found = this.cache.get(url.href)
