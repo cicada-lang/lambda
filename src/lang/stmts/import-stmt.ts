@@ -24,4 +24,10 @@ export class ImportStmt extends Stmt {
       mod.defs.set(rename || name, def)
     }
   }
+
+  async undo(mod: Mod): Promise<void> {
+    for (const { name, rename } of this.entries) {
+      mod.defs.delete(rename || name)
+    }
+  }
 }

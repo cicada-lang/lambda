@@ -16,6 +16,8 @@ export class AssertEqualStmt extends Stmt {
     }
   }
 
+  async undo(mod: Mod): Promise<void> {}
+
   private assertEqual(mod: Mod, left: Exp, right: Exp): void {
     const leftValue = left.evaluate(mod, Env.init())
     const rightValue = right.evaluate(mod, Env.init())

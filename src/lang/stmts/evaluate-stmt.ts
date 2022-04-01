@@ -14,4 +14,6 @@ export class EvaluateStmt extends Stmt {
     const exp = value.readback(ReadbackCtx.init())
     return exp.format()
   }
+
+  async undo(mod: Mod): Promise<void> {}
 }

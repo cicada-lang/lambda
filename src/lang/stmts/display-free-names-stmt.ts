@@ -11,4 +11,6 @@ export class DisplayFreeNamesStmt extends Stmt {
     const freeNames = this.exp.freeNames(new Set())
     return `(free-names ${Array.from(freeNames).join(" ")})`
   }
+
+  async undo(mod: Mod): Promise<void> {}
 }

@@ -1,4 +1,3 @@
-- `Stmt.undo`
 - `BlockResource.after`
 - `Block.undo` -- NOTE Also undo all blocks after it
 

@@ -8,4 +8,6 @@ export class CommentsStmt extends Stmt {
   }
 
   async execute(mod: Mod): Promise<void | string> {}
+
+  async undo(mod: Mod): Promise<void> {}
 }
