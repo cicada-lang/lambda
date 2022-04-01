@@ -1,8 +1,6 @@
-- `BlockResource`
-- `BlockParser`
-- `BlockParser` can be extended to handle md
-- `ModLoader` has `parser: BlockParser`
-- `ModLoader` has `parser: BlockParser`
+- `BlockParser` to view all files as one `Block` first
+- `BlockParser` can be extended to handle `.md` file
+- `ModLoader` has `blockParser: BlockParser`
 - `Mod` has `blocks: BlockResource`
 
 # play
