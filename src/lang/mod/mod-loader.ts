@@ -1,5 +1,5 @@
-import { ParsingError } from "@cicada-lang/sexp/lib/errors"
 import { Fetcher } from "../../infra/fetcher"
+import { ParsingError } from "../errors"
 import { Mod } from "../mod"
 import { Parser } from "../parser"
 

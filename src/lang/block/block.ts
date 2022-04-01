@@ -9,6 +9,10 @@ export class Block {
   constructor(
     public id: number,
     public code: string,
-    public stmts: Array<StmtEntry>
+    public entries: Array<StmtEntry>
   ) {}
+
+  get outputs(): Array<string | undefined> {
+    return this.entries.map(({ output }) => output)
+  }
 }

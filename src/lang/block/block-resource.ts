@@ -4,7 +4,9 @@ export class BlockResource {
   constructor(public blocks: Array<Block>) {}
 
   get outputs(): Array<string | undefined> {
-    return this.blocks.flatMap(({ stmts }) => stmts.map(({ output }) => output))
+    return this.blocks.flatMap(({ entries }) =>
+      entries.map(({ output }) => output)
+    )
   }
 
   get length(): number {
