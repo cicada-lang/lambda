@@ -1,4 +1,4 @@
-- `BlockParser` can be extended to handle `.md` file
+- use markdown to write modules in `docs/tests`
 
 # play
 
