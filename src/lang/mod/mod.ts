@@ -23,7 +23,7 @@ export class Mod {
   }
 
   async import(url: URL | string): Promise<Mod> {
-    return await this.loader.load(
+    return await this.loader.loadAndExecute(
       typeof url === "string" ? this.resolve(url) : url
     )
   }
@@ -41,5 +41,16 @@ export class Mod {
     const def = this.defs.get(name)
     if (def === undefined) return undefined
     return def.value
+  }
+
+  async executeAllBlocks(): Promise<void> {
+    for (const block of this.blocks.all()) {
+      for (const entry of block.entries) {
+        entry.output = await entry.stmt.execute(this)
+        if (entry.output) {
+          console.log(entry.output)
+        }
+      }
+    }
   }
 }

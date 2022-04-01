@@ -10,7 +10,7 @@ export default class extends TestCase {
       return `(define ${name} (lambda (x) x))`
     })
 
-    const mod = await loader.load(new URL("mock:id"))
+    const mod = await loader.loadAndExecute(new URL("mock:id"))
     const value = mod.lookup("id")
 
     this.assert(value instanceof Exps.FnValue)

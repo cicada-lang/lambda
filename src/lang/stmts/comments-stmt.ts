@@ -7,5 +7,7 @@ export class CommentsStmt extends Stmt {
     super()
   }
 
-  async execute(mod: Mod): Promise<void> {}
+  async execute(mod: Mod): Promise<undefined | string> {
+    return undefined
+  }
 }

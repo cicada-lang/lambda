@@ -9,11 +9,9 @@ export class EvaluateStmt extends Stmt {
     super()
   }
 
-  async execute(mod: Mod): Promise<void> {
+  async execute(mod: Mod): Promise<undefined | string> {
     const value = this.exp.evaluate(mod, Env.init())
     const exp = value.readback(ReadbackCtx.init())
-    const output = exp.format()
-    console.log(output)
-    mod.output += output + "\n"
+    return exp.format()
   }
 }

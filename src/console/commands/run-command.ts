@@ -55,7 +55,7 @@ export class RunCommand extends Command<Args, Opts> {
     }
 
     try {
-      await this.loader.load(createUrl(argv.file))
+      await this.loader.loadAndExecute(createUrl(argv.file))
     } catch (error) {
       if (error instanceof LangError) {
         console.error(colors.bold(colors.yellow(error.message)))

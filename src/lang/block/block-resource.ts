@@ -3,6 +3,10 @@ import { Block } from "./block"
 export class BlockResource {
   constructor(public blocks: Array<Block>) {}
 
+  all(): Array<Block> {
+    return this.blocks
+  }
+
   get outputs(): Array<string | undefined> {
     return this.blocks.flatMap(({ entries }) =>
       entries.map(({ output }) => output)
