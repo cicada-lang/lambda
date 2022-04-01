@@ -41,7 +41,7 @@
 (assert-equal (sub1 one) zero)
 (assert-equal (sub1 zero) zero)
 
-(import "./fix.scm" fix)
+(import "./fix.md" fix)
 
 (define (add-wrap add)
   (lambda (m n)

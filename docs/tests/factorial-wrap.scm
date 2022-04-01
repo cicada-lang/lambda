@@ -1,7 +1,7 @@
 (import "./nat-church.scm" zero? add mul sub1)
 (import "./nat-church.scm" zero one two three four)
 (import "./boolean.scm" if true false)
-(import "./fix.scm" fix)
+(import "./fix.md" fix)
 
 ;; (claim factorial-wrap (-> (-> Nat Nat) (-> Nat Nat)))
 ;; (claim (fix factorial-wrap) (-> Nat Nat))
