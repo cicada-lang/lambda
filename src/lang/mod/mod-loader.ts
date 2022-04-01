@@ -5,11 +5,7 @@ import { Parser } from "../parser"
 
 export class ModLoader {
   cache: Map<string, Mod> = new Map()
-  fetcher: Fetcher
-
-  constructor(options?: { fetcher?: Fetcher }) {
-    this.fetcher = options?.fetcher || new Fetcher()
-  }
+  fetcher = new Fetcher()
 
   async load(url: URL, options?: { code?: string }): Promise<Mod> {
     const found = this.cache.get(url.href)
@@ -30,8 +26,7 @@ export class ModLoader {
       for (const stmt of stmts) await stmt.execute(mod)
     } catch (error) {
       if (error instanceof ParsingError) {
-        const report = error.span.report(code)
-        console.error(report)
+        console.error(error.span.report(code))
       }
 
       throw error

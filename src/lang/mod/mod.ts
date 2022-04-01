@@ -5,8 +5,8 @@ import { ModLoader } from "../mod"
 import { Value } from "../value"
 
 export class Mod {
-  output = ""
   loader: ModLoader
+  output = ""
   defs: Map<string, Def> = new Map()
 
   constructor(public url: URL, options: { loader: ModLoader }) {
