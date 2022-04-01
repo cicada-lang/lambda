@@ -1,5 +1,8 @@
-- `Block` has `stmts` and `outputs`
 - `BlockResource`
+- `BlockParser`
+- `BlockParser` can be extended to handle md
+- `ModLoader` has `parser: BlockParser`
+- `ModLoader` has `parser: BlockParser`
 - `Mod` has `blocks: BlockResource`
 
 # play
