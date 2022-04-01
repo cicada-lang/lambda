@@ -1,4 +1,4 @@
-import { BlockResource, BlockParser } from "../block"
+import { BlockParser, BlockResource } from "../block"
 
 type Route = {
   recognise: (url: URL) => boolean

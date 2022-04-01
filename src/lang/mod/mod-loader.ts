@@ -1,9 +1,9 @@
 import { Fetcher } from "../../infra/fetcher"
+import { BlockLoader } from "../block"
+import * as BlockParsers from "../block/block-parsers"
 import { ParsingError } from "../errors"
 import { Mod } from "../mod"
 import { Parser } from "../parser"
-import { BlockLoader } from "../block"
-import * as BlockParsers from "../block/block-parsers"
 
 export class ModLoader {
   cache: Map<string, Mod> = new Map()
@@ -11,15 +11,16 @@ export class ModLoader {
   blockLoader = new BlockLoader()
 
   constructor() {
-    this.blockLoader.fallback(new BlockParsers.WholeFileParser())
+    this.blockLoader.fallback(new BlockParsers.WholeBlockParser())
   }
 
   async load(url: URL, options?: { code?: string }): Promise<Mod> {
     const found = this.cache.get(url.href)
     if (found !== undefined) return found
 
-    const mod = new Mod(url, { loader: this })
     const code = options?.code ?? (await this.fetcher.fetch(url))
+    const blocks = this.blockLoader.load(url, code)
+    const mod = new Mod(url, { loader: this, blocks })
 
     await this.executeCode(url, mod, code)
     this.cache.set(url.href, mod)

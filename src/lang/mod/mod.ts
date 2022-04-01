@@ -3,14 +3,23 @@ import { Env } from "../env"
 import { Exp } from "../exp"
 import { ModLoader } from "../mod"
 import { Value } from "../value"
+import { BlockResource, Block } from "../block"
 
 export class Mod {
-  loader: ModLoader
   output = ""
   defs: Map<string, Def> = new Map()
+  loader: ModLoader
+  blocks: BlockResource
 
-  constructor(public url: URL, options: { loader: ModLoader }) {
+  constructor(
+    public url: URL,
+    options: {
+      loader: ModLoader
+      blocks: BlockResource
+    }
+  ) {
     this.loader = options.loader
+    this.blocks = options.blocks
   }
 
   async import(url: URL | string): Promise<Mod> {
