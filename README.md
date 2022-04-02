@@ -29,13 +29,13 @@ The command line program is called `lambda`.
 Run a module by file:
 
 ```
-lambda docs/tests/boolean.test.scm
+lambda docs/tests/nat-church.md
 ```
 
 Run a module by URL:
 
 ```
-lambda https://readonly.link/files/cicada-lang/lambda/-/docs/tests/boolean.test.scm
+lambda https://readonly.link/files/cicada-lang/lambda/-/docs/tests/nat-church.md
 ```
 
 ## Examples
