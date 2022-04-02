@@ -13,7 +13,7 @@
     "watch": "tsc --watch",
     "test:test-case": "enchanter test 'test-case run' 'lib/**/*.case.js'",
     "test:js": "enchanter test node 'lib/**/*.test.js'",
-    "test:lambda": "enchanter test './bin/lambda.js run' 'docs/tests/**/*.scm'",
+    "test:lambda": "enchanter test './bin/lambda.js run' 'docs/tests/**/*.(scm|md)'",
     "test": "npm-run-all test:*",
     "format": "prettier src docs --write"
   },
