@@ -76,7 +76,7 @@
   (power four two)
   (mul four four))
 
-(import "./boolean.scm" true false if and or not)
+(import "./boolean.md" true false if and or not)
 
 (define (zero? n) (iter-Nat n true (lambda (x) false)))
 
@@ -84,7 +84,7 @@
 (assert-equal (zero? one) false)
 (assert-equal (zero? two) false)
 
-(import "./cons.scm" cons car cdr)
+(import "./cons.md" cons car cdr)
 
 (define (shift-add1 x)
   (cons (cdr x) (add1 (cdr x))))

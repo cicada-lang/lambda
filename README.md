@@ -88,7 +88,7 @@ Please see [docs/tests](docs/tests) for more examples.
   zero? add mul sub1
   zero one two three four)
 
-(import "https://readonly.link/files/cicada-lang/lambda/-/docs/tests/boolean.scm"
+(import "https://readonly.link/files/cicada-lang/lambda/-/docs/tests/boolean.md"
   true false if)
 
 (define (factorial n)
@@ -112,7 +112,7 @@ Please see [docs/tests](docs/tests) for more examples.
   zero? add mul sub1
   zero one two three four)
 
-(import "https://readonly.link/files/cicada-lang/lambda/-/docs/tests/boolean.scm"
+(import "https://readonly.link/files/cicada-lang/lambda/-/docs/tests/boolean.md"
   true false if)
 
 ;; NOTE `x` is `f`'s fixpoint if `(f x) = x`
@@ -156,7 +156,7 @@ Please see [docs/tests](docs/tests) for more examples.
 (define (car pair) (pair (lambda (car cdr) car)))
 (define (cdr pair) (pair (lambda (car cdr) cdr)))
 
-(import "https://readonly.link/files/cicada-lang/lambda/-/docs/tests/boolean.scm"
+(import "https://readonly.link/files/cicada-lang/lambda/-/docs/tests/boolean.md"
   true false)
 
 (define (null f) true)

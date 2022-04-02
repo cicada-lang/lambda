@@ -1,6 +1,13 @@
 # docs
 
-- use markdown to write modules in `docs/tests`
+- factorial.md
+- factorial-half.md
+- factorial-wrap.md
+
+- nat-church.md
+- nat-parigot.md
+- nat-self.md
+
 - `lambda` in readonly.link code block
 - readonly.link code block can link to playground
 - play with birds -- a little book about birds

@@ -6,6 +6,8 @@ title: Fixpoint combinator
 
 In mathematics, `x` is `f`'s fixpoint if `(f x) = x`.
 
+# fix
+
 In lambda calculus, we have function `fix`,
 which can find fixpoint of any function.
 
@@ -42,7 +44,9 @@ We will have
 (f (fix f))
 ```
 
-NOTE Another way of defining `fix`.
+# turing-half
+
+Another way of defining `fix`.
 
 ```lambda
 (define (turing-half x y) (y (x x y)))
