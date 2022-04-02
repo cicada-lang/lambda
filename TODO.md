@@ -1,7 +1,3 @@
-# framework
-
-- use laravel style route as API for syntax
-
 # docs
 
 - play with birds -- a little book about birds
