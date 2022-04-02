@@ -1,20 +1,13 @@
-- use markdown to write modules in `docs/tests`
-
-# play
-
-> Be really good at using lambda to encode inductive datatypes
-
-- learn Aaron Stump's cedille: https://cedille.github.io
-- learn Fu Peng's gottlob: https://github.com/Fermat/gottlob
-
 # docs
 
-> It worth setup up a better documentation system now (with the help of readonly.link)
-> - because updating code and playground links is painful
-
+- use markdown to write modules in `docs/tests`
+- `lambda` in readonly.link code block
 - readonly.link code block can link to playground
-  - maybe we should do this for `suki` instead of `lambda`?
 - play with birds -- a little book about birds
+
+# framework
+
+- use laravel style route as API for syntax
 
 # problems
 
