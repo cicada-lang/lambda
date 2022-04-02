@@ -1,7 +1,5 @@
 # docs
 
-- `lambda` in readonly.link code block
-- readonly.link code block can link to playground
 - play with birds -- a little book about birds
 
 # framework
