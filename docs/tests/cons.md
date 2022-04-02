@@ -4,9 +4,10 @@ title: Encoding Cons
 
 # Cons
 
-Temporarily save `car` and `cdr` to a lambda,
-apply this lambda to a function -- `f`,
-will apply `f` to the saved `car` and `cdr`
+Temporarily save `car` and `cdr` to a lambda.
+
+Later, applying the lambda to a function,
+is applying this function it to the saved `car` and `cdr`
 
 ```lambda
 (define (cons car cdr) (lambda (f) (f car cdr)))
