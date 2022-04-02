@@ -12,30 +12,31 @@ title: Church Encoding of Natural Number
 
 ## Typing
 
+The type of `zero` is the `Nat`.
+
+We know
+
 ```lambda pseudocode
-(comments
-  The type of zero is the Nat.
+(claim zero
+  (forall (X)
+    (-> X (-> X X) X)))
+```
 
-  We know
+Thus
 
-  (claim zero
-    (forall (X)
-      (-> X (-> X X) X)))
+```lambda pseudocode
+(define Nat
+  (forall (X)
+    (-> X (-> X X) X)))
 
-  Thus
+(claim add1
+  (-> Nat Nat)
+  (forall (X)
+    (-> Nat (-> X (-> X X) X))))
 
-  (define Nat
-    (forall (X)
-      (-> X (-> X X) X)))
-
-  (claim add1
-    (-> Nat Nat)
-    (forall (X)
-      (-> Nat (-> X (-> X X) X))))
-
-  (claim iter-Nat
-    (forall (X)
-      (-> Nat (-> X (-> X X) X)))))
+(claim iter-Nat
+  (forall (X)
+    (-> Nat (-> X (-> X X) X))))
 ```
 
 # one to ten

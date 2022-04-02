@@ -4,7 +4,6 @@
 - factorial-half.md
 - factorial-wrap.md
 
-- nat-parigot.md
 - nat-self.md
 
 - `lambda` in readonly.link code block
