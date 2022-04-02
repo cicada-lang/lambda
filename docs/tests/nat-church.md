@@ -61,14 +61,14 @@ Thus
 
 (assert-equal (add two five) seven)
 (assert-equal (add three three) six)
-
-;; NOTE The above `add` is `O(n)`,
-;; Rosser has a `O(4)` `add`, which takes
-;; four beta-reduction steps for any inputs
-;; (assuming inputs are in normal forms).
 ```
 
 # add-rosser
+
+The above `add` is `O(n)`,
+Rosser has a `O(4)` `add`, which takes
+four beta-reduction steps for any inputs
+(assuming inputs are in normal forms).
 
 ```lambda
 (define (add-rosser m n)
