@@ -4,7 +4,6 @@
 - factorial-half.md
 - factorial-wrap.md
 
-- nat-church.md
 - nat-parigot.md
 - nat-self.md
 
