@@ -35,15 +35,15 @@ export class RunCommand extends Command<Args, Opts> {
     return [
       `The ${blue(this.name)} command run a file.`,
       ``,
-      blue(`  ${runner.name} ${this.name} docs/tests/nat.scm`),
+      blue(`  ${runner.name} ${this.name} docs/tests/nat-church.md`),
       ``,
       `It is the default command, thus you can drop the command name.`,
       ``,
-      blue(`  ${runner.name} docs/tests/nat.scm`),
+      blue(`  ${runner.name} docs/tests/nat-church.md`),
       ``,
       `It can also run a file from a URL.`,
       ``,
-      blue(`  ${runner.name} https://readonly.link/files/cicada-lang/lambda/-/docs/tests/nat.scm`),
+      blue(`  ${runner.name} https://readonly.link/files/cicada-lang/lambda/-/docs/tests/nat-church.md`),
       ``,
     ].join("\n")
   }
