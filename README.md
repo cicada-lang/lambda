@@ -1,5 +1,10 @@
 # Lambda Calculus
 
+> More restraint and more pure, <br>
+> so functional and so reduced.
+>
+> -- Anonymous Bauhaus Student
+
 An implementation of [(Untyped) Lambda Calculus](https://en.wikipedia.org/wiki/Lambda_calculus) in JavaScript.
 
 - Use [S-expression](https://github.com/cicada-lang/sexp) as overall syntax.
