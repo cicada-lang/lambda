@@ -2,7 +2,8 @@
 (import "./nat-church.md" zero one two three four)
 (import "./boolean.md" if true false)
 
-;; (claim factorial (-> Nat Nat))
+(comments
+  (claim factorial (-> Nat Nat)))
 
 (define (factorial n)
   (if (zero? n)

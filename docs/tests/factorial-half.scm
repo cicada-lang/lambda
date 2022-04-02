@@ -2,7 +2,8 @@
 (import "./nat-church.md" zero one two three four)
 (import "./boolean.md" if true false)
 
-;; (claim factorial-half (-> Self Nat Nat))
+(comments
+  (claim factorial-half (-> Self Nat Nat)))
 
 (define (factorial-half self n)
   (if (zero? n)
