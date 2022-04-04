@@ -3,7 +3,8 @@
 (import "./boolean.md" if true false)
 
 (comments
-  (claim factorial-half (-> Self Nat Nat)))
+  (claim factorial-half
+    (fix (lambda (X) (-> X Nat Nat)))))
 
 (define (factorial-half self n)
   (if (zero? n)
