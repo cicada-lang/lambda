@@ -9,7 +9,7 @@ export class DefineStmt extends Stmt {
     super()
   }
 
-  async execute(mod: Mod): Promise<void | string> {
+  async execute(mod: Mod): Promise<void> {
     const value = this.exp.evaluate(mod, Env.init())
     mod.defs.set(this.name, new Def(mod, this.name, value))
   }

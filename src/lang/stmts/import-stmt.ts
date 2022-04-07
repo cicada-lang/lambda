@@ -11,7 +11,7 @@ export class ImportStmt extends Stmt {
     super()
   }
 
-  async execute(mod: Mod): Promise<void | string> {
+  async execute(mod: Mod): Promise<void> {
     const importedMod = await mod.import(this.path)
     for (const { name, rename } of this.entries) {
       const def = importedMod.defs.get(name)

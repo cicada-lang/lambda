@@ -10,7 +10,7 @@ export class AssertEqualStmt extends Stmt {
     super()
   }
 
-  async execute(mod: Mod): Promise<void | string> {
+  async execute(mod: Mod): Promise<void> {
     for (let i = 0; i < this.exps.length - 1; i++) {
       this.assertEqual(mod, this.exps[i], this.exps[i + 1])
     }
