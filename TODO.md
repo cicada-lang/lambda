@@ -1,3 +1,5 @@
+- extract `equal` module to handle `Exps.LazyValue`
+
 # docs
 
 - play with birds -- a little book about birds
