@@ -1,4 +1,4 @@
-import { EqualCtx } from "../equal"
+import { equal, EqualCtx } from "../equal"
 import { Exp } from "../exp"
 import * as Exps from "../exps"
 import { Neutral } from "../neutral"
@@ -18,7 +18,7 @@ export class ApNeutral extends Neutral {
     return (
       that instanceof ApNeutral &&
       this.target.equal(ctx, that.target) &&
-      this.arg.equal(ctx, that.arg)
+      equal(ctx, this.arg, that.arg)
     )
   }
 }

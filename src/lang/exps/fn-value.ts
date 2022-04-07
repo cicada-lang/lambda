@@ -1,7 +1,7 @@
 import { freshen } from "../../ut/freshen"
 import { apply } from "../apply"
 import { Env } from "../env"
-import { EqualCtx } from "../equal"
+import { equal, EqualCtx } from "../equal"
 import { Exp } from "../exp"
 import * as Exps from "../exps"
 import { Mod } from "../mod"
@@ -28,14 +28,10 @@ export class FnValue extends Value {
   }
 
   equal(ctx: EqualCtx, that: Value): boolean {
-    if (that instanceof Exps.LazyValue) {
-      return this.equal(ctx, that.active())
-    }
-
     const freshName = freshen(ctx.usedNames, this.name)
     ctx = ctx.useName(freshName)
     const v = new Exps.VarNeutral(freshName)
     const arg = new Exps.NotYetValue(v)
-    return apply(this, arg).equal(ctx, apply(that, arg))
+    return equal(ctx, apply(this, arg), apply(that, arg))
   }
 }

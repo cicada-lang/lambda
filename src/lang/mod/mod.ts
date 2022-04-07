@@ -1,7 +1,5 @@
 import { BlockResource } from "../block"
 import { Def } from "../def"
-import { Env } from "../env"
-import { Exp } from "../exp"
 import { ModLoader } from "../mod"
 import { Value } from "../value"
 
