@@ -31,11 +31,6 @@ export class Mod {
     return new URL(href, this.url)
   }
 
-  define(name: string, exp: Exp): void {
-    const value = exp.evaluate(this, Env.init())
-    this.defs.set(name, new Def(this, name, value))
-  }
-
   lookup(name: string): Value | undefined {
     const def = this.defs.get(name)
     if (def === undefined) return undefined
