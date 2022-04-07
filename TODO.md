@@ -1,3 +1,5 @@
+- move `mod.define` to `src/lang/stmts/define-stmt.ts`
+
 # docs
 
 - play with birds -- a little book about birds
