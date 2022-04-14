@@ -4,7 +4,7 @@ import { Mod } from "../mod"
 import { ReadbackCtx } from "../readback"
 import { Stmt } from "../stmt"
 
-export class EvaluateStmt extends Stmt {
+export class ComputeStmt extends Stmt {
   constructor(public exp: Exp) {
     super()
   }

@@ -52,7 +52,7 @@ export function matchStmt(sexp: Sexp): Stmt {
       list(["comments"], v("exps")),
       ({ exps }) => new Stmts.CommentsStmt(matchList(exps, matchExp)),
     ],
-    [v("exp"), ({ exp }) => new Stmts.EvaluateStmt(matchExp(exp))],
+    [v("exp"), ({ exp }) => new Stmts.ComputeStmt(matchExp(exp))],
   ])
 }
 
