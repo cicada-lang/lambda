@@ -15,10 +15,7 @@ export default class extends TestCase {
 
   async "A ModLoader can load Mod from url."() {
     const loader = new ModLoader()
-    loader.fetcher.register("mock", (url) => {
-      const name = url.pathname
-      return `(define ${name} (lambda (x) x))`
-    })
+    loader.fetcher.register("mock", (url) => `(define id (lambda (x) x))`)
 
     const mod = await loader.loadAndExecute(new URL("mock:id"))
 
@@ -27,8 +24,8 @@ export default class extends TestCase {
 
   async "A ModLoader can load markdown code."() {
     const loader = new ModLoader()
-    loader.fetcher.register("mock", (url) => {
-      return [
+    loader.fetcher.register("mock", (url) =>
+      [
         "# Church Numerals",
 
         "```lambda",
@@ -37,7 +34,7 @@ export default class extends TestCase {
         "(define (iter-Nat n base step) (n base step))",
         "```",
       ].join("\n")
-    })
+    )
 
     const mod = await loader.loadAndExecute(new URL("mock:example.md"))
 
@@ -48,8 +45,8 @@ export default class extends TestCase {
 
   async "A Mod can undo its block."() {
     const loader = new ModLoader()
-    loader.fetcher.register("mock", (url) => {
-      return [
+    loader.fetcher.register("mock", (url) =>
+      [
         "# Church Numerals",
 
         "```lambda",
@@ -70,7 +67,7 @@ export default class extends TestCase {
         "(define six (add1 five))",
         "```",
       ].join("\n")
-    })
+    )
 
     const mod = await loader.loadAndExecute(new URL("mock:example.md"))
 
