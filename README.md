@@ -68,7 +68,8 @@ Please see [docs/tests](docs/tests) for more examples.
 ### Natural Number by Church encoding
 
 [ [PLAYGROUND](https://lambda.cicada-lang.org/playground/KGRlZmluZSB6ZXJvIChsYW1iZGEgKGJhc2Ugc3RlcCkgYmFzZSkpCihkZWZpbmUgKGFkZDEgbikgKGxhbWJkYSAoYmFzZSBzdGVwKSAoc3RlcCAobiBiYXNlIHN0ZXApKSkpCihkZWZpbmUgKGl0ZXItTmF0IG4gYmFzZSBzdGVwKSAobiBiYXNlIHN0ZXApKQoKKGRlZmluZSBvbmUgKGFkZDEgemVybykpCihkZWZpbmUgdHdvIChhZGQxIG9uZSkpCihkZWZpbmUgdGhyZWUgKGFkZDEgdHdvKSkKCihkZWZpbmUgKGFkZCBtIG4pIChpdGVyLU5hdCBtIG4gYWRkMSkpCgooYWRkIHR3byB0d28p)
-| [WIKIPEDIA](https://en.wikipedia.org/wiki/Church_encoding) ]
+| [WIKIPEDIA](https://en.wikipedia.org/wiki/Church_encoding)
+| [READONLY.LINK](https://readonly.link/articles/cicada-lang/lambda/-/docs/tests/nat-church.md) ]
 
 ```scheme
 (define zero (lambda (base step) base))
