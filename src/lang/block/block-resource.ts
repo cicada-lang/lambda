@@ -1,4 +1,4 @@
-import { Block, BlockEntry } from "./block"
+import { Block, BlockEntry } from "../block"
 
 export class BlockResource {
   blocks: Array<Block> = []
