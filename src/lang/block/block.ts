@@ -1,5 +1,6 @@
 import { BlockResource } from "../block"
 import { Mod } from "../mod"
+import { Parser } from "../parser"
 import { Stmt } from "../stmt"
 
 export type BlockEntry = {
@@ -24,6 +25,19 @@ export class Block {
           console.log(entry.output)
         }
       }
+    }
+  }
+
+  update(code: string): void {
+    this.code = code
+    this.reparse()
+  }
+
+  private reparse(): void {
+    const parser = new Parser()
+    for (const [index, stmt] of parser.parseStmts(this.code).entries()) {
+      this.entries[index].stmt = stmt
+      this.entries[index].output = undefined
     }
   }
 
