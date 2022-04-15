@@ -15,7 +15,7 @@ export default class extends TestCase {
 
   async "A ModLoader can load Mod from url."() {
     const loader = new ModLoader()
-    loader.fetcher.register("mock", (url) => `(define id (lambda (x) x))`)
+    loader.fetcher.register("mock", (url) => "(define id (lambda (x) x))")
 
     const mod = await loader.loadAndExecute(new URL("mock:id"))
 
