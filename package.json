@@ -1,6 +1,6 @@
 {
   "name": "@cicada-lang/lambda",
-  "version": "0.0.22",
+  "version": "0.0.23",
   "repository": "github:cicada-lang/lambda",
   "files": [
     "lib"
