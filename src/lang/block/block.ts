@@ -16,6 +16,10 @@ export class Block {
     public entries: Array<BlockEntry>
   ) {}
 
+  get outputs(): Array<string | undefined> {
+    return this.entries.map(({ output }) => output)
+  }
+
   async execute(mod: Mod, options?: { silent?: boolean }): Promise<void> {
     for (const entry of this.entries) {
       const output = await entry.stmt.execute(mod)
@@ -28,7 +32,14 @@ export class Block {
     }
   }
 
-  update(code: string): void {
+  async run(mod: Mod, code: string): Promise<void> {
+    await this.undo(mod)
+    this.update(code)
+    const blocks = [...this.blocks.before(this), this]
+    for (const block of blocks) await block.execute(mod)
+  }
+
+  private update(code: string): void {
     this.code = code
     this.reparse()
   }
@@ -36,24 +47,18 @@ export class Block {
   private reparse(): void {
     const parser = new Parser()
     const stmts = parser.parseStmts(this.code)
-    this.entries = stmts.map(stmt => ({ stmt }))
+    this.entries = stmts.map((stmt) => ({ stmt }))
   }
 
-  async undo(mod: Mod): Promise<void> {
+  private async undo(mod: Mod): Promise<void> {
     const blocks = [this, ...this.blocks.after(this)].reverse()
-    for (const block of blocks) {
-      await block.undoOne(mod)
-    }
+    for (const block of blocks) await block.undoOne(mod)
   }
 
-  async undoOne(mod: Mod): Promise<void> {
+  private async undoOne(mod: Mod): Promise<void> {
     for (const entry of this.entries) {
       await entry.stmt.undo(mod)
       delete entry.output
     }
-  }
-
-  get outputs(): Array<string | undefined> {
-    return this.entries.map(({ output }) => output)
   }
 }

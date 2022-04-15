@@ -43,7 +43,7 @@ export default class extends TestCase {
     this.assertModHasFn(mod, "iter-Nat")
   }
 
-  async "A Mod can undo its block."() {
+  async "A Mod can run a given block, will undo blocks after it."() {
     const loader = new ModLoader()
     loader.fetcher.register("mock", (url) =>
       [
@@ -84,13 +84,13 @@ export default class extends TestCase {
     this.assertModHasFn(mod, "six")
 
     const block = mod.blocks.getOrFail(1)
-    await block.undo(mod)
+    await block.run(mod, "(define one (add1 zero))")
 
     this.assertModHasFn(mod, "zero")
     this.assertModHasFn(mod, "add1")
     this.assertModHasFn(mod, "iter-Nat")
 
-    this.assertModHasNotDef(mod, "one")
+    this.assertModHasFn(mod, "one")
     this.assertModHasNotDef(mod, "two")
     this.assertModHasNotDef(mod, "three")
 
