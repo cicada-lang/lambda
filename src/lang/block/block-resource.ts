@@ -26,9 +26,7 @@ export class BlockResource {
   }
 
   get outputs(): Array<string | undefined> {
-    return this.blocks.flatMap(({ entries }) =>
-      entries.map(({ output }) => output)
-    )
+    return this.blocks.flatMap(({ outputs }) => outputs)
   }
 
   get length(): number {
