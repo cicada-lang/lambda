@@ -54,10 +54,4 @@ export class Mod {
     if (def === undefined) return undefined
     return def.value
   }
-
-  async executeAllBlocks(options?: { silent?: boolean }): Promise<void> {
-    for (const block of this.blocks.all()) {
-      await block.execute(this, options)
-    }
-  }
 }

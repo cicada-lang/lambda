@@ -33,7 +33,10 @@ export class ModLoader {
     options?: { code?: string; silent?: boolean }
   ): Promise<Mod> {
     const mod = await this.load(url, options)
-    await mod.executeAllBlocks(options)
+    for (const block of mod.blocks.all()) {
+      await block.execute(mod, options)
+    }
+
     return mod
   }
 }

@@ -63,14 +63,16 @@ export class Block {
 
   private async undo(mod: Mod): Promise<void> {
     const blocks = [this, ...this.blocks.after(this)].reverse()
-    for (const block of blocks) await block.undoOne(mod)
+    for (const block of blocks) {
+      await block.undoOne(mod)
+    }
   }
 
   private async undoOne(mod: Mod): Promise<void> {
     for (const entry of this.entries) {
       await entry.stmt.undo(mod)
       delete entry.output
-      delete entry.executed
+      entry.executed = false
     }
 
     this.executed = false
