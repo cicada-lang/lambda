@@ -1,7 +1,5 @@
-- `Mod.define` -- disallow redefine
-  - `Mod.assertNotRedefine`
-
 - `Block` & `BlockEntry` has `executed` -- to avoid redefine
+- `Mod.define` -- disallow redefine
 
 # docs
 
