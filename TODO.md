@@ -1,3 +1,5 @@
+- `Block` & `BlockEntry` has `executed` -- to avoid redefine
+
 # docs
 
 - play with birds -- a little book about birds
