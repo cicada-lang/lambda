@@ -17,7 +17,7 @@ export class Env {
     return Array.from(this.values.keys())
   }
 
-  find(name: string): undefined | Value {
+  findValue(name: string): undefined | Value {
     return this.values.get(name)
   }
 
