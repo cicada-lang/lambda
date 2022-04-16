@@ -1,7 +1,7 @@
 import { Block, BlockEntry } from "../block"
 
 export class BlockResource {
-  blocks: Array<Block> = []
+  private blocks: Array<Block> = []
 
   put(id: number, code: string, entries: Array<BlockEntry>): Block {
     const block = new Block(this, id, code, entries)
