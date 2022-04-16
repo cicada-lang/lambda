@@ -1,6 +1,3 @@
-- `Block` & `BlockEntry` has `executed` -- to avoid redefine
-- `Mod.define` -- disallow redefine
-
 # docs
 
 - play with birds -- a little book about birds

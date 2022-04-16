@@ -6,6 +6,7 @@ import { Stmt } from "../stmt"
 export type BlockEntry = {
   stmt: Stmt
   output?: string
+  executed?: boolean
 }
 
 export class Block {
@@ -20,23 +21,33 @@ export class Block {
     return this.entries.map(({ output }) => output)
   }
 
+  executed = false
+
   async execute(mod: Mod, options?: { silent?: boolean }): Promise<void> {
+    if (this.executed) return
+
     for (const entry of this.entries) {
+      if (entry.executed) continue
       const output = await entry.stmt.execute(mod)
       if (output) {
         entry.output = output
+        entry.executed = true
         if (!options?.silent) {
           console.log(entry.output)
         }
       }
     }
+
+    this.executed = true
   }
 
   async run(mod: Mod, code: string): Promise<void> {
     await this.undo(mod)
     this.update(code)
     const blocks = [...this.blocks.before(this), this]
-    for (const block of blocks) await block.execute(mod)
+    for (const block of blocks) {
+      await block.execute(mod)
+    }
   }
 
   private update(code: string): void {
@@ -59,6 +70,9 @@ export class Block {
     for (const entry of this.entries) {
       await entry.stmt.undo(mod)
       delete entry.output
+      delete entry.executed
     }
+
+    this.executed = false
   }
 }

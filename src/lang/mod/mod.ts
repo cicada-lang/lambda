@@ -1,8 +1,8 @@
 import { BlockResource } from "../block"
 import { Def } from "../def"
+import { LangError } from "../errors"
 import { ModLoader } from "../mod"
 import { Value } from "../value"
-import { LangError } from "../errors"
 
 export class Mod {
   private defs: Map<string, Def> = new Map()
@@ -31,7 +31,7 @@ export class Mod {
   }
 
   define(name: string, def: Def): void {
-    // this.assertNotRedefine(name)
+    this.assertNotRedefine(name)
     this.defs.set(name, def)
   }
 
