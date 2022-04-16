@@ -1,5 +1,3 @@
-- rename `Block` methods
-
 # docs
 
 - play with birds -- a little book about birds
