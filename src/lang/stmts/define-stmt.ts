@@ -11,10 +11,10 @@ export class DefineStmt extends Stmt {
 
   async execute(mod: Mod): Promise<void> {
     const value = this.exp.evaluate(mod, Env.init())
-    mod.defs.set(this.name, new Def(mod, this.name, value))
+    mod.define(this.name, new Def(mod, this.name, value))
   }
 
   async undo(mod: Mod): Promise<void> {
-    mod.defs.delete(this.name)
+    mod.delete(this.name)
   }
 }

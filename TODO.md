@@ -1,6 +1,3 @@
-- `Mod.delete`
-- `Mod.define`
-- make `Mod.defs` private
 - `Mod.define` -- disallow redefine
   - `Mod.assertNotRedefine`
 

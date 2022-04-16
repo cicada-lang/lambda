@@ -4,7 +4,7 @@ import { ModLoader } from "../mod"
 import { Value } from "../value"
 
 export class Mod {
-  defs: Map<string, Def> = new Map()
+  private defs: Map<string, Def> = new Map()
   loader: ModLoader
   blocks: BlockResource
 
@@ -29,8 +29,16 @@ export class Mod {
     return new URL(href, this.url)
   }
 
+  define(name: string, def: Def): void {
+    this.defs.set(name, def)
+  }
+
   find(name: string): Def | undefined {
     return this.defs.get(name)
+  }
+
+  delete(name: string): void {
+    this.defs.delete(name)
   }
 
   findValue(name: string): Value | undefined {

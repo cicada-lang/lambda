@@ -14,20 +14,20 @@ export class ImportStmt extends Stmt {
   async execute(mod: Mod): Promise<void> {
     const importedMod = await mod.import(this.path)
     for (const { name, rename } of this.entries) {
-      const def = importedMod.defs.get(name)
+      const def = importedMod.find(name)
       if (def === undefined) {
         throw new Error(
           `I can not import undefined name: ${name}, from path: ${this.path}`
         )
       }
 
-      mod.defs.set(rename || name, def)
+      mod.define(rename || name, def)
     }
   }
 
   async undo(mod: Mod): Promise<void> {
     for (const { name, rename } of this.entries) {
-      mod.defs.delete(rename || name)
+      mod.delete(rename || name)
     }
   }
 }
