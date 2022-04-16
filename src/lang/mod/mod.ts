@@ -29,8 +29,12 @@ export class Mod {
     return new URL(href, this.url)
   }
 
+  find(name: string): Def | undefined {
+    return this.defs.get(name)
+  }
+
   findValue(name: string): Value | undefined {
-    const def = this.defs.get(name)
+    const def = this.find(name)
     if (def === undefined) return undefined
     return def.value
   }
