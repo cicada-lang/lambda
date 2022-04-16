@@ -29,7 +29,7 @@ export class Mod {
     return new URL(href, this.url)
   }
 
-  lookup(name: string): Value | undefined {
+  find(name: string): Value | undefined {
     const def = this.defs.get(name)
     if (def === undefined) return undefined
     return def.value

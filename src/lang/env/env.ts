@@ -17,7 +17,7 @@ export class Env {
     return Array.from(this.values.keys())
   }
 
-  lookup(name: string): undefined | Value {
+  find(name: string): undefined | Value {
     return this.values.get(name)
   }
 

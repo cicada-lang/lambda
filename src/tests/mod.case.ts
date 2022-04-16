@@ -4,12 +4,12 @@ import { Mod, ModLoader } from "../lang/mod"
 
 export default class extends TestCase {
   assertModHasFn(mod: Mod, name: string): void {
-    const value = mod.lookup(name)
+    const value = mod.find(name)
     this.assert(value instanceof Exps.FnValue)
   }
 
   assertModHasNotDef(mod: Mod, name: string): void {
-    const value = mod.lookup(name)
+    const value = mod.find(name)
     this.assert(!value)
   }
 

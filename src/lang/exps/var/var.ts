@@ -16,12 +16,12 @@ export class Var extends Exp {
   evaluate(mod: Mod, env: Env): Value {
     let value = undefined
 
-    value = env.lookup(this.name)
+    value = env.find(this.name)
     if (value !== undefined) {
       return value
     }
 
-    value = mod.lookup(this.name)
+    value = mod.find(this.name)
     if (value !== undefined) {
       return value
     }
