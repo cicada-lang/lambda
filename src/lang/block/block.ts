@@ -23,7 +23,7 @@ export class Block {
 
   executed = false
 
-  async execute(mod: Mod, options?: { silent?: boolean }): Promise<void> {
+  private async executeOne(mod: Mod): Promise<void> {
     if (this.executed) return
 
     for (const entry of this.entries) {
@@ -32,22 +32,23 @@ export class Block {
       if (output) {
         entry.output = output
         entry.executed = true
-        if (!options?.silent) {
-          console.log(entry.output)
-        }
       }
     }
 
     this.executed = true
   }
 
+  async execute(mod: Mod): Promise<void> {
+    const blocks = [...this.blocks.before(this), this]
+    for (const block of blocks) {
+      await block.executeOne(mod)
+    }
+  }
+
   async run(mod: Mod, code: string): Promise<void> {
     await this.undo(mod)
     this.update(code)
-    const blocks = [...this.blocks.before(this), this]
-    for (const block of blocks) {
-      await block.execute(mod)
-    }
+    await this.execute(mod)
   }
 
   private update(code: string): void {

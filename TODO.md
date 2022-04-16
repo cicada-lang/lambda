@@ -1,4 +1,3 @@
-- make `Block.execute` private
 - rename `Block` methods
 
 # docs

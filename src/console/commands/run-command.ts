@@ -55,7 +55,12 @@ export class RunCommand extends Command<Args, Opts> {
     }
 
     try {
-      await this.loader.loadAndExecute(createUrl(argv.file))
+      const mod = await this.loader.loadAndExecute(createUrl(argv.file))
+      for (const output of mod.blocks.outputs) {
+        if (output) {
+          console.log(output)
+        }
+      }
     } catch (error) {
       if (error instanceof LangError) {
         console.error(colors.bold(colors.yellow(error.message)))
