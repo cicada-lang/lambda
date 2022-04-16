@@ -1,9 +1,9 @@
-import { Env } from "../env"
-import { equal, EqualCtx } from "../equal"
-import { Exp } from "../exp"
-import { Mod } from "../mod"
-import { ReadbackCtx } from "../readback"
-import { Value } from "../value"
+import { Env } from "../../env"
+import { equal, EqualCtx } from "../../equal"
+import { Exp } from "../../exp"
+import { Mod } from "../../mod"
+import { ReadbackCtx } from "../../readback"
+import { Value } from "../../value"
 
 export class LazyValue extends Value {
   cache?: Value

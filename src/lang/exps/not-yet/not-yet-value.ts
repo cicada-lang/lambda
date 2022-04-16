@@ -1,8 +1,8 @@
-import { EqualCtx } from "../equal"
-import { Exp } from "../exp"
-import { Neutral } from "../neutral"
-import { ReadbackCtx } from "../readback"
-import { Value } from "../value"
+import { EqualCtx } from "../../equal"
+import { Exp } from "../../exp"
+import { Neutral } from "../../neutral"
+import { ReadbackCtx } from "../../readback"
+import { Value } from "../../value"
 
 export class NotYetValue extends Value {
   constructor(public neutral: Neutral) {
