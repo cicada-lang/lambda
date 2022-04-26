@@ -1,6 +1,5 @@
 # equality between recursive functions
 
-- `exps/pi/fixpoint` -- `evaluate`
 - `exps/pi/fixpoint-value` -- `readback`
 - `(fixpoint <name> <body>)`
 - `exps/pi/fixpoint-value` -- `equal`

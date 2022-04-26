@@ -1,5 +1,6 @@
 import { Env } from "../../env"
 import { Exp } from "../../exp"
+import * as Exps from "../../exps"
 import { Mod } from "../../mod"
 import { Value } from "../../value"
 
@@ -13,8 +14,7 @@ export class Fixpoint extends Exp {
   }
 
   evaluate(mod: Mod, env: Env): Value {
-    throw new Error()
-    // return new Exps.FnValue(mod, env, this.name, this.ret)
+    return new Exps.FixpointValue(mod, env, this.name, this.ret)
   }
 
   format(): string {
