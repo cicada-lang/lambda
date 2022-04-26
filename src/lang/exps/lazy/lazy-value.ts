@@ -12,6 +12,10 @@ export class LazyValue extends Value {
     super()
   }
 
+  preEqual(): Value {
+    return this.active()
+  }
+
   active(): Value {
     if (this.cache !== undefined) {
       return this.cache

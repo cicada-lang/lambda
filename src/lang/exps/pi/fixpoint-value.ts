@@ -25,7 +25,7 @@ export class FixpointValue extends Value {
     return equal(ctx, this, that)
   }
 
-  active(): Value {
+  preEqual(): Value {
     const wrap = this.wrap()
     return wrap.evaluate(this.mod, this.env)
   }

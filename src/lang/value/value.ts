@@ -7,4 +7,6 @@ export abstract class Value {
 
   abstract readback(ctx: ReadbackCtx): Exp
   abstract equal(ctx: EqualCtx, that: Value): boolean
+
+  preEqual?(): Value
 }
