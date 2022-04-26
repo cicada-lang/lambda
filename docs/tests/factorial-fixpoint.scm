@@ -32,4 +32,33 @@ factorial
         (mul n (fact (sub1 n)))))))
 
 ;; TODO
+
+;; (assert-not-equal
+;;   (fixpoint factorial
+;;     (lambda (n)
+;;       (if (zero? n)
+;;         one
+;;         (mul n (factorial (sub1 n))))))
+;;   (lambda (factorial)
+;;     (lambda (n)
+;;       (if (zero? n)
+;;         one
+;;         (mul n (factorial (sub1 n)))))))
+
+;; TODO
+
 ;; (assert-equal factorial (lambda (n) (factorial n)))
+
+;; (assert-equal
+;;   (fixpoint factorial
+;;     (lambda (n)
+;;       (if (zero? n)
+;;         one
+;;         (mul n (factorial (sub1 n))))))
+;;   (lambda (n)
+;;     ((fixpoint factorial
+;;        (lambda (n)
+;;          (if (zero? n)
+;;            one
+;;            (mul n (factorial (sub1 n))))))
+;;      n)))
