@@ -159,37 +159,3 @@ while `sub1` for Scott encoding is `O(3)`.
 (assert-equal (lteq three four) true)
 (assert-equal (lteq four three) false)
 ```
-
-# even? & odd?
-
-```lambda
-(define (even? n)
-  (if (zero? n) true
-      (odd? (sub1 n))))
-
-(define (odd? n)
-  (if (zero? n) false
-      (even? (sub1 n))))
-
-(assert-equal
-  (even? zero)
-  (even? two)
-  (even? four)
-  true)
-
-(assert-equal
-  (even? one)
-  (even? three)
-  false)
-
-(assert-equal
-  (odd? zero)
-  (odd? two)
-  (odd? four)
-  false)
-
-(assert-equal
-  (odd? one)
-  (odd? three)
-  true)
-```

@@ -1,8 +1,8 @@
 # equality between recursive functions
 
-- detected **mutually** recursive function and print some thing
+- detected **mutual-recursive** function and print some thing
 - be able to `(assert-equal factorial (lambda (n) (factorial n)))`
-- inline **mutually** recursive function to simple recursive function
+- inline **mutual-recursive** function to simple recursive function
 
 # graph-based implementation
 
