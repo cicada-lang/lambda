@@ -1,6 +1,6 @@
 # equality between recursive functions
 
-- refactor `parser/match.ts`
+- refactor `parser/match-stmt.ts`
 
 - `(fixpoint <name> <body>)`
 - `exps/pi/fixpoint-value` -- `equal`
