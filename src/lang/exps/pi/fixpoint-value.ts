@@ -30,4 +30,10 @@ export class FixpointValue extends Value {
     // const arg = new Exps.NotYetValue(v)
     // return equal(ctx, apply(this, arg), apply(that, arg))
   }
+
+
+  apply(arg: Value): Value {
+    throw new Error()
+    // return this.ret.evaluate(this.mod, this.env.extend(this.name, arg))
+  }
 }

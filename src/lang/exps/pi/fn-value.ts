@@ -34,4 +34,8 @@ export class FnValue extends Value {
     const arg = new Exps.NotYetValue(v)
     return equal(ctx, apply(this, arg), apply(that, arg))
   }
+
+  apply(arg: Value): Value {
+    return this.ret.evaluate(this.mod, this.env.extend(this.name, arg))
+  }
 }
