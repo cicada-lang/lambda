@@ -1,8 +1,9 @@
 # equality between recursive functions
 
-- `exps/pi/fixpoint-value`
 - `exps/pi/fixpoint` -- `evaluate`
+- `exps/pi/fixpoint-value` -- `readback`
 - `(fixpoint <name> <body>)`
+- `exps/pi/fixpoint-value` -- `equal`
 
 - `define` detected recursive function and use `Fixpoint` instead of `Fn`
 - `apply` handle `Fixpoint` specially -- with the help of built-in `fix`
