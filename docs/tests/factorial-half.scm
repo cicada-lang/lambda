@@ -11,6 +11,8 @@
     one
     (mul n (self self (sub1 n)))))
 
+factorial-half
+
 (define factorial (factorial-half factorial-half))
 
 (assert-equal (factorial zero) one)

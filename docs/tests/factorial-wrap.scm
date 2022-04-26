@@ -8,11 +8,14 @@
   (claim (fix factorial-wrap) (-> Nat Nat))
   (claim fix (forall (A) (-> (-> A A) A))))
 
-(define (factorial-wrap factorial)
-  (lambda (n)
-    (if (zero? n)
-      one
-      (mul n (factorial (sub1 n))))))
+(define factorial-wrap
+  (lambda (factorial)
+    (lambda (n)
+      (if (zero? n)
+        one
+        (mul n (factorial (sub1 n)))))))
+
+factorial-wrap
 
 (define factorial (fix factorial-wrap))
 

@@ -1,10 +1,17 @@
 # equality between recursive functions
 
-- `define` detected recursive function and use `Fixpoint` instead of `Fn`
+- `exps/pi/fn-rec`
+- `exps/pi/fn-rec-value`
 
-- `apply` handle `Fixpoint` specially
+- `(lambda-rec)`
+
+- `define` detected recursive function and use `FnRec` instead of `Fn`
+
+- `apply` handle `FnRec` specially
 
   - use semantic of `fix` to do the application
+
+- be able readback `factorial`
 
 - be able to `(assert-equal factorial factorial)`
 

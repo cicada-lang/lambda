@@ -10,6 +10,8 @@
     one
     (mul n (factorial (sub1 n)))))
 
+;; factorial
+
 (assert-equal (factorial zero) one)
 (assert-equal (factorial one) one)
 (assert-equal (factorial two) two)
