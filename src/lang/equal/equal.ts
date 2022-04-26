@@ -11,5 +11,13 @@ export function equal(ctx: EqualCtx, left: Value, right: Value): boolean {
     return equal(ctx, left, right.active())
   }
 
+  if (left instanceof Exps.FixpointValue) {
+    return equal(ctx, left.active(), right)
+  }
+
+  if (right instanceof Exps.FixpointValue) {
+    return equal(ctx, left, right.active())
+  }
+
   return left.equal(ctx, right)
 }

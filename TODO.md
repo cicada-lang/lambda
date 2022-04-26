@@ -1,6 +1,5 @@
 # equality between recursive functions
 
-- `exps/pi/fixpoint-value` -- `equal`
 - `define` detected recursive function and use `Fixpoint` instead of `Fn`
 - be able readback `factorial`
 - be able to `(assert-equal factorial factorial)`

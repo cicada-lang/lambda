@@ -16,3 +16,7 @@ factorial
 (assert-equal (factorial two) two)
 (assert-equal (factorial three) (mul three two))
 (assert-equal (factorial four) (mul four (mul three two)))
+
+(assert-equal factorial factorial)
+;; TODO
+;; (assert-equal factorial (lambda (n) (factorial n)))

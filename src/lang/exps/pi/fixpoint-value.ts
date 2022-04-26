@@ -1,6 +1,6 @@
 import { apply } from "../../apply"
 import { Env } from "../../env"
-import { EqualCtx } from "../../equal"
+import { equal, EqualCtx } from "../../equal"
 import { Exp } from "../../exp"
 import * as Exps from "../../exps"
 import { Mod } from "../../mod"
@@ -22,21 +22,24 @@ export class FixpointValue extends Value {
   }
 
   equal(ctx: EqualCtx, that: Value): boolean {
-    throw new Error()
-    // const freshName = freshen(ctx.usedNames, this.name)
-    // ctx = ctx.useName(freshName)
-    // const v = new Exps.VarNeutral(freshName)
-    // const arg = new Exps.NotYetValue(v)
-    // return equal(ctx, apply(this, arg), apply(that, arg))
+    return equal(ctx, this, that)
+  }
+
+  active(): Value {
+    const wrap = this.wrap()
+    return wrap.evaluate(this.mod, this.env)
   }
 
   private wrap(): Exp {
     return new Exps.Fn(this.name, this.body)
   }
 
-  apply(arg: Value): Value {
+  private fnValue(): Value {
     const fn = new Exps.Ap(new Exps.Var("fix"), this.wrap())
-    const fnValue = fn.evaluate(this.mod, this.env)
-    return apply(fnValue, arg)
+    return fn.evaluate(this.mod, this.env)
+  }
+
+  apply(arg: Value): Value {
+    return apply(this.fnValue(), arg)
   }
 }
