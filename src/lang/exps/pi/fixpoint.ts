@@ -19,19 +19,6 @@ export class Fixpoint extends Exp {
   }
 
   format(): string {
-    throw new Error()
-    // const { names, ret } = formatFn([this.name], this.ret)
-    // return `(lambda (${names.join(" ")}) ${ret})`
+    return `(fixpoint ${this.name} ${this.ret.format()})`
   }
 }
-
-// function formatFn(
-//   names: Array<string>,
-//   ret: Exp
-// ): { names: Array<string>; ret: string } {
-//   if (ret instanceof Fn) {
-//     return formatFn([...names, ret.name], ret.ret)
-//   } else {
-//     return { names, ret: ret.format() }
-//   }
-// }
