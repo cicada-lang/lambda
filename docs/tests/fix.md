@@ -6,16 +6,16 @@ title: Fixpoint combinator
 
 In mathematics, `x` is `f`'s fixpoint if `(f x) = x`.
 
-# fix
+# Y
 
-In lambda calculus, we have function `fix`,
+In lambda calculus, we have function `Y`,
 which can find fixpoint of any function.
 
 ```lambda pseudocode
-(f (fix f)) = (fix f)
+(f (Y f)) = (Y f)
 ```
 
-Once we have `fix`, we can achieve the following recursive definition
+Once we have `Y`, we can achieve the following recursive definition
 
 ```lambda pseudocode
 f = (wrapper f)
@@ -24,13 +24,13 @@ f = (wrapper f)
 by non-recursively lambda term.
 
 ```lambda pseudocode
-f = (fix wrapper)
+f = (Y wrapper)
 ```
 
-The following `fix` is one way of defining `fix`.
+The following `Y` is one way of defining `Y`.
 
 ```lambda
-(define (fix f)
+(define (Y f)
   ((lambda (x) (f (x x)))
    (lambda (x) (f (x x)))))
 ```
@@ -38,26 +38,26 @@ The following `fix` is one way of defining `fix`.
 We will have
 
 ```lambda pseudocode
-(fix f) =
+(Y f) =
 (f ((lambda (x) (f (x x)))
     (lambda (x) (f (x x))))) =
-(f (fix f))
+(f (Y f))
 ```
 
-# turing-half
+# turing
 
-Another way of defining `fix`.
+Another function to find fixpoint is `turing`.
 
 ```lambda
 (define (turing-half x y) (y (x x y)))
-(define turing-fix (turing-half turing-half))
+(define turing (turing-half turing-half))
 ```
 
 We will have
 
 ```lambda pseudocode
-(turing-fix f) =
+(turing f) =
 (turing-half turing-half f) =
 (f (turing-half turing-half f)) =
-(f (turing-fix f))
+(f (turing f))
 ```

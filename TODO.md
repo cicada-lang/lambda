@@ -1,13 +1,15 @@
 # equality between recursive functions
 
-- `exps/pi/fn-rec`
-- `exps/pi/fn-rec-value`
+- `fix` as builtin
 
-- `(lambda-rec)`
+- `exps/pi/fixpoint`
+- `exps/pi/fixpoint-value`
 
-- `define` detected recursive function and use `FnRec` instead of `Fn`
+- `(fixpoint <name> <body>)`
 
-- `apply` handle `FnRec` specially
+- `define` detected recursive function and use `Fixpoint` instead of `Fn`
+
+- `apply` handle `Fixpoint` specially
 
   - use semantic of `fix` to do the application
 

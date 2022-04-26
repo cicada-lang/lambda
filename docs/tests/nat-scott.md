@@ -67,7 +67,7 @@ title: Scott Encoding of Natural Number
 # add
 
 ```lambda
-(import "./fix.md" fix)
+(import "./fix.md" Y)
 
 (define (add-wrap add)
   (lambda (m n)
@@ -75,7 +75,7 @@ title: Scott Encoding of Natural Number
       n
       (lambda (prev) (add1 (add prev n))))))
 
-(define add (fix add-wrap))
+(define add (Y add-wrap))
 ```
 
 ## Tests
@@ -96,7 +96,7 @@ title: Scott Encoding of Natural Number
       zero
       (lambda (prev) (add n (mul prev n))))))
 
-(define mul (fix mul-wrap))
+(define mul (Y mul-wrap))
 ```
 
 ## Tests
