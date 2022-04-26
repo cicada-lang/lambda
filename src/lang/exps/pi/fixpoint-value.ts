@@ -19,12 +19,7 @@ export class FixpointValue extends Value {
   }
 
   readback(ctx: ReadbackCtx): Exp {
-    const freshName = freshen(ctx.usedNames, this.name)
-    ctx = ctx.useName(freshName)
-    const v = new Exps.VarNeutral(freshName)
-    const arg = new Exps.NotYetValue(v)
-    const body = apply(this, arg)
-    return new Exps.Fixpoint(freshName, body.readback(ctx))
+    return new Exps.Fixpoint(this.name, this.body)
   }
 
   equal(ctx: EqualCtx, that: Value): boolean {
