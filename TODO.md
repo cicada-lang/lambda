@@ -6,10 +6,7 @@
 - `(fixpoint <name> <body>)`
 
 - `define` detected recursive function and use `Fixpoint` instead of `Fn`
-
-- `apply` handle `Fixpoint` specially
-
-  - use semantic of `fix` to do the application
+- `apply` handle `Fixpoint` specially -- with the help of built-in `fix`
 
 - be able readback `factorial`
 

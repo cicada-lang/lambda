@@ -67,15 +67,13 @@ title: Scott Encoding of Natural Number
 # add
 
 ```lambda
-(import "./fix.md" Y)
-
 (define (add-wrap add)
   (lambda (m n)
     (which-Nat m
       n
       (lambda (prev) (add1 (add prev n))))))
 
-(define add (Y add-wrap))
+(define add (fix add-wrap))
 ```
 
 ## Tests
@@ -96,7 +94,7 @@ title: Scott Encoding of Natural Number
       zero
       (lambda (prev) (add n (mul prev n))))))
 
-(define mul (Y mul-wrap))
+(define mul (fix mul-wrap))
 ```
 
 ## Tests

@@ -110,7 +110,7 @@ Please see [docs/tests](docs/tests) for more examples.
 
 ### Factorial by fixpoint combinator
 
-[ [PLAYGROUND](https://lambda.cicada-lang.org/playground/KGltcG9ydCAiaHR0cHM6Ly9yZWFkb25seS5saW5rL2ZpbGVzL2NpY2FkYS1sYW5nL2xhbWJkYS8tL2RvY3MvdGVzdHMvbmF0LnNjbSIKICB6ZXJvPyBhZGQgbXVsIHN1YjEKICB6ZXJvIG9uZSB0d28gdGhyZWUgZm91cikKCihpbXBvcnQgImh0dHBzOi8vcmVhZG9ubHkubGluay9maWxlcy9jaWNhZGEtbGFuZy9sYW1iZGEvLS9kb2NzL3Rlc3RzL2Jvb2xlYW4uc2NtIgogIHRydWUgZmFsc2UgaWYpCgo7OyBOT1RFIGB4YCBpcyBgZmAncyBmaXhwb2ludCBpZiBgKGYgeCkgPSB4YAo7OyAgIEluIGxhbWJkYSBjYWxjdWx1cywgd2UgaGF2ZSBmdW5jdGlvbiBgZml4YAo7OyAgIHdoaWNoIGNhbiBmaW5kIGZpeHBvaW50IG9mIGFueSBmdW5jdGlvbi4KOzsgICAgICAoZiAoZml4IGYpKSA9IChmaXggZikKOzsgICBUaGUgZm9sbG93aW5nIGBmaXhgIGlzIG9uZSB3YXkgb2YgZGVmaW5pbmcgYGZpeGAuCgooZGVmaW5lIChmaXggZikKICAoKGxhbWJkYSAoeCkgKGYgKHggeCkpKQogICAobGFtYmRhICh4KSAoZiAoeCB4KSkpKSkKCjs7IChjbGFpbSBmYWN0b3JpYWwtd3JhcCAoLT4gKC0-IE5hdCBOYXQpICgtPiBOYXQgTmF0KSkpCjs7IChjbGFpbSAoZml4IGZhY3RvcmlhbC13cmFwKSAoLT4gTmF0IE5hdCkpCjs7IChjbGFpbSBmaXggKGZvcmFsbCAoQSkgKC0-ICgtPiBBIEEpIEEpKSkKCihkZWZpbmUgKGZhY3RvcmlhbC13cmFwIGZhY3RvcmlhbCkKICAobGFtYmRhIChuKQogICAgKGlmICh6ZXJvPyBuKQogICAgICBvbmUKICAgICAgKG11bCBuIChmYWN0b3JpYWwgKHN1YjEgbikpKSkpKQoKKGRlZmluZSBmYWN0b3JpYWwgKGZpeCBmYWN0b3JpYWwtd3JhcCkpCgooZmFjdG9yaWFsIHplcm8pCihmYWN0b3JpYWwgb25lKQooZmFjdG9yaWFsIHR3bykKKGZhY3RvcmlhbCB0aHJlZSkKKGZhY3RvcmlhbCBmb3VyKQ)
+[ [PLAYGROUND](https://lambda.cicada-lang.org/playground/KGltcG9ydCAiaHR0cHM6Ly9yZWFkb25seS5saW5rL2ZpbGVzL2NpY2FkYS1sYW5nL2xhbWJkYS8tL2RvY3MvdGVzdHMvbmF0LWNodXJjaC5tZCIKICB6ZXJvPyBhZGQgbXVsIHN1YjEKICB6ZXJvIG9uZSB0d28gdGhyZWUgZm91cikKCihpbXBvcnQgImh0dHBzOi8vcmVhZG9ubHkubGluay9maWxlcy9jaWNhZGEtbGFuZy9sYW1iZGEvLS9kb2NzL3Rlc3RzL2Jvb2xlYW4ubWQiCiAgdHJ1ZSBmYWxzZSBpZikKCjs7IE5PVEUgYHhgIGlzIGBmYCdzIGZpeHBvaW50IGlmIGAoZiB4KSA9IHhgCjs7ICAgSW4gbGFtYmRhIGNhbGN1bHVzLCB3ZSBoYXZlIGZ1bmN0aW9uIGBZYAo7OyAgIHdoaWNoIGNhbiBmaW5kIGZpeHBvaW50IG9mIGFueSBmdW5jdGlvbi4KOzsgICAgICAoZiAoWSBmKSkgPSAoWSBmKQoKKGRlZmluZSAoWSBmKQogICgobGFtYmRhICh4KSAoZiAoeCB4KSkpCiAgIChsYW1iZGEgKHgpIChmICh4IHgpKSkpKQoKOzsgKGNsYWltIGZhY3RvcmlhbC13cmFwICgtPiAoLT4gTmF0IE5hdCkgKC0-IE5hdCBOYXQpKSkKOzsgKGNsYWltIChZIGZhY3RvcmlhbC13cmFwKSAoLT4gTmF0IE5hdCkpCjs7IChjbGFpbSB5IChmb3JhbGwgKEEpICgtPiAoLT4gQSBBKSBBKSkpCgooZGVmaW5lIChmYWN0b3JpYWwtd3JhcCBmYWN0b3JpYWwpCiAgKGxhbWJkYSAobikKICAgIChpZiAoemVybz8gbikKICAgICAgb25lCiAgICAgIChtdWwgbiAoZmFjdG9yaWFsIChzdWIxIG4pKSkpKSkKCihkZWZpbmUgZmFjdG9yaWFsIChZIGZhY3RvcmlhbC13cmFwKSkKCihmYWN0b3JpYWwgemVybykKKGZhY3RvcmlhbCBvbmUpCihmYWN0b3JpYWwgdHdvKQooZmFjdG9yaWFsIHRocmVlKQooZmFjdG9yaWFsIGZvdXIp)
 | [WIKIPEDIA](https://en.wikipedia.org/wiki/Fixed-point_combinator) ]
 
 ```scheme
@@ -122,18 +122,17 @@ Please see [docs/tests](docs/tests) for more examples.
   true false if)
 
 ;; NOTE `x` is `f`'s fixpoint if `(f x) = x`
-;;   In lambda calculus, we have function `fix`
+;;   In lambda calculus, we have function `Y`
 ;;   which can find fixpoint of any function.
-;;      (f (fix f)) = (fix f)
-;;   The following `fix` is one way of defining `fix`.
+;;      (f (Y f)) = (Y f)
 
-(define (fix f)
+(define (Y f)
   ((lambda (x) (f (x x)))
    (lambda (x) (f (x x)))))
 
 ;; (claim factorial-wrap (-> (-> Nat Nat) (-> Nat Nat)))
-;; (claim (fix factorial-wrap) (-> Nat Nat))
-;; (claim fix (forall (A) (-> (-> A A) A)))
+;; (claim (Y factorial-wrap) (-> Nat Nat))
+;; (claim y (forall (A) (-> (-> A A) A)))
 
 (define (factorial-wrap factorial)
   (lambda (n)
@@ -141,7 +140,7 @@ Please see [docs/tests](docs/tests) for more examples.
       one
       (mul n (factorial (sub1 n))))))
 
-(define factorial (fix factorial-wrap))
+(define factorial (Y factorial-wrap))
 
 (factorial zero)
 (factorial one)
