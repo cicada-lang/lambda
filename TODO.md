@@ -1,9 +1,3 @@
-# docs
-
-- play with birds -- a little book about birds
-
-  - online puzzle
-
 # fixpoint
 
 - add `fixpoint` as keyword to define recursive function (can be NbE-ed?)
