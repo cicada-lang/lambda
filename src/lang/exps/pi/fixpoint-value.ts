@@ -1,4 +1,3 @@
-import { freshen } from "../../../ut/freshen"
 import { apply } from "../../apply"
 import { Env } from "../../env"
 import { EqualCtx } from "../../equal"
@@ -31,9 +30,13 @@ export class FixpointValue extends Value {
     // return equal(ctx, apply(this, arg), apply(that, arg))
   }
 
+  private wrap(): Exp {
+    return new Exps.Fn(this.name, this.body)
+  }
 
   apply(arg: Value): Value {
-    throw new Error()
-    // return this.ret.evaluate(this.mod, this.env.extend(this.name, arg))
+    const fn = new Exps.Ap(new Exps.Var("fix"), this.wrap())
+    const fnValue = fn.evaluate(this.mod, this.env)
+    return apply(fnValue, arg)
   }
 }

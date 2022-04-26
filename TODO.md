@@ -1,6 +1,5 @@
 # equality between recursive functions
 
-- `Exps.FixpointValue` -- `apply` -- with the help of built-in `fix`
 - `exps/pi/fixpoint-value` -- `equal`
 - `define` detected recursive function and use `Fixpoint` instead of `Fn`
 - be able readback `factorial`
