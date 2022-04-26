@@ -15,6 +15,10 @@ export function apply(target: Value, arg: Value): Value {
     return target.ret.evaluate(target.mod, target.env.extend(target.name, arg))
   }
 
+  // if (target instanceof Exps.FixpointValue) {
+  //   TODO
+  // }
+
   throw new LangError(
     `I expect the target to be a function, instead of ${target.constructor.name}`
   )

@@ -1,6 +1,9 @@
+import { freshen } from "../../../ut/freshen"
 import { Env } from "../../env"
+import { apply } from "../../apply"
 import { EqualCtx } from "../../equal"
 import { Exp } from "../../exp"
+import * as Exps from "../../exps"
 import { Mod } from "../../mod"
 import { ReadbackCtx } from "../../readback"
 import { Value } from "../../value"
@@ -10,19 +13,18 @@ export class FixpointValue extends Value {
     public mod: Mod,
     public env: Env,
     public name: string,
-    public ret: Exp
+    public body: Exp
   ) {
     super()
   }
 
   readback(ctx: ReadbackCtx): Exp {
-    throw new Error()
-    // const freshName = freshen(ctx.usedNames, this.name)
-    // ctx = ctx.useName(freshName)
-    // const v = new Exps.VarNeutral(freshName)
-    // const arg = new Exps.NotYetValue(v)
-    // const ret = apply(this, arg)
-    // return new Exps.Fn(freshName, ret.readback(ctx))
+    const freshName = freshen(ctx.usedNames, this.name)
+    ctx = ctx.useName(freshName)
+    const v = new Exps.VarNeutral(freshName)
+    const arg = new Exps.NotYetValue(v)
+    const body = apply(this, arg)
+    return new Exps.Fixpoint(freshName, body.readback(ctx))
   }
 
   equal(ctx: EqualCtx, that: Value): boolean {
