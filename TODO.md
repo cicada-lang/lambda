@@ -1,8 +1,20 @@
-# fixpoint
+# equality between recursive functions
 
-- add `fixpoint` as keyword to define recursive function (can be NbE-ed?)
+- `define` detected recursive function and use `Fixpoint` instead of `Fn`
 
-  - we need to learn coq and lean -- i do not even know coq uses fixpoint
+- `apply` handle `Fixpoint` specially
+
+  - use semantic of `fix` to do the application
+
+- be able to `(assert-equal factorial factorial)`
+
+- be able to `(assert-equal factorial factorial-2)`
+
+  - where `factorial-2` is structurally the same to `factorial`
+
+- detected **mutually** recursive function and print some thing
+
+- be able to `(assert-equal)` mutually recursive function
 
 # graph-based implementation
 

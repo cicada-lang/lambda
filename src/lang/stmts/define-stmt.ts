@@ -10,8 +10,18 @@ export class DefineStmt extends Stmt {
   }
 
   async execute(mod: Mod): Promise<void> {
+    if (this.isRecursive()) {
+      console.log(`Recursive definition: ${this.name}`)
+      console.log(`  ${this.exp.format()}`)
+    }
+
     const value = this.exp.evaluate(mod, Env.init())
     mod.define(this.name, new Def(mod, this.name, value))
+  }
+
+  private isRecursive(): boolean {
+    const freeNames = this.exp.freeNames(new Set())
+    return freeNames.has(this.name)
   }
 
   async undo(mod: Mod): Promise<void> {
