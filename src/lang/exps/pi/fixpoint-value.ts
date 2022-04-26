@@ -1,6 +1,6 @@
 import { freshen } from "../../../ut/freshen"
-import { Env } from "../../env"
 import { apply } from "../../apply"
+import { Env } from "../../env"
 import { EqualCtx } from "../../equal"
 import { Exp } from "../../exp"
 import * as Exps from "../../exps"
