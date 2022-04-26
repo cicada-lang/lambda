@@ -1,7 +1,5 @@
 # equality between recursive functions
 
-- `fix` as builtin
-
 - `exps/pi/fixpoint`
 - `exps/pi/fixpoint-value`
 
@@ -23,7 +21,7 @@
 
 - detected **mutually** recursive function and print some thing
 
-- be able to `(assert-equal)` mutually recursive function
+- inline **mutually** recursive function to simple recursive function
 
 # graph-based implementation
 

@@ -1,3 +1,4 @@
+import { findBuiltinValue } from "../../builtin"
 import { Env } from "../../env"
 import { LangError } from "../../errors"
 import { Exp } from "../../exp"
@@ -17,14 +18,13 @@ export class Var extends Exp {
     let value = undefined
 
     value = env.findValue(this.name)
-    if (value !== undefined) {
-      return value
-    }
+    if (value !== undefined) return value
 
     value = mod.findValue(this.name)
-    if (value !== undefined) {
-      return value
-    }
+    if (value !== undefined) return value
+
+    value = findBuiltinValue(mod, env, this.name)
+    if (value !== undefined) return value
 
     throw new LangError(`Unknown name: ${this.name}`)
   }
