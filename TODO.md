@@ -6,6 +6,7 @@
 
 - detected **mutual-recursive** function and print some thing
 - inline **mutual-recursive** function to simple recursive function
+- test **mutual-recursive** function across modules
 
 # graph-based implementation
 
