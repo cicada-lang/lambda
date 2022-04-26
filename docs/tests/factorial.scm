@@ -10,17 +10,15 @@
     one
     (mul n (factorial (sub1 n)))))
 
-;; TODO
+factorial
 
-;; factorial
-
-;; (assert-equal
-;;   factorial
-;;   (fixpoint factorial
-;;     (lambda (n)
-;;       (if (zero? n)
-;;         one
-;;         (mul n (factorial (sub1 n)))))))
+(assert-equal
+  factorial
+  (fixpoint factorial
+    (lambda (n)
+      (if (zero? n)
+        one
+        (mul n (factorial (sub1 n)))))))
 
 (assert-equal (factorial zero) one)
 (assert-equal (factorial one) one)
