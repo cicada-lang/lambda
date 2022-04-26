@@ -1,10 +1,10 @@
 # equality between recursive functions
 
+- be able to `(assert-equal factorial (lambda (n) (factorial n)))`
+
 - `define` detected recursive function and use `Fixpoint` instead of `Fn`
 - be able readback `factorial`
-- be able to `(assert-equal factorial factorial)`
-- be able to `(assert-equal factorial factorial-2)`
-  - where `factorial-2` is structurally the same to `factorial`
+
 - detected **mutually** recursive function and print some thing
 - inline **mutually** recursive function to simple recursive function
 

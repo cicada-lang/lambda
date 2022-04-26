@@ -18,5 +18,18 @@ factorial
 (assert-equal (factorial four) (mul four (mul three two)))
 
 (assert-equal factorial factorial)
+
+(assert-equal
+  (fixpoint factorial
+    (lambda (n)
+      (if (zero? n)
+        one
+        (mul n (factorial (sub1 n))))))
+  (fixpoint fact
+    (lambda (n)
+      (if (zero? n)
+        one
+        (mul n (fact (sub1 n)))))))
+
 ;; TODO
 ;; (assert-equal factorial (lambda (n) (factorial n)))
