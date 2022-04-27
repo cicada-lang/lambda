@@ -1,3 +1,4 @@
+import { apply } from "../../apply"
 import { Env } from "../../env"
 import { equal, EqualCtx } from "../../equal"
 import { Exp } from "../../exp"
@@ -10,6 +11,10 @@ export class LazyValue extends Value {
 
   constructor(public mod: Mod, public env: Env, public exp: Exp) {
     super()
+  }
+
+  apply(arg: Value): Value {
+    return apply(this.active(), arg)
   }
 
   preEqual(): Value {

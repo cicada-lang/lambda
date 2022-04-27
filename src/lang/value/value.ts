@@ -9,4 +9,5 @@ export abstract class Value {
   abstract equal(ctx: EqualCtx, that: Value): boolean
 
   preEqual?(): Value
+  apply?(arg: Value): Value
 }
