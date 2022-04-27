@@ -9,7 +9,10 @@ export function findBuiltinValue(
   name: string
 ): Value | undefined {
   if (name === "fix") {
-    // NOTE (lambda (f) ((lambda (x) (f (x x))) (lambda (x) (f (x x)))))
+    // NOTE
+    // (lambda (f)
+    //  ((lambda (x) (f (x x)))
+    //   (lambda (x) (f (x x)))))
 
     const half = new Exps.Fn(
       "x",
