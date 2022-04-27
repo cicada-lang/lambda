@@ -2,6 +2,8 @@
 (import "./nat-church.md" zero add1 sub1 zero?)
 (import "./nat-church.md" one two three four)
 
+;; TODO
+
 ;; (define (even? n)
 ;;   (if (zero? n) true
 ;;       (odd? (sub1 n))))
