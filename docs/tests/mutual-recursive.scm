@@ -1,22 +1,7 @@
 (import "./boolean.md" true false if and or not)
 (import "./nat-church.md" zero add1 sub1 zero?)
 (import "./nat-church.md" one two three four)
-
-(define (even? n)
-  (if (zero? n) true
-      (if (zero? (sub1 n)) false
-          (even? (sub1 (sub1 n))))))
-
-(define (odd? n)
-  (if (zero? n) false
-      (if (zero? (sub1 n)) true
-          (odd? (sub1 (sub1 n))))))
-
-even?
-odd?
-
-(assert-equal even? even?)
-(assert-equal odd? odd?)
+(import "./nat-even-odd.scm" even? odd?)
 
 (define (evenp n)
   (if (zero? n) true
@@ -26,27 +11,32 @@ odd?
   (if (zero? n) false
       (evenp (sub1 n))))
 
-(assert-equal evenp evenp)
-(assert-equal oddp oddp)
+;; TODO
+
+;; (assert-equal evenp evenp)
+;; (assert-equal oddp oddp)
+
+;; (assert-equal even? evenp)
+;; (assert-equal odd? oddp)
 
 (assert-equal
-  (even? zero)
-  (even? two)
-  (even? four)
+  (evenp zero)
+  (evenp two)
+  (evenp four)
   true)
 
 (assert-equal
-  (even? one)
-  (even? three)
+  (evenp one)
+  (evenp three)
   false)
 
 (assert-equal
-  (odd? zero)
-  (odd? two)
-  (odd? four)
+  (oddp zero)
+  (oddp two)
+  (oddp four)
   false)
 
 (assert-equal
-  (odd? one)
-  (odd? three)
+  (oddp one)
+  (oddp three)
   true)
