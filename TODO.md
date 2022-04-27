@@ -1,8 +1,3 @@
-> equality between recursive functions
-
-- `fixpoint-neutral.ts`
-- be able to `(assert-equal factorial (lambda (n) (factorial n)))`
-
 > mutual-recursive functions
 
 - detected **mutual-recursive** function and print some thing

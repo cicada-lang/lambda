@@ -1,4 +1,4 @@
-(import "./nat-church.md" zero? add mul sub1)
+(import "./nat-church.md" zero? add1 add mul sub1)
 (import "./nat-church.md" zero one two three four)
 (import "./boolean.md" if true false)
 
@@ -31,34 +31,33 @@ factorial
         one
         (mul n (fact (sub1 n)))))))
 
-;; TODO
+(assert-not-equal
+  (fixpoint factorial
+    (lambda (n)
+      (if (zero? n)
+        one
+        (mul n (factorial (sub1 n))))))
+  (lambda (factorial)
+    (lambda (n)
+      (if (zero? n)
+        one
+        (mul n (factorial (sub1 n)))))))
 
-;; (assert-not-equal
-;;   (fixpoint factorial
-;;     (lambda (n)
-;;       (if (zero? n)
-;;         one
-;;         (mul n (factorial (sub1 n))))))
-;;   (lambda (factorial)
-;;     (lambda (n)
-;;       (if (zero? n)
-;;         one
-;;         (mul n (factorial (sub1 n)))))))
+(assert-equal
+  factorial
+  (lambda (n) (factorial n))
+  (lambda (n) ((lambda (n) (factorial n)) n)))
 
-;; TODO
-
-;; (assert-equal factorial (lambda (n) (factorial n)))
-
-;; (assert-equal
-;;   (fixpoint factorial
-;;     (lambda (n)
-;;       (if (zero? n)
-;;         one
-;;         (mul n (factorial (sub1 n))))))
-;;   (lambda (n)
-;;     ((fixpoint factorial
-;;        (lambda (n)
-;;          (if (zero? n)
-;;            one
-;;            (mul n (factorial (sub1 n))))))
-;;      n)))
+(assert-equal
+  (fixpoint factorial
+    (lambda (n)
+      (if (zero? n)
+        one
+        (mul n (factorial (sub1 n))))))
+  (lambda (n)
+    ((fixpoint factorial
+       (lambda (n)
+         (if (zero? n)
+           one
+           (mul n (factorial (sub1 n))))))
+     n)))

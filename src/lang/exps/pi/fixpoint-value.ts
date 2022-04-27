@@ -26,20 +26,33 @@ export class FixpointValue extends Value {
   }
 
   preEqual(): Value {
-    const wrap = this.wrap()
-    return wrap.evaluate(this.mod, this.env)
+    return this.eta()
   }
 
-  private wrap(): Exp {
-    return new Exps.Fn(this.name, this.body)
+  eta(): Value {
+    return new Exps.Fn(
+      "x",
+      new Exps.Ap(new Exps.Var("f"), new Exps.Var("x"))
+    ).evaluate(
+      this.mod,
+      this.env.extend("f", new Exps.NotYetValue(new Exps.FixpointNeutral(this)))
+    )
   }
 
-  private fnValue(): Value {
-    const fn = new Exps.Ap(new Exps.Var("fix"), this.wrap())
-    return fn.evaluate(this.mod, this.env)
+  wrapper(): Value {
+    return new Exps.Fn(this.name, this.body).evaluate(this.mod, this.env)
   }
 
   apply(arg: Value): Value {
-    return apply(this.fnValue(), arg)
+    if (arg instanceof Exps.LazyValue) {
+      return this.apply(arg.active())
+    }
+
+    if (arg instanceof Exps.NotYetValue) {
+      return apply(this.eta(), arg)
+    } else {
+      const fix = new Exps.Var("fix").evaluate(this.mod, this.env)
+      return apply(apply(fix, this.wrapper()), arg)
+    }
   }
 }
