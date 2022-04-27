@@ -5,7 +5,6 @@
   - `Def` trace dependencies
 
 - inline mutual-recursive function to simple recursive function
-- test mutual-recursive function across modules
 
 # graph-based implementation
 

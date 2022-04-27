@@ -3,6 +3,8 @@
 (import "./nat-church.md" one two three four)
 (import "./nat-even-odd.scm" even? odd?)
 
+;; NOTE Test mutual recursive functions.
+
 (define (evenp n)
   (if (zero? n) true
       (oddp (sub1 n))))
