@@ -2,16 +2,6 @@
 (import "./nat-church.md" zero add1 sub1 zero?)
 (import "./nat-church.md" one two three four)
 
-;; TODO
-
-;; (define (even? n)
-;;   (if (zero? n) true
-;;       (odd? (sub1 n))))
-
-;; (define (odd? n)
-;;   (if (zero? n) false
-;;       (even? (sub1 n))))
-
 (define (even? n)
   (if (zero? n) true
       (if (zero? (sub1 n)) false
@@ -27,6 +17,17 @@ odd?
 
 (assert-equal even? even?)
 (assert-equal odd? odd?)
+
+(define (evenp n)
+  (if (zero? n) true
+      (oddp (sub1 n))))
+
+(define (oddp n)
+  (if (zero? n) false
+      (evenp (sub1 n))))
+
+(assert-equal evenp evenp)
+(assert-equal oddp oddp)
 
 (assert-equal
   (even? zero)
