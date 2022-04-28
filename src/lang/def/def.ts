@@ -9,12 +9,17 @@ export class Def {
 
   constructor(public mod: Mod, public name: string, public exp: Exp) {}
 
-  dependencies(): Array<{ name: string; def?: string }> {
+  dependencies(): Array<Def> {
     const freeNames = this.exp.freeNames(new Set())
-    return Array.from(freeNames).map((name) => ({
-      name,
-      def: this.mod.find(name)?.exp.format(),
-    }))
+    const defs = []
+    for (const name of freeNames) {
+      const def = this.mod.find(name)
+      if (def !== undefined) {
+        defs.push(def)
+      }
+    }
+
+    return defs
   }
 
   get value(): Value {
