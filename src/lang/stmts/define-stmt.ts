@@ -1,9 +1,9 @@
+import { builtinNames } from "../builtin"
 import { Def } from "../def"
 import { LangError } from "../errors"
 import { Exp } from "../exp"
 import { Mod } from "../mod"
 import { Stmt } from "../stmt"
-import { builtinNames } from "../builtin"
 
 export class DefineStmt extends Stmt {
   constructor(public name: string, public exp: Exp) {
