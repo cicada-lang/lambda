@@ -9,30 +9,11 @@ export class Def {
 
   constructor(public mod: Mod, public name: string, public exp: Exp) {}
 
-  dependencies(): Array<Def> {
-    const freeNames = this.exp.freeNames(new Set())
-    const defs = []
-    for (const name of freeNames) {
-      const def = this.mod.find(name)
-      if (def !== undefined) {
-        defs.push(def)
-      }
-    }
-
-    return defs
-  }
-
   get value(): Value {
     if (this.cache !== undefined) return this.cache
 
     const exp = this.buildExp()
     this.cache = exp.evaluate(this.mod, Env.init())
-
-    // console.log({
-    //   name: this.name,
-    //   dependencies: this.dependencies(),
-    // })
-
     return this.cache
   }
 

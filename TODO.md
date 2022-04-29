@@ -1,10 +1,5 @@
-> mutual-recursive functions
-
-- detected mutual-recursive function and print some thing
-
-  - `Def` trace dependencies
-
-- inline mutual-recursive function to simple recursive function
+- a name must be defined in the module before used
+- report circular import as error
 
 # graph-based implementation
 
