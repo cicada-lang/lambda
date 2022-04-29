@@ -1,10 +1,12 @@
 import { Fetcher } from "../../infra/fetcher"
 import { BlockLoader } from "../block"
 import * as BlockParsers from "../block/block-parsers"
+import { LangError } from "../errors"
 import { Mod } from "../mod"
 
 export class ModLoader {
   cache: Map<string, Mod> = new Map()
+  importing: Set<string> = new Set()
   fetcher = new Fetcher()
   blockLoader = new BlockLoader()
 
@@ -29,10 +31,18 @@ export class ModLoader {
   }
 
   async loadAndExecute(url: URL, options?: { code?: string }): Promise<Mod> {
+    if (this.importing.has(url.href)) {
+      throw new LangError(`I find circular import: ${url.href}`)
+    }
+
+    this.importing.add(url.href)
+
     const mod = await this.load(url, options)
     for (const block of mod.blocks.all()) {
       await block.execute(mod)
     }
+
+    this.importing.delete(url.href)
 
     return mod
   }

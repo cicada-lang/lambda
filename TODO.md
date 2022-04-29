@@ -1,5 +1,3 @@
-- report circular import as error
-
 # graph-based implementation
 
 > Normal forms of Parigot numerals are exponential in size,
