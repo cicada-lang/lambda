@@ -40,3 +40,10 @@ For example
 If we implement mutual recursive by inlining,
 we must check whether inlining will eliminate
 all the indirect recursive references.
+
+# General Fixpoint
+
+Another way to implement mutual recursion is to
+generalize fixpoint to support multiple functions.
+
+Unlike inlining, structural equivalence between functions will be weaker.

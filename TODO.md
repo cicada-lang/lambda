@@ -1,4 +1,3 @@
-- a name must be defined in the module before used
 - report circular import as error
 
 # graph-based implementation

@@ -3,6 +3,8 @@ import * as Exps from "../exps"
 import { Mod } from "../mod"
 import { Value } from "../value"
 
+export const builtinNames = ["fix"]
+
 export function findBuiltinValue(
   mod: Mod,
   env: Env,
