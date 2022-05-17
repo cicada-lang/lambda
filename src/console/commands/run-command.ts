@@ -1,12 +1,11 @@
-import { Command } from "@enchanterjs/enchanter/lib/command"
-import { CommandRunner } from "@enchanterjs/enchanter/lib/command-runner"
-import { CommonHelpCommand } from "@enchanterjs/enchanter/lib/commands"
+import { Command, CommandRunner } from "@xieyuheng/command-line"
 import ty from "@xieyuheng/ty"
 import fs from "fs"
 import { LangError } from "../../lang/errors"
 import { ModLoader } from "../../lang/mod"
 import { colors } from "../../ut/colors"
 import { createUrl } from "../../ut/create-url"
+import * as Commands from "../commands"
 
 type Args = { file?: string }
 type Opts = {}
@@ -50,7 +49,7 @@ export class RunCommand extends Command<Args, Opts> {
 
   async execute(argv: Args & Opts, runner: CommandRunner): Promise<void> {
     if (!argv.file) {
-      new CommonHelpCommand().execute(argv as any, runner)
+      new Commands.CommonHelpCommand().execute(argv as any, runner)
       return
     }
 
