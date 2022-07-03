@@ -5,7 +5,7 @@
 >
 > -- Anonymous Bauhaus Student
 
-An implementation of [(Untyped) Lambda Calculus](https://en.wikipedia.org/wiki/Lambda_calculus) in JavaScript.
+An implementation of [(Untyped) Lambda Calculus](https://en.wikipedia.org/wiki/Lambda_calculus).
 
 - Use [S-expression](https://github.com/cicada-lang/sexp) as overall syntax.
 - Implement call-by-need lazy evaluation.
