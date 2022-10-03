@@ -1,3 +1,7 @@
+> Use closed datatype to implement `Exp` and `Value`.
+
+
+
 # graph-based implementation
 
 > Normal forms of Parigot numerals are exponential in size,
