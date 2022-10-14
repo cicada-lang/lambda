@@ -15,7 +15,7 @@ export function matchImport(): Array<Rule<Stmt>> {
     [
       cons("import", cons(v("url"), v("entries"))),
       ({ url, entries }) =>
-        new Stmts.ImportStmt(
+        new Stmts.Import(
           matchString(url),
           matchList(entries, matchImportEntry)
         ),

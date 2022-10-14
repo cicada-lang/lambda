@@ -5,7 +5,7 @@ import { Exp } from "../exp"
 import { Mod } from "../mod"
 import { Stmt } from "../stmt"
 
-export class DefineStmt extends Stmt {
+export class Define extends Stmt {
   constructor(public name: string, public exp: Exp) {
     super()
   }

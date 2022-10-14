@@ -8,7 +8,7 @@ export function matchComments(): Array<Rule<Stmt>> {
   return [
     [
       cons("comments", v("exps")),
-      ({ exps }) => new Stmts.CommentsStmt(matchList(exps, matchExp)),
+      ({ exps }) => new Stmts.Comments(matchList(exps, matchExp)),
     ],
   ]
 }

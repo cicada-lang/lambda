@@ -2,7 +2,7 @@ import { Exp } from "../exp"
 import { Mod } from "../mod"
 import { Stmt } from "../stmt"
 
-export class CommentsStmt extends Stmt {
+export class Comments extends Stmt {
   constructor(public exps: Array<Exp>) {
     super()
   }

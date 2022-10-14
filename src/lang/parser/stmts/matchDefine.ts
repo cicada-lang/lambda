@@ -10,7 +10,7 @@ export function matchDefine(): Array<Rule<Stmt>> {
     [
       ["define", cons(v("name"), v("args")), v("exp")],
       ({ name, args, exp }) =>
-        new Stmts.DefineStmt(
+        new Stmts.Define(
           matchSymbol(name),
           matchList(args, matchSymbol).reduceRight(
             (fn, name) => new Exps.Fn(name, fn),
@@ -21,7 +21,7 @@ export function matchDefine(): Array<Rule<Stmt>> {
 
     [
       ["define", v("name"), v("exp")],
-      ({ name, exp }) => new Stmts.DefineStmt(matchSymbol(name), matchExp(exp)),
+      ({ name, exp }) => new Stmts.Define(matchSymbol(name), matchExp(exp)),
     ],
   ]
 }

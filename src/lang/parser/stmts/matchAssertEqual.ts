@@ -8,7 +8,7 @@ export function matchAssertEqual(): Array<Rule<Stmt>> {
   return [
     [
       cons("assert-equal", v("exps")),
-      ({ exps }) => new Stmts.AssertEqualStmt(matchList(exps, matchExp)),
+      ({ exps }) => new Stmts.AssertEqual(matchList(exps, matchExp)),
     ],
   ]
 }

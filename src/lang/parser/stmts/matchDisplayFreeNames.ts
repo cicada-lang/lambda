@@ -8,7 +8,7 @@ export function matchDisplayFreeNames(): Array<Rule<Stmt>> {
   return [
     [
       ["display-free-names", v("exp")],
-      ({ exp }) => new Stmts.DisplayFreeNamesStmt(matchExp(exp)),
+      ({ exp }) => new Stmts.DisplayFreeNames(matchExp(exp)),
     ],
   ]
 }

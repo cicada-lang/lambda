@@ -6,7 +6,7 @@ export type ImportEntry = {
   rename?: string
 }
 
-export class ImportStmt extends Stmt {
+export class Import extends Stmt {
   constructor(public path: string, public entries: Array<ImportEntry>) {
     super()
   }
