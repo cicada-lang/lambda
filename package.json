@@ -9,6 +9,7 @@
     "lambda": "bin/lambda.js"
   },
   "scripts": {
+    "prepare": "husky install",
     "build": "tsc",
     "watch": "tsc --watch",
     "test:ts": "vitest --dir src --threads false --run",
@@ -40,7 +41,7 @@
     "@types/commonmark": "^0.27.5",
     "@types/node": "^18.8.5",
     "@xieyuheng/test-runner": "^0.2.5",
-    "npm-run-all": "^4.1.5",
+    "husky": "^8.0.1",
     "prettier": "^2.7.1",
     "prettier-plugin-organize-imports": "^3.1.1",
     "typescript": "^4.8.4",
