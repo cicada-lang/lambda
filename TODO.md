@@ -1,3 +1,11 @@
+# syntax
+
+use vitest instead of "@xieyuheng/test-case"
+
+improve upstream API
+
+# open v.s. closed datatype
+
 > Use closed datatype to implement `Exp` and `Value`.
 
 Exp use type instead of class
@@ -10,9 +18,10 @@ Value use type instead of class
 > but a reasonable term-graph implementation
 > should be able to keep them linear via sharing.
 
-- implement lamping reduction by inet
+Implement lamping reduction by inet.
 
-- after this, we can use lambda encoding for real
-- after using lambda encoding for real,
-  we can get better understanding of inductive datatype
-  - parameters v.s. indexes
+After this, we can use lambda encoding for real.
+
+After using lambda encoding for real,
+we can get better understanding of inductive datatype
+- parameters v.s. indexes

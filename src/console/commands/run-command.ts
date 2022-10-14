@@ -3,8 +3,8 @@ import ty from "@xieyuheng/ty"
 import fs from "fs"
 import { LangError } from "../../lang/errors"
 import { ModLoader } from "../../lang/mod"
-import { colors } from "../../ut/colors"
-import { createUrl } from "../../ut/create-url"
+import { colors } from "../../utils/colors"
+import { createUrl } from "../../utils/create-url"
 import * as Commands from "../commands"
 
 type Args = { file?: string }
