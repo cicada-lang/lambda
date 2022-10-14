@@ -11,9 +11,13 @@
   "scripts": {
     "build": "tsc",
     "watch": "tsc --watch",
-    "test:js": "test-runner test node 'lib/**/*.test.js'",
-    "test:lambda": "test-runner test './bin/lambda.js run' 'docs/tests/**/*.(scm|md)'",
-    "test": "npm-run-all test:*",
+    "test:ts": "vitest --dir src --threads false --run",
+    "test:watch": "vitest --dir src --threads false",
+    "test:coverage": "vitest --dir src --threads false --run --coverage ",
+    "test:gui": "vitest --dir src --threads false --ui",
+    "test:tests": "test-runner test './bin/lambda.js run' 'docs/tests/**/*.(scm|md)'",
+    "test:tests-error": "test-runner snapshot-error './bin/lambda.js' 'docs/tests/**/*.error.(scm|md)'",
+    "test": "npm run test:ts && npm run test:tests && npm run test:tests-error",
     "format": "prettier src docs --write"
   },
   "prettier": {

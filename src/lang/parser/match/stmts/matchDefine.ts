@@ -5,7 +5,7 @@ import { Stmt } from "../../../stmt"
 import * as Stmts from "../../../stmts"
 import { matchExp } from "../../match"
 
-export default function (): Array<Rule<Stmt>> {
+export function matchDefine (): Array<Rule<Stmt>> {
   return [
     [
       ["define", cons(v("name"), v("args")), v("exp")],

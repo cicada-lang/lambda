@@ -4,11 +4,11 @@ import { Stmt } from "../../../stmt"
 import * as Stmts from "../../../stmts"
 import { matchExp } from "../../match"
 
-export default function (): Array<Rule<Stmt>> {
+export function matchComments (): Array<Rule<Stmt>> {
   return [
     [
-      list(["assert-equal"], v("exps")),
-      ({ exps }) => new Stmts.AssertEqualStmt(matchList(exps, matchExp)),
+      list(["comments"], v("exps")),
+      ({ exps }) => new Stmts.CommentsStmt(matchList(exps, matchExp)),
     ],
   ]
 }

@@ -4,7 +4,7 @@ import { Exp } from "../../../exp"
 import * as Exps from "../../../exps"
 import { matchExp } from "../../match"
 
-export default function (): Array<Rule<Exp>> {
+export function matchFixpoint (): Array<Rule<Exp>> {
   return [
     [
       ["fixpoint", v("name"), v("exp")],

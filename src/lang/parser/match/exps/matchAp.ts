@@ -4,7 +4,7 @@ import { Exp } from "../../../exp"
 import * as Exps from "../../../exps"
 import { matchExp } from "../../match"
 
-export default function (): Array<Rule<Exp>> {
+export function matchAp (): Array<Rule<Exp>> {
   return [
     [
       cons(v("target"), v("args")),

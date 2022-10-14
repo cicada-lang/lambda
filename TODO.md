@@ -1,7 +1,5 @@
 # syntax
 
-use vitest instead of "@xieyuheng/test-case"
-
 improve upstream API
 
 # open v.s. closed datatype
