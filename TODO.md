@@ -24,4 +24,5 @@ After this, we can use lambda encoding for real.
 
 After using lambda encoding for real,
 we can get better understanding of inductive datatype
+
 - parameters v.s. indexes

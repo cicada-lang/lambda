@@ -11,7 +11,6 @@
   "scripts": {
     "build": "tsc",
     "watch": "tsc --watch",
-    "test:test-case": "test-runner test 'test-case run' 'lib/**/*.case.js'",
     "test:js": "test-runner test node 'lib/**/*.test.js'",
     "test:lambda": "test-runner test './bin/lambda.js run' 'docs/tests/**/*.(scm|md)'",
     "test": "npm-run-all test:*",
@@ -21,19 +20,9 @@
     "semi": false,
     "trailingComma": "es5"
   },
-  "devDependencies": {
-    "@types/commonmark": "^0.27.5",
-    "@types/node": "^18.8.5",
-    "@xieyuheng/test-runner": "^0.2.5",
-    "npm-run-all": "^4.1.5",
-    "prettier": "^2.7.1",
-    "prettier-plugin-organize-imports": "^3.1.1",
-    "typescript": "^4.8.4"
-  },
   "dependencies": {
     "@cicada-lang/sexp": "^0.0.24",
     "@xieyuheng/command-line": "^0.0.7",
-    "@xieyuheng/test-case": "^0.0.14",
     "@xieyuheng/ty": "^0.1.17",
     "axios": "^1.1.2",
     "commonmark": "^0.30.0",
@@ -42,6 +31,20 @@
     "node-watch": "^0.7.3",
     "picocolors": "^1.0.0",
     "readdirp": "^3.6.0"
+  },
+  "devDependencies": {
+    "@types/commonmark": "^0.27.5",
+    "@types/node": "^18.8.5",
+    "@xieyuheng/test-runner": "^0.2.5",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.7.1",
+    "prettier-plugin-organize-imports": "^3.1.1",
+    "typescript": "^4.8.4",
+    "@vitest/coverage-c8": "^0.24.1",
+    "@vitest/coverage-istanbul": "^0.24.1",
+    "@vitest/ui": "^0.24.1",
+    "vite": "^3.1.8",
+    "vitest": "^0.24.1"
   },
   "license": "GPL-3.0-or-later"
 }

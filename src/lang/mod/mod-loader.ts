@@ -1,4 +1,4 @@
-import { Fetcher } from "../../infra/fetcher"
+import { Fetcher } from "../../framework/fetcher"
 import { BlockLoader } from "../block"
 import * as BlockParsers from "../block/block-parsers"
 import { LangError } from "../errors"
