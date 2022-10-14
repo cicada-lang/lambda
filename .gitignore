@@ -1,8 +1,8 @@
 # typescript
 lib
 
-# pkg
-dist
+# vitest
+coverage
 
 # npm
 node_modules
@@ -15,7 +15,11 @@ node_modules
 *#*
 .#*
 
-.vercel
+# vscode
+.vscode
 
 # idea
 .idea
+
+# macOS
+.DS_Store
