@@ -8,14 +8,11 @@ export function matchAp(): Array<Rule<Exp>> {
   return [
     [
       cons(v("target"), v("args")),
-      ({ target, args }) => {
-        let result = matchExp(target)
-        for (const arg of matchList(args, matchExp)) {
-          result = new Exps.Ap(result, arg)
-        }
-
-        return result
-      },
+      ({ target, args }) =>
+        matchList(args, matchExp).reduce(
+          (result, arg) => new Exps.Ap(result, arg),
+          matchExp(target)
+        ),
     ],
   ]
 }

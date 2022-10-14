@@ -8,14 +8,11 @@ export function matchFn(): Array<Rule<Exp>> {
   return [
     [
       ["lambda", v("names"), v("exp")],
-      ({ names, exp }) => {
-        let fn = matchExp(exp)
-        for (const name of [...matchList(names, matchSymbol)].reverse()) {
-          fn = new Exps.Fn(name, fn)
-        }
-
-        return fn
-      },
+      ({ names, exp }) =>
+        matchList(names, matchSymbol).reduceRight(
+          (fn, name) => new Exps.Fn(name, fn),
+          matchExp(exp)
+        ),
     ],
   ]
 }
