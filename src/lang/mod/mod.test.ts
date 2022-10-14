@@ -1,6 +1,6 @@
 import { expect, test } from "vitest"
-import * as Exps from "../lang/exps"
-import { ModLoader } from "../lang/mod"
+import * as Exps from "../exps"
+import { ModLoader } from "../mod"
 
 test("A ModLoader can load Mod from url.", async () => {
   const loader = new ModLoader()
@@ -8,7 +8,7 @@ test("A ModLoader can load Mod from url.", async () => {
 
   const mod = await loader.loadAndExecute(new URL("mock:id"))
 
-  expect(mod.findValue("id2")).toBeInstanceOf(Exps.FnValue)
+  expect(mod.findValue("id")).toBeInstanceOf(Exps.FnValue)
 })
 
 test("A ModLoader can load markdown code.", async () => {
