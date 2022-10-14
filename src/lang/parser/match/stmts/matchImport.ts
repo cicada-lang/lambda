@@ -10,7 +10,7 @@ import { Sexp } from "@cicada-lang/sexp/lib/sexp"
 import { Stmt } from "../../../stmt"
 import * as Stmts from "../../../stmts"
 
-export function matchImport (): Array<Rule<Stmt>> {
+export function matchImport(): Array<Rule<Stmt>> {
   return [
     [
       list(["import", v("url")], v("entries")),

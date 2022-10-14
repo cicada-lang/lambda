@@ -4,7 +4,7 @@ import { Stmt } from "../../../stmt"
 import * as Stmts from "../../../stmts"
 import { matchExp } from "../../match"
 
-export function matchDisplayFreeNames (): Array<Rule<Stmt>> {
+export function matchDisplayFreeNames(): Array<Rule<Stmt>> {
   return [
     [
       ["display-free-names", v("exp")],

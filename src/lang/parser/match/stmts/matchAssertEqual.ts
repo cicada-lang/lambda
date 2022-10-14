@@ -4,7 +4,7 @@ import { Stmt } from "../../../stmt"
 import * as Stmts from "../../../stmts"
 import { matchExp } from "../../match"
 
-export function matchAssertEqual (): Array<Rule<Stmt>> {
+export function matchAssertEqual(): Array<Rule<Stmt>> {
   return [
     [
       list(["assert-equal"], v("exps")),

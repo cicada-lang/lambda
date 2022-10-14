@@ -4,7 +4,7 @@ import { Stmt } from "../../../stmt"
 import * as Stmts from "../../../stmts"
 import { matchExp } from "../../match"
 
-export function matchComments (): Array<Rule<Stmt>> {
+export function matchComments(): Array<Rule<Stmt>> {
   return [
     [
       list(["comments"], v("exps")),

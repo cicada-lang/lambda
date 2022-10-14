@@ -4,6 +4,6 @@ import { Stmt } from "../../../stmt"
 import * as Stmts from "../../../stmts"
 import { matchExp } from "../../match"
 
-export function matchEvaluate (): Array<Rule<Stmt>> {
+export function matchEvaluate(): Array<Rule<Stmt>> {
   return [[v("exp"), ({ exp }) => new Stmts.ComputeStmt(matchExp(exp))]]
 }
