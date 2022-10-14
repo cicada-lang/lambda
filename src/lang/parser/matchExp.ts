@@ -1,5 +1,4 @@
-import { match } from "@cicada-lang/sexp/lib/match"
-import { Sexp } from "@cicada-lang/sexp/lib/sexp"
+import { match, Sexp } from "@cicada-lang/sexp"
 import { Exp } from "../exp"
 import { matchAp } from "./exps/matchAp"
 import { matchFixpoint } from "./exps/matchFixpoint"

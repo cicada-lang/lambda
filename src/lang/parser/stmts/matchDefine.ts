@@ -1,5 +1,4 @@
-import { matchList, matchSymbol, Rule } from "@cicada-lang/sexp/lib/match"
-import { cons, v } from "@cicada-lang/sexp/lib/pattern-exp"
+import { cons, matchList, matchSymbol, Rule, v } from "@cicada-lang/sexp"
 import * as Exps from "../../exps"
 import { Stmt } from "../../stmt"
 import * as Stmts from "../../stmts"

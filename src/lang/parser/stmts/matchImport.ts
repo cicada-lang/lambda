@@ -1,12 +1,13 @@
 import {
+  cons,
   match,
   matchList,
   matchString,
   matchSymbol,
   Rule,
-} from "@cicada-lang/sexp/lib/match"
-import { cons, v } from "@cicada-lang/sexp/lib/pattern-exp"
-import { Sexp } from "@cicada-lang/sexp/lib/sexp"
+  Sexp,
+  v,
+} from "@cicada-lang/sexp"
 import { Stmt } from "../../stmt"
 import * as Stmts from "../../stmts"
 
