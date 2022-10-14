@@ -4,7 +4,7 @@ import fs from "fs"
 import { LangError } from "../../lang/errors"
 import { ModLoader } from "../../lang/mod"
 import { colors } from "../../utils/colors"
-import { createUrl } from "../../utils/create-url"
+import { createUrl } from "../../utils/createUrl"
 import * as Commands from "../commands"
 
 type Args = { file?: string }
