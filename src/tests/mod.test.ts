@@ -2,23 +2,13 @@ import { expect, test } from "vitest"
 import * as Exps from "../lang/exps"
 import { Mod, ModLoader } from "../lang/mod"
 
-function assertModHasFn(mod: Mod, name: string): void {
-  const value = mod.findValue(name)
-  expect(value instanceof Exps.FnValue).toBe(true)
-}
-
-function assertModHasNotDef(mod: Mod, name: string): void {
-  const value = mod.findValue(name)
-  expect(!value).toBeTruthy()
-}
-
 test("A ModLoader can load Mod from url.", async () => {
   const loader = new ModLoader()
   loader.fetcher.register("mock", (url) => "(define id (lambda (x) x))")
 
   const mod = await loader.loadAndExecute(new URL("mock:id"))
 
-  assertModHasFn(mod, "id")
+  expect(mod.findValue("id2")).toBeInstanceOf(Exps.FnValue)
 })
 
 test("A ModLoader can load markdown code.", async () => {
@@ -37,9 +27,10 @@ test("A ModLoader can load markdown code.", async () => {
 
   const mod = await loader.loadAndExecute(new URL("mock:example.md"))
 
-  assertModHasFn(mod, "zero")
-  assertModHasFn(mod, "add1")
-  assertModHasFn(mod, "iter-Nat")
+
+  expect(mod.findValue("zero")).toBeInstanceOf(Exps.FnValue)
+  expect(mod.findValue("add1")).toBeInstanceOf(Exps.FnValue)
+  expect(mod.findValue("iter-Nat")).toBeInstanceOf(Exps.FnValue)
 })
 
 test("A Mod can run a given block, will undo blocks after it.", async () => {
@@ -70,30 +61,30 @@ test("A Mod can run a given block, will undo blocks after it.", async () => {
 
   const mod = await loader.loadAndExecute(new URL("mock:example.md"))
 
-  assertModHasFn(mod, "zero")
-  assertModHasFn(mod, "add1")
-  assertModHasFn(mod, "iter-Nat")
+  expect(mod.findValue("zero")).toBeInstanceOf(Exps.FnValue)
+  expect(mod.findValue("add1")).toBeInstanceOf(Exps.FnValue)
+  expect(mod.findValue("iter-Nat")).toBeInstanceOf(Exps.FnValue)
 
-  assertModHasFn(mod, "one")
-  assertModHasFn(mod, "two")
-  assertModHasFn(mod, "three")
+  expect(mod.findValue("one")).toBeInstanceOf(Exps.FnValue)
+  expect(mod.findValue("two")).toBeInstanceOf(Exps.FnValue)
+  expect(mod.findValue("three")).toBeInstanceOf(Exps.FnValue)
 
-  assertModHasFn(mod, "four")
-  assertModHasFn(mod, "five")
-  assertModHasFn(mod, "six")
+  expect(mod.findValue("four")).toBeInstanceOf(Exps.FnValue)
+  expect(mod.findValue("five")).toBeInstanceOf(Exps.FnValue)
+  expect(mod.findValue("six")).toBeInstanceOf(Exps.FnValue)
 
   const block = mod.blocks.getOrFail(1)
   await block.run(mod, "(define one (add1 zero))")
 
-  assertModHasFn(mod, "zero")
-  assertModHasFn(mod, "add1")
-  assertModHasFn(mod, "iter-Nat")
+  expect(mod.findValue("zero")).toBeInstanceOf(Exps.FnValue)
+  expect(mod.findValue("add1")).toBeInstanceOf(Exps.FnValue)
+  expect(mod.findValue("iter-Nat")).toBeInstanceOf(Exps.FnValue)
 
-  assertModHasFn(mod, "one")
-  assertModHasNotDef(mod, "two")
-  assertModHasNotDef(mod, "three")
+  expect(mod.findValue("one")).toBeInstanceOf(Exps.FnValue)
 
-  assertModHasNotDef(mod, "four")
-  assertModHasNotDef(mod, "five")
-  assertModHasNotDef(mod, "six")
+  expect(mod.findValue("two")).toBeFalsy()
+  expect(mod.findValue("three")).toBeFalsy()
+  expect(mod.findValue("four")).toBeFalsy()
+  expect(mod.findValue("five")).toBeFalsy()
+  expect(mod.findValue("six")).toBeFalsy()
 })
