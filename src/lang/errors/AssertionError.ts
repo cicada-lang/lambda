@@ -1,4 +1,4 @@
-import { LangError } from "./lang-error"
+import { LangError } from "./LangError"
 
 export class AssertionError extends LangError {
   constructor(public message: string) {
