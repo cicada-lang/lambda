@@ -1,9 +1,9 @@
 import { matchList, matchSymbol, Rule } from "@cicada-lang/sexp/lib/match"
 import { cons, v } from "@cicada-lang/sexp/lib/pattern-exp"
-import * as Exps from "../../../exps"
-import { Stmt } from "../../../stmt"
-import * as Stmts from "../../../stmts"
-import { matchExp } from "../../match"
+import * as Exps from "../../exps"
+import { Stmt } from "../../stmt"
+import * as Stmts from "../../stmts"
+import { matchExp } from "../matchExp"
 
 export function matchDefine(): Array<Rule<Stmt>> {
   return [

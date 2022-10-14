@@ -1,6 +1,6 @@
 import { match } from "@cicada-lang/sexp/lib/match"
 import { Sexp } from "@cicada-lang/sexp/lib/sexp"
-import { Stmt } from "../../stmt"
+import { Stmt } from "../stmt"
 import { matchAssertEqual } from "./stmts/matchAssertEqual"
 import { matchAssertNotEqual } from "./stmts/matchAssertNotEqual"
 import { matchComments } from "./stmts/matchComments"

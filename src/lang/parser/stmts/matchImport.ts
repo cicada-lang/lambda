@@ -7,8 +7,8 @@ import {
 } from "@cicada-lang/sexp/lib/match"
 import { list, v } from "@cicada-lang/sexp/lib/pattern-exp"
 import { Sexp } from "@cicada-lang/sexp/lib/sexp"
-import { Stmt } from "../../../stmt"
-import * as Stmts from "../../../stmts"
+import { Stmt } from "../../stmt"
+import * as Stmts from "../../stmts"
 
 export function matchImport(): Array<Rule<Stmt>> {
   return [
