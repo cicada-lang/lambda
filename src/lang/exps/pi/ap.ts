@@ -31,7 +31,7 @@ export class Ap extends Exp {
 
 function formatAp(
   target: Exp,
-  args: Array<string>
+  args: Array<string>,
 ): { target: string; args: Array<string> } {
   if (target instanceof Ap) {
     return formatAp(target.target, [target.arg.format(), ...args])

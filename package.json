@@ -21,10 +21,6 @@
     "test": "npm run test:ts && npm run test:tests && npm run test:tests-error",
     "format": "prettier src docs --write"
   },
-  "prettier": {
-    "semi": false,
-    "trailingComma": "es5"
-  },
   "dependencies": {
     "@cicada-lang/sexp": "^0.0.24",
     "@xieyuheng/command-line": "^0.0.7",

@@ -13,7 +13,7 @@ export class FnValue extends Value {
     public mod: Mod,
     public env: Env,
     public name: string,
-    public ret: Exp
+    public ret: Exp,
   ) {
     super()
   }

@@ -14,7 +14,7 @@ export class Mod {
     options: {
       loader: ModLoader
       blocks: BlockResource
-    }
+    },
   ) {
     this.loader = options.loader
     this.blocks = options.blocks
@@ -22,7 +22,7 @@ export class Mod {
 
   async import(url: URL | string): Promise<Mod> {
     return await this.loader.loadAndExecute(
-      typeof url === "string" ? this.resolve(url) : url
+      typeof url === "string" ? this.resolve(url) : url,
     )
   }
 

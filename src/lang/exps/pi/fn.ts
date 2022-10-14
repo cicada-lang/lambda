@@ -25,7 +25,7 @@ export class Fn extends Exp {
 
 function formatFn(
   names: Array<string>,
-  ret: Exp
+  ret: Exp,
 ): { names: Array<string>; ret: string } {
   if (ret instanceof Fn) {
     return formatFn([...names, ret.name], ret.ret)

@@ -19,7 +19,7 @@ export class Define extends Stmt {
             `I find undefined name: ${name}`,
             `  defining: ${this.name}`,
             `  body: ${this.exp.format()}`,
-          ].join("\n")
+          ].join("\n"),
         )
       }
     }

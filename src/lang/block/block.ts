@@ -14,7 +14,7 @@ export class Block {
     public blocks: BlockResource,
     public id: number,
     public code: string,
-    public entries: Array<BlockEntry>
+    public entries: Array<BlockEntry>,
   ) {}
 
   get outputs(): Array<string | undefined> {

@@ -22,7 +22,7 @@ test("A ModLoader can load markdown code.", async () => {
       "(define (add1 prev) (lambda (base step) (step (prev base step))))",
       "(define (iter-Nat n base step) (n base step))",
       "```",
-    ].join("\n")
+    ].join("\n"),
   )
 
   const mod = await loader.loadAndExecute(new URL("mock:example.md"))
@@ -55,7 +55,7 @@ test("A Mod can run a given block, will undo blocks after it.", async () => {
       "(define five (add1 four))",
       "(define six (add1 five))",
       "```",
-    ].join("\n")
+    ].join("\n"),
   )
 
   const mod = await loader.loadAndExecute(new URL("mock:example.md"))

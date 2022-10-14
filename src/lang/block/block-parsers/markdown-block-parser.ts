@@ -8,7 +8,7 @@ export class MarkdownBlockParser extends BlockParser {
     const blocks = new BlockResource()
     const parser = new Parser()
     for (const { index, code } of collectBlocks(text).filter(
-      ({ info }) => info === "lambda"
+      ({ info }) => info === "lambda",
     )) {
       try {
         const stmts = parser.parseStmts(code)

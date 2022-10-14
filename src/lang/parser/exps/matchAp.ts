@@ -11,7 +11,7 @@ export function matchAp(): Array<Rule<Exp>> {
       ({ target, args }) =>
         matchList(args, matchExp).reduce(
           (result, arg) => new Exps.Ap(result, arg),
-          matchExp(target)
+          matchExp(target),
         ),
     ],
   ]

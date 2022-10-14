@@ -23,7 +23,7 @@ export class AssertNotEqual extends Stmt {
     const rightValue = right.evaluate(mod, Env.init())
     if (leftValue.equal(EqualCtx.init(), rightValue)) {
       throw new AssertionError(
-        `((fail assert-not-equal) ${left.format()} ${right.format()})`
+        `((fail assert-not-equal) ${left.format()} ${right.format()})`,
       )
     }
   }

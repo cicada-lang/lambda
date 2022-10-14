@@ -12,7 +12,7 @@ export class FixpointValue extends Value {
     public mod: Mod,
     public env: Env,
     public name: string,
-    public body: Exp
+    public body: Exp,
   ) {
     super()
   }
@@ -32,10 +32,13 @@ export class FixpointValue extends Value {
   eta(): Value {
     return new Exps.Fn(
       "x",
-      new Exps.Ap(new Exps.Var("f"), new Exps.Var("x"))
+      new Exps.Ap(new Exps.Var("f"), new Exps.Var("x")),
     ).evaluate(
       this.mod,
-      this.env.extend("f", new Exps.NotYetValue(new Exps.FixpointNeutral(this)))
+      this.env.extend(
+        "f",
+        new Exps.NotYetValue(new Exps.FixpointNeutral(this)),
+      ),
     )
   }
 

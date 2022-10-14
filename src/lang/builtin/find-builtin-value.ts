@@ -8,7 +8,7 @@ export const builtinNames = ["fix"]
 export function findBuiltinValue(
   mod: Mod,
   env: Env,
-  name: string
+  name: string,
 ): Value | undefined {
   if (name === "fix") {
     // NOTE
@@ -20,8 +20,8 @@ export function findBuiltinValue(
       "x",
       new Exps.Ap(
         new Exps.Var("f"),
-        new Exps.Ap(new Exps.Var("x"), new Exps.Var("x"))
-      )
+        new Exps.Ap(new Exps.Var("x"), new Exps.Var("x")),
+      ),
     )
 
     const Y = new Exps.Fn("f", new Exps.Ap(half, half))

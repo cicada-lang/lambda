@@ -11,7 +11,7 @@ export function matchFn(): Array<Rule<Exp>> {
       ({ names, exp }) =>
         matchList(names, matchSymbol).reduceRight(
           (fn, name) => new Exps.Fn(name, fn),
-          matchExp(exp)
+          matchExp(exp),
         ),
     ],
   ]

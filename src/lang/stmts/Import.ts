@@ -17,7 +17,7 @@ export class Import extends Stmt {
       const def = importedMod.find(name)
       if (def === undefined) {
         throw new Error(
-          `I can not import undefined name: ${name}, from path: ${this.path}`
+          `I can not import undefined name: ${name}, from path: ${this.path}`,
         )
       }
 

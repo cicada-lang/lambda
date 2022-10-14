@@ -23,7 +23,7 @@ export class RunCommand extends Command<Args, Opts> {
   constructor() {
     super()
     this.loader.fetcher.register("file", (url) =>
-      fs.promises.readFile(url.pathname, "utf8")
+      fs.promises.readFile(url.pathname, "utf8"),
     )
   }
 

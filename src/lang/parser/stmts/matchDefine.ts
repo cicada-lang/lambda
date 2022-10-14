@@ -14,11 +14,10 @@ export function matchDefine(): Array<Rule<Stmt>> {
           matchSymbol(name),
           matchList(args, matchSymbol).reduceRight(
             (fn, name) => new Exps.Fn(name, fn),
-            matchExp(exp)
-          )
+            matchExp(exp),
+          ),
         ),
     ],
-
     [
       ["define", v("name"), v("exp")],
       ({ name, exp }) => new Stmts.Define(matchSymbol(name), matchExp(exp)),

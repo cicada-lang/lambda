@@ -7,6 +7,6 @@ export function apply(target: Value, arg: Value): Value {
   }
 
   throw new LangError(
-    `I expect the target to be a function, instead of ${target.constructor.name}`
+    `I expect the target to be a function, instead of ${target.constructor.name}`,
   )
 }
