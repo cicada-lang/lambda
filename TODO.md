@@ -1,5 +1,3 @@
-# syntax
-
 improve upstream API
 
 # open v.s. closed datatype
