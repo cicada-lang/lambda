@@ -16,7 +16,6 @@ export function matchExp(sexp: Sexp): Exp {
       ["fixpoint", v("name"), v("exp")],
       ({ name, exp }) => new Exps.Fixpoint(matchSymbol(name), matchExp(exp)),
     ],
-    // NOTE The keywords must be matched before `ap` and `var`.
     [
       cons(v("target"), v("args")),
       ({ target, args }) =>
