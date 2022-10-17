@@ -26,7 +26,7 @@ Visit the [Lambda Playground](https://lambda.cicada-lang.org/playground/KGRlZmlu
 
 Install it by the following command:
 
-```
+```sh
 npm -g i @cicada-lang/lambda
 ```
 
@@ -34,14 +34,14 @@ The command line program is called `lambda`.
 
 Run a module by file:
 
-```
-lambda docs/tests/nat-church.md
+```sh
+lambda run docs/tests/nat-church.md
 ```
 
 Run a module by URL:
 
-```
-lambda https://cdn.lambda.cic.run/tests/nat-church.md
+```sh
+lambda run https://cdn.lambda.cic.run/tests/nat-church.md
 ```
 
 ## Examples
