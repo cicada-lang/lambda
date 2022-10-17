@@ -41,7 +41,7 @@ lambda docs/tests/nat-church.md
 Run a module by URL:
 
 ```
-lambda https://readonly.link/files/cicada-lang/lambda/-/docs/tests/nat-church.md
+lambda https://cdn.lambda.cic.run/tests/nat-church.md
 ```
 
 ## Examples
@@ -91,11 +91,11 @@ Please see [docs/tests](docs/tests) for more examples.
 [ [PLAYGROUND](https://lambda.cicada-lang.org/playground/KGltcG9ydCAiaHR0cHM6Ly9yZWFkb25seS5saW5rL2ZpbGVzL2NpY2FkYS1sYW5nL2xhbWJkYS8tL2RvY3MvdGVzdHMvbmF0LnNjbSIKICB6ZXJvPyBhZGQgbXVsIHN1YjEKICB6ZXJvIG9uZSB0d28gdGhyZWUgZm91cikKCihpbXBvcnQgImh0dHBzOi8vcmVhZG9ubHkubGluay9maWxlcy9jaWNhZGEtbGFuZy9sYW1iZGEvLS9kb2NzL3Rlc3RzL2Jvb2xlYW4uc2NtIgogIHRydWUgZmFsc2UgaWYpCgooZGVmaW5lIChmYWN0b3JpYWwgbikKICAoaWYgKHplcm8_IG4pCiAgICBvbmUKICAgIChtdWwgbiAoZmFjdG9yaWFsIChzdWIxIG4pKSkpKQoKKGZhY3RvcmlhbCB6ZXJvKQooZmFjdG9yaWFsIG9uZSkKKGZhY3RvcmlhbCB0d28pCihmYWN0b3JpYWwgdGhyZWUpCg) ]
 
 ```scheme
-(import "https://readonly.link/files/cicada-lang/lambda/-/docs/tests/nat-church.md"
+(import "https://cdn.lambda.cic.run/tests/nat-church.md"
   zero? add mul sub1
   zero one two three four)
 
-(import "https://readonly.link/files/cicada-lang/lambda/-/docs/tests/boolean.md"
+(import "https://cdn.lambda.cic.run/tests/boolean.md"
   true false if)
 
 (define (factorial n)
@@ -115,11 +115,11 @@ Please see [docs/tests](docs/tests) for more examples.
 | [WIKIPEDIA](https://en.wikipedia.org/wiki/Fixed-point_combinator) ]
 
 ```scheme
-(import "https://readonly.link/files/cicada-lang/lambda/-/docs/tests/nat-church.md"
+(import "https://cdn.lambda.cic.run/tests/nat-church.md"
   zero? add mul sub1
   zero one two three four)
 
-(import "https://readonly.link/files/cicada-lang/lambda/-/docs/tests/boolean.md"
+(import "https://cdn.lambda.cic.run/tests/boolean.md"
   true false if)
 
 ;; NOTE `x` is `f`'s fixpoint if `(f x) = x`
@@ -162,7 +162,7 @@ Please see [docs/tests](docs/tests) for more examples.
 (define (car pair) (pair (lambda (car cdr) car)))
 (define (cdr pair) (pair (lambda (car cdr) cdr)))
 
-(import "https://readonly.link/files/cicada-lang/lambda/-/docs/tests/boolean.md"
+(import "https://cdn.lambda.cic.run/tests/boolean.md"
   true false)
 
 (define (null f) true)
