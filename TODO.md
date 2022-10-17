@@ -1,3 +1,5 @@
+improve parser API
+
 # open v.s. closed datatype
 
 > Use closed datatype to implement `Exp` and `Value`.
