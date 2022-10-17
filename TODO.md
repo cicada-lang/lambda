@@ -1,3 +1,5 @@
+inline parser/stmts
+
 improve parser API
 
 # open v.s. closed datatype
