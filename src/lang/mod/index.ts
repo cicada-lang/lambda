@@ -1,2 +1,2 @@
-export * from "./mod"
-export * from "./mod-loader"
+export * from "./Mod"
+export * from "./ModLoader"
