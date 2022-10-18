@@ -1,1 +1,1 @@
-export * from "./find-builtin-value"
+export * from "./findBuiltinValue"

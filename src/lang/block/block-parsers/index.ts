@@ -1,2 +1,2 @@
-export * from "./markdown-block-parser"
-export * from "./whole-block-parser"
+export * from "./MarkdownBlockParser"
+export * from "./WholeBlockParser"
