@@ -1,3 +1,5 @@
+error syntax report in context
+
 # open v.s. closed datatype
 
 > Use closed datatype to implement `Exp` and `Value`.
