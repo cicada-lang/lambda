@@ -41,7 +41,7 @@ lambda run docs/tests/nat-church.md
 Run a module by URL:
 
 ```sh
-lambda run https://cdn.lambda.cic.run/tests/nat-church.md
+lambda run https://cdn.lambda.cic.run/docs/tests/nat-church.md
 ```
 
 ## Examples
@@ -90,11 +90,11 @@ Please see [docs/tests](docs/tests) for more examples.
 [ [PLAYGROUND](https://lambda.cicada-lang.org/playground/KGltcG9ydCAiaHR0cHM6Ly9jZG4ubGFtYmRhLmNpYy5ydW4vdGVzdHMvbmF0LWNodXJjaC5tZCIKICB6ZXJvPyBhZGQgbXVsIHN1YjEKICB6ZXJvIG9uZSB0d28gdGhyZWUgZm91cikKCihpbXBvcnQgImh0dHBzOi8vY2RuLmxhbWJkYS5jaWMucnVuL3Rlc3RzL2Jvb2xlYW4ubWQiCiAgdHJ1ZSBmYWxzZSBpZikKCihkZWZpbmUgKGZhY3RvcmlhbCBuKQogIChpZiAoemVybz8gbikKICAgIG9uZQogICAgKG11bCBuIChmYWN0b3JpYWwgKHN1YjEgbikpKSkpCgooZmFjdG9yaWFsIHplcm8pCihmYWN0b3JpYWwgb25lKQooZmFjdG9yaWFsIHR3bykKKGZhY3RvcmlhbCB0aHJlZSkK) ]
 
 ```scheme
-(import "https://cdn.lambda.cic.run/tests/nat-church.md"
+(import "https://cdn.lambda.cic.run/docs/tests/nat-church.md"
   zero? add mul sub1
   zero one two three four)
 
-(import "https://cdn.lambda.cic.run/tests/boolean.md"
+(import "https://cdn.lambda.cic.run/docs/tests/boolean.md"
   true false if)
 
 (define (factorial n)
@@ -114,11 +114,11 @@ Please see [docs/tests](docs/tests) for more examples.
 | [WIKIPEDIA](https://en.wikipedia.org/wiki/Fixed-point_combinator) ]
 
 ```scheme
-(import "https://cdn.lambda.cic.run/tests/nat-church.md"
+(import "https://cdn.lambda.cic.run/docs/tests/nat-church.md"
   zero? add mul sub1
   zero one two three four)
 
-(import "https://cdn.lambda.cic.run/tests/boolean.md"
+(import "https://cdn.lambda.cic.run/docs/tests/boolean.md"
   true false if)
 
 ;; NOTE `x` is `f`'s fixpoint if `(f x) = x`
@@ -161,7 +161,7 @@ Please see [docs/tests](docs/tests) for more examples.
 (define (car pair) (pair (lambda (car cdr) car)))
 (define (cdr pair) (pair (lambda (car cdr) cdr)))
 
-(import "https://cdn.lambda.cic.run/tests/boolean.md"
+(import "https://cdn.lambda.cic.run/docs/tests/boolean.md"
   true false)
 
 (define (null f) true)
