@@ -7,7 +7,7 @@
 
 An implementation of [(Untyped) Lambda Calculus](https://en.wikipedia.org/wiki/Lambda_calculus).
 
-- Use [S-expression](https://github.com/cicada-lang/sexp) as overall syntax, to expression ideas clearly. **LONG LIVE LISP!**
+- Use [S-expression](https://github.com/cicada-lang/sexp) as overall syntax, to expression ideas clearly.
 - Implement call-by-need lazy evaluation.
 - Allow recursive in top-level definitions.
   - No mutual recursion, a name must be defined before used.
