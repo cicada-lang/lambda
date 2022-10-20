@@ -1,10 +1,10 @@
-import { Fetcher } from "../../framework/fetcher"
-import { BlockLoader } from "../block"
-import * as BlockParsers from "../block/block-parsers"
-import { LangError } from "../errors"
-import { Mod } from "../mod"
+import { Fetcher } from "../framework/fetcher"
+import { BlockLoader } from "../lang/block"
+import * as BlockParsers from "../lang/block/block-parsers"
+import { LangError } from "../lang/errors"
+import { Mod } from "../lang/mod"
 
-export class ModLoader {
+export class Loader {
   cache: Map<string, Mod> = new Map()
   private importing: Set<string> = new Set()
   fetcher = new Fetcher()

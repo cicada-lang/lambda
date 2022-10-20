@@ -1,7 +1,6 @@
 import fs from "fs"
 import watcher from "node-watch"
-// import { Loader } from "../loader"
-import { ModLoader as Loader } from "../lang/mod"
+import { Loader } from "../loader"
 
 export class Runner {
   loader = new Loader()

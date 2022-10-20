@@ -1,18 +1,18 @@
+import { Loader } from "../../loader"
 import { BlockResource } from "../block"
 import { Def } from "../def"
 import { LangError } from "../errors"
-import { ModLoader } from "../mod"
 import { Value } from "../value"
 
 export class Mod {
   private defs: Map<string, Def> = new Map()
-  loader: ModLoader
+  loader: Loader
   blocks: BlockResource
 
   constructor(
     public url: URL,
     options: {
-      loader: ModLoader
+      loader: Loader
       blocks: BlockResource
     },
   ) {

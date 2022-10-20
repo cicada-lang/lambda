@@ -1,9 +1,9 @@
 import { expect, test } from "vitest"
+import { Loader } from "../../loader"
 import * as Exps from "../exps"
-import { ModLoader } from "../mod"
 
 test("A ModLoader can load Mod from url.", async () => {
-  const loader = new ModLoader()
+  const loader = new Loader()
   loader.fetcher.register("mock", (url) => "(define id (lambda (x) x))")
 
   const mod = await loader.loadAndExecute(new URL("mock:id"))
@@ -12,7 +12,7 @@ test("A ModLoader can load Mod from url.", async () => {
 })
 
 test("A ModLoader can load markdown code.", async () => {
-  const loader = new ModLoader()
+  const loader = new Loader()
   loader.fetcher.register("mock", (url) =>
     [
       "# Church Numerals",
@@ -33,7 +33,7 @@ test("A ModLoader can load markdown code.", async () => {
 })
 
 test("A Mod can run a given block, will undo blocks after it.", async () => {
-  const loader = new ModLoader()
+  const loader = new Loader()
   loader.fetcher.register("mock", (url) =>
     [
       "# Church Numerals",
