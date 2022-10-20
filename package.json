@@ -23,6 +23,7 @@
     "format": "prettier src docs --write"
   },
   "dependencies": {
+    "@cicada-lang/partech": "^0.1.22",
     "@cicada-lang/sexp": "^0.0.36",
     "@xieyuheng/command-line": "^0.0.7",
     "@xieyuheng/ty": "^0.1.17",

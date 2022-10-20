@@ -1,31 +1,21 @@
 import { Command, CommandRunner } from "@xieyuheng/command-line"
 import ty from "@xieyuheng/ty"
 import fs from "fs"
-import { LangError } from "../../lang/errors"
-import { ModLoader } from "../../lang/mod"
-import { colors } from "../../utils/colors"
-import { createUrl } from "../../utils/createUrl"
-import * as Commands from "../commands"
+import Path from "path"
+import { Runner } from "../Runner"
 
-type Args = { file?: string }
-type Opts = {}
+type Args = { file: string }
+type Opts = { watch?: boolean }
 
 export class RunCommand extends Command<Args, Opts> {
   name = "run"
 
   description = "Run a file"
 
-  args = { file: ty.optional(ty.string()) }
-  opts = {}
+  args = { file: ty.string() }
+  opts = { watch: ty.optional(ty.boolean()) }
 
-  loader = new ModLoader()
-
-  constructor() {
-    super()
-    this.loader.fetcher.register("file", (url) =>
-      fs.promises.readFile(url.pathname, "utf8"),
-    )
-  }
+  runner = new Runner()
 
   // prettier-ignore
   help(runner: CommandRunner): string {
@@ -48,25 +38,25 @@ export class RunCommand extends Command<Args, Opts> {
   }
 
   async execute(argv: Args & Opts, runner: CommandRunner): Promise<void> {
-    if (!argv.file) {
-      new Commands.CommonHelpCommand().execute(argv as any, runner)
-      return
-    }
+    const url = createURL(argv["file"])
+    const { error } = await this.runner.run(url)
+    if (error) process.exit(1)
 
-    try {
-      const mod = await this.loader.loadAndExecute(createUrl(argv.file))
-      for (const output of mod.blocks.outputs) {
-        if (output) {
-          console.log(output)
-        }
-      }
-    } catch (error) {
-      if (error instanceof LangError) {
-        console.error(colors.bold(colors.yellow(error.message)))
-        process.exit(1)
-      }
-
-      throw error
+    if (argv["watch"]) {
+      await this.runner.watch(url)
     }
   }
+}
+
+function createURL(path: string): URL {
+  if (ty.uri().isValid(path)) {
+    return new URL(path)
+  }
+
+  if (fs.existsSync(path) && fs.lstatSync(path).isFile()) {
+    const fullPath = Path.resolve(path)
+    return new URL(`file:${fullPath}`)
+  }
+
+  throw new Error(`I can not create URL from path: ${path}`)
 }

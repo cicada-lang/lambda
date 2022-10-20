@@ -5,7 +5,7 @@ import { LangError } from "../errors"
 import { Mod } from "../mod"
 
 export class ModLoader {
-  private cache: Map<string, Mod> = new Map()
+  cache: Map<string, Mod> = new Map()
   private importing: Set<string> = new Set()
   fetcher = new Fetcher()
   blockLoader = new BlockLoader()
