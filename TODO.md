@@ -1,3 +1,5 @@
+move tests/ out of docs/
+
 note about readback of recursive function
 
 Exp use type instead of class
