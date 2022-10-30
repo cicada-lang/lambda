@@ -13,20 +13,20 @@ export class Def {
     if (this.cache !== undefined) return this.cache
 
     const exp = this.buildExp()
-    this.cache = exp.evaluate(this.mod, Env.init())
+    this.cache = Exps.evaluate(this.mod, Env.init(), exp)
     return this.cache
   }
 
   private buildExp(): Exp {
     if (this.isRecursive()) {
-      return new Exps.Fixpoint(this.name, this.exp)
+      return Exps.Fixpoint(this.name, this.exp)
     }
 
     return this.exp
   }
 
   private isRecursive(): boolean {
-    const freeNames = this.exp.freeNames(new Set())
+    const freeNames = Exps.freeNames(new Set(), this.exp)
     return freeNames.has(this.name)
   }
 }

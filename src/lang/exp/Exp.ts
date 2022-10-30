@@ -1,125 +1,63 @@
-import { apply } from "../apply"
-import { findBuiltinValue } from "../builtin"
-import { Env } from "../env"
-import { LangError } from "../errors"
-import { Mod } from "../mod"
-import * as Values from "../value"
-import { Value } from "../value"
+export type Exp = Var | Fn | Ap | Fixpoint
 
-export abstract class Exp {
-  abstract freeNames(boundNames: Set<string>): Set<string>
-  abstract evaluate(mod: Mod, env: Env): Value
-  abstract format(): string
+export type Var = {
+  family: "Exp"
+  kind: "Var"
+  name: string
 }
 
-export class Var extends Exp {
-  constructor(public name: string) {
-    super()
-  }
-
-  freeNames(boundNames: Set<string>): Set<string> {
-    return boundNames.has(this.name) ? new Set() : new Set([this.name])
-  }
-
-  evaluate(mod: Mod, env: Env): Value {
-    let value = undefined
-
-    value = env.findValue(this.name)
-    if (value !== undefined) return value
-
-    value = mod.findValue(this.name)
-    if (value !== undefined) return value
-
-    value = findBuiltinValue(mod, env, this.name)
-    if (value !== undefined) return value
-
-    throw new LangError(`Unknown name: ${this.name}`)
-  }
-
-  format(): string {
-    return this.name
+export function Var(name: string): Var {
+  return {
+    family: "Exp",
+    kind: "Var",
+    name,
   }
 }
 
-export class Ap extends Exp {
-  constructor(public target: Exp, public arg: Exp) {
-    super()
-  }
+export type Fn = {
+  family: "Exp"
+  kind: "Fn"
+  name: string
+  ret: Exp
+}
 
-  freeNames(boundNames: Set<string>): Set<string> {
-    return new Set([
-      ...this.target.freeNames(boundNames),
-      ...this.arg.freeNames(boundNames),
-    ])
-  }
-
-  evaluate(mod: Mod, env: Env): Value {
-    const target = this.target.evaluate(mod, env)
-    const arg = new Values.LazyValue(mod, env, this.arg)
-    return apply(target, arg)
-  }
-
-  format(): string {
-    const { target, args } = formatAp(this.target, [this.arg.format()])
-    return `(${target} ${args.join(" ")})`
+export function Fn(name: string, ret: Exp): Fn {
+  return {
+    family: "Exp",
+    kind: "Fn",
+    name,
+    ret,
   }
 }
 
-function formatAp(
-  target: Exp,
-  args: Array<string>,
-): { target: string; args: Array<string> } {
-  if (target instanceof Ap) {
-    return formatAp(target.target, [target.arg.format(), ...args])
-  } else {
-    return { target: target.format(), args }
+export type Ap = {
+  family: "Exp"
+  kind: "Ap"
+  target: Exp
+  arg: Exp
+}
+
+export function Ap(target: Exp, arg: Exp): Ap {
+  return {
+    family: "Exp",
+    kind: "Ap",
+    target,
+    arg,
   }
 }
 
-export class Fixpoint extends Exp {
-  constructor(public name: string, public body: Exp) {
-    super()
-  }
-
-  freeNames(boundNames: Set<string>): Set<string> {
-    return this.body.freeNames(new Set([...boundNames, this.name]))
-  }
-
-  evaluate(mod: Mod, env: Env): Value {
-    return new Values.FixpointValue(mod, env, this.name, this.body)
-  }
-
-  format(): string {
-    return `(fixpoint ${this.name} ${this.body.format()})`
-  }
+export type Fixpoint = {
+  family: "Exp"
+  kind: "Fixpoint"
+  name: string
+  body: Exp
 }
 
-export class Fn extends Exp {
-  constructor(public name: string, public ret: Exp) {
-    super()
-  }
-
-  freeNames(boundNames: Set<string>): Set<string> {
-    return this.ret.freeNames(new Set([...boundNames, this.name]))
-  }
-
-  evaluate(mod: Mod, env: Env): Value {
-    return new Values.FnValue(mod, env, this.name, this.ret)
-  }
-
-  format(): string {
-    const { names, ret } = formatFn([this.name], this.ret)
-    return `(lambda (${names.join(" ")}) ${ret})`
-  }
-}
-
-function formatFn(
-  names: Array<string>,
-  ret: Exp,
-): { names: Array<string>; ret: string } {
-  if (ret instanceof Fn) {
-    return formatFn([...names, ret.name], ret.ret)
-  } else {
-    return { names, ret: ret.format() }
+export function Fixpoint(name: string, body: Exp): Fixpoint {
+  return {
+    family: "Exp",
+    kind: "Fixpoint",
+    name,
+    body,
   }
 }

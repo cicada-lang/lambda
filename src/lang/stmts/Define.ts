@@ -1,6 +1,7 @@
 import { builtinNames } from "../builtin"
 import { Def } from "../def"
 import { LangError } from "../errors"
+import * as Exps from "../exp"
 import { Exp } from "../exp"
 import { Mod } from "../mod"
 import { Stmt } from "../stmt"
@@ -11,14 +12,17 @@ export class Define extends Stmt {
   }
 
   private assertAllNamesDefined(mod: Mod): void {
-    const freeNames = this.exp.freeNames(new Set([this.name, ...builtinNames]))
+    const freeNames = Exps.freeNames(
+      new Set([this.name, ...builtinNames]),
+      this.exp,
+    )
     for (const name of freeNames) {
       if (mod.find(name) === undefined) {
         throw new LangError(
           [
             `I find undefined name: ${name}`,
             `  defining: ${this.name}`,
-            `  body: ${this.exp.format()}`,
+            `  body: ${Exps.formatExp(this.exp)}`,
           ].join("\n"),
         )
       }

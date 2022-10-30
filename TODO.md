@@ -1,4 +1,5 @@
-Exp, Neutral & Value -- use type instead of class
+Neutral -- use type instead of class
+Value -- use type instead of class
 
 `Script` -- support `.md` -- instead of using `MarkdownBlockParser`
 

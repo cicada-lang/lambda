@@ -16,17 +16,14 @@ export function findBuiltinValue(
     //  ((lambda (x) (f (x x)))
     //   (lambda (x) (f (x x)))))
 
-    const half = new Exps.Fn(
+    const half = Exps.Fn(
       "x",
-      new Exps.Ap(
-        new Exps.Var("f"),
-        new Exps.Ap(new Exps.Var("x"), new Exps.Var("x")),
-      ),
+      Exps.Ap(Exps.Var("f"), Exps.Ap(Exps.Var("x"), Exps.Var("x"))),
     )
 
-    const Y = new Exps.Fn("f", new Exps.Ap(half, half))
+    const Y = Exps.Fn("f", Exps.Ap(half, half))
 
-    return Y.evaluate(mod, env)
+    return Exps.evaluate(mod, env, Y)
   }
 
   return undefined

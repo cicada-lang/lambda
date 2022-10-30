@@ -1,3 +1,4 @@
+import * as Exps from "../exp"
 import { Exp } from "../exp"
 import { Mod } from "../mod"
 import { Stmt } from "../stmt"
@@ -8,7 +9,7 @@ export class DisplayFreeNames extends Stmt {
   }
 
   async execute(mod: Mod): Promise<void | string> {
-    const freeNames = this.exp.freeNames(new Set())
+    const freeNames = Exps.freeNames(new Set(), this.exp)
     return `(free-names ${Array.from(freeNames).join(" ")})`
   }
 

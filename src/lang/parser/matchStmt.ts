@@ -20,7 +20,7 @@ export function matchStmt(sexp: Sexp): Stmt {
         new Stmts.Define(
           matchSymbol(name),
           matchList(args, matchSymbol).reduceRight(
-            (fn, name) => new Exps.Fn(name, fn),
+            (fn, name) => Exps.Fn(name, fn),
             matchExp(exp),
           ),
         ),

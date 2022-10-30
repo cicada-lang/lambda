@@ -8,22 +8,22 @@ export function matchExp(sexp: Sexp): Exp {
       ["lambda", v("names"), v("exp")],
       ({ names, exp }) =>
         matchList(names, matchSymbol).reduceRight(
-          (fn, name) => new Exps.Fn(name, fn),
+          (fn, name) => Exps.Fn(name, fn),
           matchExp(exp),
         ),
     ],
     [
       ["fixpoint", v("name"), v("exp")],
-      ({ name, exp }) => new Exps.Fixpoint(matchSymbol(name), matchExp(exp)),
+      ({ name, exp }) => Exps.Fixpoint(matchSymbol(name), matchExp(exp)),
     ],
     [
       cons(v("target"), v("args")),
       ({ target, args }) =>
         matchList(args, matchExp).reduce(
-          (result, arg) => new Exps.Ap(result, arg),
+          (result, arg) => Exps.Ap(result, arg),
           matchExp(target),
         ),
     ],
-    [v("name"), ({ name }) => new Exps.Var(matchSymbol(name))],
+    [v("name"), ({ name }) => Exps.Var(matchSymbol(name))],
   ])
 }

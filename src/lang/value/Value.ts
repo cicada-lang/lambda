@@ -52,7 +52,7 @@ export class FnValue extends Value {
     const v = new Neutrals.VarNeutral(freshName)
     const arg = new Values.NotYetValue(v)
     const ret = apply(this, arg)
-    return new Exps.Fn(freshName, ret.readback(ctx))
+    return Exps.Fn(freshName, ret.readback(ctx))
   }
 
   equal(ctx: EqualCtx, that: Value): boolean {
@@ -64,7 +64,7 @@ export class FnValue extends Value {
   }
 
   apply(arg: Value): Value {
-    return this.ret.evaluate(this.mod, this.env.extend(this.name, arg))
+    return Exps.evaluate(this.mod, this.env.extend(this.name, arg), this.ret)
   }
 }
 
@@ -79,7 +79,7 @@ export class FixpointValue extends Value {
   }
 
   readback(ctx: ReadbackCtx): Exp {
-    return new Exps.Fixpoint(this.name, this.body)
+    return Exps.Fixpoint(this.name, this.body)
   }
 
   equal(ctx: EqualCtx, that: Value): boolean {
@@ -91,20 +91,18 @@ export class FixpointValue extends Value {
   }
 
   eta(): Value {
-    return new Exps.Fn(
-      "x",
-      new Exps.Ap(new Exps.Var("f"), new Exps.Var("x")),
-    ).evaluate(
+    return Exps.evaluate(
       this.mod,
       this.env.extend(
         "f",
         new Values.NotYetValue(new Neutrals.FixpointNeutral(this)),
       ),
+      Exps.Fn("x", Exps.Ap(Exps.Var("f"), Exps.Var("x"))),
     )
   }
 
   wrapper(): Value {
-    return new Exps.Fn(this.name, this.body).evaluate(this.mod, this.env)
+    return Exps.evaluate(this.mod, this.env, Exps.Fn(this.name, this.body))
   }
 
   apply(arg: Value): Value {
@@ -115,7 +113,7 @@ export class FixpointValue extends Value {
     if (arg instanceof Values.NotYetValue) {
       return apply(this.eta(), arg)
     } else {
-      const fix = new Exps.Var("fix").evaluate(this.mod, this.env)
+      const fix = Exps.evaluate(this.mod, this.env, Exps.Var("fix"))
       return apply(apply(fix, this.wrapper()), arg)
     }
   }
@@ -141,7 +139,7 @@ export class LazyValue extends Value {
       return this.cache
     }
 
-    const value = this.exp.evaluate(this.mod, this.env)
+    const value = Exps.evaluate(this.mod, this.env, this.exp)
     this.cache = value
     return value
   }

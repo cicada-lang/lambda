@@ -16,7 +16,7 @@ export class VarNeutral extends Neutral {
   }
 
   readback(ctx: ReadbackCtx): Exp {
-    return new Exps.Var(this.name)
+    return Exps.Var(this.name)
   }
 
   equal(ctx: EqualCtx, that: Neutral): boolean {
@@ -30,7 +30,7 @@ export class ApNeutral extends Neutral {
   }
 
   readback(ctx: ReadbackCtx): Exp {
-    return new Exps.Ap(this.target.readback(ctx), this.arg.readback(ctx))
+    return Exps.Ap(this.target.readback(ctx), this.arg.readback(ctx))
   }
 
   equal(ctx: EqualCtx, that: Neutral): boolean {
