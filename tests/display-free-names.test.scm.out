@@ -1,0 +1,1 @@
+(free-names if zero? n one mul sub1)
