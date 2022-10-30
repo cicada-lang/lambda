@@ -1,17 +1,21 @@
+import * as Values from "../value"
 import { EqualCtx, Value } from "../value"
 
 export function equal(ctx: EqualCtx, left: Value, right: Value): boolean {
-  if (left.preEqual !== undefined) {
-    return equal(ctx, prepare(left), right)
-  }
-
-  if (right.preEqual !== undefined) {
-    return equal(ctx, left, prepare(right))
-  }
+  left = prepare(left)
+  right = prepare(right)
 
   return left.equal(ctx, right)
 }
 
 function prepare(value: Value): Value {
-  return value.preEqual === undefined ? value : value.preEqual()
+  if (value instanceof Values.Fixpoint) {
+    return prepare(value.eta())
+  }
+
+  if (value instanceof Values.Lazy) {
+    return prepare(value.active())
+  }
+
+  return value
 }

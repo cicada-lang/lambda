@@ -19,7 +19,6 @@ export abstract class Value {
   abstract readback(ctx: ReadbackCtx): Exp
   abstract equal(ctx: EqualCtx, that: Value): boolean
 
-  preEqual?(): Value
   apply?(arg: Value): Value
 }
 
@@ -93,10 +92,6 @@ export class Fixpoint extends Value {
     return equal(ctx, this, that)
   }
 
-  preEqual(): Value {
-    return this.eta()
-  }
-
   eta(): Value {
     return Exps.evaluate(
       this.mod,
@@ -132,10 +127,6 @@ export class Lazy extends Value {
 
   apply(arg: Value): Value {
     return Actions.doAp(this.active(), arg)
-  }
-
-  preEqual(): Value {
-    return this.active()
   }
 
   active(): Value {

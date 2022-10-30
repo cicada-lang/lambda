@@ -1,5 +1,3 @@
-move Value.preEqual to value/equal
-
 Value -- use type instead of class
 
 remove `Mod.test.ts`
