@@ -1,6 +1,6 @@
 {
   "name": "@cicada-lang/lambda",
-  "version": "0.0.45",
+  "version": "0.0.46",
   "repository": "github:cicada-lang/lambda",
   "main": "./lib/index.js",
   "files": [
