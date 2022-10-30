@@ -1,4 +1,6 @@
+export * from "./equalNeutral"
 export * from "./ReadbackCtx"
+export * from "./readbackNeutral"
 export * from "./Value"
 
 // abstract readback(ctx: ReadbackCtx): Exp

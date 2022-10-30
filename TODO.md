@@ -1,4 +1,3 @@
-move readbackNeutral to value/
 move equal/ to value/equal
 move Value.preEqual to value/equal
 inline Value.apply to

@@ -8,7 +8,7 @@ import * as Neutrals from "../neutral"
 import { Neutral } from "../neutral"
 import { freshen } from "../utils/freshen"
 import * as Values from "../value"
-import { ReadbackCtx } from "../value"
+import { equalNeutral, ReadbackCtx, readbackNeutral } from "../value"
 
 export abstract class Value {
   abstract readback(ctx: ReadbackCtx): Exp
@@ -26,12 +26,12 @@ export class NotYetValue extends Value {
   equal(ctx: EqualCtx, that: Value): boolean {
     return (
       that instanceof NotYetValue &&
-      Neutrals.equalNeutral(ctx, this.neutral, that.neutral)
+      equalNeutral(ctx, this.neutral, that.neutral)
     )
   }
 
   readback(ctx: ReadbackCtx): Exp {
-    return Neutrals.readbackNeutral(ctx, this.neutral)
+    return readbackNeutral(ctx, this.neutral)
   }
 
   apply(arg: Value): Value {
