@@ -8,7 +8,7 @@ type Opts = { help?: boolean; version?: boolean }
 export class DefaultCommand extends Command<Args, Opts> {
   name = "default"
 
-  description = "Run an file"
+  description = "Open REPL or run an file"
 
   args = { file: ty.optional(ty.string()) }
   opts = { help: ty.optional(ty.boolean()), version: ty.optional(ty.boolean()) }
@@ -29,11 +29,12 @@ export class DefaultCommand extends Command<Args, Opts> {
     const file = argv["file"]
 
     if (file === undefined) {
-      const command = new Commands.CommonHelpCommand()
-      await command.execute({}, runner)
+      const dir = process.cwd()
+      const command = new Commands.ReplCommand()
+      await command.execute({ dir })
     } else {
       const command = new Commands.RunCommand()
-      await command.execute({ file }, runner)
+      await command.execute({ file })
     }
   }
 }
