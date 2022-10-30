@@ -1,4 +1,4 @@
-import { apply } from "../apply"
+import * as Actions from "../actions"
 import { findBuiltinValue } from "../builtin"
 import { Env } from "../env"
 import * as Errors from "../errors"
@@ -31,7 +31,7 @@ export function evaluate(mod: Mod, env: Env, exp: Exp): Value {
     case "Ap": {
       const target = evaluate(mod, env, exp.target)
       const arg = new Values.LazyValue(mod, env, exp.arg)
-      return apply(target, arg)
+      return Actions.doAp(target, arg)
     }
 
     case "Fixpoint": {

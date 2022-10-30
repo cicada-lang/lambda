@@ -1,4 +1,4 @@
-import { apply } from "../apply"
+import * as Actions from "../actions"
 import { Env } from "../env"
 import * as Exps from "../exp"
 import { Exp } from "../exp"
@@ -59,7 +59,7 @@ export class FnValue extends Value {
     ctx = ctx.useName(freshName)
     const v = Neutrals.Var(freshName)
     const arg = new Values.NotYetValue(v)
-    const ret = apply(this, arg)
+    const ret = Actions.doAp(this, arg)
     return Exps.Fn(freshName, ret.readback(ctx))
   }
 
@@ -68,7 +68,7 @@ export class FnValue extends Value {
     ctx = ctx.useName(freshName)
     const v = Neutrals.Var(freshName)
     const arg = new Values.NotYetValue(v)
-    return equal(ctx, apply(this, arg), apply(that, arg))
+    return equal(ctx, Actions.doAp(this, arg), Actions.doAp(that, arg))
   }
 
   apply(arg: Value): Value {
@@ -116,10 +116,10 @@ export class FixpointValue extends Value {
     }
 
     if (arg instanceof Values.NotYetValue) {
-      return apply(this.eta(), arg)
+      return Actions.doAp(this.eta(), arg)
     } else {
       const fix = Exps.evaluate(this.mod, this.env, Exps.Var("fix"))
-      return apply(apply(fix, this.wrapper()), arg)
+      return Actions.doAp(Actions.doAp(fix, this.wrapper()), arg)
     }
   }
 }
@@ -132,7 +132,7 @@ export class LazyValue extends Value {
   }
 
   apply(arg: Value): Value {
-    return apply(this.active(), arg)
+    return Actions.doAp(this.active(), arg)
   }
 
   preEqual(): Value {

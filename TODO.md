@@ -1,5 +1,4 @@
 move Value.preEqual to value/equal
-inline Value.apply to
 
 Value -- use type instead of class
 
