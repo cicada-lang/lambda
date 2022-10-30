@@ -1,12 +1,12 @@
-import { apply } from "../../apply"
-import { Env } from "../../env"
-import { equal, EqualCtx } from "../../equal"
-import { Exp } from "../../exp"
-import * as Exps from "../../exps"
-import { Mod } from "../../mod"
-import { ReadbackCtx } from "../../readback"
-import { freshen } from "../../utils/freshen"
-import { Value } from "../../value"
+import { apply } from "../apply"
+import { Env } from "../env"
+import { equal, EqualCtx } from "../equal"
+import * as Exps from "../exp"
+import { Exp } from "../exp"
+import { Mod } from "../mod"
+import { ReadbackCtx } from "../readback"
+import { freshen } from "../utils/freshen"
+import { Value } from "../value"
 
 export class FnValue extends Value {
   constructor(

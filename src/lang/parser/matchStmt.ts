@@ -7,7 +7,7 @@ import {
   Sexp,
   v,
 } from "@cicada-lang/sexp"
-import * as Exps from "../exps"
+import * as Exps from "../exp"
 import { Stmt } from "../stmt"
 import * as Stmts from "../stmts"
 import { matchExp } from "./matchExp"

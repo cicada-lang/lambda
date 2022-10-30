@@ -1,6 +1,6 @@
 import { cons, match, matchList, matchSymbol, Sexp, v } from "@cicada-lang/sexp"
+import * as Exps from "../exp"
 import { Exp } from "../exp"
-import * as Exps from "../exps"
 
 export function matchExp(sexp: Sexp): Exp {
   return match<Exp>(sexp, [

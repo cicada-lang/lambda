@@ -1,5 +1,5 @@
 import { Env } from "../env"
-import * as Exps from "../exps"
+import * as Exps from "../exp"
 import { Mod } from "../mod"
 import { Value } from "../value"
 

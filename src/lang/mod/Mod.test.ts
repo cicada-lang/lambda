@@ -1,6 +1,6 @@
 import { expect, test } from "vitest"
 import { Loader } from "../../loader"
-import * as Exps from "../exps"
+import * as Exps from "../exp"
 
 test("A ModLoader can load Mod from url.", async () => {
   const loader = new Loader()

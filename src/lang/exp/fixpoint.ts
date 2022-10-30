@@ -1,8 +1,8 @@
-import { Env } from "../../env"
-import { Exp } from "../../exp"
-import * as Exps from "../../exps"
-import { Mod } from "../../mod"
-import { Value } from "../../value"
+import { Env } from "../env"
+import * as Exps from "../exp"
+import { Exp } from "../exp"
+import { Mod } from "../mod"
+import { Value } from "../value"
 
 export class Fixpoint extends Exp {
   constructor(public name: string, public body: Exp) {

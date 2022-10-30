@@ -1,9 +1,9 @@
-import { findBuiltinValue } from "../../builtin"
-import { Env } from "../../env"
-import { LangError } from "../../errors"
-import { Exp } from "../../exp"
-import { Mod } from "../../mod"
-import { Value } from "../../value"
+import { findBuiltinValue } from "../builtin"
+import { Env } from "../env"
+import { LangError } from "../errors"
+import { Exp } from "../exp"
+import { Mod } from "../mod"
+import { Value } from "../value"
 
 export class Var extends Exp {
   constructor(public name: string) {
