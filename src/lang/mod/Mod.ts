@@ -1,33 +1,37 @@
 import { Loader } from "../../loader"
-import { BlockResource } from "../block"
 import { Def } from "../def"
 import { LangError } from "../errors"
+import { Stmt } from "../stmt"
 import { Value } from "../value"
+
+export interface ModOptions {
+  url: URL
+  loader: Loader
+}
 
 export class Mod {
   private defs: Map<string, Def> = new Map()
-  loader: Loader
-  blocks: BlockResource
+  outputs: Map<number, string> = new Map()
+  stmts: Array<Stmt> = []
 
-  constructor(
-    public url: URL,
-    options: {
-      loader: Loader
-      blocks: BlockResource
-    },
-  ) {
-    this.loader = options.loader
-    this.blocks = options.blocks
+  constructor(public options: ModOptions) {}
+
+  resolve(href: string): URL {
+    return new URL(href, this.options.url)
   }
 
-  async import(url: URL | string): Promise<Mod> {
-    return await this.loader.loadAndExecute(
-      typeof url === "string" ? this.resolve(url) : url,
-    )
-  }
-
-  private resolve(href: string): URL {
-    return new URL(href, this.url)
+  async executeStmts(stmts: Array<Stmt>): Promise<void> {
+    const offset = this.stmts.length
+    for (const [index, stmt] of stmts.entries()) {
+      const output = await stmt.execute(this)
+      this.stmts.push(stmt)
+      if (output) {
+        this.outputs.set(offset + index, output)
+        if (this.options.loader.options.onOutput) {
+          this.options.loader.options.onOutput(output)
+        }
+      }
+    }
   }
 
   define(name: string, def: Def): void {

@@ -1,49 +1,27 @@
 import { Fetcher } from "../framework/fetcher"
-import { BlockLoader } from "../lang/block"
-import * as BlockParsers from "../lang/block/block-parsers"
-import { LangError } from "../lang/errors"
 import { Mod } from "../lang/mod"
+import { Script } from "../script"
+import * as Scripts from "../scripts"
+
+export interface LoaderOptions {
+  onOutput?: (output: string) => void
+}
 
 export class Loader {
-  cache: Map<string, Mod> = new Map()
-  private importing: Set<string> = new Set()
+  cache: Map<string, Script> = new Map()
   fetcher = new Fetcher()
-  blockLoader = new BlockLoader()
 
-  constructor() {
-    this.blockLoader.route(
-      (url) => url.href.endsWith(".md"),
-      new BlockParsers.MarkdownBlockParser(),
-    )
-    this.blockLoader.fallback(new BlockParsers.WholeBlockParser())
-  }
+  constructor(public options: LoaderOptions) {}
 
-  async load(url: URL, options?: { code?: string }): Promise<Mod> {
+  async load(url: URL, options?: { text?: string }): Promise<Mod> {
     const found = this.cache.get(url.href)
-    if (found !== undefined) return found
+    if (found !== undefined) return found.mod
 
-    const code = options?.code ?? (await this.fetcher.fetch(url))
-    const blocks = this.blockLoader.load(url, code)
-    const mod = new Mod(url, { loader: this, blocks })
-
-    this.cache.set(url.href, mod)
-    return mod
-  }
-
-  async loadAndExecute(url: URL, options?: { code?: string }): Promise<Mod> {
-    if (this.importing.has(url.href)) {
-      throw new LangError(`I find circular import: ${url.href}`)
-    }
-
-    this.importing.add(url.href)
-
-    const mod = await this.load(url, options)
-    for (const block of mod.blocks.all()) {
-      await block.execute(mod)
-    }
-
-    this.importing.delete(url.href)
-
-    return mod
+    const text = options?.text || (await this.fetcher.fetch(url))
+    const mod = new Mod({ url, loader: this })
+    const script = Scripts.createScript(mod, text)
+    await script.run()
+    this.cache.set(url.href, script)
+    return script.mod
   }
 }

@@ -1,3 +1,4 @@
+import * as Errors from "../errors"
 import { Mod } from "../mod"
 import { Stmt } from "../stmt"
 
@@ -12,7 +13,7 @@ export class Import extends Stmt {
   }
 
   async execute(mod: Mod): Promise<void> {
-    const importedMod = await mod.import(this.path)
+    const importedMod = await this.import(mod)
     for (const { name, rename } of this.entries) {
       const def = importedMod.find(name)
       if (def === undefined) {
@@ -23,6 +24,15 @@ export class Import extends Stmt {
 
       mod.define(rename || name, def)
     }
+  }
+
+  async import(mod: Mod): Promise<Mod> {
+    const url = mod.resolve(this.path)
+    if (url.href === mod.options.url.href) {
+      throw new Errors.LangError(`I can not circular import: ${this.path}`)
+    }
+
+    return await mod.options.loader.load(url)
   }
 
   async undo(mod: Mod): Promise<void> {

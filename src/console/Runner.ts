@@ -3,7 +3,9 @@ import watcher from "node-watch"
 import { Loader } from "../loader"
 
 export class Runner {
-  loader = new Loader()
+  loader = new Loader({
+    onOutput: console.log,
+  })
 
   constructor() {
     this.loader.fetcher.register("file", (url) =>
@@ -16,18 +18,11 @@ export class Runner {
     opts?: { silent?: boolean },
   ): Promise<{ error?: unknown }> {
     try {
-      const mod = await this.loader.loadAndExecute(url)
-      if (!opts?.silent) {
-        for (const output of mod.blocks.outputs) {
-          if (output) console.log(output)
-        }
-      }
-
+      await this.loader.load(url)
       return { error: undefined }
     } catch (error) {
       if (!opts?.silent) {
-        if (error instanceof Error) console.error(error.message)
-        else console.error(error)
+        console.error(error)
       }
 
       return { error }
@@ -52,6 +47,7 @@ export class Runner {
       if (event === "update") {
         this.loader.cache.delete(url.href)
         const { error } = await this.run(url)
+
         if (error) {
           app.logger.error({ tag: event, msg: url.pathname })
         } else {
