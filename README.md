@@ -35,7 +35,7 @@ curl https://lambda.cic.run --data-binary @<file>
 Run multiline text (bash and zsh):
 
 ```bash
-curl https://lambda.cic.run --data-binary @- << END
+curl https://lambda.cic.run --data-binary @-<< END
 
 (define zero (lambda (base step) base))
 (define (add1 n) (lambda (base step) (step (n base step))))
