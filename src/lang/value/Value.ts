@@ -6,9 +6,9 @@ import { Exp } from "../exp"
 import { Mod } from "../mod"
 import * as Neutrals from "../neutral"
 import { Neutral } from "../neutral"
-import { ReadbackCtx } from "../readback"
 import { freshen } from "../utils/freshen"
 import * as Values from "../value"
+import { ReadbackCtx } from "../value"
 
 export abstract class Value {
   abstract readback(ctx: ReadbackCtx): Exp

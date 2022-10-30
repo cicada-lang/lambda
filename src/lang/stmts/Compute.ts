@@ -2,8 +2,8 @@ import { Env } from "../env"
 import * as Exps from "../exp"
 import { Exp } from "../exp"
 import { Mod } from "../mod"
-import { ReadbackCtx } from "../readback"
 import { Stmt } from "../stmt"
+import { ReadbackCtx } from "../value"
 
 export class Compute extends Stmt {
   constructor(public exp: Exp) {

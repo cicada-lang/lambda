@@ -1,4 +1,4 @@
-import { LangError } from "../errors"
+import * as Errors from "../errors"
 import { Value } from "../value"
 
 export function apply(target: Value, arg: Value): Value {
@@ -6,7 +6,7 @@ export function apply(target: Value, arg: Value): Value {
     return target.apply(arg)
   }
 
-  throw new LangError(
+  throw new Errors.LangError(
     `I expect the target to be a function, instead of ${target.constructor.name}`,
   )
 }

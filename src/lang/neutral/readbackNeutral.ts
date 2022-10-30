@@ -1,7 +1,7 @@
 import * as Exps from "../exp"
 import { Exp } from "../exp"
 import { Neutral } from "../neutral"
-import { ReadbackCtx } from "../readback"
+import { ReadbackCtx } from "../value"
 
 export function readbackNeutral(ctx: ReadbackCtx, neutral: Neutral): Exp {
   switch (neutral.kind) {
