@@ -4,8 +4,10 @@ import { equal, EqualCtx } from "../equal"
 import * as Exps from "../exp"
 import { Exp } from "../exp"
 import { Mod } from "../mod"
+import * as Neutrals from "../neutral"
 import { ReadbackCtx } from "../readback"
 import { freshen } from "../utils/freshen"
+import * as Values from "../value"
 import { Value } from "../value"
 
 export class FnValue extends Value {
@@ -21,8 +23,8 @@ export class FnValue extends Value {
   readback(ctx: ReadbackCtx): Exp {
     const freshName = freshen(ctx.usedNames, this.name)
     ctx = ctx.useName(freshName)
-    const v = new Exps.VarNeutral(freshName)
-    const arg = new Exps.NotYetValue(v)
+    const v = new Neutrals.VarNeutral(freshName)
+    const arg = new Values.NotYetValue(v)
     const ret = apply(this, arg)
     return new Exps.Fn(freshName, ret.readback(ctx))
   }
@@ -30,8 +32,8 @@ export class FnValue extends Value {
   equal(ctx: EqualCtx, that: Value): boolean {
     const freshName = freshen(ctx.usedNames, this.name)
     ctx = ctx.useName(freshName)
-    const v = new Exps.VarNeutral(freshName)
-    const arg = new Exps.NotYetValue(v)
+    const v = new Neutrals.VarNeutral(freshName)
+    const arg = new Values.NotYetValue(v)
     return equal(ctx, apply(this, arg), apply(that, arg))
   }
 

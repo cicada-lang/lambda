@@ -1,11 +1,11 @@
 import { EqualCtx } from "../equal"
-import * as Exps from "../exp"
 import { Exp } from "../exp"
 import { Neutral } from "../neutral"
 import { ReadbackCtx } from "../readback"
+import * as Values from "../value"
 
 export class FixpointNeutral extends Neutral {
-  constructor(public fixpoint: Exps.FixpointValue) {
+  constructor(public fixpoint: Values.FixpointValue) {
     super()
   }
 

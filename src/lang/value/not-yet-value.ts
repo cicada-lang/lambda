@@ -1,8 +1,9 @@
 import { EqualCtx } from "../equal"
-import * as Exps from "../exp"
 import { Exp } from "../exp"
+import * as Neutrals from "../neutral"
 import { Neutral } from "../neutral"
 import { ReadbackCtx } from "../readback"
+import * as Values from "../value"
 import { Value } from "../value"
 
 export class NotYetValue extends Value {
@@ -19,6 +20,6 @@ export class NotYetValue extends Value {
   }
 
   apply(arg: Value): Value {
-    return new Exps.NotYetValue(new Exps.ApNeutral(this.neutral, arg))
+    return new Values.NotYetValue(new Neutrals.ApNeutral(this.neutral, arg))
   }
 }

@@ -1,8 +1,8 @@
 import { apply } from "../apply"
 import { Env } from "../env"
-import * as Exps from "../exp"
 import { Exp } from "../exp"
 import { Mod } from "../mod"
+import * as Values from "../value"
 import { Value } from "../value"
 
 export class Ap extends Exp {
@@ -19,7 +19,7 @@ export class Ap extends Exp {
 
   evaluate(mod: Mod, env: Env): Value {
     const target = this.target.evaluate(mod, env)
-    const arg = new Exps.LazyValue(mod, env, this.arg)
+    const arg = new Values.LazyValue(mod, env, this.arg)
     return apply(target, arg)
   }
 

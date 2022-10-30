@@ -4,7 +4,9 @@ import { equal, EqualCtx } from "../equal"
 import * as Exps from "../exp"
 import { Exp } from "../exp"
 import { Mod } from "../mod"
+import * as Neutrals from "../neutral"
 import { ReadbackCtx } from "../readback"
+import * as Values from "../value"
 import { Value } from "../value"
 
 export class FixpointValue extends Value {
@@ -37,7 +39,7 @@ export class FixpointValue extends Value {
       this.mod,
       this.env.extend(
         "f",
-        new Exps.NotYetValue(new Exps.FixpointNeutral(this)),
+        new Values.NotYetValue(new Neutrals.FixpointNeutral(this)),
       ),
     )
   }
@@ -47,11 +49,11 @@ export class FixpointValue extends Value {
   }
 
   apply(arg: Value): Value {
-    if (arg instanceof Exps.LazyValue) {
+    if (arg instanceof Values.LazyValue) {
       return this.apply(arg.active())
     }
 
-    if (arg instanceof Exps.NotYetValue) {
+    if (arg instanceof Values.NotYetValue) {
       return apply(this.eta(), arg)
     } else {
       const fix = new Exps.Var("fix").evaluate(this.mod, this.env)
