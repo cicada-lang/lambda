@@ -35,22 +35,20 @@ The command line program is called `lambda`.
 Run a module by file:
 
 ```sh
-lambda run docs/tests/nat-church.md
+lambda run tests/nat-church.md
 ```
 
 Run a module by URL:
 
 ```sh
-lambda run https://cdn.lambda.cic.run/docs/tests/nat-church.md
+lambda run https://cdn.lambda.cic.run/tests/nat-church.md
 ```
 
 ## Examples
 
-Please see [docs/tests](docs/tests) for more examples.
+Please see [tests](tests) for more examples.
 
 ### Boolean
-
-[ [PLAYGROUND](https://lambda.cicada-lang.org/playground/KGRlZmluZSAodHJ1ZSB0IGYpIHQpCihkZWZpbmUgKGZhbHNlIHQgZikgZikKCihkZWZpbmUgKGlmIHAgdCBmKSAocCB0IGYpKQoKKGRlZmluZSAoYW5kIHggeSkgKGlmIHggeSBmYWxzZSkpCihkZWZpbmUgKG9yIHggeSkgKGlmIHggdHJ1ZSB5KSkKKGRlZmluZSAobm90IHgpIChpZiB4IGZhbHNlIHRydWUpKQoKKGFuZCB0cnVlIGZhbHNlKQoobm90IChub3QgKG9yIHRydWUgZmFsc2UpKSk) ]
 
 ```scheme
 (define (true t f) t)
@@ -68,8 +66,7 @@ Please see [docs/tests](docs/tests) for more examples.
 
 ### Natural Number by Church encoding
 
-[ [PLAYGROUND](https://lambda.cicada-lang.org/playground/KGRlZmluZSB6ZXJvIChsYW1iZGEgKGJhc2Ugc3RlcCkgYmFzZSkpCihkZWZpbmUgKGFkZDEgbikgKGxhbWJkYSAoYmFzZSBzdGVwKSAoc3RlcCAobiBiYXNlIHN0ZXApKSkpCihkZWZpbmUgKGl0ZXItTmF0IG4gYmFzZSBzdGVwKSAobiBiYXNlIHN0ZXApKQoKKGRlZmluZSBvbmUgKGFkZDEgemVybykpCihkZWZpbmUgdHdvIChhZGQxIG9uZSkpCihkZWZpbmUgdGhyZWUgKGFkZDEgdHdvKSkKCihkZWZpbmUgKGFkZCBtIG4pIChpdGVyLU5hdCBtIG4gYWRkMSkpCgooYWRkIHR3byB0d28p)
-| [WIKIPEDIA](https://en.wikipedia.org/wiki/Church_encoding) ]
+[ [WIKIPEDIA](https://en.wikipedia.org/wiki/Church_encoding) ]
 
 ```scheme
 (define zero (lambda (base step) base))
@@ -87,14 +84,12 @@ Please see [docs/tests](docs/tests) for more examples.
 
 ### Factorial
 
-[ [PLAYGROUND](https://lambda.cicada-lang.org/playground/KGltcG9ydCAiaHR0cHM6Ly9jZG4ubGFtYmRhLmNpYy5ydW4vZG9jcy90ZXN0cy9uYXQtY2h1cmNoLm1kIgogIHplcm8_IGFkZCBtdWwgc3ViMQogIHplcm8gb25lIHR3byB0aHJlZSBmb3VyKQoKKGltcG9ydCAiaHR0cHM6Ly9jZG4ubGFtYmRhLmNpYy5ydW4vZG9jcy90ZXN0cy9ib29sZWFuLm1kIgogIHRydWUgZmFsc2UgaWYpCgooZGVmaW5lIChmYWN0b3JpYWwgbikKICAoaWYgKHplcm8_IG4pCiAgICBvbmUKICAgIChtdWwgbiAoZmFjdG9yaWFsIChzdWIxIG4pKSkpKQoKKGZhY3RvcmlhbCB6ZXJvKQooZmFjdG9yaWFsIG9uZSkKKGZhY3RvcmlhbCB0d28pCihmYWN0b3JpYWwgdGhyZWUp) ]
-
 ```scheme
-(import "https://cdn.lambda.cic.run/docs/tests/nat-church.md"
+(import "https://cdn.lambda.cic.run/tests/nat-church.md"
   zero? add mul sub1
   zero one two three four)
 
-(import "https://cdn.lambda.cic.run/docs/tests/boolean.md"
+(import "https://cdn.lambda.cic.run/tests/boolean.md"
   true false if)
 
 (define (factorial n)
@@ -110,15 +105,14 @@ Please see [docs/tests](docs/tests) for more examples.
 
 ### Factorial by fixpoint combinator
 
-[ [PLAYGROUND](https://lambda.cicada-lang.org/playground/KGltcG9ydCAiaHR0cHM6Ly9jZG4ubGFtYmRhLmNpYy5ydW4vZG9jcy90ZXN0cy9uYXQtY2h1cmNoLm1kIgogIHplcm8_IGFkZCBtdWwgc3ViMQogIHplcm8gb25lIHR3byB0aHJlZSBmb3VyKQoKKGltcG9ydCAiaHR0cHM6Ly9jZG4ubGFtYmRhLmNpYy5ydW4vZG9jcy90ZXN0cy9ib29sZWFuLm1kIgogIHRydWUgZmFsc2UgaWYpCgo7OyBOT1RFIGB4YCBpcyBgZmAncyBmaXhwb2ludCBpZiBgKGYgeCkgPSB4YAo7OyAgIEluIGxhbWJkYSBjYWxjdWx1cywgd2UgaGF2ZSBmdW5jdGlvbiBgWWAKOzsgICB3aGljaCBjYW4gZmluZCBmaXhwb2ludCBvZiBhbnkgZnVuY3Rpb24uCjs7ICAgICAgKGYgKFkgZikpID0gKFkgZikKCihkZWZpbmUgKFkgZikKICAoKGxhbWJkYSAoeCkgKGYgKHggeCkpKQogICAobGFtYmRhICh4KSAoZiAoeCB4KSkpKSkKCjs7IChjbGFpbSBmYWN0b3JpYWwtd3JhcCAoLT4gKC0-IE5hdCBOYXQpICgtPiBOYXQgTmF0KSkpCjs7IChjbGFpbSAoWSBmYWN0b3JpYWwtd3JhcCkgKC0-IE5hdCBOYXQpKQo7OyAoY2xhaW0geSAoZm9yYWxsIChBKSAoLT4gKC0-IEEgQSkgQSkpKQoKKGRlZmluZSAoZmFjdG9yaWFsLXdyYXAgZmFjdG9yaWFsKQogIChsYW1iZGEgKG4pCiAgICAoaWYgKHplcm8_IG4pCiAgICAgIG9uZQogICAgICAobXVsIG4gKGZhY3RvcmlhbCAoc3ViMSBuKSkpKSkpCgooZGVmaW5lIGZhY3RvcmlhbCAoWSBmYWN0b3JpYWwtd3JhcCkpCgooZmFjdG9yaWFsIHplcm8pCihmYWN0b3JpYWwgb25lKQooZmFjdG9yaWFsIHR3bykKKGZhY3RvcmlhbCB0aHJlZSkKKGZhY3RvcmlhbCBmb3VyKQ)
-| [WIKIPEDIA](https://en.wikipedia.org/wiki/Fixed-point_combinator) ]
+[ [WIKIPEDIA](https://en.wikipedia.org/wiki/Fixed-point_combinator) ]
 
 ```scheme
-(import "https://cdn.lambda.cic.run/docs/tests/nat-church.md"
+(import "https://cdn.lambda.cic.run/tests/nat-church.md"
   zero? add mul sub1
   zero one two three four)
 
-(import "https://cdn.lambda.cic.run/docs/tests/boolean.md"
+(import "https://cdn.lambda.cic.run/tests/boolean.md"
   true false if)
 
 ;; NOTE `x` is `f`'s fixpoint if `(f x) = x`
@@ -151,8 +145,6 @@ Please see [docs/tests](docs/tests) for more examples.
 
 ### Cons the Magnificent
 
-[ [PLAYGROUND](https://lambda.cicada-lang.org/playground/OzsgTk9URSBUZW1wb3JhcmlseSBzYXZlIGBjYXJgIGFuZCBgY2RyYCB0byBhIGxhbWJkYSwKOzsgICBhcHBseSB0aGlzIGxhbWJkYSB0byBhIGZ1bmN0aW9uIC0tIGBmYCwKOzsgICB3aWxsIGFwcGx5IGBmYCB0byB0aGUgc2F2ZWQgYGNhcmAgYW5kIGBjZHJgCihkZWZpbmUgKGNvbnMgY2FyIGNkcikgKGxhbWJkYSAoZikgKGYgY2FyIGNkcikpKQooZGVmaW5lIChjYXIgcGFpcikgKHBhaXIgKGxhbWJkYSAoY2FyIGNkcikgY2FyKSkpCihkZWZpbmUgKGNkciBwYWlyKSAocGFpciAobGFtYmRhIChjYXIgY2RyKSBjZHIpKSkKCihpbXBvcnQgImh0dHBzOi8vY2RuLmxhbWJkYS5jaWMucnVuL2RvY3MvdGVzdHMvYm9vbGVhbi5tZCIKICB0cnVlIGZhbHNlKQoKKGRlZmluZSAobnVsbCBmKSB0cnVlKQooZGVmaW5lIChudWxsPyBwYWlyKSAocGFpciAobGFtYmRhIChjYXIgY2RyKSBmYWxzZSkpKQoKKG51bGw_IG51bGwp) ]
-
 ```scheme
 ;; NOTE Temporarily save `car` and `cdr` to a lambda,
 ;;   apply this lambda to a function -- `f`,
@@ -161,7 +153,7 @@ Please see [docs/tests](docs/tests) for more examples.
 (define (car pair) (pair (lambda (car cdr) car)))
 (define (cdr pair) (pair (lambda (car cdr) cdr)))
 
-(import "https://cdn.lambda.cic.run/docs/tests/boolean.md"
+(import "https://cdn.lambda.cic.run/tests/boolean.md"
   true false)
 
 (define (null f) true)
