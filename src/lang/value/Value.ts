@@ -18,8 +18,6 @@ import {
 export abstract class Value {
   abstract readback(ctx: ReadbackCtx): Exp
   abstract equal(ctx: EqualCtx, that: Value): boolean
-
-  apply?(arg: Value): Value
 }
 
 export class NotYet extends Value {
@@ -35,10 +33,6 @@ export class NotYet extends Value {
 
   readback(ctx: ReadbackCtx): Exp {
     return readbackNeutral(ctx, this.neutral)
-  }
-
-  apply(arg: Value): Value {
-    return new Values.NotYet(Neutrals.Ap(this.neutral, arg))
   }
 }
 
@@ -67,10 +61,6 @@ export class Fn extends Value {
     const v = Neutrals.Var(freshName)
     const arg = new Values.NotYet(v)
     return equal(ctx, Actions.doAp(this, arg), Actions.doAp(that, arg))
-  }
-
-  apply(arg: Value): Value {
-    return Exps.evaluate(this.mod, this.env.extend(this.name, arg), this.ret)
   }
 }
 
@@ -103,19 +93,6 @@ export class Fixpoint extends Value {
   wrapper(): Value {
     return Exps.evaluate(this.mod, this.env, Exps.Fn(this.name, this.body))
   }
-
-  apply(arg: Value): Value {
-    if (arg instanceof Values.Lazy) {
-      return this.apply(arg.active())
-    }
-
-    if (arg instanceof Values.NotYet) {
-      return Actions.doAp(this.eta(), arg)
-    } else {
-      const fix = Exps.evaluate(this.mod, this.env, Exps.Var("fix"))
-      return Actions.doAp(Actions.doAp(fix, this.wrapper()), arg)
-    }
-  }
 }
 
 export class Lazy extends Value {
@@ -123,10 +100,6 @@ export class Lazy extends Value {
 
   constructor(public mod: Mod, public env: Env, public exp: Exp) {
     super()
-  }
-
-  apply(arg: Value): Value {
-    return Actions.doAp(this.active(), arg)
   }
 
   active(): Value {
