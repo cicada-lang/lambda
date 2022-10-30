@@ -1,10 +1,10 @@
 import { Env } from "../env"
-import { EqualCtx } from "../equal"
 import { AssertionError } from "../errors"
 import * as Exps from "../exp"
 import { Exp } from "../exp"
 import { Mod } from "../mod"
 import { Stmt } from "../stmt"
+import { EqualCtx } from "../value"
 
 export class AssertEqual extends Stmt {
   constructor(public exps: Array<Exp>) {

@@ -1,5 +1,5 @@
-import { equal, EqualCtx } from "../equal"
 import { Neutral } from "../neutral"
+import { equal, EqualCtx } from "../value"
 
 export function equalNeutral(
   ctx: EqualCtx,

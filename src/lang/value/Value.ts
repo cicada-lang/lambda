@@ -1,6 +1,5 @@
 import { apply } from "../apply"
 import { Env } from "../env"
-import { equal, EqualCtx } from "../equal"
 import * as Exps from "../exp"
 import { Exp } from "../exp"
 import { Mod } from "../mod"
@@ -8,7 +7,13 @@ import * as Neutrals from "../neutral"
 import { Neutral } from "../neutral"
 import { freshen } from "../utils/freshen"
 import * as Values from "../value"
-import { equalNeutral, ReadbackCtx, readbackNeutral } from "../value"
+import {
+  equal,
+  EqualCtx,
+  equalNeutral,
+  ReadbackCtx,
+  readbackNeutral,
+} from "../value"
 
 export abstract class Value {
   abstract readback(ctx: ReadbackCtx): Exp

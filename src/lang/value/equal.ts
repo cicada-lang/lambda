@@ -1,5 +1,4 @@
-import { EqualCtx } from "../equal"
-import { Value } from "../value"
+import { EqualCtx, Value } from "../value"
 
 export function equal(ctx: EqualCtx, left: Value, right: Value): boolean {
   if (left.preEqual !== undefined) {
