@@ -11,8 +11,6 @@ import { freshen } from "../utils/freshen"
 import * as Values from "../value"
 
 export abstract class Value {
-  instanceofValue = true
-
   abstract readback(ctx: ReadbackCtx): Exp
   abstract equal(ctx: EqualCtx, that: Value): boolean
 

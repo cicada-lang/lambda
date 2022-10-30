@@ -6,8 +6,6 @@ import * as Values from "../value"
 import { Value } from "../value"
 
 export abstract class Neutral {
-  instanceofNeutral = true
-
   abstract readback(ctx: ReadbackCtx): Exp
   abstract equal(ctx: EqualCtx, that: Neutral): boolean
 }
