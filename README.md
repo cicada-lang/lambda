@@ -58,7 +58,7 @@ lambda run tests/nat-church.md --watch
 
 Run a URL:
 
-- All files in this repo, can be fetched from: [`https://cdn.mu.cic.run/<path>`](https://cdn.mu.cic.run)
+- All files in this repo, can be fetched from: [`https://cdn.lambda.cic.run/<path>`](https://cdn.lambda.cic.run)
 
 ```sh
 lambda run https://cdn.lambda.cic.run/tests/nat-church.md
