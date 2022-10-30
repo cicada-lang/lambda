@@ -22,6 +22,36 @@ An implementation of [(Untyped) Lambda Calculus](https://en.wikipedia.org/wiki/L
 
 Visit the [Lambda Playground](https://lambda.cicada-lang.org/playground/KGRlZmluZSAodHJ1ZSB0IGYpIHQpCihkZWZpbmUgKGZhbHNlIHQgZikgZikKCihkZWZpbmUgKGlmIHAgdCBmKSAocCB0IGYpKQoKKGRlZmluZSAoYW5kIHggeSkgKGlmIHggeSBmYWxzZSkpCihkZWZpbmUgKG9yIHggeSkgKGlmIHggdHJ1ZSB5KSkKKGRlZmluZSAobm90IHgpIChpZiB4IGZhbHNlIHRydWUpKQoKKGFuZCB0cnVlIGZhbHNlKQoobm90IChub3QgKG9yIHRydWUgZmFsc2UpKSk).
 
+### Use our server
+
+[**lambda-server:**](https://github.com/cicada-lang/lambda-server) A server that can run lambda code.
+
+Run a file:
+
+```bash
+curl https://lambda.cic.run --data-binary @<file>
+```
+
+Run multiline text (bash and zsh):
+
+```bash
+curl https://lambda.cic.run --data-binary @- << END
+
+(define zero (lambda (base step) base))
+(define (add1 n) (lambda (base step) (step (n base step))))
+(define (iter-Nat n base step) (n base step))
+
+(define one (add1 zero))
+(define two (add1 one))
+(define three (add1 two))
+
+(define (add m n) (iter-Nat m n add1))
+
+(add two two)
+
+END
+```
+
 ### Command line tool
 
 Install it by the following command:
