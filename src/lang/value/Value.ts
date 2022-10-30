@@ -24,15 +24,18 @@ export class NotYetValue extends Value {
   }
 
   equal(ctx: EqualCtx, that: Value): boolean {
-    return that instanceof NotYetValue && this.neutral.equal(ctx, that.neutral)
+    return (
+      that instanceof NotYetValue &&
+      Neutrals.equalNeutral(ctx, this.neutral, that.neutral)
+    )
   }
 
   readback(ctx: ReadbackCtx): Exp {
-    return this.neutral.readback(ctx)
+    return Neutrals.readbackNeutral(ctx, this.neutral)
   }
 
   apply(arg: Value): Value {
-    return new Values.NotYetValue(new Neutrals.ApNeutral(this.neutral, arg))
+    return new Values.NotYetValue(Neutrals.Ap(this.neutral, arg))
   }
 }
 
@@ -49,7 +52,7 @@ export class FnValue extends Value {
   readback(ctx: ReadbackCtx): Exp {
     const freshName = freshen(ctx.usedNames, this.name)
     ctx = ctx.useName(freshName)
-    const v = new Neutrals.VarNeutral(freshName)
+    const v = Neutrals.Var(freshName)
     const arg = new Values.NotYetValue(v)
     const ret = apply(this, arg)
     return Exps.Fn(freshName, ret.readback(ctx))
@@ -58,7 +61,7 @@ export class FnValue extends Value {
   equal(ctx: EqualCtx, that: Value): boolean {
     const freshName = freshen(ctx.usedNames, this.name)
     ctx = ctx.useName(freshName)
-    const v = new Neutrals.VarNeutral(freshName)
+    const v = Neutrals.Var(freshName)
     const arg = new Values.NotYetValue(v)
     return equal(ctx, apply(this, arg), apply(that, arg))
   }
@@ -93,10 +96,7 @@ export class FixpointValue extends Value {
   eta(): Value {
     return Exps.evaluate(
       this.mod,
-      this.env.extend(
-        "f",
-        new Values.NotYetValue(new Neutrals.FixpointNeutral(this)),
-      ),
+      this.env.extend("f", new Values.NotYetValue(Neutrals.Fixpoint(this))),
       Exps.Fn("x", Exps.Ap(Exps.Var("f"), Exps.Var("x"))),
     )
   }

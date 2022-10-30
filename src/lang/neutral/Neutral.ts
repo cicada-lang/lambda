@@ -1,60 +1,48 @@
-import { equal, EqualCtx } from "../equal"
-import * as Exps from "../exp"
-import { Exp } from "../exp"
-import { ReadbackCtx } from "../readback"
 import * as Values from "../value"
 import { Value } from "../value"
 
-export abstract class Neutral {
-  abstract readback(ctx: ReadbackCtx): Exp
-  abstract equal(ctx: EqualCtx, that: Neutral): boolean
+export type Neutral = Var | Ap | Fixpoint
+
+export type Var = {
+  family: "Neutral"
+  kind: "Var"
+  name: string
 }
 
-export class VarNeutral extends Neutral {
-  constructor(public name: string) {
-    super()
-  }
-
-  readback(ctx: ReadbackCtx): Exp {
-    return Exps.Var(this.name)
-  }
-
-  equal(ctx: EqualCtx, that: Neutral): boolean {
-    return that instanceof VarNeutral && that.name === this.name
+export function Var(name: string): Var {
+  return {
+    family: "Neutral",
+    kind: "Var",
+    name,
   }
 }
 
-export class ApNeutral extends Neutral {
-  constructor(public target: Neutral, public arg: Value) {
-    super()
-  }
+export type Ap = {
+  family: "Neutral"
+  kind: "Ap"
+  target: Neutral
+  arg: Value
+}
 
-  readback(ctx: ReadbackCtx): Exp {
-    return Exps.Ap(this.target.readback(ctx), this.arg.readback(ctx))
-  }
-
-  equal(ctx: EqualCtx, that: Neutral): boolean {
-    return (
-      that instanceof ApNeutral &&
-      this.target.equal(ctx, that.target) &&
-      equal(ctx, this.arg, that.arg)
-    )
+export function Ap(target: Neutral, arg: Value): Ap {
+  return {
+    family: "Neutral",
+    kind: "Ap",
+    target,
+    arg,
   }
 }
 
-export class FixpointNeutral extends Neutral {
-  constructor(public fixpoint: Values.FixpointValue) {
-    super()
-  }
+export type Fixpoint = {
+  family: "Neutral"
+  kind: "Fixpoint"
+  fixpoint: Values.FixpointValue
+}
 
-  readback(ctx: ReadbackCtx): Exp {
-    return this.fixpoint.readback(ctx)
-  }
-
-  equal(ctx: EqualCtx, that: Neutral): boolean {
-    return (
-      that instanceof FixpointNeutral &&
-      this.fixpoint.wrapper().equal(ctx, that.fixpoint.wrapper())
-    )
+export function Fixpoint(fixpoint: Values.FixpointValue): Fixpoint {
+  return {
+    family: "Neutral",
+    kind: "Fixpoint",
+    fixpoint,
   }
 }
