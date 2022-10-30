@@ -36,10 +36,10 @@ export function Ap(target: Neutral, arg: Value): Ap {
 export type Fixpoint = {
   family: "Neutral"
   kind: "Fixpoint"
-  fixpoint: Values.FixpointValue
+  fixpoint: Values.Fixpoint
 }
 
-export function Fixpoint(fixpoint: Values.FixpointValue): Fixpoint {
+export function Fixpoint(fixpoint: Values.Fixpoint): Fixpoint {
   return {
     family: "Neutral",
     kind: "Fixpoint",

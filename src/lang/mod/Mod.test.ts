@@ -8,7 +8,7 @@ test("A ModLoader can load Mod from url.", async () => {
 
   const mod = await loader.loadAndExecute(new URL("mock:id"))
 
-  expect(mod.findValue("id")).toBeInstanceOf(Values.FnValue)
+  expect(mod.findValue("id")).toBeInstanceOf(Values.Fn)
 })
 
 test("A ModLoader can load markdown code.", async () => {
@@ -27,9 +27,9 @@ test("A ModLoader can load markdown code.", async () => {
 
   const mod = await loader.loadAndExecute(new URL("mock:example.md"))
 
-  expect(mod.findValue("zero")).toBeInstanceOf(Values.FnValue)
-  expect(mod.findValue("add1")).toBeInstanceOf(Values.FnValue)
-  expect(mod.findValue("iter-Nat")).toBeInstanceOf(Values.FnValue)
+  expect(mod.findValue("zero")).toBeInstanceOf(Values.Fn)
+  expect(mod.findValue("add1")).toBeInstanceOf(Values.Fn)
+  expect(mod.findValue("iter-Nat")).toBeInstanceOf(Values.Fn)
 })
 
 test("A Mod can run a given block, will undo blocks after it.", async () => {
@@ -60,26 +60,26 @@ test("A Mod can run a given block, will undo blocks after it.", async () => {
 
   const mod = await loader.loadAndExecute(new URL("mock:example.md"))
 
-  expect(mod.findValue("zero")).toBeInstanceOf(Values.FnValue)
-  expect(mod.findValue("add1")).toBeInstanceOf(Values.FnValue)
-  expect(mod.findValue("iter-Nat")).toBeInstanceOf(Values.FnValue)
+  expect(mod.findValue("zero")).toBeInstanceOf(Values.Fn)
+  expect(mod.findValue("add1")).toBeInstanceOf(Values.Fn)
+  expect(mod.findValue("iter-Nat")).toBeInstanceOf(Values.Fn)
 
-  expect(mod.findValue("one")).toBeInstanceOf(Values.FnValue)
-  expect(mod.findValue("two")).toBeInstanceOf(Values.FnValue)
-  expect(mod.findValue("three")).toBeInstanceOf(Values.FnValue)
+  expect(mod.findValue("one")).toBeInstanceOf(Values.Fn)
+  expect(mod.findValue("two")).toBeInstanceOf(Values.Fn)
+  expect(mod.findValue("three")).toBeInstanceOf(Values.Fn)
 
-  expect(mod.findValue("four")).toBeInstanceOf(Values.FnValue)
-  expect(mod.findValue("five")).toBeInstanceOf(Values.FnValue)
-  expect(mod.findValue("six")).toBeInstanceOf(Values.FnValue)
+  expect(mod.findValue("four")).toBeInstanceOf(Values.Fn)
+  expect(mod.findValue("five")).toBeInstanceOf(Values.Fn)
+  expect(mod.findValue("six")).toBeInstanceOf(Values.Fn)
 
   const block = mod.blocks.getOrFail(1)
   await block.run(mod, "(define one (add1 zero))")
 
-  expect(mod.findValue("zero")).toBeInstanceOf(Values.FnValue)
-  expect(mod.findValue("add1")).toBeInstanceOf(Values.FnValue)
-  expect(mod.findValue("iter-Nat")).toBeInstanceOf(Values.FnValue)
+  expect(mod.findValue("zero")).toBeInstanceOf(Values.Fn)
+  expect(mod.findValue("add1")).toBeInstanceOf(Values.Fn)
+  expect(mod.findValue("iter-Nat")).toBeInstanceOf(Values.Fn)
 
-  expect(mod.findValue("one")).toBeInstanceOf(Values.FnValue)
+  expect(mod.findValue("one")).toBeInstanceOf(Values.Fn)
 
   expect(mod.findValue("two")).toBeFalsy()
   expect(mod.findValue("three")).toBeFalsy()

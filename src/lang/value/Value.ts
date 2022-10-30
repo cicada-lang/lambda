@@ -23,15 +23,14 @@ export abstract class Value {
   apply?(arg: Value): Value
 }
 
-export class NotYetValue extends Value {
+export class NotYet extends Value {
   constructor(public neutral: Neutral) {
     super()
   }
 
   equal(ctx: EqualCtx, that: Value): boolean {
     return (
-      that instanceof NotYetValue &&
-      equalNeutral(ctx, this.neutral, that.neutral)
+      that instanceof NotYet && equalNeutral(ctx, this.neutral, that.neutral)
     )
   }
 
@@ -40,11 +39,11 @@ export class NotYetValue extends Value {
   }
 
   apply(arg: Value): Value {
-    return new Values.NotYetValue(Neutrals.Ap(this.neutral, arg))
+    return new Values.NotYet(Neutrals.Ap(this.neutral, arg))
   }
 }
 
-export class FnValue extends Value {
+export class Fn extends Value {
   constructor(
     public mod: Mod,
     public env: Env,
@@ -58,7 +57,7 @@ export class FnValue extends Value {
     const freshName = freshen(ctx.usedNames, this.name)
     ctx = ctx.useName(freshName)
     const v = Neutrals.Var(freshName)
-    const arg = new Values.NotYetValue(v)
+    const arg = new Values.NotYet(v)
     const ret = Actions.doAp(this, arg)
     return Exps.Fn(freshName, ret.readback(ctx))
   }
@@ -67,7 +66,7 @@ export class FnValue extends Value {
     const freshName = freshen(ctx.usedNames, this.name)
     ctx = ctx.useName(freshName)
     const v = Neutrals.Var(freshName)
-    const arg = new Values.NotYetValue(v)
+    const arg = new Values.NotYet(v)
     return equal(ctx, Actions.doAp(this, arg), Actions.doAp(that, arg))
   }
 
@@ -76,7 +75,7 @@ export class FnValue extends Value {
   }
 }
 
-export class FixpointValue extends Value {
+export class Fixpoint extends Value {
   constructor(
     public mod: Mod,
     public env: Env,
@@ -101,7 +100,7 @@ export class FixpointValue extends Value {
   eta(): Value {
     return Exps.evaluate(
       this.mod,
-      this.env.extend("f", new Values.NotYetValue(Neutrals.Fixpoint(this))),
+      this.env.extend("f", new Values.NotYet(Neutrals.Fixpoint(this))),
       Exps.Fn("x", Exps.Ap(Exps.Var("f"), Exps.Var("x"))),
     )
   }
@@ -111,11 +110,11 @@ export class FixpointValue extends Value {
   }
 
   apply(arg: Value): Value {
-    if (arg instanceof Values.LazyValue) {
+    if (arg instanceof Values.Lazy) {
       return this.apply(arg.active())
     }
 
-    if (arg instanceof Values.NotYetValue) {
+    if (arg instanceof Values.NotYet) {
       return Actions.doAp(this.eta(), arg)
     } else {
       const fix = Exps.evaluate(this.mod, this.env, Exps.Var("fix"))
@@ -124,7 +123,7 @@ export class FixpointValue extends Value {
   }
 }
 
-export class LazyValue extends Value {
+export class Lazy extends Value {
   cache?: Value
 
   constructor(public mod: Mod, public env: Env, public exp: Exp) {
