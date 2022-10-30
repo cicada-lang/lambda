@@ -35,13 +35,13 @@ The command line program is called `lambda`.
 open a REPL:
 
 ```sh
-mu repl
+lambda repl
 ```
 
 or just:
 
 ```sh
-mu
+lambda
 ```
 
 Run a file:
