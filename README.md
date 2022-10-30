@@ -27,18 +27,38 @@ Visit the [Lambda Playground](https://lambda.cicada-lang.org/playground/KGRlZmlu
 Install it by the following command:
 
 ```sh
-npm -g i @cicada-lang/lambda
+sudo npm install -g @cicada-lang/lambda
 ```
 
 The command line program is called `lambda`.
 
-Run a module by file:
+open a REPL:
+
+```sh
+mu repl
+```
+
+or just:
+
+```sh
+mu
+```
+
+Run a file:
 
 ```sh
 lambda run tests/nat-church.md
 ```
 
-Run a module by URL:
+Run a file and watch file change:
+
+```sh
+lambda run tests/nat-church.md --watch
+```
+
+Run a URL:
+
+- All files in this repo, can be fetched from: [`https://cdn.mu.cic.run/<path>`](https://cdn.mu.cic.run)
 
 ```sh
 lambda run https://cdn.lambda.cic.run/tests/nat-church.md
