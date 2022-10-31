@@ -23,11 +23,11 @@ export function doAp(target: Value, arg: Value): Value {
       }
 
       if (arg.kind === "NotYet") {
-        return doAp(Values.eta(target), arg)
+        return doAp(Values.etaFixpoint(target), arg)
       }
 
       const fix = Exps.evaluate(target.mod, target.env, Exps.Var("fix"))
-      return doAp(doAp(fix, Values.wrapper(target)), arg)
+      return doAp(doAp(fix, Values.wrapFixpoint(target)), arg)
     }
 
     case "NotYet": {

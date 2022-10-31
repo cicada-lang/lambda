@@ -15,8 +15,7 @@ export function readback(ctx: ReadbackCtx, value: Value): Exp {
     case "Fn": {
       const freshName = freshen(ctx.usedNames, value.name)
       ctx = ctx.useName(freshName)
-      const v = Neutrals.Var(freshName)
-      const arg = Values.NotYet(v)
+      const arg = Values.NotYet(Neutrals.Var(freshName))
       const ret = Actions.doAp(value, arg)
       return Exps.Fn(freshName, Values.readback(ctx, ret))
     }
@@ -29,16 +28,4 @@ export function readback(ctx: ReadbackCtx, value: Value): Exp {
       return Values.readback(ctx, Values.activeLazy(value))
     }
   }
-}
-
-export function eta(value: Values.Fixpoint): Value {
-  return Exps.evaluate(
-    value.mod,
-    value.env.extend("f", Values.NotYet(Neutrals.Fixpoint(value))),
-    Exps.Fn("x", Exps.Ap(Exps.Var("f"), Exps.Var("x"))),
-  )
-}
-
-export function wrapper(value: Values.Fixpoint): Value {
-  return Exps.evaluate(value.mod, value.env, Exps.Fn(value.name, value.body))
 }

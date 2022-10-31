@@ -1,5 +1,4 @@
 import * as Actions from "../actions"
-import * as Exps from "../exp"
 import * as Neutrals from "../neutral"
 import { freshen } from "../utils/freshen"
 import * as Values from "../value"
@@ -30,29 +29,19 @@ export function equal(ctx: EqualCtx, left: Value, right: Value): boolean {
     }
 
     case "Lazy": {
-      return equal(ctx, activeLazy(left), right)
+      return equal(ctx, Values.activeLazy(left), right)
     }
   }
 }
 
 function prepare(value: Value): Value {
   if (value.kind === "Fixpoint") {
-    return prepare(Values.eta(value))
+    return prepare(Values.etaFixpoint(value))
   }
 
   if (value.kind === "Lazy") {
-    return prepare(activeLazy(value))
+    return prepare(Values.activeLazy(value))
   }
 
-  return value
-}
-
-export function activeLazy(lazy: Values.Lazy): Value {
-  if (lazy.cache !== undefined) {
-    return lazy.cache
-  }
-
-  const value = Exps.evaluate(lazy.mod, lazy.env, lazy.exp)
-  lazy.cache = value
   return value
 }
