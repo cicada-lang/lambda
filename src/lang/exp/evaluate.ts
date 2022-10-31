@@ -25,17 +25,17 @@ export function evaluate(mod: Mod, env: Env, exp: Exp): Value {
     }
 
     case "Fn": {
-      return new Values.Fn(mod, env, exp.name, exp.ret)
+      return Values.Fn(mod, env, exp.name, exp.ret)
     }
 
     case "Ap": {
       const target = evaluate(mod, env, exp.target)
-      const arg = new Values.Lazy(mod, env, exp.arg)
+      const arg = Values.Lazy(mod, env, exp.arg)
       return Actions.doAp(target, arg)
     }
 
     case "Fixpoint": {
-      return new Values.Fixpoint(mod, env, exp.name, exp.body)
+      return Values.Fixpoint(mod, env, exp.name, exp.body)
     }
   }
 }

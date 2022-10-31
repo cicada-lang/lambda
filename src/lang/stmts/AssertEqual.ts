@@ -4,6 +4,7 @@ import * as Exps from "../exp"
 import { Exp } from "../exp"
 import { Mod } from "../mod"
 import { Stmt } from "../stmt"
+import * as Values from "../value"
 import { EqualCtx } from "../value"
 
 export class AssertEqual extends Stmt {
@@ -22,7 +23,7 @@ export class AssertEqual extends Stmt {
   private assertEqual(mod: Mod, left: Exp, right: Exp): void {
     const leftValue = Exps.evaluate(mod, Env.init(), left)
     const rightValue = Exps.evaluate(mod, Env.init(), right)
-    if (!leftValue.equal(EqualCtx.init(), rightValue)) {
+    if (!Values.equal(EqualCtx.init(), leftValue, rightValue)) {
       throw new AssertionError(
         `((fail assert-equal) ${Exps.formatExp(left)} ${Exps.formatExp(
           right,

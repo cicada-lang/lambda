@@ -1,6 +1,7 @@
 import * as Exps from "../exp"
 import { Exp } from "../exp"
 import { Neutral } from "../neutral"
+import * as Values from "../value"
 import { ReadbackCtx } from "../value"
 
 export function readbackNeutral(ctx: ReadbackCtx, neutral: Neutral): Exp {
@@ -12,12 +13,12 @@ export function readbackNeutral(ctx: ReadbackCtx, neutral: Neutral): Exp {
     case "Ap": {
       return Exps.Ap(
         readbackNeutral(ctx, neutral.target),
-        neutral.arg.readback(ctx),
+        Values.readback(ctx, neutral.arg),
       )
     }
 
     case "Fixpoint": {
-      return neutral.fixpoint.readback(ctx)
+      return Values.readback(ctx, neutral.fixpoint)
     }
   }
 }

@@ -1,4 +1,5 @@
 import { Neutral } from "../neutral"
+import * as Values from "../value"
 import { equal, EqualCtx } from "../value"
 
 export function equalNeutral(
@@ -22,7 +23,11 @@ export function equalNeutral(
     case "Fixpoint": {
       return (
         right.kind === "Fixpoint" &&
-        left.fixpoint.wrapper().equal(ctx, right.fixpoint.wrapper())
+        Values.equal(
+          ctx,
+          Values.wrapper(left.fixpoint),
+          Values.wrapper(right.fixpoint),
+        )
       )
     }
   }

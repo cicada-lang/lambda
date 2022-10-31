@@ -3,6 +3,7 @@ import * as Exps from "../exp"
 import { Exp } from "../exp"
 import { Mod } from "../mod"
 import { Stmt } from "../stmt"
+import * as Values from "../value"
 import { ReadbackCtx } from "../value"
 
 export class Compute extends Stmt {
@@ -12,7 +13,7 @@ export class Compute extends Stmt {
 
   async execute(mod: Mod): Promise<void | string> {
     const value = Exps.evaluate(mod, Env.init(), this.exp)
-    const exp = value.readback(ReadbackCtx.init())
+    const exp = Values.readback(ReadbackCtx.init(), value)
     return Exps.formatExp(exp)
   }
 
