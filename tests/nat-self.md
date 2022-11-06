@@ -7,12 +7,12 @@ because we want to infer application of `ind-Nat`.
 
 ```lambda pseudocode
 (claim ind-Nat
-  (Pi ((target Nat)
-       (motive (-> Nat Type))
-       (base (motive zero))
-       (step (Pi ((prev Nat))
+  (Pi ([target Nat]
+       [motive (-> Nat Type)]
+       [base (motive zero)]
+       [step (Pi ([prev Nat])
                (-> (motive prev)
-                   (motive (add1 prev))))))
+                   (motive (add1 prev))))])
     (motive target)))
 
 (define (ind-Nat target motive base step) (target motive base step))
@@ -24,11 +24,11 @@ let's try to solve `zero` from this equation.
 
 ```lambda pseudocode
 (claim (ind-Nat zero)
-  (Pi ((motive (-> Nat Type))
-       (base (motive zero))
-       (step (Pi ((prev Nat))
+  (Pi ([motive (-> Nat Type)]
+       [base (motive zero)]
+       [step (Pi ([prev Nat])
                (-> (motive prev)
-                   (motive (add1 prev))))))
+                   (motive (add1 prev))))])
     (motive zero)))
 
 (assert-equal
@@ -39,11 +39,11 @@ let's try to solve `zero` from this equation.
 (define zero (lambda (motive base step) base))
 
 (claim zero
-  (Pi ((motive (-> Nat Type))
-       (base (motive zero))
-       (step (Pi ((prev Nat))
+  (Pi ([motive (-> Nat Type)]
+       [base (motive zero)]
+       [step (Pi ([prev Nat])
                (-> (motive prev)
-                   (motive (add1 prev))))))
+                   (motive (add1 prev))))])
     (motive zero)))
 ```
 
@@ -52,11 +52,11 @@ thus we have:
 
 ```lambda pseudocode
 (define Nat
-  (Pi ((motive (-> Nat Type))
-       (base (motive zero))
-       (step (Pi ((prev Nat))
+  (Pi ([motive (-> Nat Type)]
+       [base (motive zero)]
+       [step (Pi ([prev Nat])
                (-> (motive prev)
-                   (motive (add1 prev))))))
+                   (motive (add1 prev))))])
     (motive target)))
 ```
 
@@ -69,12 +69,12 @@ But target is a free variable.
 
 (claim add1
   (-> Nat Nat)
-  (Pi ((prev Nat)
-       (motive (-> Nat Type))
-       (base (motive zero))
-       (step (Pi ((prev Nat))
+  (Pi ([prev Nat]
+       [motive (-> Nat Type)]
+       [base (motive zero)]
+       [step (Pi ([prev Nat])
                (-> (motive prev)
-                   (motive (add1 prev))))))
+                   (motive (add1 prev))))])
     (motive (add1 prev))))
 ```
 
@@ -84,39 +84,62 @@ Here comes self types.
 ```lambda pseudocode
 (define Nat
   (Self (target)
-    (Pi ((motive (-> Nat Type))
-         (base (motive zero))
-         (step (Pi ((prev Nat))
+    (Pi ([motive (-> Nat Type)]
+         [base (motive zero)]
+         [step (Pi ([prev Nat])
                  (-> (motive prev)
-                     (motive (add1 prev))))))
+                     (motive (add1 prev))))])
       (motive target))))
 ```
 
 The following type checking must pass
 
 ```lambda pseudocode
-(check zero
-  (Self (target)
-    (Pi ((motive (-> Nat Type))
-         (base (motive zero))
-         (step (Pi ((prev Nat))
-                 (-> (motive prev)
-                     (motive (add1 prev))))))
-      (motive target))))
+(claim zero Nat)
+(define zero (lambda (motive base step) base))
 
-(check add1
-  (-> (Self (target)
-        (Pi ((motive (-> Nat Type))
-             (base (motive zero))
-             (step (Pi ((prev Nat))
-                     (-> (motive prev)
-                         (motive (add1 prev))))))
-          (motive target)))
-      (Self (target)
-        (Pi ((motive (-> Nat Type))
-             (base (motive zero))
-             (step (Pi ((prev Nat))
-                     (-> (motive prev)
-                         (motive (add1 prev))))))
-          (motive target)))))
+(type-checking-chart
+ (check () zero Nat)
+ (check () zero
+  (Self (target)
+    (Pi ([motive (-> Nat Type)]
+         [base (motive zero)]
+         [step (Pi ([prev Nat])
+                 (-> (motive prev)
+                     (motive (add1 prev))))])
+      (motive target))))
+ (check ()
+   (lambda (motive base step) base)
+   (Self (target)
+     (Pi ([motive (-> Nat Type)]
+          [base (motive zero)]
+          [step (Pi ([prev Nat])
+                  (-> (motive prev)
+                      (motive (add1 prev))))])
+       (motive target))))
+ (check ([target (lambda (motive base step) base)])
+   (lambda (motive base step) base)
+   (Pi ([motive (-> Nat Type)]
+        [base (motive zero)]
+        [step (Pi ([prev Nat])
+                (-> (motive prev)
+                    (motive (add1 prev))))])
+     (motive target)))
+ (check ([target (lambda (motive base step) base)]
+         [motive (-> Nat Type)]
+         [base (motive zero)]
+         [step (Pi ([prev Nat])
+                 (-> (motive prev)
+                     (motive (add1 prev))))])
+   base
+   (Pi (motive (lambda (motive base step) base))))
+  TODO)
+
+(claim add1 (-> Nat Nat))
+(define add1
+  (lambda (prev)
+    (lambda (motive base step)
+      (step prev (prev motive base step)))))
+
+TODO
 ```
