@@ -1,7 +1,7 @@
 import { Env } from "../env"
-import { Exp } from "../exp"
+import type { Exp } from "../exp"
 import { Mod } from "../mod"
-import { Neutral } from "../neutral"
+import type { Neutral } from "../neutral"
 
 export type Value = NotYet | Fn | Fixpoint | Lazy
 

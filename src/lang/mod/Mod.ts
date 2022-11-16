@@ -2,7 +2,7 @@ import { Loader } from "../../loader"
 import { Def } from "../def"
 import { LangError } from "../errors"
 import { Stmt } from "../stmt"
-import { Value } from "../value"
+import type { Value } from "../value"
 
 export interface ModOptions {
   url: URL

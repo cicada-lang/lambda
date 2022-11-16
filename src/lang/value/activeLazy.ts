@@ -1,6 +1,6 @@
 import * as Exps from "../exp"
+import type { Value } from "../value"
 import * as Values from "../value"
-import { Value } from "../value"
 
 export function activeLazy(lazy: Values.Lazy): Value {
   if (lazy.cache !== undefined) {

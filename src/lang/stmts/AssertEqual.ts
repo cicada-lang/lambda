@@ -1,7 +1,7 @@
 import { Env } from "../env"
 import { AssertionError } from "../errors"
+import type { Exp } from "../exp"
 import * as Exps from "../exp"
-import { Exp } from "../exp"
 import { Mod } from "../mod"
 import { Stmt } from "../stmt"
 import * as Values from "../value"

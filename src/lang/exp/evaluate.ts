@@ -2,10 +2,10 @@ import * as Actions from "../actions"
 import { findBuiltinValue } from "../builtin"
 import { Env } from "../env"
 import * as Errors from "../errors"
-import { Exp } from "../exp"
+import type { Exp } from "../exp"
 import { Mod } from "../mod"
+import type { Value } from "../value"
 import * as Values from "../value"
-import { Value } from "../value"
 
 export function evaluate(mod: Mod, env: Env, exp: Exp): Value {
   switch (exp.kind) {

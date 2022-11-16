@@ -1,4 +1,4 @@
-import { Neutral } from "../neutral"
+import type { Neutral } from "../neutral"
 import * as Values from "../value"
 import { equal, EqualCtx } from "../value"
 

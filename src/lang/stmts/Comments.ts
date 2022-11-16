@@ -1,4 +1,4 @@
-import { Exp } from "../exp"
+import type { Exp } from "../exp"
 import { Mod } from "../mod"
 import { Stmt } from "../stmt"
 

@@ -1,8 +1,8 @@
 import { Env } from "../env"
+import type { Exp } from "../exp"
 import * as Exps from "../exp"
-import { Exp } from "../exp"
 import { Mod } from "../mod"
-import { Value } from "../value"
+import type { Value } from "../value"
 
 export class Def {
   private cache?: Value
