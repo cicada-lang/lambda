@@ -1,5 +1,7 @@
 rename `parse/` to `syntax/`
 
+tsconfig -- "importsNotUsedAsValues": "error"
+
 top level `evaluate/`
 top level `check/`
 top level `infer/`
