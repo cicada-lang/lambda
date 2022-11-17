@@ -1,3 +1,5 @@
+rename `parse/` to `syntax/`
+
 top level `evaluate/`
 top level `check/`
 top level `infer/`
