@@ -1,5 +1,6 @@
 import { Env } from "../env"
 import { AssertionError } from "../errors"
+import { evaluate } from "../evaluate"
 import type { Exp } from "../exp"
 import * as Exps from "../exp"
 import type { Mod } from "../mod"
@@ -21,8 +22,8 @@ export class AssertNotEqual extends Stmt {
   async undo(mod: Mod): Promise<void> {}
 
   private assertNotEqual(mod: Mod, left: Exp, right: Exp): void {
-    const leftValue = Exps.evaluate(mod, Env.init(), left)
-    const rightValue = Exps.evaluate(mod, Env.init(), right)
+    const leftValue = evaluate(mod, Env.init(), left)
+    const rightValue = evaluate(mod, Env.init(), right)
     if (Values.equal(EqualCtx.init(), leftValue, rightValue)) {
       throw new AssertionError(
         `((fail assert-not-equal) ${Exps.formatExp(left)} ${Exps.formatExp(

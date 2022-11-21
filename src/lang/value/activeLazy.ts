@@ -1,4 +1,4 @@
-import * as Exps from "../exp"
+import { evaluate } from "../evaluate"
 import type * as Values from "../value"
 import type { Value } from "../value"
 
@@ -7,7 +7,7 @@ export function activeLazy(lazy: Values.Lazy): Value {
     return lazy.cache
   }
 
-  const value = Exps.evaluate(lazy.mod, lazy.env, lazy.exp)
+  const value = evaluate(lazy.mod, lazy.env, lazy.exp)
   lazy.cache = value
   return value
 }

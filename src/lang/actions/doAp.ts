@@ -1,3 +1,4 @@
+import { evaluate } from "../evaluate"
 import * as Exps from "../exp"
 import * as Neutrals from "../neutral"
 import type { Value } from "../value"
@@ -6,7 +7,7 @@ import * as Values from "../value"
 export function doAp(target: Value, arg: Value): Value {
   switch (target["@kind"]) {
     case "Fn": {
-      return Exps.evaluate(
+      return evaluate(
         target.mod,
         target.env.extend(target.name, arg),
         target.ret,
@@ -26,7 +27,7 @@ export function doAp(target: Value, arg: Value): Value {
         return doAp(Values.etaFixpoint(target), arg)
       }
 
-      const fix = Exps.evaluate(target.mod, target.env, Exps.Var("fix"))
+      const fix = evaluate(target.mod, target.env, Exps.Var("fix"))
       return doAp(doAp(fix, Values.wrapFixpoint(target)), arg)
     }
 

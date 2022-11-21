@@ -1,11 +1,10 @@
+top level directory -- `readback/`
+
 fix import local file from repl
 
-top level `evaluate/`
-top level `check/`
-top level `infer/`
-top level `readback/`
-
 fix command line watch
+
+- Mod need to trace the imported
 
 note about readback of recursive function
 

@@ -1,4 +1,5 @@
 import type { Env } from "../env"
+import { evaluate } from "../evaluate"
 import * as Exps from "../exp"
 import type { Mod } from "../mod"
 import type { Value } from "../value"
@@ -23,7 +24,7 @@ export function findBuiltinValue(
 
     const Y = Exps.Fn("f", Exps.Ap(half, half))
 
-    return Exps.evaluate(mod, env, Y)
+    return evaluate(mod, env, Y)
   }
 
   return undefined

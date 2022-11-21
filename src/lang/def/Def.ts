@@ -1,4 +1,5 @@
 import { Env } from "../env"
+import { evaluate } from "../evaluate"
 import type { Exp } from "../exp"
 import * as Exps from "../exp"
 import type { Mod } from "../mod"
@@ -13,7 +14,7 @@ export class Def {
     if (this.cache !== undefined) return this.cache
 
     const exp = this.buildExp()
-    this.cache = Exps.evaluate(this.mod, Env.init(), exp)
+    this.cache = evaluate(this.mod, Env.init(), exp)
     return this.cache
   }
 

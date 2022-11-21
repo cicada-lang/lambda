@@ -1,4 +1,5 @@
 import { Env } from "../env"
+import { evaluate } from "../evaluate"
 import type { Exp } from "../exp"
 import * as Exps from "../exp"
 import type { Mod } from "../mod"
@@ -12,7 +13,7 @@ export class Compute extends Stmt {
   }
 
   async execute(mod: Mod): Promise<void | string> {
-    const value = Exps.evaluate(mod, Env.init(), this.exp)
+    const value = evaluate(mod, Env.init(), this.exp)
     const exp = Values.readback(ReadbackCtx.init(), value)
     return Exps.formatExp(exp)
   }
