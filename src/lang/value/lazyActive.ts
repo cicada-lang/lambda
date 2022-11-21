@@ -2,7 +2,7 @@ import { evaluate } from "../evaluate"
 import type * as Values from "../value"
 import type { Value } from "../value"
 
-export function activeLazy(lazy: Values.Lazy): Value {
+export function lazyActive(lazy: Values.Lazy): Value {
   if (lazy.cache !== undefined) {
     return lazy.cache
   }

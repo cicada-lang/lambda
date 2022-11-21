@@ -29,7 +29,7 @@ export function equal(ctx: EqualCtx, left: Value, right: Value): boolean {
     }
 
     case "Lazy": {
-      return equal(ctx, Values.activeLazy(left), right)
+      return equal(ctx, Values.lazyActive(left), right)
     }
   }
 }
@@ -40,7 +40,7 @@ function prepare(value: Value): Value {
   }
 
   if (value["@kind"] === "Lazy") {
-    return prepare(Values.activeLazy(value))
+    return prepare(Values.lazyActive(value))
   }
 
   return value

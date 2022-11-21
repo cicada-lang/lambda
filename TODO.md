@@ -1,3 +1,6 @@
+rename etaFixpoint to fixpointEta
+rename wrapFixpoint to fixpointWrap
+
 fix import local file from repl
 
 fix command line watch

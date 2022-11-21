@@ -27,7 +27,7 @@ export function readback(ctx: ReadbackCtx, value: Value): Exp {
     }
 
     case "Lazy": {
-      return readback(ctx, Values.activeLazy(value))
+      return readback(ctx, Values.lazyActive(value))
     }
   }
 }

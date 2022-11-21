@@ -15,12 +15,12 @@ export function doAp(target: Value, arg: Value): Value {
     }
 
     case "Lazy": {
-      return doAp(Values.activeLazy(target), arg)
+      return doAp(Values.lazyActive(target), arg)
     }
 
     case "Fixpoint": {
       if (arg["@kind"] === "Lazy") {
-        return doAp(target, Values.activeLazy(arg))
+        return doAp(target, Values.lazyActive(arg))
       }
 
       if (arg["@kind"] === "NotYet") {
