@@ -1,6 +1,6 @@
+import { equivalent, EquivalentCtx } from "../equivalent"
 import type { Neutral } from "../neutral"
 import * as Values from "../value"
-import { equivalent, EquivalentCtx } from "../value"
 
 export function equivalentNeutral(
   ctx: EquivalentCtx,
@@ -23,7 +23,7 @@ export function equivalentNeutral(
     case "Fixpoint": {
       return (
         right["@kind"] === "Fixpoint" &&
-        Values.equivalent(
+        equivalent(
           ctx,
           Values.fixpointWrap(left.fixpoint),
           Values.fixpointWrap(right.fixpoint),

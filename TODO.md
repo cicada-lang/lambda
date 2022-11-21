@@ -1,5 +1,3 @@
-top level directory -- `equivalent`
-
 fix import local file from repl
 
 fix command line watch

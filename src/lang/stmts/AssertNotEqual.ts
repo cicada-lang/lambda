@@ -1,12 +1,11 @@
 import { Env } from "../env"
+import { equivalent, EquivalentCtx } from "../equivalent"
 import { AssertionError } from "../errors"
 import { evaluate } from "../evaluate"
 import type { Exp } from "../exp"
 import * as Exps from "../exp"
 import type { Mod } from "../mod"
 import { Stmt } from "../stmt"
-import * as Values from "../value"
-import { EquivalentCtx } from "../value"
 
 export class AssertNotEqual extends Stmt {
   constructor(public exps: Array<Exp>) {
@@ -24,7 +23,7 @@ export class AssertNotEqual extends Stmt {
   private assertNotEqual(mod: Mod, left: Exp, right: Exp): void {
     const leftValue = evaluate(mod, Env.init(), left)
     const rightValue = evaluate(mod, Env.init(), right)
-    if (Values.equivalent(EquivalentCtx.init(), leftValue, rightValue)) {
+    if (equivalent(EquivalentCtx.init(), leftValue, rightValue)) {
       throw new AssertionError(
         `((fail assert-not-equal) ${Exps.formatExp(left)} ${Exps.formatExp(
           right,
