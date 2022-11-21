@@ -6,20 +6,22 @@ import { Loader } from "../loader"
 import { colors } from "../utils/colors"
 
 export class AppReplEventHandler extends ReplEventHandler {
-  parser = new Parser()
-
+  pathname = process.cwd() + "/repl"
   loader = new Loader({
     onOutput: (output) => console.log(colors.blue(output)),
   })
+  parser = new Parser()
 
   constructor() {
     super()
     this.loader.fetcher.register("file", (url) =>
       fs.promises.readFile(url.pathname, "utf8"),
     )
-    this.loader.fetcher.register("repl", (url) =>
-      url.pathname ? fs.promises.readFile("./" + url.pathname, "utf8") : "",
-    )
+    this.loader.fetcher.register("repl", (url) => {
+      return url.pathname === this.pathname
+        ? ""
+        : fs.promises.readFile(url.pathname, "utf8")
+    })
   }
 
   greeting(): void {
@@ -32,8 +34,8 @@ export class AppReplEventHandler extends ReplEventHandler {
 
     text = text.trim()
 
-    const url = new URL("repl://")
-    const mod = await this.loader.load(url)
+    const url = new URL(`repl://${this.pathname}`)
+    const mod = await this.loader.load(url, { text: "" })
 
     try {
       const stmts = this.parser.parseStmts(text)
