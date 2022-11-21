@@ -2,9 +2,11 @@ import * as Actions from "../actions"
 import type { Exp } from "../exp"
 import * as Exps from "../exp"
 import * as Neutrals from "../neutral"
+import type { ReadbackCtx } from "../readback"
+import { readbackNeutral } from "../readback"
 import { freshen } from "../utils/freshen"
+import type { Value } from "../value"
 import * as Values from "../value"
-import { ReadbackCtx, readbackNeutral, Value } from "../value"
 
 export function readback(ctx: ReadbackCtx, value: Value): Exp {
   switch (value["@kind"]) {
@@ -17,7 +19,7 @@ export function readback(ctx: ReadbackCtx, value: Value): Exp {
       ctx = ctx.useName(freshName)
       const arg = Values.NotYet(Neutrals.Var(freshName))
       const ret = Actions.doAp(value, arg)
-      return Exps.Fn(freshName, Values.readback(ctx, ret))
+      return Exps.Fn(freshName, readback(ctx, ret))
     }
 
     case "Fixpoint": {
@@ -25,7 +27,7 @@ export function readback(ctx: ReadbackCtx, value: Value): Exp {
     }
 
     case "Lazy": {
-      return Values.readback(ctx, Values.activeLazy(value))
+      return readback(ctx, Values.activeLazy(value))
     }
   }
 }
