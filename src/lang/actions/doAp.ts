@@ -24,7 +24,7 @@ export function doAp(target: Value, arg: Value): Value {
       }
 
       if (arg["@kind"] === "NotYet") {
-        return doAp(Values.etaFixpoint(target), arg)
+        return doAp(Values.fixpointEta(target), arg)
       }
 
       const fix = evaluate(target.mod, target.env, Exps.Var("fix"))

@@ -36,7 +36,7 @@ export function equal(ctx: EqualCtx, left: Value, right: Value): boolean {
 
 function prepare(value: Value): Value {
   if (value["@kind"] === "Fixpoint") {
-    return prepare(Values.etaFixpoint(value))
+    return prepare(Values.fixpointEta(value))
   }
 
   if (value["@kind"] === "Lazy") {

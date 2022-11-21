@@ -4,7 +4,7 @@ import * as Neutrals from "../neutral"
 import type { Value } from "../value"
 import * as Values from "../value"
 
-export function etaFixpoint(value: Values.Fixpoint): Value {
+export function fixpointEta(value: Values.Fixpoint): Value {
   return evaluate(
     value.mod,
     value.env.extend("f", Values.NotYet(Neutrals.Fixpoint(value))),
