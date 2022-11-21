@@ -6,7 +6,7 @@ import * as Exps from "../exp"
 import type { Mod } from "../mod"
 import { Stmt } from "../stmt"
 import * as Values from "../value"
-import { EqualCtx } from "../value"
+import { EquivalentCtx } from "../value"
 
 export class AssertEqual extends Stmt {
   constructor(public exps: Array<Exp>) {
@@ -24,7 +24,7 @@ export class AssertEqual extends Stmt {
   private assertEqual(mod: Mod, left: Exp, right: Exp): void {
     const leftValue = evaluate(mod, Env.init(), left)
     const rightValue = evaluate(mod, Env.init(), right)
-    if (!Values.equal(EqualCtx.init(), leftValue, rightValue)) {
+    if (!Values.equivalent(EquivalentCtx.init(), leftValue, rightValue)) {
       throw new AssertionError(
         `((fail assert-equal) ${Exps.formatExp(left)} ${Exps.formatExp(
           right,

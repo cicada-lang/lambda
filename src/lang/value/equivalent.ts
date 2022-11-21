@@ -2,9 +2,13 @@ import * as Actions from "../actions"
 import * as Neutrals from "../neutral"
 import { freshen } from "../utils/freshen"
 import * as Values from "../value"
-import { EqualCtx, equalNeutral, Value } from "../value"
+import { EquivalentCtx, equivalentNeutral, Value } from "../value"
 
-export function equal(ctx: EqualCtx, left: Value, right: Value): boolean {
+export function equivalent(
+  ctx: EquivalentCtx,
+  left: Value,
+  right: Value,
+): boolean {
   left = prepare(left)
   right = prepare(right)
 
@@ -12,7 +16,7 @@ export function equal(ctx: EqualCtx, left: Value, right: Value): boolean {
     case "NotYet": {
       return (
         right["@kind"] === "NotYet" &&
-        equalNeutral(ctx, left.neutral, right.neutral)
+        equivalentNeutral(ctx, left.neutral, right.neutral)
       )
     }
 
@@ -21,15 +25,15 @@ export function equal(ctx: EqualCtx, left: Value, right: Value): boolean {
       ctx = ctx.useName(freshName)
       const v = Neutrals.Var(freshName)
       const arg = Values.NotYet(v)
-      return equal(ctx, Actions.doAp(left, arg), Actions.doAp(right, arg))
+      return equivalent(ctx, Actions.doAp(left, arg), Actions.doAp(right, arg))
     }
 
     case "Fixpoint": {
-      return equal(ctx, left, right)
+      return equivalent(ctx, left, right)
     }
 
     case "Lazy": {
-      return equal(ctx, Values.lazyActive(left), right)
+      return equivalent(ctx, Values.lazyActive(left), right)
     }
   }
 }

@@ -1,7 +1,3 @@
-rename equal to equivalent
-
-ambr equal equivalent
-
 top level directory -- `equivalent`
 
 fix import local file from repl

@@ -1,9 +1,9 @@
 import type { Neutral } from "../neutral"
 import * as Values from "../value"
-import { equal, EqualCtx } from "../value"
+import { equivalent, EquivalentCtx } from "../value"
 
-export function equalNeutral(
-  ctx: EqualCtx,
+export function equivalentNeutral(
+  ctx: EquivalentCtx,
   left: Neutral,
   right: Neutral,
 ): boolean {
@@ -15,15 +15,15 @@ export function equalNeutral(
     case "Ap": {
       return (
         right["@kind"] === "Ap" &&
-        equalNeutral(ctx, left.target, right.target) &&
-        equal(ctx, left.arg, right.arg)
+        equivalentNeutral(ctx, left.target, right.target) &&
+        equivalent(ctx, left.arg, right.arg)
       )
     }
 
     case "Fixpoint": {
       return (
         right["@kind"] === "Fixpoint" &&
-        Values.equal(
+        Values.equivalent(
           ctx,
           Values.fixpointWrap(left.fixpoint),
           Values.fixpointWrap(right.fixpoint),
