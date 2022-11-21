@@ -5,7 +5,7 @@ import * as Values from "../value"
 import { ReadbackCtx } from "../value"
 
 export function readbackNeutral(ctx: ReadbackCtx, neutral: Neutral): Exp {
-  switch (neutral.kind) {
+  switch (neutral["@kind"]) {
     case "Var": {
       return Exps.Var(neutral.name)
     }

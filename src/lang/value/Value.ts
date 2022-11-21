@@ -6,22 +6,22 @@ import type { Neutral } from "../neutral"
 export type Value = NotYet | Fn | Fixpoint | Lazy
 
 export type NotYet = {
-  family: "Value"
-  kind: "NotYet"
+  "@type": "Value"
+  "@kind": "NotYet"
   neutral: Neutral
 }
 
 export function NotYet(neutral: Neutral): NotYet {
   return {
-    family: "Value",
-    kind: "NotYet",
+    "@type": "Value",
+    "@kind": "NotYet",
     neutral,
   }
 }
 
 export type Fn = {
-  family: "Value"
-  kind: "Fn"
+  "@type": "Value"
+  "@kind": "Fn"
   mod: Mod
   env: Env
   name: string
@@ -30,8 +30,8 @@ export type Fn = {
 
 export function Fn(mod: Mod, env: Env, name: string, ret: Exp): Fn {
   return {
-    family: "Value",
-    kind: "Fn",
+    "@type": "Value",
+    "@kind": "Fn",
     mod,
     env,
     name,
@@ -40,8 +40,8 @@ export function Fn(mod: Mod, env: Env, name: string, ret: Exp): Fn {
 }
 
 export type Fixpoint = {
-  family: "Value"
-  kind: "Fixpoint"
+  "@type": "Value"
+  "@kind": "Fixpoint"
   mod: Mod
   env: Env
   name: string
@@ -55,8 +55,8 @@ export function Fixpoint(
   body: Exp,
 ): Fixpoint {
   return {
-    family: "Value",
-    kind: "Fixpoint",
+    "@type": "Value",
+    "@kind": "Fixpoint",
     mod,
     env,
     name,
@@ -65,8 +65,8 @@ export function Fixpoint(
 }
 
 export type Lazy = {
-  family: "Value"
-  kind: "Lazy"
+  "@type": "Value"
+  "@kind": "Lazy"
   mod: Mod
   env: Env
   exp: Exp
@@ -75,8 +75,8 @@ export type Lazy = {
 
 export function Lazy(mod: Mod, env: Env, exp: Exp, cache?: Value): Lazy {
   return {
-    family: "Value",
-    kind: "Lazy",
+    "@type": "Value",
+    "@kind": "Lazy",
     mod,
     env,
     exp,

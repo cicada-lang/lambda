@@ -8,7 +8,7 @@ import type { Value } from "../value"
 import * as Values from "../value"
 
 export function evaluate(mod: Mod, env: Env, exp: Exp): Value {
-  switch (exp.kind) {
+  switch (exp["@kind"]) {
     case "Var": {
       let value = undefined
 

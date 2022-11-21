@@ -4,7 +4,7 @@ import type { Value } from "../value"
 import * as Values from "../value"
 
 export function doAp(target: Value, arg: Value): Value {
-  switch (target.kind) {
+  switch (target["@kind"]) {
     case "Fn": {
       return Exps.evaluate(
         target.mod,
@@ -18,11 +18,11 @@ export function doAp(target: Value, arg: Value): Value {
     }
 
     case "Fixpoint": {
-      if (arg.kind === "Lazy") {
+      if (arg["@kind"] === "Lazy") {
         return doAp(target, Values.activeLazy(arg))
       }
 
-      if (arg.kind === "NotYet") {
+      if (arg["@kind"] === "NotYet") {
         return doAp(Values.etaFixpoint(target), arg)
       }
 

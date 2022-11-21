@@ -1,16 +1,4 @@
-Use unified JSON ADT -- change property names so that there are not preserved property names
-
-```
-ambr 'family' '"@type"'
-
-ambr '.kind' '["@kind"]'
-ambr 'kind:' '"@kind":'
-
-// in `framework/`
-
-ambr '["@kind"]' '.kind'
-ambr '"@kind":' 'kind:'
-```
+script test:lambda
 
 [maybe] use unified JSON ADT -- change `CamelCase` to `camelCase`
 

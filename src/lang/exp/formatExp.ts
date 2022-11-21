@@ -2,7 +2,7 @@ import type { Exp } from "../exp"
 import * as Exps from "../exp"
 
 export function formatExp(exp: Exp): string {
-  switch (exp.kind) {
+  switch (exp["@kind"]) {
     case "Var": {
       return exp.name
     }
@@ -27,7 +27,7 @@ function formatFn(
   names: Array<string>,
   ret: Exp,
 ): { names: Array<string>; ret: string } {
-  if (ret.kind === "Fn") {
+  if (ret["@kind"] === "Fn") {
     return formatFn([...names, ret.name], ret.ret)
   } else {
     return { names, ret: formatExp(ret) }
@@ -38,7 +38,7 @@ function formatAp(
   target: Exp,
   args: Array<string>,
 ): { target: string; args: Array<string> } {
-  if (target.kind === "Ap") {
+  if (target["@kind"] === "Ap") {
     return formatAp(target.target, [formatExp(target.arg), ...args])
   } else {
     return { target: formatExp(target), args }

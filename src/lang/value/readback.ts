@@ -7,7 +7,7 @@ import * as Values from "../value"
 import { ReadbackCtx, readbackNeutral, Value } from "../value"
 
 export function readback(ctx: ReadbackCtx, value: Value): Exp {
-  switch (value.kind) {
+  switch (value["@kind"]) {
     case "NotYet": {
       return readbackNeutral(ctx, value.neutral)
     }

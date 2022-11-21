@@ -7,14 +7,14 @@ export function equalNeutral(
   left: Neutral,
   right: Neutral,
 ): boolean {
-  switch (left.kind) {
+  switch (left["@kind"]) {
     case "Var": {
-      return right.kind === "Var" && right.name === left.name
+      return right["@kind"] === "Var" && right.name === left.name
     }
 
     case "Ap": {
       return (
-        right.kind === "Ap" &&
+        right["@kind"] === "Ap" &&
         equalNeutral(ctx, left.target, right.target) &&
         equal(ctx, left.arg, right.arg)
       )
@@ -22,7 +22,7 @@ export function equalNeutral(
 
     case "Fixpoint": {
       return (
-        right.kind === "Fixpoint" &&
+        right["@kind"] === "Fixpoint" &&
         Values.equal(
           ctx,
           Values.wrapFixpoint(left.fixpoint),

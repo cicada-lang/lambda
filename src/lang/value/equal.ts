@@ -8,10 +8,10 @@ export function equal(ctx: EqualCtx, left: Value, right: Value): boolean {
   left = prepare(left)
   right = prepare(right)
 
-  switch (left.kind) {
+  switch (left["@kind"]) {
     case "NotYet": {
       return (
-        right.kind === "NotYet" &&
+        right["@kind"] === "NotYet" &&
         equalNeutral(ctx, left.neutral, right.neutral)
       )
     }
@@ -35,11 +35,11 @@ export function equal(ctx: EqualCtx, left: Value, right: Value): boolean {
 }
 
 function prepare(value: Value): Value {
-  if (value.kind === "Fixpoint") {
+  if (value["@kind"] === "Fixpoint") {
     return prepare(Values.etaFixpoint(value))
   }
 
-  if (value.kind === "Lazy") {
+  if (value["@kind"] === "Lazy") {
     return prepare(Values.activeLazy(value))
   }
 
