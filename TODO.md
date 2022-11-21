@@ -2,8 +2,6 @@
 
 fix import local file from repl
 
-rename `parse/` to `syntax/`
-
 tsconfig -- "importsNotUsedAsValues": "error"
 
 top level `evaluate/`

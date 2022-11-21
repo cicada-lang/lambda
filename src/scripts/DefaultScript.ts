@@ -1,6 +1,6 @@
 import * as Errors from "../lang/errors"
 import { Mod } from "../lang/mod"
-import { Parser } from "../lang/parser"
+import { Parser } from "../lang/syntax"
 import { Script } from "../script"
 
 export class DefaultScript extends Script {
