@@ -25,8 +25,8 @@ export function equalNeutral(
         right["@kind"] === "Fixpoint" &&
         Values.equal(
           ctx,
-          Values.wrapFixpoint(left.fixpoint),
-          Values.wrapFixpoint(right.fixpoint),
+          Values.fixpointWrap(left.fixpoint),
+          Values.fixpointWrap(right.fixpoint),
         )
       )
     }

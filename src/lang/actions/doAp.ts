@@ -28,7 +28,7 @@ export function doAp(target: Value, arg: Value): Value {
       }
 
       const fix = evaluate(target.mod, target.env, Exps.Var("fix"))
-      return doAp(doAp(fix, Values.wrapFixpoint(target)), arg)
+      return doAp(doAp(fix, Values.fixpointWrap(target)), arg)
     }
 
     case "NotYet": {
