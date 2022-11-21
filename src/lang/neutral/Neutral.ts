@@ -1,5 +1,5 @@
+import type * as Values from "../value"
 import type { Value } from "../value"
-import * as Values from "../value"
 
 export type Neutral = Var | Ap | Fixpoint
 

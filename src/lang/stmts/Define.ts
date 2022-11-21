@@ -3,7 +3,7 @@ import { Def } from "../def"
 import { LangError } from "../errors"
 import type { Exp } from "../exp"
 import * as Exps from "../exp"
-import { Mod } from "../mod"
+import type { Mod } from "../mod"
 import { Stmt } from "../stmt"
 
 export class Define extends Stmt {

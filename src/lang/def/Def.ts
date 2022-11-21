@@ -1,7 +1,7 @@
 import { Env } from "../env"
 import type { Exp } from "../exp"
 import * as Exps from "../exp"
-import { Mod } from "../mod"
+import type { Mod } from "../mod"
 import type { Value } from "../value"
 
 export class Def {

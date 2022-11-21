@@ -1,5 +1,5 @@
 import { Parser as SexpParser } from "@cicada-lang/sexp"
-import { Stmt } from "../stmt"
+import type { Stmt } from "../stmt"
 import { matchStmt } from "./matchStmt"
 
 export class Parser extends SexpParser {

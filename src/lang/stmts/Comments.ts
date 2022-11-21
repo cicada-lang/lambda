@@ -1,5 +1,5 @@
 import type { Exp } from "../exp"
-import { Mod } from "../mod"
+import type { Mod } from "../mod"
 import { Stmt } from "../stmt"
 
 export class Comments extends Stmt {

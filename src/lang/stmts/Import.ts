@@ -1,5 +1,5 @@
 import * as Errors from "../errors"
-import { Mod } from "../mod"
+import type { Mod } from "../mod"
 import { Stmt } from "../stmt"
 
 export type ImportEntry = {

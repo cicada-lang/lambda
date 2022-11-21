@@ -1,7 +1,7 @@
-import { Loader } from "../../loader"
-import { Def } from "../def"
+import type { Loader } from "../../loader"
+import type { Def } from "../def"
 import { LangError } from "../errors"
-import { Stmt } from "../stmt"
+import type { Stmt } from "../stmt"
 import type { Value } from "../value"
 
 export interface ModOptions {

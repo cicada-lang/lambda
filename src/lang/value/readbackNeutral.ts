@@ -1,8 +1,8 @@
 import type { Exp } from "../exp"
 import * as Exps from "../exp"
 import type { Neutral } from "../neutral"
+import type { ReadbackCtx } from "../value"
 import * as Values from "../value"
-import { ReadbackCtx } from "../value"
 
 export function readbackNeutral(ctx: ReadbackCtx, neutral: Neutral): Exp {
   switch (neutral["@kind"]) {
