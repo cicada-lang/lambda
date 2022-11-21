@@ -1,5 +1,3 @@
-script test:lambda
-
 [maybe] use unified JSON ADT -- change `CamelCase` to `camelCase`
 
 fix import local file from repl

@@ -17,9 +17,10 @@
     "test:watch": "vitest --dir src --threads false",
     "test:coverage": "vitest --dir src --threads false --run --coverage ",
     "test:gui": "vitest --dir src --threads false --ui",
-    "test:tests": "test-runner snapshot './bin/lambda.js' 'tests/**/*.(scm|md)' --exclude 'tests/**/*.error.(scm|md)'",
-    "test:tests-error": "test-runner snapshot-error './bin/lambda.js' 'tests/**/*.error.(scm|md)'",
-    "test": "npm run test:ts && npm run test:tests && npm run test:tests-error",
+    "test:lambda:tests": "test-runner snapshot './bin/lambda.js' 'tests/**/*.(scm|md)' --exclude 'tests/**/*.error.(scm|md)'",
+    "test:lambda:tests-error": "test-runner snapshot-error './bin/lambda.js' 'tests/**/*.error.(scm|md)'",
+    "test:lambda": "npm run test:lambda:tests && npm run test:lambda:tests-error",
+    "test": "npm run test:ts && npm run test:lambda",
     "format": "prettier src docs --write"
   },
   "dependencies": {
