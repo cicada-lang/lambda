@@ -1,5 +1,5 @@
+import { ReplEvent, ReplEventHandler } from "@cicada-lang/framework/lib/repl"
 import fs from "fs"
-import { ReplEvent, ReplEventHandler } from "../framework/repl"
 import * as Errors from "../lang/errors"
 import { Parser } from "../lang/syntax"
 import { Loader } from "../loader"
