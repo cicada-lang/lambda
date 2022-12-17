@@ -24,11 +24,11 @@
     "format": "prettier src docs --write"
   },
   "dependencies": {
-    "@cicada-lang/framework": "^0.1.0",
-    "@cicada-lang/partech": "^0.2.3",
+    "@cicada-lang/framework": "^0.1.1",
+    "@cicada-lang/partech": "^0.2.5",
     "@cicada-lang/sexp": "^0.0.36",
-    "@xieyuheng/command-line": "^0.0.7",
-    "@xieyuheng/ty": "^0.1.17",
+    "@xieyuheng/command-line": "^0.0.10",
+    "@xieyuheng/ty": "^0.1.20",
     "commonmark": "^0.30.0",
     "crypto-browserify": "^3.12.0",
     "fast-deep-equal": "^3.1.3",
@@ -38,18 +38,18 @@
   },
   "devDependencies": {
     "@types/commonmark": "^0.27.5",
-    "@types/node": "^18.11.9",
-    "@vitest/coverage-c8": "^0.25.3",
-    "@vitest/coverage-istanbul": "^0.25.3",
-    "@vitest/ui": "^0.25.3",
+    "@types/node": "^18.11.17",
+    "@vitest/coverage-c8": "^0.25.8",
+    "@vitest/coverage-istanbul": "^0.25.8",
+    "@vitest/ui": "^0.25.8",
     "@xieyuheng/test-runner": "^0.2.7",
     "husky": "^8.0.2",
-    "prettier": "^2.8.0",
+    "prettier": "^2.8.1",
     "prettier-plugin-organize-imports": "^3.2.1",
     "pretty-quick": "^3.1.3",
-    "typescript": "^4.9.3",
-    "vite": "^3.2.4",
-    "vitest": "^0.25.3"
+    "typescript": "^4.9.4",
+    "vite": "^4.0.1",
+    "vitest": "^0.25.8"
   },
   "license": "GPL-3.0-or-later"
 }
