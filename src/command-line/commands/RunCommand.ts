@@ -30,10 +30,6 @@ export class RunCommand extends Command<Args, Opts> {
       ``,
       blue(`  ${runner.name} docs/tests/nat-church.md`),
       ``,
-      `It can also run a file from a URL.`,
-      ``,
-      blue(`  ${runner.name} https://cdn.lambda.cic.run/docs/tests/nat-church.md`),
-      ``,
     ].join("\n")
   }
 
