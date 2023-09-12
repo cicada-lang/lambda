@@ -29,7 +29,7 @@ export class AppReplEventHandler extends ReplEventHandler {
     console.log(`Type ".help" for more information`)
   }
 
-  async handle(event: ReplEvent): Promise<boolean> {
+  async handle(event: ReplEvent): Promise<void> {
     let { text } = event
 
     text = text.trim()
@@ -40,7 +40,6 @@ export class AppReplEventHandler extends ReplEventHandler {
     try {
       const stmts = this.parser.parseStmts(text)
       await mod.executeStmts(stmts)
-      return true
     } catch (error) {
       if (!(error instanceof Error)) {
         console.error(error)
@@ -51,8 +50,6 @@ export class AppReplEventHandler extends ReplEventHandler {
       } else {
         console.error(error.message)
       }
-
-      return false
     }
   }
 }

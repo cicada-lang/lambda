@@ -2,7 +2,10 @@ import type { Span } from "../span"
 import { LangError } from "./LangError"
 
 export class ElaborationError extends LangError {
-  constructor(public message: string, public span: Span) {
+  constructor(
+    public message: string,
+    public span: Span,
+  ) {
     super(message)
   }
 

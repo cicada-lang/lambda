@@ -6,7 +6,10 @@ import { Script } from "../script"
 export class DefaultScript extends Script {
   parser = new Parser()
 
-  constructor(public mod: Mod, public text: string) {
+  constructor(
+    public mod: Mod,
+    public text: string,
+  ) {
     super()
   }
 

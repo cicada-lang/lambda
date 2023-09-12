@@ -18,46 +18,12 @@ An implementation of [(Untyped) Lambda Calculus](https://en.wikipedia.org/wiki/L
 
 ## Usages
 
-### Online playground
-
-Visit the [Lambda Playground](https://lambda.cicada-lang.org/playground/KGRlZmluZSAodHJ1ZSB0IGYpIHQpCihkZWZpbmUgKGZhbHNlIHQgZikgZikKCihkZWZpbmUgKGlmIHAgdCBmKSAocCB0IGYpKQoKKGRlZmluZSAoYW5kIHggeSkgKGlmIHggeSBmYWxzZSkpCihkZWZpbmUgKG9yIHggeSkgKGlmIHggdHJ1ZSB5KSkKKGRlZmluZSAobm90IHgpIChpZiB4IGZhbHNlIHRydWUpKQoKKGFuZCB0cnVlIGZhbHNlKQoobm90IChub3QgKG9yIHRydWUgZmFsc2UpKSk).
-
-### Use our server
-
-[**lambda-server:**](https://github.com/cicada-lang/lambda-server) A server that can run lambda code.
-
-Run a file:
-
-```bash
-curl https://lambda.cic.run --data-binary @<file>
-```
-
-Run multiline text (bash and zsh):
-
-```bash
-curl https://lambda.cic.run --data-binary @-<< END
-
-(define zero (lambda (base step) base))
-(define (add1 n) (lambda (base step) (step (n base step))))
-(define (iter-Nat n base step) (n base step))
-
-(define one (add1 zero))
-(define two (add1 one))
-(define three (add1 two))
-
-(define (add m n) (iter-Nat m n add1))
-
-(add two two)
-
-END
-```
-
 ### Command line tool
 
 Install it by the following command:
 
 ```sh
-sudo npm install -g @cicada-lang/lambda
+npm install -g @cicada-lang/lambda
 ```
 
 The command line program is called `lambda`.
@@ -84,14 +50,6 @@ Run a file and watch file change:
 
 ```sh
 lambda run tests/nat-church.md --watch
-```
-
-Run a URL:
-
-- All files in this repo, can be fetched from: [`https://cdn.lambda.cic.run/<path>`](https://cdn.lambda.cic.run)
-
-```sh
-lambda run https://cdn.lambda.cic.run/tests/nat-church.md
 ```
 
 ## Examples
@@ -135,11 +93,11 @@ Please see [tests](tests) for more examples.
 ### Factorial
 
 ```scheme
-(import "https://cdn.lambda.cic.run/tests/nat-church.md"
+(import "./nat-church.md"
   zero? add mul sub1
   zero one two three four)
 
-(import "https://cdn.lambda.cic.run/tests/boolean.md"
+(import "./boolean.md"
   true false if)
 
 (define (factorial n)
@@ -158,11 +116,11 @@ Please see [tests](tests) for more examples.
 [ [WIKIPEDIA](https://en.wikipedia.org/wiki/Fixed-point_combinator) ]
 
 ```scheme
-(import "https://cdn.lambda.cic.run/tests/nat-church.md"
+(import "./nat-church.md"
   zero? add mul sub1
   zero one two three four)
 
-(import "https://cdn.lambda.cic.run/tests/boolean.md"
+(import "./boolean.md"
   true false if)
 
 ;; NOTE `x` is `f`'s fixpoint if `(f x) = x`
@@ -203,7 +161,7 @@ Please see [tests](tests) for more examples.
 (define (car pair) (pair (lambda (car cdr) car)))
 (define (cdr pair) (pair (lambda (car cdr) cdr)))
 
-(import "https://cdn.lambda.cic.run/tests/boolean.md"
+(import "./boolean.md"
   true false)
 
 (define (null f) true)
@@ -232,16 +190,6 @@ Please read the [STYLE-GUIDE.md](STYLE-GUIDE.md) before you change the code.
 Remember to add yourself to [AUTHORS](AUTHORS).
 Your line belongs to you, you can write a little
 introduction to yourself but not too long.
-
-It is assumed that all non draft PRs are ready to be merged.
-If your PR is not ready to be merged yet, please make it a draft PR:
-
-- [Creating draft PR](https://github.blog/2019-02-14-introducing-draft-pull-requests)
-- [Changing a PR to draft](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/changing-the-stage-of-a-pull-request)
-
-During the development of your PR, you can make use of
-the [TODO.md](TODO.md) file to record ideas temporarily,
-and this file should be clean again at the end of your development.
 
 ## License
 

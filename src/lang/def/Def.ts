@@ -8,7 +8,11 @@ import type { Value } from "../value"
 export class Def {
   private cache?: Value
 
-  constructor(public mod: Mod, public name: string, public exp: Exp) {}
+  constructor(
+    public mod: Mod,
+    public name: string,
+    public exp: Exp,
+  ) {}
 
   get value(): Value {
     if (this.cache !== undefined) return this.cache

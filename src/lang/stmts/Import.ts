@@ -8,7 +8,10 @@ export type ImportEntry = {
 }
 
 export class Import extends Stmt {
-  constructor(public path: string, public entries: Array<ImportEntry>) {
+  constructor(
+    public path: string,
+    public entries: Array<ImportEntry>,
+  ) {
     super()
   }
 

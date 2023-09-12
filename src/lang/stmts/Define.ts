@@ -7,7 +7,10 @@ import type { Mod } from "../mod"
 import { Stmt } from "../stmt"
 
 export class Define extends Stmt {
-  constructor(public name: string, public exp: Exp) {
+  constructor(
+    public name: string,
+    public exp: Exp,
+  ) {
     super()
   }
 

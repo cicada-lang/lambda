@@ -7,7 +7,10 @@ import { Script } from "../script"
 export class MarkdownScript extends Script {
   parser = new Parser()
 
-  constructor(public mod: Mod, public text: string) {
+  constructor(
+    public mod: Mod,
+    public text: string,
+  ) {
     super()
   }
 
