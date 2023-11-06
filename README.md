@@ -26,7 +26,7 @@ Install it by the following command:
 npm install -g @cicada-lang/lambda
 ```
 
-The command line program is called `lambda`.
+The command-line program is called `lambda`.
 
 open a REPL:
 
