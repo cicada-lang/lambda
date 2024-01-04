@@ -5,6 +5,7 @@
   "type": "module",
   "main": "./lib/index.js",
   "files": [
+    "src",
     "lib"
   ],
   "bin": {
@@ -24,7 +25,7 @@
   "dependencies": {
     "@cicada-lang/framework": "^0.1.6",
     "@cicada-lang/partech": "^0.2.5",
-    "@cicada-lang/sexp": "^0.1.0",
+    "@cicada-lang/sexp": "^0.1.1",
     "@xieyuheng/command-line": "^0.0.13",
     "@xieyuheng/ty": "^0.1.26",
     "commonmark": "^0.30.0",
