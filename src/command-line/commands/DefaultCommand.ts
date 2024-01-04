@@ -1,6 +1,7 @@
 import { Command, CommandRunner } from "@xieyuheng/command-line"
 import { ty } from "@xieyuheng/ty"
-import * as Commands from "../commands"
+import { version } from "../../version.js"
+import * as Commands from "../commands/index.js"
 
 type Args = { file?: string }
 type Opts = { help?: boolean; version?: boolean }
@@ -22,7 +23,7 @@ export class DefaultCommand extends Command<Args, Opts> {
     }
 
     if (argv["version"]) {
-      console.log(app.config.pkg.version)
+      console.log(version)
       return
     }
 

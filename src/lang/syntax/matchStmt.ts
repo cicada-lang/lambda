@@ -1,16 +1,16 @@
+import type { Sexp } from "@cicada-lang/sexp"
 import {
   cons,
   match,
   matchList,
   matchString,
   matchSymbol,
-  Sexp,
   v,
 } from "@cicada-lang/sexp"
-import * as Exps from "../exp"
-import type { Stmt } from "../stmt"
-import * as Stmts from "../stmts"
-import { matchExp } from "./matchExp"
+import * as Exps from "../exp/index.js"
+import type { Stmt } from "../stmt/index.js"
+import * as Stmts from "../stmts/index.js"
+import { matchExp } from "./matchExp.js"
 
 export function matchStmt(sexp: Sexp): Stmt {
   return match<Stmt>(sexp, [

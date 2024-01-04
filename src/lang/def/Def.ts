@@ -1,9 +1,9 @@
-import { Env } from "../env"
-import { evaluate } from "../evaluate"
-import type { Exp } from "../exp"
-import * as Exps from "../exp"
-import type { Mod } from "../mod"
-import type { Value } from "../value"
+import { Env } from "../env/index.js"
+import { evaluate } from "../evaluate/index.js"
+import type { Exp } from "../exp/index.js"
+import * as Exps from "../exp/index.js"
+import type { Mod } from "../mod/index.js"
+import type { Value } from "../value/index.js"
 
 export class Def {
   private cache?: Value

@@ -1,6 +1,6 @@
-import { equivalent, EquivalentCtx } from "../equivalent"
-import type { Neutral } from "../neutral"
-import * as Values from "../value"
+import { equivalent, EquivalentCtx } from "../equivalent/index.js"
+import type { Neutral } from "../neutral/index.js"
+import * as Values from "../value/index.js"
 
 export function equivalentNeutral(
   ctx: EquivalentCtx,

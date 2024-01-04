@@ -1,3 +1,3 @@
-export * from "./Exp"
-export * from "./formatExp"
-export * from "./freeNames"
+export * from "./Exp.js"
+export * from "./formatExp.js"
+export * from "./freeNames.js"

@@ -1,6 +1,9 @@
-import { CommandRunner, CommandRunners } from "@xieyuheng/command-line"
-import "../app"
-import * as Commands from "./commands"
+import {
+  CommandRunner,
+  CommandRunners,
+} from "@xieyuheng/command-line/lib/index.js"
+import "../app/index.js"
+import * as Commands from "./commands/index.js"
 
 export function createCommandRunner(): CommandRunner {
   return new CommandRunners.CommonCommandRunner({

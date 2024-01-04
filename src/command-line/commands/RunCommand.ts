@@ -2,10 +2,10 @@ import { Command, CommandRunner } from "@xieyuheng/command-line"
 import { ty } from "@xieyuheng/ty"
 import fs from "fs"
 import Path from "path"
-import { Runner } from "../Runner"
+import { Runner } from "../Runner.js"
 
 type Args = { file: string }
-type Opts = { watch?: boolean }
+type Opts = {}
 
 export class RunCommand extends Command<Args, Opts> {
   name = "run"
@@ -13,7 +13,7 @@ export class RunCommand extends Command<Args, Opts> {
   description = "Run a file"
 
   args = { file: ty.string() }
-  opts = { watch: ty.optional(ty.boolean()) }
+  opts = {}
 
   runner = new Runner()
 
@@ -36,14 +36,9 @@ export class RunCommand extends Command<Args, Opts> {
   async execute(argv: Args & Opts): Promise<void> {
     const url = createURL(argv["file"])
 
-    if (argv["watch"]) {
-      await this.runner.run(url)
-      await this.runner.watch(url)
-    } else {
-      const { error } = await this.runner.run(url)
-      if (error) {
-        process.exit(1)
-      }
+    const { error } = await this.runner.run(url)
+    if (error) {
+      process.exit(1)
     }
   }
 }

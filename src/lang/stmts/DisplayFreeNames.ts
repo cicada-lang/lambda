@@ -1,7 +1,7 @@
-import type { Exp } from "../exp"
-import * as Exps from "../exp"
-import type { Mod } from "../mod"
-import { Stmt } from "../stmt"
+import type { Exp } from "../exp/index.js"
+import * as Exps from "../exp/index.js"
+import type { Mod } from "../mod/index.js"
+import { Stmt } from "../stmt/index.js"
 
 export class DisplayFreeNames extends Stmt {
   constructor(public exp: Exp) {

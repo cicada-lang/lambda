@@ -1,10 +1,10 @@
-import { builtinNames } from "../builtin"
-import { Def } from "../def"
-import { LangError } from "../errors"
-import type { Exp } from "../exp"
-import * as Exps from "../exp"
-import type { Mod } from "../mod"
-import { Stmt } from "../stmt"
+import { builtinNames } from "../builtin/index.js"
+import { Def } from "../def/index.js"
+import { LangError } from "../errors/index.js"
+import type { Exp } from "../exp/index.js"
+import * as Exps from "../exp/index.js"
+import type { Mod } from "../mod/index.js"
+import { Stmt } from "../stmt/index.js"
 
 export class Define extends Stmt {
   constructor(

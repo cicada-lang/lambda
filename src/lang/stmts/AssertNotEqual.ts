@@ -1,11 +1,11 @@
-import { Env } from "../env"
-import { equivalent, EquivalentCtx } from "../equivalent"
-import { AssertionError } from "../errors"
-import { evaluate } from "../evaluate"
-import type { Exp } from "../exp"
-import * as Exps from "../exp"
-import type { Mod } from "../mod"
-import { Stmt } from "../stmt"
+import { Env } from "../env/index.js"
+import { equivalent, EquivalentCtx } from "../equivalent/index.js"
+import { AssertionError } from "../errors/index.js"
+import { evaluate } from "../evaluate/index.js"
+import type { Exp } from "../exp/index.js"
+import * as Exps from "../exp/index.js"
+import type { Mod } from "../mod/index.js"
+import { Stmt } from "../stmt/index.js"
 
 export class AssertNotEqual extends Stmt {
   constructor(public exps: Array<Exp>) {

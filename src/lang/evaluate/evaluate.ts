@@ -1,11 +1,11 @@
-import * as Actions from "../actions"
-import { findBuiltinValue } from "../builtin"
-import type { Env } from "../env"
-import * as Errors from "../errors"
-import type { Exp } from "../exp"
-import type { Mod } from "../mod"
-import type { Value } from "../value"
-import * as Values from "../value"
+import * as Actions from "../actions/index.js"
+import { findBuiltinValue } from "../builtin/index.js"
+import type { Env } from "../env/index.js"
+import * as Errors from "../errors/index.js"
+import type { Exp } from "../exp/index.js"
+import type { Mod } from "../mod/index.js"
+import type { Value } from "../value/index.js"
+import * as Values from "../value/index.js"
 
 export function evaluate(mod: Mod, env: Env, exp: Exp): Value {
   switch (exp["@kind"]) {

@@ -2,6 +2,7 @@
   "name": "@cicada-lang/lambda",
   "version": "0.1.7",
   "repository": "github:cicada-lang/lambda",
+  "type": "module",
   "main": "./lib/index.js",
   "files": [
     "lib"
@@ -25,7 +26,7 @@
   "dependencies": {
     "@cicada-lang/framework": "^0.1.5",
     "@cicada-lang/partech": "^0.2.5",
-    "@cicada-lang/sexp": "^0.0.36",
+    "@cicada-lang/sexp": "^0.1.0",
     "@xieyuheng/command-line": "^0.0.13",
     "@xieyuheng/ty": "^0.1.26",
     "commonmark": "^0.30.0",

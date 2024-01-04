@@ -1,8 +1,8 @@
-import type { Env } from "../env"
-import { evaluate } from "../evaluate"
-import * as Exps from "../exp"
-import type { Mod } from "../mod"
-import type { Value } from "../value"
+import type { Env } from "../env/index.js"
+import { evaluate } from "../evaluate/index.js"
+import * as Exps from "../exp/index.js"
+import type { Mod } from "../mod/index.js"
+import type { Value } from "../value/index.js"
 
 export const builtinNames = ["fix"]
 

@@ -1,12 +1,12 @@
-import * as Actions from "../actions"
-import type { Exp } from "../exp"
-import * as Exps from "../exp"
-import * as Neutrals from "../neutral"
-import type { ReadbackCtx } from "../readback"
-import { readbackNeutral } from "../readback"
-import { freshen } from "../utils/freshen"
-import type { Value } from "../value"
-import * as Values from "../value"
+import * as Actions from "../actions/index.js"
+import type { Exp } from "../exp/index.js"
+import * as Exps from "../exp/index.js"
+import * as Neutrals from "../neutral/index.js"
+import type { ReadbackCtx } from "../readback/index.js"
+import { readbackNeutral } from "../readback/index.js"
+import { freshen } from "../utils/freshen.js"
+import type { Value } from "../value/index.js"
+import * as Values from "../value/index.js"
 
 export function readback(ctx: ReadbackCtx, value: Value): Exp {
   switch (value["@kind"]) {

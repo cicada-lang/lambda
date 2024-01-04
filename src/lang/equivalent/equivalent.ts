@@ -1,9 +1,9 @@
-import * as Actions from "../actions"
-import { EquivalentCtx, equivalentNeutral } from "../equivalent"
-import * as Neutrals from "../neutral"
-import { freshen } from "../utils/freshen"
-import type { Value } from "../value"
-import * as Values from "../value"
+import * as Actions from "../actions/index.js"
+import { EquivalentCtx, equivalentNeutral } from "../equivalent/index.js"
+import * as Neutrals from "../neutral/index.js"
+import { freshen } from "../utils/freshen.js"
+import type { Value } from "../value/index.js"
+import * as Values from "../value/index.js"
 
 export function equivalent(
   ctx: EquivalentCtx,
