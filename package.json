@@ -13,10 +13,8 @@
   "scripts": {
     "build": "rm -r lib && tsc",
     "build:watch": "rm -r lib && tsc --watch",
-    "test:ts": "vitest --dir src --threads false --run",
-    "test:watch": "vitest --dir src --threads false",
-    "test:coverage": "vitest --dir src --threads false --run --coverage ",
-    "test:gui": "vitest --dir src --threads false --ui",
+    "test:ts": "vitest --dir src --run",
+    "test:watch": "vitest --dir src",
     "test:lambda:tests": "test-runner snapshot './bin/lambda.js' 'tests/**/*.(scm|md)' --exclude 'tests/**/*.error.(scm|md)'",
     "test:lambda:tests-error": "test-runner snapshot-error './bin/lambda.js' 'tests/**/*.error.(scm|md)'",
     "test:lambda": "npm run test:lambda:tests && npm run test:lambda:tests-error",
@@ -24,7 +22,7 @@
     "format": "prettier src docs --write"
   },
   "dependencies": {
-    "@cicada-lang/framework": "^0.1.5",
+    "@cicada-lang/framework": "^0.1.6",
     "@cicada-lang/partech": "^0.2.5",
     "@cicada-lang/sexp": "^0.1.0",
     "@xieyuheng/command-line": "^0.0.13",
@@ -37,17 +35,14 @@
     "readdirp": "^3.6.0"
   },
   "devDependencies": {
-    "@types/commonmark": "^0.27.7",
-    "@types/node": "^20.8.3",
-    "@vitest/coverage-c8": "^0.25.8",
-    "@vitest/coverage-istanbul": "^0.34.6",
-    "@vitest/ui": "^0.34.6",
+    "@types/commonmark": "^0.27.9",
+    "@types/node": "^20.10.6",
     "@xieyuheng/test-runner": "^0.2.10",
-    "prettier": "^3.0.3",
-    "prettier-plugin-organize-imports": "^3.2.3",
-    "typescript": "^5.2.2",
-    "vite": "^4.4.11",
-    "vitest": "^0.34.6"
+    "prettier": "^3.1.1",
+    "prettier-plugin-organize-imports": "^3.2.4",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.10",
+    "vitest": "^1.1.2"
   },
   "license": "GPL-3.0-or-later"
 }
