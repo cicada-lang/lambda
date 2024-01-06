@@ -2,9 +2,9 @@ import { Env } from "../env/index.js"
 import { equivalent, EquivalentCtx } from "../equivalent/index.js"
 import { AssertionError } from "../errors/index.js"
 import { evaluate } from "../evaluate/index.js"
-import type { Exp } from "../exp/index.js"
 import * as Exps from "../exp/index.js"
-import type { Mod } from "../mod/index.js"
+import { type Exp } from "../exp/index.js"
+import { type Mod } from "../mod/index.js"
 import { Stmt } from "../stmt/index.js"
 
 export class AssertNotEqual extends Stmt {

@@ -1,4 +1,4 @@
-import type { Span } from "../span/index.js"
+import { type Span } from "../span/index.js"
 import { LangError } from "./LangError.js"
 
 export class ElaborationError extends LangError {

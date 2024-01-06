@@ -1,5 +1,5 @@
 import * as Errors from "../lang/errors/index.js"
-import type { Mod } from "../lang/mod/index.js"
+import { type Mod } from "../lang/mod/index.js"
 import { Parser } from "../lang/syntax/index.js"
 import { Script } from "../script/index.js"
 

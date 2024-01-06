@@ -1,4 +1,3 @@
-import type { Sexp } from "@cicada-lang/sexp"
 import {
   cons,
   match,
@@ -6,9 +5,10 @@ import {
   matchString,
   matchSymbol,
   v,
+  type Sexp,
 } from "@cicada-lang/sexp"
 import * as Exps from "../exp/index.js"
-import type { Stmt } from "../stmt/index.js"
+import { type Stmt } from "../stmt/index.js"
 import * as Stmts from "../stmts/index.js"
 import { matchExp } from "./matchExp.js"
 

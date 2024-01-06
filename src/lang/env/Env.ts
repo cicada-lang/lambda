@@ -1,4 +1,4 @@
-import type { Value } from "../value/index.js"
+import { type Value } from "../value/index.js"
 
 export class Env {
   values: Map<string, Value>

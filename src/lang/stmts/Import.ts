@@ -1,5 +1,5 @@
 import * as Errors from "../errors/index.js"
-import type { Mod } from "../mod/index.js"
+import { type Mod } from "../mod/index.js"
 import { Stmt } from "../stmt/index.js"
 
 export type ImportEntry = {

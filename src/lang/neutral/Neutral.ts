@@ -1,5 +1,5 @@
 import type * as Values from "../value/index.js"
-import type { Value } from "../value/index.js"
+import { type Value } from "../value/index.js"
 
 export type Neutral = Var | Ap | Fixpoint
 

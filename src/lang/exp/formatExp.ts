@@ -1,5 +1,5 @@
-import type { Exp } from "../exp/index.js"
 import * as Exps from "../exp/index.js"
+import { type Exp } from "../exp/index.js"
 
 export function formatExp(exp: Exp): string {
   switch (exp["@kind"]) {

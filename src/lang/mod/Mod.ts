@@ -1,8 +1,8 @@
-import type { Loader } from "../../loader/index.js"
-import type { Def } from "../def/index.js"
+import { type Loader } from "../../loader/index.js"
+import { type Def } from "../def/index.js"
 import { LangError } from "../errors/index.js"
-import type { Stmt } from "../stmt/index.js"
-import type { Value } from "../value/index.js"
+import { type Stmt } from "../stmt/index.js"
+import { type Value } from "../value/index.js"
 
 export interface ModOptions {
   url: URL

@@ -1,5 +1,7 @@
-import type { ReplEvent } from "@cicada-lang/framework/lib/repl/index.js"
-import { ReplEventHandler } from "@cicada-lang/framework/lib/repl/index.js"
+import {
+  ReplEventHandler,
+  type ReplEvent,
+} from "@cicada-lang/framework/lib/repl/index.js"
 import fs from "fs"
 import * as Errors from "../lang/errors/index.js"
 import { Parser } from "../lang/syntax/index.js"
