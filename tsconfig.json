@@ -10,7 +10,6 @@
     "sourceMap": true,
     "declarationMap": true,
     "resolveJsonModule": true,
-    "outDir": "lib",
-    "baseUrl": "."
+    "outDir": "lib"
   }
 }
