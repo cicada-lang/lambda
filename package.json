@@ -25,7 +25,7 @@
   "dependencies": {
     "@cicada-lang/framework": "^0.1.6",
     "@cicada-lang/partech": "^0.2.5",
-    "@cicada-lang/sexp": "^0.1.1",
+    "@cicada-lang/sexp": "^0.1.2",
     "@xieyuheng/command-line": "^0.0.13",
     "@xieyuheng/ty": "^0.1.26",
     "commonmark": "^0.30.0",
@@ -41,8 +41,8 @@
     "prettier": "^3.1.1",
     "prettier-plugin-organize-imports": "^3.2.4",
     "typescript": "^5.3.3",
-    "vite": "^5.0.10",
-    "vitest": "^1.1.2"
+    "vite": "^5.0.11",
+    "vitest": "^1.1.3"
   },
   "license": "GPL-3.0-or-later"
 }
