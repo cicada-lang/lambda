@@ -29,7 +29,7 @@ export class AppReplEventHandler extends ReplEventHandler {
   }
 
   greeting(): void {
-    console.log(`Welcome to Mugda ${version}`)
+    console.log(`Welcome to Lambda ${version}`)
     console.log(`Type ".help" for more information`)
   }
 
