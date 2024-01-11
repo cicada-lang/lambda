@@ -12,8 +12,8 @@
     "lambda": "bin/lambda.js"
   },
   "scripts": {
-    "build": "rm -r lib && tsc",
-    "build:watch": "rm -r lib && tsc --watch",
+    "build": "rm -rf lib && tsc",
+    "build:watch": "rm -rf lib && tsc --watch",
     "test:ts": "vitest --dir src --run",
     "test:watch": "vitest --dir src",
     "test:lambda:tests": "test-runner snapshot './bin/lambda.js' 'tests/**/*.(scm|md)' --exclude 'tests/**/*.error.(scm|md)'",
