@@ -23,11 +23,11 @@
     "format": "prettier src docs --write"
   },
   "dependencies": {
-    "@cicada-lang/framework": "^0.1.6",
+    "@cicada-lang/framework": "^0.2.0",
     "@cicada-lang/partech": "^0.2.5",
     "@cicada-lang/sexp": "^0.1.2",
-    "@xieyuheng/command-line": "^0.0.13",
-    "@xieyuheng/ty": "^0.1.26",
+    "@xieyuheng/command-line": "^0.1.2",
+    "@xieyuheng/ty": "^0.2.1",
     "commonmark": "^0.30.0",
     "crypto-browserify": "^3.12.0",
     "fast-deep-equal": "^3.1.3",
@@ -36,7 +36,7 @@
   },
   "devDependencies": {
     "@types/commonmark": "^0.27.9",
-    "@types/node": "^20.10.6",
+    "@types/node": "^20.11.0",
     "@xieyuheng/test-runner": "^0.2.10",
     "prettier": "^3.1.1",
     "prettier-plugin-organize-imports": "^3.2.4",
