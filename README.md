@@ -46,12 +46,6 @@ Run a file:
 lambda run tests/nat-church.md
 ```
 
-Run a file and watch file change:
-
-```sh
-lambda run tests/nat-church.md --watch
-```
-
 ## Examples
 
 Please see [tests](tests) for more examples.
