@@ -16,6 +16,10 @@ An implementation of [(Untyped) Lambda Calculus](https://en.wikipedia.org/wiki/L
 - Two simple testing statements `(assert-equal)` and `(assert-not-equal)`.
   - They can handle beta and eta equivalence.
 
+Note that, when implementing lambda calculus as an interpreter,
+the depth of the call stack is limited by the hosting language.
+To avoid this limitation we should implement lambda calculus by machine like SECD.
+
 ## Usages
 
 ### Command line tool
