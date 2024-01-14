@@ -1,7 +1,3 @@
-change project structure to support many languages
-
-- many move tests to docs/lang0
-
 change the command line to support many languages
 
 - lang 1 run

@@ -16,8 +16,8 @@
     "build:watch": "rm -rf lib && tsc --watch",
     "test:ts": "vitest --dir src --run",
     "test:watch": "vitest --dir src",
-    "test:lang:tests": "test-runner snapshot './bin/lang.js' 'tests/**/*.(scm|md)' --exclude 'tests/**/*.error.(scm|md)'",
-    "test:lang:tests-error": "test-runner snapshot-error './bin/lang.js' 'tests/**/*.error.(scm|md)'",
+    "test:lang:tests": "test-runner snapshot './bin/lang.js' 'docs/lang0/tests/**/*.(scm|md)' --exclude 'docs/lang0/tests/**/*.error.(scm|md)'",
+    "test:lang:tests-error": "test-runner snapshot-error './bin/lang.js' 'docs/lang0/tests/**/*.error.(scm|md)'",
     "test:lang": "npm run test:lang:tests && npm run test:lang:tests-error",
     "test": "npm run test:ts && npm run test:lang",
     "format": "prettier src docs --write"
