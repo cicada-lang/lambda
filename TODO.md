@@ -1,5 +1,3 @@
-lang0 -- untyped lambda calculus
-
 change project structure to support many languages
 
 - many move tests to docs/lang0

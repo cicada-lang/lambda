@@ -1,7 +1,7 @@
 import * as commonmark from "commonmark"
-import * as Errors from "../lang/errors/index.js"
-import { type Mod } from "../lang/mod/index.js"
-import { Parser } from "../lang/syntax/index.js"
+import * as Errors from "../lang0/errors/index.js"
+import { type Mod } from "../lang0/mod/index.js"
+import { Parser } from "../lang0/syntax/index.js"
 import { Script } from "../script/index.js"
 
 export class MarkdownScript extends Script {

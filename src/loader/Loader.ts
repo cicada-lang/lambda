@@ -1,5 +1,5 @@
 import { Fetcher } from "@cicada-lang/framework/lib/fetcher/index.js"
-import { Mod } from "../lang/mod/index.js"
+import { Mod } from "../lang0/mod/index.js"
 import { type Script } from "../script/index.js"
 import * as Scripts from "../scripts/index.js"
 

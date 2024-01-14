@@ -3,8 +3,8 @@ import {
   type ReplEvent,
 } from "@cicada-lang/framework/lib/repl/index.js"
 import fs from "fs"
-import * as Errors from "../lang/errors/index.js"
-import { Parser } from "../lang/syntax/index.js"
+import * as Errors from "../lang0/errors/index.js"
+import { Parser } from "../lang0/syntax/index.js"
 import { Loader } from "../loader/index.js"
 import { colors } from "../utils/colors.js"
 
