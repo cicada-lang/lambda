@@ -1,7 +1,7 @@
 {
-  "name": "@cicada-lang/lambda",
+  "name": "@cicada-lang/lang-practices",
   "version": "0.2.3",
-  "repository": "github:cicada-lang/lambda",
+  "repository": "github:cicada-lang/lang-practices",
   "type": "module",
   "main": "./lib/index.js",
   "files": [
@@ -9,17 +9,17 @@
     "lib"
   ],
   "bin": {
-    "lambda": "bin/lambda.js"
+    "lang": "bin/lang.js"
   },
   "scripts": {
     "build": "rm -rf lib && tsc",
     "build:watch": "rm -rf lib && tsc --watch",
     "test:ts": "vitest --dir src --run",
     "test:watch": "vitest --dir src",
-    "test:lambda:tests": "test-runner snapshot './bin/lambda.js' 'tests/**/*.(scm|md)' --exclude 'tests/**/*.error.(scm|md)'",
-    "test:lambda:tests-error": "test-runner snapshot-error './bin/lambda.js' 'tests/**/*.error.(scm|md)'",
-    "test:lambda": "npm run test:lambda:tests && npm run test:lambda:tests-error",
-    "test": "npm run test:ts && npm run test:lambda",
+    "test:lang:tests": "test-runner snapshot './bin/lang.js' 'tests/**/*.(scm|md)' --exclude 'tests/**/*.error.(scm|md)'",
+    "test:lang:tests-error": "test-runner snapshot-error './bin/lang.js' 'tests/**/*.error.(scm|md)'",
+    "test:lang": "npm run test:lang:tests && npm run test:lang:tests-error",
+    "test": "npm run test:ts && npm run test:lang",
     "format": "prettier src docs --write"
   },
   "dependencies": {

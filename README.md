@@ -1,4 +1,4 @@
-# Lambda Calculus
+# My Language Practices
 
 > More restraint and more pure, <br>
 > so functional and so reduced.
@@ -27,27 +27,27 @@ To avoid this limitation we should implement lambda calculus by machine like SEC
 Install it by the following command:
 
 ```sh
-npm install -g @cicada-lang/lambda
+npm install -g @cicada-lang/lang-practices
 ```
 
-The command-line program is called `lambda`.
+The command-line program is called `lang`.
 
 open a REPL:
 
 ```sh
-lambda repl
+lang 0 repl
 ```
 
 or just:
 
 ```sh
-lambda
+lang
 ```
 
 Run a file:
 
 ```sh
-lambda run tests/nat-church.md
+lang 0 run tests/nat-church.md
 ```
 
 ## Examples

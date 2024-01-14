@@ -28,7 +28,7 @@ export class AppReplEventHandler extends ReplEventHandler {
   }
 
   greeting(): void {
-    console.log(`Welcome to Lambda`)
+    console.log(`Welcome to my language practices :)`)
     console.log(`Type ".help" for more information`)
   }
 
