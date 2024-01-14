@@ -3,19 +3,20 @@
 Use [S-expression](https://github.com/cicada-lang/sexp) as overall syntax,
 to expression ideas clearly.
 
-- **lang0** -- An implementation of [(Untyped) Lambda Calculus](https://en.wikipedia.org/wiki/Lambda_calculus).
-  - Implement call-by-need lazy evaluation.
-  - Allow recursive in top-level definitions.
-    - No mutual recursion, a name must be defined before used.
-  - A simple module system with only one API -- `(import)`.
-    - It can import module from local file or remote URL.
-  - Two simple testing statements `(assert-equal)` and `(assert-not-equal)`.
-    - They can handle beta and eta equivalence.
-  - Note that, when implementing lambda calculus as an interpreter,
-    the depth of the call stack is limited by the hosting language.
-    To avoid this limitation we should implement lambda calculus by machine like SECD.
-- **lang1** -- De Bruijn notation with explicit substitution.
-  - With explicit name as comment.
+**lang0** -- An implementation of [(Untyped) Lambda Calculus](https://en.wikipedia.org/wiki/Lambda_calculus).
+- Implement call-by-need lazy evaluation.
+- Allow recursive in top-level definitions.
+  - No mutual recursion, a name must be defined before used.
+- A simple module system with only one API -- `(import)`.
+  - It can import module from local file or remote URL.
+- Two simple testing statements `(assert-equal)` and `(assert-not-equal)`.
+  - They can handle beta and eta equivalence.
+- Note that, when implementing lambda calculus as an interpreter,
+  the depth of the call stack is limited by the hosting language.
+  To avoid this limitation we should implement lambda calculus by machine like SECD.
+
+**lang1** -- De Bruijn notation with explicit substitution.
+- With explicit name as comment.
 
 ## Usages
 
