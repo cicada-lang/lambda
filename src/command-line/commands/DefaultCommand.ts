@@ -1,6 +1,5 @@
 import { Command, CommandRunner } from "@xieyuheng/command-line"
 import { ty } from "@xieyuheng/ty"
-import { version } from "../../version.js"
 import * as Commands from "../commands/index.js"
 
 type Args = { file?: string }
@@ -19,11 +18,6 @@ export class DefaultCommand extends Command<Args, Opts> {
     if (argv["help"]) {
       const command = new Commands.CommonHelp()
       await command.execute({}, runner)
-      return
-    }
-
-    if (argv["version"]) {
-      console.log(version)
       return
     }
 

@@ -7,7 +7,6 @@ import * as Errors from "../lang/errors/index.js"
 import { Parser } from "../lang/syntax/index.js"
 import { Loader } from "../loader/index.js"
 import { colors } from "../utils/colors.js"
-import { version } from "../version.js"
 
 export class AppReplEventHandler extends ReplEventHandler {
   pathname = process.cwd() + "/repl"
@@ -29,7 +28,7 @@ export class AppReplEventHandler extends ReplEventHandler {
   }
 
   greeting(): void {
-    console.log(`Welcome to Lambda ${version}`)
+    console.log(`Welcome to Lambda`)
     console.log(`Type ".help" for more information`)
   }
 
