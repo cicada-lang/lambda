@@ -1,5 +1,6 @@
 ---
 title: Mutual Recursive Functions
+date: 2022-04-29
 ---
 
 # Inlining
