@@ -1,10 +1,11 @@
-lang1 -- de-bruijn-notation + explicit-substitution
+# lang1
 
-- with explicit name as comment
+[lang1] example syntax design
+[lang1] setup `Exp`
 
-# command line
+# command-line
 
-change the command line to support many languages
+[command-line] change the command line to support many languages
 
 - lang 1 run
 - lang 1 repl
