@@ -2,11 +2,9 @@
 
 I use [S-expression](https://github.com/cicada-lang/sexp) as syntax to express ideas clearly.
 
-[**lang0**](./docs/lang0/README.md) -- Lambda Calculus.
+[**lang0**](./docs/lang0/README.md) -- Lambda calculus.
 
-**lang1** -- Lambda Calculus with de Bruijn notation.
-
-**lang2** -- Lambda Calculus with explicit substitution.
+**lang2** -- Lambda calculus with explicit substitution.
 
 ## Usages
 

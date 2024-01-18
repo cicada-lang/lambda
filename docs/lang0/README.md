@@ -1,5 +1,5 @@
 ---
-title: Lambda Calculus
+title: Lambda calculus
 subtitle: lang0
 ---
 
