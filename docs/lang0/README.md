@@ -1,4 +1,31 @@
-### Boolean
+---
+title: Lambda Calculus
+subtitle: lang0
+---
+
+# Features
+
+- Implement call-by-need lazy evaluation.
+
+- Allow recursive in top-level definitions.
+
+  - No mutual recursion, a name must be defined before used.
+
+- A simple module system with only one API -- `(import)`.
+
+  - It can import module from local file or remote URL.
+
+- Two simple testing statements `(assert-equal)` and `(assert-not-equal)`.
+
+  - They can handle beta and eta equivalence.
+
+Note that, when implementing lambda calculus as an interpreter,
+the depth of the call stack is limited by the hosting language.
+To avoid this limitation we should implement lambda calculus by machine like SECD.
+
+# Examples
+
+## Boolean
 
 ```scheme
 (define (true t f) t)
@@ -14,7 +41,7 @@
 (not (not (or true false)))
 ```
 
-### Natural Number by Church encoding
+## Natural Number by Church encoding
 
 [ [WIKIPEDIA](https://en.wikipedia.org/wiki/Church_encoding) ]
 
@@ -32,7 +59,7 @@
 (add two two)
 ```
 
-### Factorial
+## Factorial
 
 ```scheme
 (import "./nat-church.md"
@@ -53,7 +80,7 @@
 (factorial three)
 ```
 
-### Factorial by fixpoint combinator
+## Factorial by fixpoint combinator
 
 [ [WIKIPEDIA](https://en.wikipedia.org/wiki/Fixed-point_combinator) ]
 
@@ -93,7 +120,7 @@
 (factorial four)
 ```
 
-### Cons the Magnificent
+## Cons the Magnificent
 
 ```scheme
 ;; NOTE Temporarily save `car` and `cdr` to a lambda,
