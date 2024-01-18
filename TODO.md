@@ -1,6 +1,6 @@
 # lang1
 
-[lang1] example syntax design
+[lang1] example syntax design -- use real λ
 [lang1] setup `Exp`
 
 # command-line
