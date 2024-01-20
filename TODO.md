@@ -2,16 +2,6 @@
 
 [lang1] setup `Exp`
 
-# lang2
-
-[lang2] design syntax
-
-[lang2] note that, composition of substitutions `s` then `t`
-is not `(with t s)`
-but merging two telescopes `(merge (with t s) t)`,
-we must define a scope to be finite composition of bindings.
-
-
 # command-line
 
 [command-line] change the command line to support many languages
