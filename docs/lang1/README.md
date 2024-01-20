@@ -5,7 +5,7 @@ subtitle: lang1
 
 # Syntax
 
-`<exp>`
+`<exp>`:
 
 ```scm
 <exp:var> := <name>
@@ -16,7 +16,7 @@ subtitle: lang1
 <exp:object> := (object (define <name> <exp>) ...)
 ```
 
-`(join)`
+`(join)`:
 
 ```scm
 (join
@@ -30,7 +30,9 @@ subtitle: lang1
   (define k2 e2))
 ```
 
-`(extend)`
+`(extend)`:
+
+- Use `(join)` and `(with)` to implement `(extend)`.
 
 ```scm
 (extend
@@ -47,15 +49,15 @@ subtitle: lang1
 Beta reduction:
 
 ```scm
-((λ (x) a) b) =>
+((lambda (x) a) b) =>
 (with (object (define x b)) a)
 ```
 
 Substitution under lambda:
 
 ```scm
-(with s (λ (x) a)) =>
+(with s (lambda (x) a)) =>
 ;; y is fresh in a and s
-(λ (y) (with s ((λ (x) a) y))) =>
-(λ (y) (with s (with (object (define x y)) a)))
+(lambda (y) (with s ((lambda (x) a) y))) =>
+(lambda (y) (with s (with (object (define x y)) a)))
 ```

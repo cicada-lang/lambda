@@ -1,8 +1,5 @@
 # lang1
 
-use (join) and (with) to implement (extend)
-
-[lang1] example syntax design -- use real λ
 [lang1] setup `Exp`
 
 # lang2
