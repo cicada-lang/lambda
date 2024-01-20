@@ -1,6 +1,7 @@
 # lang1
 
 [lang1] setup `Exp`
+[lang1] learn syntax from clojure
 
 # command-line
 
