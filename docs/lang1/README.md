@@ -5,32 +5,50 @@ subtitle: lang1
 
 # Syntax
 
-Exp:
+`<exp>`
 
 ```scm
 <exp:var> := <name>
 <exp:fn> := (lambda (<name>) <exp>)
 <exp:ap> := (<exp> <exp>)
 <exp:with> := (with <exp> <exp>)
-<exp:null-subst> := {}
-<exp:push-subst> := (push <exp> <name> <exp>)
+<exp:join> := (join <exp> <exp>)
+<exp:object> := (object (define <name> <exp>) ...)
 ```
 
-Always telescope:
+`(join)`
 
 ```scm
-{:k1 e1
- :k2 e2}
+(join
+  (object
+    (define k1 e1))
+  (object
+    (define k2 e2)))
 
-{:k1 e1
- :k2 (with {:k1 e1} e2)}
+(object
+  (define k1 e1)
+  (define k2 e2))
+```
+
+`(extend)`
+
+```scm
+(extend
+  (object
+    (define k1 e1))
+  (object
+    (define k2 e2)))
+
+(object
+  (define k1 e1)
+  (define k2 (with (object (define k1 e1)) e2)))
 ```
 
 Beta reduction:
 
 ```scm
 ((λ (x) a) b) =>
-(with {:x b} a)
+(with (object (define x b)) a)
 ```
 
 Substitution under lambda:
@@ -39,5 +57,5 @@ Substitution under lambda:
 (with s (λ (x) a)) =>
 ;; y is fresh in a and s
 (λ (y) (with s ((λ (x) a) y))) =>
-(λ (y) (with s (with {:x y} a)))
+(λ (y) (with s (with (object (define x y)) a)))
 ```
