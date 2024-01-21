@@ -15,7 +15,7 @@ into the syntax itself.
 <exp:var> := <name>
 <exp:fn> := (lambda (<name>) <exp>)
 <exp:ap> := (<exp> <exp>)
-<exp:with> := (with <exp> <exp>)
+<exp:closure> := (closure <exp> <exp>)
 <exp:map> := {:<name> <exp> ...}
 ```
 
@@ -32,7 +32,7 @@ into the syntax itself.
 
 ## (extend)
 
-Use `(join)` and `(with)` to implement `(extend)`.
+Use `(join)` and `(closure)` to implement `(extend)`.
 
 TODO Review the idea of telescope.
 
@@ -42,35 +42,33 @@ TODO Review the idea of telescope.
   {:k2 e2})
 
 {:k1 e1
- :k2 (with {:k1 e1} e2)}
+ :k2 (closure e2 {:k1 e1})}
 ```
 
 ## Beta reduction
 
 ```scheme
 ((lambda (x) a) b) =>
-(with {:x b} a)
+(closure a {:x b})
 ```
 
 ## Substitution under lambda
 
 ```scheme
-(with s (lambda (x) a)) =>
+(closure (lambda (x) a) s) =>
 ;; y is fresh in a and s
-(lambda (y) (with s ((lambda (x) a) y))) =>
-(lambda (y) (with s (with {:x y} a)))
+(lambda (y) (closure ((lambda (x) a) y) s)) =>
+(lambda (y) (closure (closure a {:x y}) s))
 ```
 
 # Reduce
-
-MAYBE Change `(with)` to `(closure)` -- for natural postfix composition.
 
 ```scheme
 (define (reduce exp)
   (match exp
     (`(lambda (,name) ,body)
      `(lambda (,name) ,(reduce body)))
-    (`(with ,target-subst ,target)
+    (`(closure ,target ,target-subst)
      (match (reduce target-subst)
        ({:key ,value ...}
         (match (reduce target)
@@ -79,24 +77,32 @@ MAYBE Change `(with)` to `(closure)` -- for natural postfix composition.
           (`(lambda (,name) ,body)
            (let ((fresh-name (freshen-name))
              `(lambda (,fresh-name)
-                ;; We also need rules to reduce double `with`
-                ;; to single `with` and some kind of
+                ;; We also need rules to reduce double `closure`
+                ;; to single `closure` and some kind of
                 ;; composition of substitutions.
                 ,(reduce
-                   (with {:key ,value ...}
-                     (with {:name ,fresh-name} ,body)))))))
+                   (closure
+                     (closure .body {:name ,fresh-name})
+                     {:key ,value ...}))))))
           (`(,inner-target ,inner-arg)
            (reduce
-            `((with ,(reduce target-subst) ,inner-target)
-              (with ,(reduce target-subst) ,inner-arg))))))
-       (_ `(with ,(reduce target-subst) ,(reduce target)))))
+            `((closure ,inner-target ,(reduce target-subst))
+              (closure ,inner-arg ,(reduce target-subst)))))))
+       (_ `(closure ,(reduce target) ,(reduce target-subst)))))
     (`(,target ,arg)
      (match (reduce target)
        (`(lambda (,inner-name) ,inner-body)
-        (reduce `(with {,inner-name ,arg} ,inner-body)))
+        (reduce `(closure ,inner-body {,inner-name ,arg})))
        (_ `(,(reduce target) ,(reduce arg)))))
     ({:name ,value ...}
      {:name (reduce ,value) ...})
     (,name (symbol? name)
      name)))
 ```
+
+# About substitution
+
+We can not write substitution directly as a composed record
+-- `{:k1 e1 :k2 e2 ...}`, we must compose substitution from key value pairs
+one by one, and there might be many kind of compositions,
+`{:k1 e1 :k2 e2 ...}` will represent one of the composition.
