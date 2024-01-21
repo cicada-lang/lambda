@@ -106,3 +106,92 @@ We can not write substitution directly as a composed record
 -- `{:k1 e1 :k2 e2 ...}`, we must compose substitution from key value pairs
 one by one, and there might be many kind of compositions,
 `{:k1 e1 :k2 e2 ...}` will represent one of the composition.
+
+We can get the first kind of composition by solving a functional equation.
+The unknown is the function `after`,
+we call it `after` because `(after s t)` means
+after substituting `s` substitute `t`,
+and known equation is:
+
+```scheme
+(closure (closure e s) t) = (closure e (after s t))
+```
+
+Should the semantic `reduce` be part of the equation?
+
+```scheme
+(reduce (closure (closure e s) t)) = (reduce (closure e (after s t)))
+```
+
+The `after` must be a pure syntax operation
+which can satisfy the about equation.
+
+We try to understand this problem better by viewing examples:
+
+```scheme
+(closure (closure (a b c) {:a (b c)}) {:b (c c)}) =>
+(closure ((b c) b c) {:b (c c)}) =>
+(((c c) c) (c c) c) ==
+((c c c) (c c) c)
+```
+
+How about we do the `after` composition first?
+
+```scheme
+(closure (closure (a b c) {:a (b c)}) {:b (c c)}) =>
+(closure (a b c) (after {:a (b c)} {:b (c c)})) =>
+(closure (a b c) {:a (closure (b c) {:b (c c)}) :b (c c)}) =>
+(closure (a b c) {:a ((c c) c) :b (c c)}) =>
+(((c c) c) (c c) c) =>
+((c c c) (c c) c)
+```
+
+Thus if we view `{...}` as a map of independent key-value maps,
+the meaning of `after` in the above case should be
+
+```scheme
+(after {:a (b c)} {:b (c c)}) =>
+{:a (closure (b c) {:b (c c)}) :b (c c)}
+```
+
+How about let the second substitution map to name of the first substitution?
+
+```scheme
+(closure (closure (a b c) {:a (b c)}) {:b (a a)}) =>
+(closure ((b c) b c) {:b (a a)}) =>
+(((a a) c) (a a) c) ==
+((a a c) (a a) c)
+```
+
+With `after` composition:
+
+```scheme
+(closure (closure (a b c) {:a (b c)}) {:b (a a)}) =>
+(closure (a b c) (after {:a (b c)} {:b (a a)})) =>
+(closure (a b c) {:a (closure (b c) {:b (a a)}) :b (a a)}) =>
+(closure (a b c) {:a ((a a) c) :b (a a)}) =>
+(((a a) c) (a a) c) =>
+((a a c) (a a) c)
+```
+
+But `{:a ((a a) c)}` is a  mapping where the kay occurs in the value.
+this should not be understand as recursive definition of `a`.
+
+# Index v.s. named variables
+
+```scheme
+(λ(1[2]))[a] =>
+(λ(2))[a] =>
+λ(2[1,a]) =>
+λ(a)
+```
+
+```scheme
+(closure (lambda (x) (closure x {:x y})) {:x a}) =>
+(closure (lambda (x) y) {:x a}) =>
+(lambda (z) (closure (closure y {:x z}) {:x a})) =>
+(lambda (z) (closure y {:x a})) =>
+(lambda (z) y)
+```
+
+The results are different!
