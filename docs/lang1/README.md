@@ -5,7 +5,8 @@ subtitle: lang1
 
 # Note
 
-The idea of explicit substitution
+In a more general sense,
+the idea of explicit substitution
 is to encode meta operations of a syntax
 into the syntax itself.
 
@@ -33,8 +34,9 @@ into the syntax itself.
 ## (extend)
 
 Use `(join)` and `(closure)` to implement `(extend)`.
-
-TODO Review the idea of telescope.
+The meaning of telescope should be defined by `(extend)`,
+which is like the meaning of class,
+but different from the meaning of substitution.
 
 ```scheme
 (extend
@@ -147,7 +149,23 @@ which can satisfy the about equation.
 
 ## Simple example
 
-We try to understand this problem better by viewing examples:
+We try to understand this problem better by viewing examples.
+
+Normal reduction:
+
+```scheme
+((lambda (b) ((lambda (a) (a b c)) (b c))) (c c)) =>
+((lambda (a) (a (c c) c)) ((c c) c)) =>
+((c c c) (c c) c)
+```
+
+Reduction with closure:
+
+```scheme
+((lambda (b) ((lambda (a) (a b c)) (b c))) (c c)) =>
+(closure ((lambda (a) (a b c)) (b c)) {:b (c c)}) =>
+(closure (closure (a b c) {:a (b c)}) {:b (c c)})
+```
 
 ```scheme
 (closure (closure (a b c) {:a (b c)}) {:b (c c)}) =>
@@ -175,6 +193,21 @@ the meaning of `after` in the above case should be
 {:a (closure (b c) {:b (c c)}) :b (c c)}
 ```
 
+## Curring
+
+```scheme
+(((lambda (b) (lambda (a) (a b c))) (c c)) (b c)) =>
+((closure (lambda (a) (a b c)) {:b (c c)}) (b c)) =>
+((lambda (a) (closure (a b c) {:b (c c)})) (b c)) =>
+(closure (closure (a b c) {:b (c c)}) {:a (b c)}) =>
+(closure (a (c c) c) {:a (b c)}) =>
+((b c) (c c) c)
+
+(closure (closure (a b c) {:b (c c)}) {:a (b c)}) =>
+(closure (a b c) {:b (c c) :a (b c)}) =>
+((b c) (c c) c)
+```
+
 ## Second substitution map to the previous name
 
 How about let the second substitution map to name of the first substitution?
@@ -193,42 +226,81 @@ With `after` composition:
 (closure (a b c) (after {:a (b c)} {:b (a a)})) =>
 (closure (a b c) {:a (closure (b c) {:b (a a)}) :b (a a)}) =>
 (closure (a b c) {:a ((a a) c) :b (a a)}) =>
-(((a a) c) (a a) c) =>
+(((a a) c) (a a) c) ==
 ((a a c) (a a) c)
 ```
 
 But `{:a ((a a) c)}` is a  mapping where the kay occurs in the value.
 this should not be understand as recursive definition of `a`.
 
+The above double closure come from the following beta reduction:
+
+```scheme
+((lambda (b) ((lambda (a) (a b c)) (b c))) (a a)) =>
+((lambda (b) (closure (a b c) {:a (b c)})) (a a)) =>
+(closure (closure (a b c) {:a (b c)}) {:b (a a)})
+```
+
+Normal beta reduction:
+
+```scheme
+((lambda (b) ((lambda (a) (a b c)) (b c))) (a a)) =>
+((lambda (a1) (a1 (a a) c)) ((a a) c)) =>
+(((a a) c) (a a) c) ==
+((a a c) (a a) c)
+```
+
 ## Second substitution have the same name of the first substitution
 
-TODO
-
 ```scheme
-(closure (closure (a b c) {:a (b c)}) {:b (a a)}) =>
+(closure (closure (a b c) {:a (b c)}) {:a (c c)}) =>
+(closure ((b c) b c) {:a (c c)}) =>
+((b c) b c)
 ```
 
-With `after` composition:
+The above closure comes from the following beta reduction:
 
 ```scheme
-(closure (closure (a b c) {:a (b c)}) {:b (a a)}) =>
+((lambda (a) ((lambda (a) (a b c)) (b c))) (c c)) =>
+((lambda (a) (closure (a b c) {:a (b c)})) (c c)) =>
+(closure (closure (a b c) {:a (b c)}) {:a (c c)})
 ```
 
-# Index v.s. named variables
+Normal beta reduction:
 
 ```scheme
-(λ(1[2]))[a] =>
-(λ(2))[a] =>
-λ(2[1,a]) =>
-λ(a)
+((lambda (a) ((lambda (a) (a b c)) (b c))) (c c)) =>
+((lambda (a) (a b c)) (b c)) =>
+((b c) b c)
+```
+
+Important note:
+
+We can see that `(closure B ([x A]))` is just another syntax
+for `(let ([x A]) B)` or `((lambda (x) B) A)`,
+with `(closure)` as part of the syntax,
+we are actually defining new rewrite rules on lambda calculus
+beside beta reduction, which is:
+
+```scheme
+(closure (closure B ([x A])) ([y C])) =>
+(closure B ([x (closure A ([y C]))] [y C]))
 ```
 
 ```scheme
-(closure (lambda (x) (closure x {:x y})) {:x a}) =>
-(closure (lambda (x) y) {:x a}) =>
-(lambda (z) (closure (closure y {:x z}) {:x a})) =>
-(lambda (z) (closure y {:x a})) =>
-(lambda (z) y)
+(let ([y C]) (let ([x A]) B)) =>
+(let ([x (let ([y C]) A)] [y C]) B)
 ```
 
-The results are different!
+```scheme
+((lambda (y) ((lambda (x) B) A)) C) =>
+((lambda (x y) B) ((lambda (y) A) C) C)
+```
+
+These new rules are more easy to see in de Bruijn notation
+i.e. postfix notation.
+
+```scheme
+[C] (y) [A] (x) B =>
+[[C] (y) A] [C] (y) (x) B
+```
