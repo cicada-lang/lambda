@@ -69,26 +69,7 @@ TODO Review the idea of telescope.
     (`(lambda (,name) ,body)
      `(lambda (,name) ,(reduce body)))
     (`(closure ,target ,target-subst)
-     (match (reduce target-subst)
-       ({:key ,value ...}
-        (match (reduce target)
-          ("name in the keys" value)
-          ("name not in the keys" (reduce target))
-          (`(lambda (,name) ,body)
-           (let ((fresh-name (freshen-name))
-             `(lambda (,fresh-name)
-                ;; We also need rules to reduce double `closure`
-                ;; to single `closure` and some kind of
-                ;; composition of substitutions.
-                ,(reduce
-                   (closure
-                     (closure .body {:name ,fresh-name})
-                     {:key ,value ...}))))))
-          (`(,inner-target ,inner-arg)
-           (reduce
-            `((closure ,inner-target ,(reduce target-subst))
-              (closure ,inner-arg ,(reduce target-subst)))))))
-       (_ `(closure ,(reduce target) ,(reduce target-subst)))))
+     (substitute target (reduce target-subst))
     (`(,target ,arg)
      (match (reduce target)
        (`(lambda (,inner-name) ,inner-body)
@@ -98,9 +79,53 @@ TODO Review the idea of telescope.
      {:name (reduce ,value) ...})
     (,name (symbol? name)
      name)))
+
+(define (substitute target subst)
+  (match (reduce subst)
+    ({:key ,value ...}
+     (match (reduce target)
+       ("name in the keys" value)
+       ("name not in the keys" (reduce target))
+       (`(lambda (,name) ,body)
+        (let ((fresh-name (freshen-name))
+          `(lambda (,fresh-name)
+             ,(reduce
+                (closure
+                  (closure .body {:name ,fresh-name})
+                  {:key ,value ...}))
+             ;; Double `closure` will be reduced to single `closure`:
+             ,(reduce
+                (closure .body (after {:name ,fresh-name} {:key ,value ...})))
+             ;; And since `fresh-name` is fresh, we have:
+             ,(reduce
+                (closure .body {:name ,fresh-name :key ,value ...}))))))
+       (`(,inner-target ,inner-arg)
+        (reduce
+         `((closure ,inner-target ,(reduce target-subst))
+           (closure ,inner-arg ,(reduce target-subst)))))))
+    (_ `(closure ,(reduce target) ,(reduce target-subst)))))
+
+;; `substitute` without comments:
+
+(define (substitute target subst)
+  (match (reduce subst)
+    ({:key ,value ...}
+     (match (reduce target)
+       ("name in the keys" value)
+       ("name not in the keys" (reduce target))
+       (`(lambda (,name) ,body)
+        (let ((fresh-name (freshen-name))
+          `(lambda (,fresh-name)
+             ,(reduce
+                (closure .body {:name ,fresh-name :key ,value ...}))))))
+       (`(,inner-target ,inner-arg)
+        (reduce
+         `((closure ,inner-target ,(reduce target-subst))
+           (closure ,inner-arg ,(reduce target-subst)))))))
+    (_ `(closure ,(reduce target) ,(reduce target-subst)))))
 ```
 
-# About substitution
+# Composition of substitutions
 
 We can not write substitution directly as a composed record
 -- `{:k1 e1 :k2 e2 ...}`, we must compose substitution from key value pairs
@@ -115,12 +140,6 @@ and known equation is:
 
 ```scheme
 (closure (closure e s) t) = (closure e (after s t))
-```
-
-Should the semantic `reduce` be part of the equation?
-
-```scheme
-(reduce (closure (closure e s) t)) = (reduce (closure e (after s t)))
 ```
 
 The `after` must be a pure syntax operation
