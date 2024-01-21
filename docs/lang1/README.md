@@ -145,6 +145,8 @@ and known equation is:
 The `after` must be a pure syntax operation
 which can satisfy the about equation.
 
+## Simple example
+
 We try to understand this problem better by viewing examples:
 
 ```scheme
@@ -173,6 +175,8 @@ the meaning of `after` in the above case should be
 {:a (closure (b c) {:b (c c)}) :b (c c)}
 ```
 
+## Second substitution map to the previous name
+
 How about let the second substitution map to name of the first substitution?
 
 ```scheme
@@ -195,6 +199,20 @@ With `after` composition:
 
 But `{:a ((a a) c)}` is a  mapping where the kay occurs in the value.
 this should not be understand as recursive definition of `a`.
+
+## Second substitution have the same name of the first substitution
+
+TODO
+
+```scheme
+(closure (closure (a b c) {:a (b c)}) {:b (a a)}) =>
+```
+
+With `after` composition:
+
+```scheme
+(closure (closure (a b c) {:a (b c)}) {:b (a a)}) =>
+```
 
 # Index v.s. named variables
 
