@@ -14,12 +14,11 @@
   "scripts": {
     "build": "rm -rf lib && tsc",
     "build:watch": "rm -rf lib && tsc --watch",
-    "test:ts": "vitest --dir src --run",
-    "test:watch": "vitest --dir src",
+    "test:node": "node --test",
     "test:lang:tests": "test-runner snapshot './bin/lang.js' 'docs/lang0/tests/**/*.(scm|md)' --exclude 'docs/lang0/tests/**/*.error.(scm|md)'",
     "test:lang:tests-error": "test-runner snapshot-error './bin/lang.js' 'docs/lang0/tests/**/*.error.(scm|md)'",
     "test:lang": "npm run test:lang:tests && npm run test:lang:tests-error",
-    "test": "npm run test:ts && npm run test:lang",
+    "test": "npm run test:node && npm run test:lang",
     "format": "prettier src docs --write"
   },
   "dependencies": {
@@ -36,9 +35,7 @@
     "@xieyuheng/test-runner": "^0.2.10",
     "prettier": "^3.2.4",
     "prettier-plugin-organize-imports": "^3.2.4",
-    "typescript": "^5.3.3",
-    "vite": "^5.0.12",
-    "vitest": "^1.2.1"
+    "typescript": "^5.3.3"
   },
   "license": "GPL-3.0-or-later"
 }
