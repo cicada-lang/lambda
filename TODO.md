@@ -1,6 +1,5 @@
 # lang1
 
-[lang1] design different composition of substitutions
 [lang1] setup `Exp`
 
 # command-line
