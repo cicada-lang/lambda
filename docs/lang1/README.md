@@ -298,9 +298,9 @@ beside beta reduction, which is:
 ```
 
 These new rules are more easy to see in de Bruijn notation
-i.e. postfix notation.
+i.e. postfix notation, note that we use `{}` instead of `<>` for quoted program.
 
 ```scheme
-[C] (y) [A] (x) B =>
-[[C] (y) A] [C] (y) (x) B
+{ C } [y] { A } [x] B =>
+{ { C } [y] A } { C } [y] [x] B
 ```
