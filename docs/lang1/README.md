@@ -59,8 +59,7 @@ but different from the meaning of substitution.
 ```scheme
 (closure (lambda (x) a) s) =>
 ;; y is fresh in a and s
-(lambda (y) (closure ((lambda (x) a) y) s)) =>
-(lambda (y) (closure (closure a {:x y}) s))
+(lambda (y) (closure a {:x y ...s}))
 ```
 
 # Reduce
@@ -92,34 +91,7 @@ but different from the meaning of substitution.
         (let ((fresh-name (freshen-name))
           `(lambda (,fresh-name)
              ,(reduce
-                (closure
-                  (closure .body {:name ,fresh-name})
-                  {:key ,value ...}))
-             ;; Double `closure` will be reduced to single `closure`:
-             ,(reduce
-                (closure .body (after {:name ,fresh-name} {:key ,value ...})))
-             ;; And since `fresh-name` is fresh, we have:
-             ,(reduce
-                (closure .body {:name ,fresh-name :key ,value ...}))))))
-       (`(,inner-target ,inner-arg)
-        (reduce
-         `((closure ,inner-target ,(reduce target-subst))
-           (closure ,inner-arg ,(reduce target-subst)))))))
-    (_ `(closure ,(reduce target) ,(reduce target-subst)))))
-
-;; `substitute` without comments:
-
-(define (substitute target subst)
-  (match (reduce subst)
-    ({:key ,value ...}
-     (match (reduce target)
-       ("name in the keys" value)
-       ("name not in the keys" (reduce target))
-       (`(lambda (,name) ,body)
-        (let ((fresh-name (freshen-name))
-          `(lambda (,fresh-name)
-             ,(reduce
-                (closure .body {:name ,fresh-name :key ,value ...}))))))
+                (closure ,body {:name ,fresh-name :key ,value ...}))))))
        (`(,inner-target ,inner-arg)
         (reduce
          `((closure ,inner-target ,(reduce target-subst))
