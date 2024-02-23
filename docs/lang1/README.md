@@ -276,3 +276,27 @@ i.e. postfix notation, note that we use `{}` instead of `<>` for quoted program.
 { C } [y] { A } [x] B =>
 { { C } [y] A } { C } [y] [x] B
 ```
+
+# Using (let) instead of (closure)
+
+Using `(let)` to get a more familiar syntax.
+
+Be careful about the order,
+it should be like reversed closure,
+i.e. lookup should find the nearest binding.
+
+It should not be:
+
+```scheme
+(let ([y C]) (let ([x A]) B)) =>
+(let ([x (let ([y C]) A)] [y C]) B)
+```
+
+but be:
+
+```scheme
+(let ([y C]) (let ([x A]) B)) =>
+(let ([y C] [x (let ([y C]) A)]) B)
+```
+
+Beside this rule, all expressions should be substited as is.
