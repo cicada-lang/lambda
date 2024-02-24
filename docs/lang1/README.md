@@ -70,7 +70,7 @@ but different from the meaning of substitution.
     (`(lambda (,name) ,body)
      `(lambda (,name) ,(reduce body)))
     (`(closure ,target ,target-subst)
-     (substitute target (reduce target-subst))
+     (substitute target (reduce target-subst)))
     (`(,target ,arg)
      (match (reduce target)
        (`(lambda (,inner-name) ,inner-body)
