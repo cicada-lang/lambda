@@ -1,7 +1,7 @@
 {
-  "name": "@cicada-lang/lang-practices",
+  "name": "@cicada-lang/clique",
   "version": "0.2.3",
-  "repository": "github:cicada-lang/lang-practices",
+  "repository": "github:cicada-lang/clique",
   "type": "module",
   "main": "./lib/index.js",
   "files": [
@@ -9,14 +9,14 @@
     "lib"
   ],
   "bin": {
-    "lang": "bin/lang.js"
+    "clique": "bin/clique.js"
   },
   "scripts": {
     "build": "rm -rf lib && tsc",
     "build:watch": "rm -rf lib && tsc --watch",
     "test:node": "node --test",
-    "test:lang:tests": "test-runner snapshot './bin/lang.js' 'docs/lang0/tests/**/*.(scm|md)' --exclude 'docs/lang0/tests/**/*.error.(scm|md)'",
-    "test:lang:tests-error": "test-runner snapshot-error './bin/lang.js' 'docs/lang0/tests/**/*.error.(scm|md)'",
+    "test:lang:tests": "test-runner snapshot './bin/clique.js' 'docs/lang0/tests/**/*.(scm|md)' --exclude 'docs/lang0/tests/**/*.error.(scm|md)'",
+    "test:lang:tests-error": "test-runner snapshot-error './bin/clique.js' 'docs/lang0/tests/**/*.error.(scm|md)'",
     "test:lang": "npm run test:lang:tests && npm run test:lang:tests-error",
     "test": "npm run test:node && npm run test:lang",
     "format": "prettier src docs --write"

@@ -1,4 +1,4 @@
-# My Language Practices
+# A group of little languages
 
 I use [S-expression](https://github.com/cicada-lang/sexp) as syntax to express ideas clearly.
 
@@ -12,7 +12,7 @@ I use [S-expression](https://github.com/cicada-lang/sexp) as syntax to express i
 Install it by the following command:
 
 ```sh
-npm install -g @cicada-lang/lang-practices
+npm install -g @cicada-lang/clique
 ```
 
 The command-line program is called `lang`.
