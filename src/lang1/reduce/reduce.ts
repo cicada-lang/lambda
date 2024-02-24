@@ -1,4 +1,4 @@
-import { type Exp } from "../exp/index.js"
+import { type Binding, type Exp } from "../exp/index.js"
 
 export function reduce(exp: Exp): Exp {
   switch (exp["@kind"]) {
@@ -17,7 +17,7 @@ export function reduce(exp: Exp): Exp {
 
     case "Ap": {
       // NOTE Reduce both the `target` and the `arg` first,
-      // thus call-by-value.
+      // thus this strategy is call-by-value.
       return doAp(reduce(exp.target), reduce(exp.arg))
     }
 
@@ -28,9 +28,19 @@ export function reduce(exp: Exp): Exp {
 }
 
 function doAp(target: Exp, arg: Exp): Exp {
-  switch (target['@kind']){
+  switch (target["@kind"]) {
     case "Fn": {
-      throw new Error("TODO")
+      return reduce({
+        "@type": "Exp",
+        "@kind": "Let",
+        bindings: [
+          {
+            name: target.name,
+            exp: arg,
+          },
+        ],
+        body: target.ret,
+      })
     }
 
     default: {
@@ -38,8 +48,12 @@ function doAp(target: Exp, arg: Exp): Exp {
         "@type": "Exp",
         "@kind": "Ap",
         target,
-        arg
+        arg,
       }
     }
   }
+}
+
+function substitute(exp: Exp, bindings: Array<Binding>): Exp {
+  return exp
 }

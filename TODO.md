@@ -1,6 +1,5 @@
 # lang1
 
-[lang1] `doAp`
 [lang1] `reduce` -- `Let`
 [lang1] `substitute`
 [lang1] `syntax`
