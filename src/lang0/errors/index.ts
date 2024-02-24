@@ -1,8 +1,5 @@
 export { ParsingError } from "@cicada-lang/sexp"
 export * from "./AssertionError.js"
-export * from "./ConversionError.js"
 export * from "./ElaborationError.js"
 export * from "./ErrorReport.js"
-export * from "./EvaluationError.js"
-export * from "./InternalError.js"
 export * from "./LangError.js"
