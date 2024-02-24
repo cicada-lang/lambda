@@ -1,6 +1,5 @@
 # lang1
 
-[lang1] `exp/`
 [lang1] `reduce/`
 [lang1] `span/`
 [lang1] `syntax/`
