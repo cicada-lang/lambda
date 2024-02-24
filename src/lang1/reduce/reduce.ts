@@ -1,5 +1,8 @@
 import { type Binding, type Exp } from "../exp/index.js"
 
+// NOTE `reduce` might hit fixpoint on other kind of expressions,
+// but it will always remove `Let`.
+
 export function reduce(exp: Exp): Exp {
   switch (exp["@kind"]) {
     case "Var": {
@@ -22,7 +25,13 @@ export function reduce(exp: Exp): Exp {
     }
 
     case "Let": {
-      throw new Error("TODO")
+      // TODO We `reduce` the `body` first,
+      // this means the `body` might be
+      // `reduce`d twice (first by `Ap`).
+      // We can avoid this by not calling `reduce` here,
+      // can normalize `Let` over `Let` instead.
+
+      return substitute(reduce(exp.body), exp.bindings)
     }
   }
 }
@@ -54,6 +63,6 @@ function doAp(target: Exp, arg: Exp): Exp {
   }
 }
 
-function substitute(exp: Exp, bindings: Array<Binding>): Exp {
-  return exp
+function substitute(body: Exp, bindings: Array<Binding>): Exp {
+  throw new Error("TODO")
 }
