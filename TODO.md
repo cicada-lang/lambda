@@ -6,6 +6,6 @@
 
 [command-line] change the command line to support many languages
 
-- lang 1 run
-- lang 1 repl
-- lang -- choose the lang
+- clique 1 run
+- clique 1 repl
+- clique -- choose the lang
