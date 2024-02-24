@@ -1,7 +1,9 @@
 # lang1
 
-[lang1] `reduce/`
-[lang1] `syntax/`
+[lang1] `doAp`
+[lang1] `reduce` -- `Let`
+[lang1] `substitute`
+[lang1] `syntax`
 
 # command-line
 
