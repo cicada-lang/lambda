@@ -22,10 +22,6 @@ export class DefaultScript extends Script {
         throw new Errors.ErrorReport(error.report(this.text))
       }
 
-      if (error instanceof Errors.ElaborationError) {
-        throw new Errors.ErrorReport(error.report(this.text))
-      }
-
       throw error
     }
   }

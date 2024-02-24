@@ -38,10 +38,6 @@ export class MarkdownScript extends Script {
         throw new Errors.ErrorReport(error.report(text))
       }
 
-      if (error instanceof Errors.ElaborationError) {
-        throw new Errors.ErrorReport(error.report(text))
-      }
-
       throw error
     }
   }
