@@ -27,13 +27,7 @@ export function reduce(exp: Exp): Exp {
     }
 
     case "Let": {
-      // TODO We `reduce` the `body` first,
-      // this means the `body` might be
-      // `reduce`d twice (first by `Ap`).
-      // We can avoid this by not calling `reduce` here,
-      // can normalize `Let` over `Let` instead.
-
-      return substitute(reduce(exp.body), exp.bindings)
+      return reduce(substitute(exp.body, exp.bindings))
     }
   }
 }
