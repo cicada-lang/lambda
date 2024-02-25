@@ -1,6 +1,5 @@
 # lang0
 
-[lang0] `Definition` should be just data
 [lang0] `Mod` should be just data
 [lang0] `Loader` should be just data
 

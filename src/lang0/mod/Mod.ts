@@ -4,20 +4,20 @@ import { LangError } from "../errors/index.js"
 import { type Stmt } from "../stmt/index.js"
 import { type Value } from "../value/index.js"
 
-export interface ModOptions {
-  url: URL
-  loader: Loader
-}
-
 export class Mod {
-  private definitions: Map<string, Definition> = new Map()
+  loader: Loader
+  url: URL
+  definitions: Map<string, Definition> = new Map()
   outputs: Map<number, string> = new Map()
   stmts: Array<Stmt> = []
 
-  constructor(public options: ModOptions) {}
+  constructor(options: { url: URL; loader: Loader }) {
+    this.url = options.url
+    this.loader = options.loader
+  }
 
   resolve(href: string): URL {
-    return new URL(href, this.options.url)
+    return new URL(href, this.url)
   }
 
   async executeStmts(stmts: Array<Stmt>): Promise<void> {
@@ -27,8 +27,8 @@ export class Mod {
       this.stmts.push(stmt)
       if (output) {
         this.outputs.set(offset + index, output)
-        if (this.options.loader.options.onOutput) {
-          this.options.loader.options.onOutput(output)
+        if (this.loader.options.onOutput) {
+          this.loader.options.onOutput(output)
         }
       }
     }
