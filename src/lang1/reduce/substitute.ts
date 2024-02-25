@@ -1,4 +1,5 @@
 import { type Binding, type Exp } from "../exp/index.js"
+import { freshen } from "./freshen.js"
 import { lookup } from "./lookup.js"
 
 export function substitute(body: Exp, bindings: Array<Binding>): Exp {
@@ -13,7 +14,28 @@ export function substitute(body: Exp, bindings: Array<Binding>): Exp {
     }
 
     case "Fn": {
-      throw new Error("TODO")
+      const freshName = freshen(body.name)
+      return {
+        "@type": "Exp",
+        "@kind": "Fn",
+        name: freshName,
+        ret: {
+          "@type": "Exp",
+          "@kind": "Let",
+          bindings: [
+            ...bindings,
+            {
+              name: body.name,
+              exp: {
+                "@type": "Exp",
+                "@kind": "Var",
+                name: freshName,
+              },
+            },
+          ],
+          body: body.ret,
+        },
+      }
     }
 
     case "Ap": {

@@ -1,6 +1,5 @@
 # lang1
 
-[lang1] `substitute` -- Fn
 [lang1] `substitute` -- Let
 [lang1] `syntax`
 
