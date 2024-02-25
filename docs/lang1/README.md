@@ -202,7 +202,7 @@ With `after` composition:
 ((a a c) (a a) c)
 ```
 
-But `{:a ((a a) c)}` is a  mapping where the kay occurs in the value.
+But `{:a ((a a) c)}` is a mapping where the kay occurs in the value.
 this should not be understand as recursive definition of `a`.
 
 The above double closure come from the following beta reduction:

@@ -1,5 +1,5 @@
 import { type Loader } from "../../loader/index.js"
-import { type Definition } from "../definition/index.js"
+import { evaluateDefinition, type Definition } from "../definition/index.js"
 import { LangError } from "../errors/index.js"
 import { type Stmt } from "../stmt/index.js"
 import { type Value } from "../value/index.js"
@@ -56,6 +56,6 @@ export class Mod {
   findValue(name: string): Value | undefined {
     const definition = this.find(name)
     if (definition === undefined) return undefined
-    return definition.value
+    return evaluateDefinition(definition)
   }
 }
