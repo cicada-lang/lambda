@@ -1,5 +1,5 @@
 import { type Loader } from "../../loader/index.js"
-import { type Def } from "../def/index.js"
+import { type Definition } from "../definition/index.js"
 import { LangError } from "../errors/index.js"
 import { type Stmt } from "../stmt/index.js"
 import { type Value } from "../value/index.js"
@@ -10,7 +10,7 @@ export interface ModOptions {
 }
 
 export class Mod {
-  private defs: Map<string, Def> = new Map()
+  private defs: Map<string, Definition> = new Map()
   outputs: Map<number, string> = new Map()
   stmts: Array<Stmt> = []
 
@@ -34,7 +34,7 @@ export class Mod {
     }
   }
 
-  define(name: string, def: Def): void {
+  define(name: string, def: Definition): void {
     this.assertNotRedefine(name)
     this.defs.set(name, def)
   }
@@ -45,7 +45,7 @@ export class Mod {
     }
   }
 
-  find(name: string): Def | undefined {
+  find(name: string): Definition | undefined {
     return this.defs.get(name)
   }
 

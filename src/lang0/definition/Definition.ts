@@ -5,7 +5,7 @@ import { type Exp } from "../exp/index.js"
 import { type Mod } from "../mod/index.js"
 import { type Value } from "../value/index.js"
 
-export class Def {
+export class Definition {
   private cache?: Value
 
   constructor(

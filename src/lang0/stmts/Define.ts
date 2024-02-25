@@ -1,5 +1,5 @@
 import { builtinNames } from "../builtin/index.js"
-import { Def } from "../def/index.js"
+import { Definition } from "../definition/index.js"
 import { LangError } from "../errors/index.js"
 import * as Exps from "../exp/index.js"
 import { type Exp } from "../exp/index.js"
@@ -35,7 +35,7 @@ export class Define extends Stmt {
   async execute(mod: Mod): Promise<void> {
     this.assertAllNamesDefined(mod)
 
-    mod.define(this.name, new Def(mod, this.name, this.exp))
+    mod.define(this.name, new Definition(mod, this.name, this.exp))
   }
 
   async undo(mod: Mod): Promise<void> {
