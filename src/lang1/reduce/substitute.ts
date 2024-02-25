@@ -58,7 +58,13 @@ export function substitute(body: Exp, bindings: Array<Binding>): Exp {
     }
 
     case "Let": {
-      throw new Error("TODO")
+      return substitute(body.body, [
+        ...bindings,
+        ...body.bindings.map(({ name, exp }) => ({
+          name,
+          exp: substitute(exp, bindings),
+        })),
+      ])
     }
   }
 }

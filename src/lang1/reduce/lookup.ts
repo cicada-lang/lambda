@@ -4,7 +4,7 @@ export function lookup(
   name: string,
   bindings: Array<Binding>,
 ): Exp | undefined {
-  for (const binding of bindings) {
+  for (const binding of [...bindings].reverse()) {
     if (binding.name === name) {
       return binding.exp
     }

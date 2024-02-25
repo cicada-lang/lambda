@@ -1,6 +1,5 @@
 # lang1
 
-[lang1] `substitute` -- Let
 [lang1] `syntax`
 
 [lang1] 如果能成功，为什么 closure 可以被从 `Value` 转化为 `Exp`？
