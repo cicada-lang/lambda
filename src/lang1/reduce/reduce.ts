@@ -1,4 +1,6 @@
-import { type Binding, type Exp } from "../exp/index.js"
+import { type Exp } from "../exp/index.js"
+import { doAp } from "./doAp.js"
+import { substitute } from "./substitute.js"
 
 // NOTE `reduce` might hit fixpoint on other kind of expressions,
 // but it will always remove `Let`.
@@ -34,35 +36,4 @@ export function reduce(exp: Exp): Exp {
       return substitute(reduce(exp.body), exp.bindings)
     }
   }
-}
-
-function doAp(target: Exp, arg: Exp): Exp {
-  switch (target["@kind"]) {
-    case "Fn": {
-      return reduce({
-        "@type": "Exp",
-        "@kind": "Let",
-        bindings: [
-          {
-            name: target.name,
-            exp: arg,
-          },
-        ],
-        body: target.ret,
-      })
-    }
-
-    default: {
-      return {
-        "@type": "Exp",
-        "@kind": "Ap",
-        target,
-        arg,
-      }
-    }
-  }
-}
-
-function substitute(body: Exp, bindings: Array<Binding>): Exp {
-  throw new Error("TODO")
 }
