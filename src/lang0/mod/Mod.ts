@@ -10,7 +10,7 @@ export interface ModOptions {
 }
 
 export class Mod {
-  private defs: Map<string, Definition> = new Map()
+  private definitions: Map<string, Definition> = new Map()
   outputs: Map<number, string> = new Map()
   stmts: Array<Stmt> = []
 
@@ -34,9 +34,9 @@ export class Mod {
     }
   }
 
-  define(name: string, def: Definition): void {
+  define(name: string, definition: Definition): void {
     this.assertNotRedefine(name)
-    this.defs.set(name, def)
+    this.definitions.set(name, definition)
   }
 
   private assertNotRedefine(name: string): void {
@@ -46,16 +46,16 @@ export class Mod {
   }
 
   find(name: string): Definition | undefined {
-    return this.defs.get(name)
+    return this.definitions.get(name)
   }
 
   delete(name: string): void {
-    this.defs.delete(name)
+    this.definitions.delete(name)
   }
 
   findValue(name: string): Value | undefined {
-    const def = this.find(name)
-    if (def === undefined) return undefined
-    return def.value
+    const definition = this.find(name)
+    if (definition === undefined) return undefined
+    return definition.value
   }
 }
