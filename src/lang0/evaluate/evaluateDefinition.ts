@@ -1,9 +1,9 @@
+import { type Definition } from "../definition/index.js"
 import { Env } from "../env/index.js"
 import { evaluate } from "../evaluate/index.js"
 import * as Exps from "../exp/index.js"
 import { type Exp } from "../exp/index.js"
 import { type Value } from "../value/index.js"
-import { type Definition } from "./index.js"
 
 export function evaluateDefinition(definition: Definition): Value {
   if (definition.cache !== undefined) {

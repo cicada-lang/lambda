@@ -1,6 +1,7 @@
 import { type Loader } from "../../loader/index.js"
-import { evaluateDefinition, type Definition } from "../definition/index.js"
+import { type Definition } from "../definition/index.js"
 import { LangError } from "../errors/index.js"
+import { evaluateDefinition } from "../evaluate/index.js"
 import { type Stmt } from "../stmt/index.js"
 import { type Value } from "../value/index.js"
 
