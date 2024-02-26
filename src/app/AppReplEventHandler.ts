@@ -4,6 +4,7 @@ import {
 } from "@cicada-lang/framework/lib/repl/index.js"
 import fs from "fs"
 import * as Errors from "../lang0/errors/index.js"
+import { modExecuteStmts } from "../lang0/mod/modExecuteStmts.js"
 import { Parser } from "../lang0/syntax/index.js"
 import { Loader } from "../loader/index.js"
 import { colors } from "../utils/colors.js"
@@ -42,7 +43,7 @@ export class AppReplEventHandler extends ReplEventHandler {
 
     try {
       const stmts = this.parser.parseStmts(text)
-      await mod.executeStmts(stmts)
+      await modExecuteStmts(mod, stmts)
     } catch (error) {
       if (!(error instanceof Error)) {
         console.error(error)

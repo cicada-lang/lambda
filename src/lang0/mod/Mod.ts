@@ -13,18 +13,4 @@ export class Mod {
     this.url = options.url
     this.loader = options.loader
   }
-
-  async executeStmts(stmts: Array<Stmt>): Promise<void> {
-    const offset = this.stmts.length
-    for (const [index, stmt] of stmts.entries()) {
-      const output = await stmt.execute(this)
-      this.stmts.push(stmt)
-      if (output) {
-        this.outputs.set(offset + index, output)
-        if (this.loader.options.onOutput) {
-          this.loader.options.onOutput(output)
-        }
-      }
-    }
-  }
 }

@@ -1,7 +1,5 @@
 # lang0
 
-[lang0] `Mod` -- extract  async modExecuteStmts(stmts: Array<Stmt>): Promise<void>
-
 [lang0] `Mod` should be just data
 [lang0] `Loader` should be just data
 
