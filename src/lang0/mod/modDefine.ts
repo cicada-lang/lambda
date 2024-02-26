@@ -1,6 +1,7 @@
 import type { Definition } from "../definition/Definition.js"
 import { LangError } from "../errors/LangError.js"
 import type { Mod } from "./Mod.js"
+import { modFind } from "./modFind.js"
 
 export function modDefine(
   mod: Mod,
@@ -12,7 +13,7 @@ export function modDefine(
 }
 
 function assertNotRedefine(mod: Mod, name: string): void {
-  if (mod.find(name)) {
+  if (modFind(mod, name)) {
     throw new LangError(`I can not redefine name: ${name}`)
   }
 }

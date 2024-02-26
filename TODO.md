@@ -1,9 +1,8 @@
 # lang0
 
-[lang0] `Mod` -- extract  modFind(name: string): Definition | undefined
 [lang0] `Mod` -- extract  modDelete(name: string): void
 [lang0] `Mod` -- extract  modFindValue(name: string): Value | undefined
-[lang0] `Mod` -- extract  modAsync executeStmts(stmts: Array<Stmt>): Promise<void>
+[lang0] `Mod` -- extract  async modExecuteStmts(stmts: Array<Stmt>): Promise<void>
 
 [lang0] `Mod` should be just data
 [lang0] `Loader` should be just data

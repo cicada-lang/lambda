@@ -3,6 +3,7 @@ import { type Definition } from "../definition/index.js"
 import { evaluateDefinition } from "../evaluate/index.js"
 import { type Stmt } from "../stmt/index.js"
 import { type Value } from "../value/index.js"
+import { modFind } from "./modFind.js"
 
 export class Mod {
   loader: Loader
@@ -30,16 +31,12 @@ export class Mod {
     }
   }
 
-  find(name: string): Definition | undefined {
-    return this.definitions.get(name)
-  }
-
   delete(name: string): void {
     this.definitions.delete(name)
   }
 
   findValue(name: string): Value | undefined {
-    const definition = this.find(name)
+    const definition = modFind(this, name)
     if (definition === undefined) return undefined
     return evaluateDefinition(definition)
   }

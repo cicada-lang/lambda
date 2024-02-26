@@ -1,5 +1,5 @@
 import * as Errors from "../errors/index.js"
-import { modDefine, modResolve, type Mod } from "../mod/index.js"
+import { modDefine, modFind, modResolve, type Mod } from "../mod/index.js"
 import { Stmt } from "../stmt/index.js"
 
 export type ImportEntry = {
@@ -18,7 +18,7 @@ export class Import extends Stmt {
   async execute(mod: Mod): Promise<void> {
     const importedMod = await this.import(mod)
     for (const { name, rename } of this.entries) {
-      const def = importedMod.find(name)
+      const def = modFind(importedMod, name)
       if (def === undefined) {
         throw new Error(
           `I can not import undefined name: ${name}, from path: ${this.path}`,
