@@ -17,10 +17,6 @@ export class Mod {
     this.loader = options.loader
   }
 
-  resolve(href: string): URL {
-    return new URL(href, this.url)
-  }
-
   async executeStmts(stmts: Array<Stmt>): Promise<void> {
     const offset = this.stmts.length
     for (const [index, stmt] of stmts.entries()) {

@@ -1,6 +1,5 @@
 # lang0
 
-[lang0] `Mod` -- extract  modResolve(href: string): URL
 [lang0] `Mod` -- extract  modDefine(name: string, definition: Definition): void
 [lang0] `Mod` -- extract  modFind(name: string): Definition | undefined
 [lang0] `Mod` -- extract  modDelete(name: string): void

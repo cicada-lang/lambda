@@ -1,5 +1,5 @@
 import * as Errors from "../errors/index.js"
-import { type Mod } from "../mod/index.js"
+import { modResolve, type Mod } from "../mod/index.js"
 import { Stmt } from "../stmt/index.js"
 
 export type ImportEntry = {
@@ -30,7 +30,7 @@ export class Import extends Stmt {
   }
 
   async import(mod: Mod): Promise<Mod> {
-    const url = mod.resolve(this.path)
+    const url = modResolve(mod, this.path)
     if (url.href === mod.url.href) {
       throw new Errors.LangError(`I can not circular import: ${this.path}`)
     }
