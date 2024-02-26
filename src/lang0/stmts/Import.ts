@@ -1,5 +1,11 @@
 import * as Errors from "../errors/index.js"
-import { modDefine, modFind, modResolve, type Mod } from "../mod/index.js"
+import {
+  modDefine,
+  modDelete,
+  modFind,
+  modResolve,
+  type Mod,
+} from "../mod/index.js"
 import { Stmt } from "../stmt/index.js"
 
 export type ImportEntry = {
@@ -40,7 +46,7 @@ export class Import extends Stmt {
 
   async undo(mod: Mod): Promise<void> {
     for (const { name, rename } of this.entries) {
-      mod.delete(rename || name)
+      modDelete(mod, rename || name)
     }
   }
 }

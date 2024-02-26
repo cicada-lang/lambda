@@ -31,10 +31,6 @@ export class Mod {
     }
   }
 
-  delete(name: string): void {
-    this.definitions.delete(name)
-  }
-
   findValue(name: string): Value | undefined {
     const definition = modFind(this, name)
     if (definition === undefined) return undefined

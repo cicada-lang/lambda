@@ -2,7 +2,7 @@ import { builtinNames } from "../builtin/index.js"
 import { LangError } from "../errors/index.js"
 import * as Exps from "../exp/index.js"
 import { type Exp } from "../exp/index.js"
-import { modDefine, modFind, type Mod } from "../mod/index.js"
+import { modDefine, modDelete, modFind, type Mod } from "../mod/index.js"
 import { Stmt } from "../stmt/index.js"
 
 export class Define extends Stmt {
@@ -42,6 +42,6 @@ export class Define extends Stmt {
   }
 
   async undo(mod: Mod): Promise<void> {
-    mod.delete(this.name)
+    modDelete(mod, this.name)
   }
 }
