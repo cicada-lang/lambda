@@ -3,7 +3,7 @@ import { findBuiltinValue } from "../builtin/index.js"
 import { type Env } from "../env/index.js"
 import * as Errors from "../errors/index.js"
 import { type Exp } from "../exp/index.js"
-import { type Mod } from "../mod/index.js"
+import { modFindValue, type Mod } from "../mod/index.js"
 import * as Values from "../value/index.js"
 import { type Value } from "../value/index.js"
 
@@ -15,7 +15,7 @@ export function evaluate(mod: Mod, env: Env, exp: Exp): Value {
       value = env.findValue(exp.name)
       if (value !== undefined) return value
 
-      value = mod.findValue(exp.name)
+      value = modFindValue(mod, exp.name)
       if (value !== undefined) return value
 
       value = findBuiltinValue(mod, env, exp.name)
