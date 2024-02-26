@@ -2,7 +2,7 @@ import { builtinNames } from "../builtin/index.js"
 import { LangError } from "../errors/index.js"
 import * as Exps from "../exp/index.js"
 import { type Exp } from "../exp/index.js"
-import { type Mod } from "../mod/index.js"
+import { modDefine, type Mod } from "../mod/index.js"
 import { Stmt } from "../stmt/index.js"
 
 export class Define extends Stmt {
@@ -34,7 +34,7 @@ export class Define extends Stmt {
   async execute(mod: Mod): Promise<void> {
     this.assertAllNamesDefined(mod)
 
-    mod.define(this.name, {
+    modDefine(mod, this.name, {
       mod,
       name: this.name,
       exp: this.exp,

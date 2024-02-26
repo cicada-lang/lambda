@@ -1,6 +1,5 @@
 # lang0
 
-[lang0] `Mod` -- extract  modDefine(name: string, definition: Definition): void
 [lang0] `Mod` -- extract  modFind(name: string): Definition | undefined
 [lang0] `Mod` -- extract  modDelete(name: string): void
 [lang0] `Mod` -- extract  modFindValue(name: string): Value | undefined

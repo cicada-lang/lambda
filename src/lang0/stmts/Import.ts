@@ -1,5 +1,5 @@
 import * as Errors from "../errors/index.js"
-import { modResolve, type Mod } from "../mod/index.js"
+import { modDefine, modResolve, type Mod } from "../mod/index.js"
 import { Stmt } from "../stmt/index.js"
 
 export type ImportEntry = {
@@ -25,7 +25,7 @@ export class Import extends Stmt {
         )
       }
 
-      mod.define(rename || name, def)
+      modDefine(mod, rename || name, def)
     }
   }
 

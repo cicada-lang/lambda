@@ -31,17 +31,6 @@ export class Mod {
     }
   }
 
-  define(name: string, definition: Definition): void {
-    this.assertNotRedefine(name)
-    this.definitions.set(name, definition)
-  }
-
-  private assertNotRedefine(name: string): void {
-    if (this.find(name)) {
-      throw new LangError(`I can not redefine name: ${name}`)
-    }
-  }
-
   find(name: string): Definition | undefined {
     return this.definitions.get(name)
   }
