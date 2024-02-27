@@ -16,6 +16,4 @@ export class Compute extends Stmt {
     const exp = readback(ReadbackCtx.init(), value)
     return Exps.formatExp(exp)
   }
-
-  async undo(mod: Mod): Promise<void> {}
 }

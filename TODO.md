@@ -1,6 +1,5 @@
 # lang0
 
-[lang0] remove `Stmt.undo` and `modUndefine`
 [lang0] [maybe] remove REPL
 [lang0] inline `Runner`
 
