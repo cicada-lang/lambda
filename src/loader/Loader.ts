@@ -19,23 +19,20 @@ export class Loader {
 
     const text = options?.text || (await this.fetcher.fetch(url))
     const mod = createMod({ url, loader: this })
-    await run(mod, text)
-    this.cache.set(url.href, { mod, text })
-    return mod
-  }
-}
 
-async function run(mod: Mod, text: string): Promise<void> {
-  const parser = new Parser()
+    try {
+      const parser = new Parser()
+      const stmts = parser.parseStmts(text)
+      await modExecuteStmts(mod, stmts)
 
-  try {
-    const stmts = parser.parseStmts(text)
-    await modExecuteStmts(mod, stmts)
-  } catch (error) {
-    if (error instanceof Errors.ParsingError) {
-      throw new Errors.ErrorReport(error.report(text))
+      this.cache.set(url.href, { mod, text })
+      return mod
+    } catch (error) {
+      if (error instanceof Errors.ParsingError) {
+        throw new Errors.ErrorReport(error.report(text))
+      }
+
+      throw error
     }
-
-    throw error
   }
 }
