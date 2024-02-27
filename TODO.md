@@ -2,6 +2,8 @@
 
 [lang0] move `Loader` to `lang0/` -- keep it as a class
 
+- maybe we should only use one loader for different `Mod`
+
 # lang1
 
 [lang1] `syntax`
