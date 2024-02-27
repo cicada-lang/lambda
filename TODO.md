@@ -1,7 +1,3 @@
-# lang0
-
-[lang0] [maybe] remove REPL
-
 # lang1
 
 [lang1] `syntax`

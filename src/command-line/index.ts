@@ -7,11 +7,7 @@ import * as Commands from "./commands/index.js"
 
 export function createCommandRunner(): CommandRunner {
   return new CommandRunners.CommonCommandRunner({
-    defaultCommand: new Commands.DefaultCommand(),
-    commands: [
-      new Commands.ReplCommand(),
-      new Commands.RunCommand(),
-      new Commands.CommonHelp(),
-    ],
+    defaultCommand: new Commands.CommonHelp(),
+    commands: [new Commands.RunCommand(), new Commands.CommonHelp()],
   })
 }
