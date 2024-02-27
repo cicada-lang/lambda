@@ -8,8 +8,7 @@ export class Compute extends Stmt {
   }
 
   async execute(mod: Mod): Promise<void | string> {
-    // const value = evaluate(mod, Env.init(), this.exp)
-    // const exp = readback(ReadbackCtx.init(), value)
-    // return Exps.formatExp(exp)
+    // const reducedExp = reduce(mod, this.exp)
+    // return formatExp(exp)
   }
 }
