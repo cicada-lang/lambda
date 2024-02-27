@@ -1,6 +1,5 @@
 # lang0
 
-[lang0] change .md test file to .ch file
 [lang0] remove md support
 [lang0] move `Loader` to `lang0/` -- keep it as a class
 

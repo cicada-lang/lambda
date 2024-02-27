@@ -1,4 +1,4 @@
-(import "./nat-church.md" zero one two three add)
+(import "./nat-church.scm" zero one two three add)
 
 (add one (add two three))
 (add (add one two) three)

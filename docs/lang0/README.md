@@ -62,11 +62,11 @@ To avoid this limitation we should implement lambda calculus by machine like SEC
 ## Factorial
 
 ```scheme
-(import "./nat-church.md"
+(import "./nat-church.scm"
   zero? add mul sub1
   zero one two three four)
 
-(import "./boolean.md"
+(import "./boolean.scm"
   true false if)
 
 (define (factorial n)
@@ -85,11 +85,11 @@ To avoid this limitation we should implement lambda calculus by machine like SEC
 [ [WIKIPEDIA](https://en.wikipedia.org/wiki/Fixed-point_combinator) ]
 
 ```scheme
-(import "./nat-church.md"
+(import "./nat-church.scm"
   zero? add mul sub1
   zero one two three four)
 
-(import "./boolean.md"
+(import "./boolean.scm"
   true false if)
 
 ;; NOTE `x` is `f`'s fixpoint if `(f x) = x`
@@ -130,7 +130,7 @@ To avoid this limitation we should implement lambda calculus by machine like SEC
 (define (car pair) (pair (lambda (car cdr) car)))
 (define (cdr pair) (pair (lambda (car cdr) cdr)))
 
-(import "./boolean.md"
+(import "./boolean.scm"
   true false)
 
 (define (null f) true)

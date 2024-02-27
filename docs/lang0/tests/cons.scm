@@ -1,32 +1,25 @@
----
-title: Encoding Cons
----
+;; Encoding Cons
 
-# Cons
+;; # Cons
 
-Temporarily save `car` and `cdr` to a lambda.
+;; Temporarily save `car` and `cdr` to a lambda.
 
-Later, applying the lambda to a function,
-is applying this function it to the saved `car` and `cdr`
+;; Later, applying the lambda to a function,
+;; is applying this function it to the saved `car` and `cdr`
 
-```lambda
 (define (cons car cdr) (lambda (f) (f car cdr)))
 (define (car pair) (pair (lambda (car cdr) car)))
 (define (cdr pair) (pair (lambda (car cdr) cdr)))
-```
 
-# Null
+;; # Null
 
-```lambda
-(import "./boolean.md" true false)
+(import "./boolean.scm" true false)
 
 (define (null f) true)
 (define (null? pair) (pair (lambda (car cdr) false)))
-```
 
-## Tests
+;; ## Tests
 
-```lambda
 (assert-equal
   (null? null)
   (null (lambda (car cdr) false))
@@ -47,4 +40,3 @@ is applying this function it to the saved `car` and `cdr`
   (null? (cdr (cons null null)))
   (null? null)
   true)
-```

@@ -1,6 +1,6 @@
-(import "./nat-church.md" zero? add1 add mul sub1)
-(import "./nat-church.md" zero one two three four)
-(import "./boolean.md" if true false)
+(import "./nat-church.scm" zero? add1 add mul sub1)
+(import "./nat-church.scm" zero one two three four)
+(import "./boolean.scm" if true false)
 
 (define factorial
   (fixpoint factorial

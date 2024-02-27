@@ -1,27 +1,20 @@
----
-title: Boolean
----
+;; Boolean
 
-# True and False
+;; # True and False
 
-```lambda
 (define (true t f) t)
 (define (false t f) f)
-```
 
-# Logical connectives
+;; # Logical connectives
 
-```lambda
 (define (if p t f) (p t f))
 
 (define (and x y) (if x y false))
 (define (or x y) (if x true y))
 (define (not x) (if x false true))
-```
 
-## Tests
+;; ## Tests
 
-```lambda
 (assert-equal (and true false) false)
 (assert-equal (or true false) true)
 (assert-equal (not true) false)
@@ -30,4 +23,3 @@ title: Boolean
 (assert-equal
   (lambda (x) (not (not true)))
   (lambda (x) true))
-```

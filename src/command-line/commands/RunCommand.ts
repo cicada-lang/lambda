@@ -24,11 +24,11 @@ export class RunCommand extends Command<Args, Opts> {
     return [
       `The ${blue(this.name)} command run a file.`,
       ``,
-      blue(`  ${runner.name} ${this.name} docs/tests/nat-church.md`),
+      blue(`  ${runner.name} ${this.name} docs/tests/nat-church.scm`),
       ``,
       `It is the default command, thus you can drop the command name.`,
       ``,
-      blue(`  ${runner.name} docs/tests/nat-church.md`),
+      blue(`  ${runner.name} docs/tests/nat-church.scm`),
       ``,
     ].join("\n")
   }

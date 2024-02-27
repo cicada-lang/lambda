@@ -1,6 +1,6 @@
-(import "./nat-church.md" zero? add mul sub1)
-(import "./nat-church.md" zero one two three four)
-(import "./boolean.md" if true false)
+(import "./nat-church.scm" zero? add mul sub1)
+(import "./nat-church.scm" zero one two three four)
+(import "./boolean.scm" if true false)
 
 (comments
   (claim factorial (-> Nat Nat)))

@@ -1,6 +1,6 @@
-(import "./boolean.md" true false if and or not)
-(import "./nat-church.md" zero add1 sub1 zero?)
-(import "./nat-church.md" one two three four)
+(import "./boolean.scm" true false if and or not)
+(import "./nat-church.scm" zero add1 sub1 zero?)
+(import "./nat-church.scm" one two three four)
 
 (define (even? n)
   (if (zero? n) true
