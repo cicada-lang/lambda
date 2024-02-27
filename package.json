@@ -26,11 +26,9 @@
     "@cicada-lang/sexp": "^0.1.2",
     "@xieyuheng/command-line": "^0.1.2",
     "@xieyuheng/ty": "^0.2.1",
-    "commonmark": "^0.31.0",
     "picocolors": "^1.0.0"
   },
   "devDependencies": {
-    "@types/commonmark": "^0.27.9",
     "@types/node": "^20.11.20",
     "@xieyuheng/test-runner": "^0.2.10",
     "prettier": "^3.2.5",

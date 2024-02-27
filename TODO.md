@@ -1,6 +1,6 @@
 # lang0
 
-[lang0] remove md support
+[lang0] remove `Script`
 [lang0] move `Loader` to `lang0/` -- keep it as a class
 
 # lang1
