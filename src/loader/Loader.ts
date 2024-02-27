@@ -1,7 +1,6 @@
 import { Fetcher } from "@cicada-lang/framework/lib/fetcher/index.js"
 import { createMod, type Mod } from "../lang0/mod/index.js"
-import { type Script } from "../script/index.js"
-import * as Scripts from "../scripts/index.js"
+import { Script } from "../script/index.js"
 
 export interface LoaderOptions {
   onOutput?: (output: string) => void
@@ -19,7 +18,7 @@ export class Loader {
 
     const text = options?.text || (await this.fetcher.fetch(url))
     const mod = createMod({ url, loader: this })
-    const script = Scripts.createScript(mod, text)
+    const script = new Script(mod, text)
     await script.run()
     this.cache.set(url.href, script)
     return script.mod
