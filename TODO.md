@@ -1,8 +1,7 @@
 # lang1
 
-[lang1] `mod/`
-[lang1] `stmt/`
 [lang1] `stmts/`
+[lang1] `mod/`
 [lang1] `syntax`
 [lang1] `loader/`
 
