@@ -1,5 +1,5 @@
 import { type Binding, type Exp } from "../exp/index.js"
-import { freshen } from "./freshen.js"
+import { freshen } from "../utils/freshen.js"
 import { lookup } from "./lookup.js"
 
 export function substitute(body: Exp, bindings: Array<Binding>): Exp {

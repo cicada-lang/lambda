@@ -1,5 +1,9 @@
 # lang1
 
+[lang1] `definition/`
+[lang1] `loader/`
+[lang1] `stmt/`
+[lang1] `stmts/`
 [lang1] `syntax`
 
 [lang1] 如果能成功，为什么 closure 可以被从 `Value` 转化为 `Exp`？
