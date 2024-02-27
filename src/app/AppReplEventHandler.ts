@@ -6,7 +6,6 @@ import fs from "fs"
 import * as Errors from "../lang0/errors/index.js"
 import { Loader } from "../lang0/loader/index.js"
 import { modExecuteStmts } from "../lang0/mod/modExecuteStmts.js"
-import { Parser } from "../lang0/syntax/index.js"
 import { colors } from "../utils/colors.js"
 
 export class AppReplEventHandler extends ReplEventHandler {
@@ -14,7 +13,6 @@ export class AppReplEventHandler extends ReplEventHandler {
   loader = new Loader({
     onOutput: (output) => console.log(colors.blue(output)),
   })
-  parser = new Parser()
 
   constructor() {
     super()
@@ -42,7 +40,7 @@ export class AppReplEventHandler extends ReplEventHandler {
     const mod = await this.loader.load(url, { text: "" })
 
     try {
-      const stmts = this.parser.parseStmts(text)
+      const stmts = this.loader.parseStmts(text)
       await modExecuteStmts(mod, stmts)
     } catch (error) {
       if (!(error instanceof Error)) {

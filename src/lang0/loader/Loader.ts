@@ -1,6 +1,7 @@
 import { Fetcher } from "@cicada-lang/framework/lib/fetcher/index.js"
 import * as Errors from "../errors/index.js"
 import { createMod, modExecuteStmts, type Mod } from "../mod/index.js"
+import { type Stmt } from "../stmt/index.js"
 import { Parser } from "../syntax/index.js"
 
 export interface LoaderOptions {
@@ -13,6 +14,11 @@ export class Loader {
 
   constructor(public options: LoaderOptions) {}
 
+  parseStmts(text: string): Array<Stmt> {
+    const parser = new Parser()
+    return parser.parseStmts(text)
+  }
+
   async load(url: URL, options?: { text?: string }): Promise<Mod> {
     const found = this.cache.get(url.href)
     if (found !== undefined) return found.mod
@@ -21,10 +27,8 @@ export class Loader {
     const mod = createMod({ url, loader: this })
 
     try {
-      const parser = new Parser()
-      const stmts = parser.parseStmts(text)
+      const stmts = this.parseStmts(text)
       await modExecuteStmts(mod, stmts)
-
       this.cache.set(url.href, { mod, text })
       return mod
     } catch (error) {
