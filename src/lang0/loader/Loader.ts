@@ -1,7 +1,7 @@
 import { Fetcher } from "@cicada-lang/framework/lib/fetcher/index.js"
-import * as Errors from "../lang0/errors/index.js"
-import { createMod, modExecuteStmts, type Mod } from "../lang0/mod/index.js"
-import { Parser } from "../lang0/syntax/index.js"
+import * as Errors from "../errors/index.js"
+import { createMod, modExecuteStmts, type Mod } from "../mod/index.js"
+import { Parser } from "../syntax/index.js"
 
 export interface LoaderOptions {
   onOutput?: (output: string) => void

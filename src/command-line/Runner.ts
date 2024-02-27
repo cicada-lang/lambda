@@ -1,12 +1,11 @@
 import fs from "fs"
-import { Loader } from "../loader/index.js"
+import { Loader } from "../lang0/loader/index.js"
 
 export class Runner {
-  loader = new Loader({
-    onOutput: console.log,
-  })
+  loader: Loader
 
   constructor() {
+    this.loader = new Loader({ onOutput: console.log })
     this.loader.fetcher.register("file", (url) =>
       fs.promises.readFile(url.pathname, "utf8"),
     )
