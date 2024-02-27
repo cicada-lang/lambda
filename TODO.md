@@ -2,8 +2,7 @@
 
 [lang0] change .md test file to .ch file
 [lang0] remove md support
-[lang0] rename `Loader` -- it is just a cache with a `fetcher`
-[lang0] `loadMod`
+[lang0] move `Loader` to `lang0/` -- keep it as a class
 
 # lang1
 
