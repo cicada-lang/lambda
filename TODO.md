@@ -1,7 +1,6 @@
 # lang0
 
 [lang0] [maybe] remove REPL
-[lang0] inline `Runner`
 
 # lang1
 

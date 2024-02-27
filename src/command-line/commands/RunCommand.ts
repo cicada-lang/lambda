@@ -2,7 +2,7 @@ import { Command, CommandRunner } from "@xieyuheng/command-line"
 import { ty } from "@xieyuheng/ty"
 import fs from "fs"
 import Path from "path"
-import { Runner } from "../Runner.js"
+import { Loader } from "../../lang0/loader/index.js"
 
 type Args = { file: string }
 type Opts = {}
@@ -15,7 +15,15 @@ export class RunCommand extends Command<Args, Opts> {
   args = { file: ty.string() }
   opts = {}
 
-  runner = new Runner()
+  loader: Loader
+
+  constructor() {
+    super()
+    this.loader = new Loader({ onOutput: console.log })
+    this.loader.fetcher.register("file", (url) =>
+      fs.promises.readFile(url.pathname, "utf8"),
+    )
+  }
 
   // prettier-ignore
   help(runner: CommandRunner): string {
@@ -36,8 +44,10 @@ export class RunCommand extends Command<Args, Opts> {
   async execute(argv: Args & Opts): Promise<void> {
     const url = createURL(argv["file"])
 
-    const { error } = await this.runner.run(url)
-    if (error) {
+    try {
+      await this.loader.load(url)
+    } catch (error) {
+      console.error(error)
       process.exit(1)
     }
   }
