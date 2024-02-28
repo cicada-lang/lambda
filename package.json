@@ -18,7 +18,10 @@
     "test:lang0:tests": "test-runner snapshot './bin/clique.js lang0' 'docs/lang0/**/*.scm' --exclude 'docs/lang0/**/*.error.scm'",
     "test:lang0:tests-error": "test-runner snapshot-error './bin/clique.js lang0' 'docs/lang0/**/*.error.scm'",
     "test:lang0": "npm run test:lang0:tests && npm run test:lang0:tests-error",
-    "test": "npm run test:node && npm run test:lang0",
+    "test:lang1:tests": "test-runner snapshot './bin/clique.js lang1' 'docs/lang1/**/*.scm' --exclude 'docs/lang1/**/*.error.scm'",
+    "test:lang1:tests-error": "test-runner snapshot-error './bin/clique.js lang1' 'docs/lang1/**/*.error.scm'",
+    "test:lang1": "npm run test:lang1:tests && npm run test:lang1:tests-error",
+    "test": "npm run test:node && npm run test:lang0 && npm run test:lang1",
     "format": "prettier src docs --write"
   },
   "dependencies": {
