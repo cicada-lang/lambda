@@ -1,4 +1,3 @@
-import * as Exps from "../exp/index.js"
 import { type Exp } from "../exp/index.js"
 
 export function formatExp(exp: Exp): string {
@@ -18,7 +17,7 @@ export function formatExp(exp: Exp): string {
     }
 
     case "Fixpoint": {
-      return `(fixpoint ${exp.name} ${Exps.formatExp(exp.body)})`
+      return `(fixpoint ${exp.name} ${formatExp(exp.body)})`
     }
   }
 }

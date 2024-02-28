@@ -2,8 +2,8 @@ import { Env } from "../env/index.js"
 import { equivalent, EquivalentCtx } from "../equivalent/index.js"
 import { AssertionError } from "../errors/index.js"
 import { evaluate } from "../evaluate/index.js"
-import * as Exps from "../exp/index.js"
 import { type Exp } from "../exp/index.js"
+import { formatExp } from "../format/formatExp.js"
 import { type Mod } from "../mod/index.js"
 import { Stmt } from "../stmt/index.js"
 
@@ -23,9 +23,7 @@ export class AssertEqual extends Stmt {
     const rightValue = evaluate(mod, Env.init(), right)
     if (!equivalent(EquivalentCtx.init(), leftValue, rightValue)) {
       throw new AssertionError(
-        `((fail assert-equal) ${Exps.formatExp(left)} ${Exps.formatExp(
-          right,
-        )})`,
+        `((fail assert-equal) ${formatExp(left)} ${formatExp(right)})`,
       )
     }
   }
