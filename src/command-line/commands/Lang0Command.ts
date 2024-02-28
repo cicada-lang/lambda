@@ -7,10 +7,10 @@ import { Loader } from "../../lang0/loader/index.js"
 type Args = { file: string }
 type Opts = {}
 
-export class RunCommand extends Command<Args, Opts> {
-  name = "run"
+export class Lang0Command extends Command<Args, Opts> {
+  name = "lang0"
 
-  description = "Run a file"
+  description = "Run a lang0 file"
 
   args = { file: ty.string() }
   opts = {}
@@ -30,13 +30,9 @@ export class RunCommand extends Command<Args, Opts> {
     const { blue } = this.colors
 
     return [
-      `The ${blue(this.name)} command run a file.`,
+      `The ${blue(this.name)} command run a lang0 file.`,
       ``,
       blue(`  ${runner.name} ${this.name} docs/tests/nat-church.scm`),
-      ``,
-      `It is the default command, thus you can drop the command name.`,
-      ``,
-      blue(`  ${runner.name} docs/tests/nat-church.scm`),
       ``,
     ].join("\n")
   }

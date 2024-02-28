@@ -15,10 +15,10 @@
     "build": "rm -rf lib && tsc",
     "build:watch": "rm -rf lib && tsc --watch",
     "test:node": "node --test",
-    "test:lang:tests": "test-runner snapshot './bin/clique.js run' 'docs/lang0/tests/**/*.(scm|md)' --exclude 'docs/lang0/tests/**/*.error.(scm|md)'",
-    "test:lang:tests-error": "test-runner snapshot-error './bin/clique.js run' 'docs/lang0/tests/**/*.error.(scm|md)'",
-    "test:lang": "npm run test:lang:tests && npm run test:lang:tests-error",
-    "test": "npm run test:node && npm run test:lang",
+    "test:lang0:tests": "test-runner snapshot './bin/clique.js lang0' 'docs/lang0/tests/**/*.(scm|md)' --exclude 'docs/lang0/tests/**/*.error.(scm|md)'",
+    "test:lang0:tests-error": "test-runner snapshot-error './bin/clique.js lang0' 'docs/lang0/tests/**/*.error.(scm|md)'",
+    "test:lang0": "npm run test:lang0:tests && npm run test:lang0:tests-error",
+    "test": "npm run test:node && npm run test:lang0",
     "format": "prettier src docs --write"
   },
   "dependencies": {
