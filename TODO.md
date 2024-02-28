@@ -1,6 +1,5 @@
 # lang1
 
-[lang1] `syntax` -- `Let`
 [lang1] `loader/`
 [lang1] `mod/`
 
