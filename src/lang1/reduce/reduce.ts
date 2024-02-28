@@ -1,5 +1,5 @@
 import { type Exp } from "../exp/index.js"
-import { type Mod } from "../mod/index.js"
+import { modFind, type Mod } from "../mod/index.js"
 import { doAp } from "./doAp.js"
 import { substitute } from "./substitute.js"
 
@@ -9,7 +9,12 @@ import { substitute } from "./substitute.js"
 export function reduce(mod: Mod, exp: Exp): Exp {
   switch (exp["@kind"]) {
     case "Var": {
-      return exp
+      const defintion = modFind(mod, exp.name)
+      if (defintion) {
+        return defintion.exp
+      } else {
+        return exp
+      }
     }
 
     case "Fn": {
