@@ -15,7 +15,7 @@ Install it by the following command:
 npm install -g @cicada-lang/clique
 ```
 
-The command-line program is called `lang`.
+The command-line program is called `clique`.
 
 ## Development
 
