@@ -1,4 +1,3 @@
-[lang1] snapshot tests -- boolean
 [lang1] snapshot tests -- cons
 [lang1] snapshot tests -- nat
 
