@@ -28,7 +28,7 @@
     "@xieyuheng/ty": "^0.2.1"
   },
   "devDependencies": {
-    "@types/node": "^20.11.20",
+    "@types/node": "^20.11.21",
     "@xieyuheng/test-runner": "^0.2.10",
     "prettier": "^3.2.5",
     "prettier-plugin-organize-imports": "^3.2.4",
