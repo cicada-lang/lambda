@@ -1,6 +1,6 @@
 {
   "name": "@cicada-lang/clique",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "repository": "github:cicada-lang/clique",
   "type": "module",
   "main": "./lib/index.js",
