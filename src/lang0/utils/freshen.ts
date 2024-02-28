@@ -1,3 +1,5 @@
+import { stringToSubscript } from "../../utils/stringToSubscript.js"
+
 export function freshen(
   usedNames: Array<string> | Set<string>,
   name: string,
@@ -7,8 +9,8 @@ export function freshen(
   let freshName = name
   while (true) {
     if (usedNames.has(freshName)) {
-      freshName = `${name}${counter}`
-      counter++
+      const subscript = stringToSubscript(String(counter++))
+      freshName = `${name}${subscript}`
     } else {
       return freshName
     }
