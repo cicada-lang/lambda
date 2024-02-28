@@ -9,8 +9,9 @@
 [lang1] do alpha equivalence for `(assert-equal)`
 
 [lang1] support `(import)`
-[lang1] snapshot tests -- cons
-[lang1] snapshot tests -- nat
+
+[lang1] examples/ -- cons
+[lang1] examples/ -- nat
 
 [lang1] 如果能成功，为什么 closure 可以被从 `Value` 转化为 `Exp`？
 
