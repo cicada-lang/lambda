@@ -1,7 +1,5 @@
 # lang1
 
-[lang1] `format/` -- `formatExp`
-[lang1] `stmts/` -- `Compute`
 [lang1] `mod/`
 [lang1] `syntax` -- `Let`
 [lang1] `loader/`
