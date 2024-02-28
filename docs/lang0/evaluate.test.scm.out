@@ -1,2 +1,0 @@
-(lambda (base step) (step (step (step (step (step (step base)))))))
-(lambda (base step) (step (step (step (step (step (step base)))))))
