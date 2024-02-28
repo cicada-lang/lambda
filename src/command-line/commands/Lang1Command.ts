@@ -2,15 +2,15 @@ import { Command, CommandRunner } from "@xieyuheng/command-line"
 import { ty } from "@xieyuheng/ty"
 import fs from "fs"
 import Path from "path"
-import { Loader } from "../../lang0/loader/index.js"
+import { Loader } from "../../lang1/loader/index.js"
 
 type Args = { file: string }
 type Opts = {}
 
-export class Lang0Command extends Command<Args, Opts> {
-  name = "lang0"
+export class Lang1Command extends Command<Args, Opts> {
+  name = "lang1"
 
-  description = "Run a lang0 file"
+  description = "Run a lang1 file"
 
   args = { file: ty.string() }
   opts = {}
@@ -30,7 +30,7 @@ export class Lang0Command extends Command<Args, Opts> {
     const { blue } = this.colors
 
     return [
-      `The ${blue(this.name)} command run a lang0 file.`,
+      `The ${blue(this.name)} command run a lang1 file.`,
       ``,
       blue(`  ${runner.name} ${this.name} <file>`),
       ``,
