@@ -1,6 +1,6 @@
 # lang1
 
-[lang1] `reduce` take `mod` -- `Var` global variable
+[lang1] `reduce` -- `Var` global variable
 [lang1] `format/` -- `formatExp`
 [lang1] `stmts/` -- `Compute`
 [lang1] `mod/`

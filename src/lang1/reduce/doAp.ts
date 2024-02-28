@@ -1,10 +1,11 @@
 import { type Exp } from "../exp/index.js"
+import type { Mod } from "../mod/Mod.js"
 import { reduce } from "./reduce.js"
 
-export function doAp(target: Exp, arg: Exp): Exp {
+export function doAp(mod: Mod, target: Exp, arg: Exp): Exp {
   switch (target["@kind"]) {
     case "Fn": {
-      return reduce({
+      return reduce(mod, {
         "@type": "Exp",
         "@kind": "Let",
         bindings: [
