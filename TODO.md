@@ -1,4 +1,6 @@
-[lang1] more tests
+[lang1] snapshot tests -- boolean
+[lang1] snapshot tests -- cons
+[lang1] snapshot tests -- nat
 
 [lang1] 如果能成功，为什么 closure 可以被从 `Value` 转化为 `Exp`？
 

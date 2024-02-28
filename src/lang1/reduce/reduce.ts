@@ -11,7 +11,7 @@ export function reduce(mod: Mod, exp: Exp): Exp {
     case "Var": {
       const defintion = modFind(mod, exp.name)
       if (defintion) {
-        return defintion.exp
+        return reduce(mod, defintion.exp)
       } else {
         return exp
       }
