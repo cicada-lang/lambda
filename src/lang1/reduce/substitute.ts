@@ -2,7 +2,7 @@ import { type Binding, type Exp } from "../exp/index.js"
 import { freshen } from "../utils/freshen.js"
 import { lookup } from "./lookup.js"
 
-export function substitute(body: Exp, bindings: Array<Binding>): Exp {
+export function substitute(bindings: Array<Binding>, body: Exp): Exp {
   switch (body["@kind"]) {
     case "Var": {
       const found = lookup(body.name, bindings)
@@ -58,13 +58,16 @@ export function substitute(body: Exp, bindings: Array<Binding>): Exp {
     }
 
     case "Let": {
-      return substitute(body.body, [
-        ...bindings,
-        ...body.bindings.map(({ name, exp }) => ({
-          name,
-          exp: substitute(exp, bindings),
-        })),
-      ])
+      return substitute(
+        [
+          ...bindings,
+          ...body.bindings.map(({ name, exp }) => ({
+            name,
+            exp: substitute(bindings, exp),
+          })),
+        ],
+        body.body,
+      )
     }
   }
 }
