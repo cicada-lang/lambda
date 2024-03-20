@@ -27,8 +27,6 @@ export function reduce(mod: Mod, exp: Exp): Exp {
     }
 
     case "Ap": {
-      // NOTE Reduce both the `target` and the `arg` first,
-      // thus this strategy is call-by-value.
       return doAp(mod, reduce(mod, exp.target), reduce(mod, exp.arg))
     }
 
