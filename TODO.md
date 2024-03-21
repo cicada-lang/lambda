@@ -1,3 +1,6 @@
+[lang1] use `Map` for `Substitution` instead of `Array<Binding>`
+[lang1] use `freeNames` to remove non used bindings in `Substitution`
+
 # lang0
 
 [lang0] static import should handled by an extra pass -- instead of injecting a `Loader` to `Mod`
@@ -32,6 +35,11 @@
 
 [lang1] examples/ -- nat
 
-[lang1] 如果能成功，为什么 closure 可以被从 `Value` 转化为 `Exp`？
+# typed logic programming
 
-- 从范畴论的角度讲？
+simply typed logic programming
+
+dependently typed logic programming
+
+- need equivalence between relations.
+- if type system is logic, what is the logic of logic?
