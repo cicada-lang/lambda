@@ -1,6 +1,5 @@
 # static import
 
-[lang0] use ADT dor `Stmt`
 [lang1] static import should handled by an extra pass -- instead of injecting a `Loader` to `Mod`
 [lang0] static import should handled by an extra pass -- instead of injecting a `Loader` to `Mod`
 
