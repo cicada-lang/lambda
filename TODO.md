@@ -1,9 +1,14 @@
-[lang1] use `Map` for `Substitution` instead of `Array<Binding>`
-[lang1] use `freeNames` to remove non used bindings in `Substitution`
+# static import
 
-# lang0
-
+[lang0] use ADT dor `Stmt`
+[lang1] static import should handled by an extra pass -- instead of injecting a `Loader` to `Mod`
 [lang0] static import should handled by an extra pass -- instead of injecting a `Loader` to `Mod`
+
+# lang1
+
+[lang1] use `Map` for `Substitution` instead of `Array<Binding>`
+
+[lang1] use `freeNames` to remove non used bindings in `Substitution`
 
 # docs
 
@@ -24,8 +29,6 @@
 [lang1] freshen should have `globalNameCounters` one counter for each name
 
 [lang1] check that subscript is not part of a var name
-
-[lang1] static import should handled by an extra pass -- instead of injecting a `Loader` to `Mod`
 
 [lang1] do alpha equivalence for `(assert-equal)`
 

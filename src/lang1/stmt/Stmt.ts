@@ -1,5 +1,16 @@
-import { type Mod } from "../mod/index.js"
+import { type Exp } from "../exp/index.js"
 
-export abstract class Stmt {
-  abstract execute(mod: Mod): Promise<void | string>
+export type Stmt = Compute | Define
+
+export type Compute = {
+  "@type": "Stmt"
+  "@kind": "Compute"
+  exp: Exp
+}
+
+export type Define = {
+  "@type": "Stmt"
+  "@kind": "Define"
+  name: string
+  exp: Exp
 }
