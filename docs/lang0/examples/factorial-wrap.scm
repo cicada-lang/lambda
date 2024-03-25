@@ -3,10 +3,9 @@
 (import "./boolean.scm" if true false)
 (import "./fix.scm" Y turing)
 
-(comments
-  (claim factorial-wrap (-> (-> Nat Nat) (-> Nat Nat)))
-  (claim (Y factorial-wrap) (-> Nat Nat))
-  (claim Y (forall (A) (-> (-> A A) A))))
+;; (claim factorial-wrap (-> (-> Nat Nat) (-> Nat Nat)))
+;; (claim (Y factorial-wrap) (-> Nat Nat))
+;; (claim Y (forall (A) (-> (-> A A) A)))
 
 (define factorial-wrap
   (lambda (factorial)

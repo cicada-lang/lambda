@@ -3,7 +3,6 @@ import type { Exp } from "../exp/Exp.js"
 export type Stmt =
   | AssertEqual
   | AssertNotEqual
-  | Comments
   | Compute
   | Define
   | DisplayFreeNames
@@ -33,20 +32,6 @@ export function AssertNotEqual(exps: Array<Exp>): AssertNotEqual {
   return {
     "@type": "Stmt",
     "@kind": "AssertNotEqual",
-    exps,
-  }
-}
-
-export type Comments = {
-  "@type": "Stmt"
-  "@kind": "Comments"
-  exps: Array<Exp>
-}
-
-export function Comments(exps: Array<Exp>): Comments {
-  return {
-    "@type": "Stmt",
-    "@kind": "Comments",
     exps,
   }
 }

@@ -2,9 +2,8 @@
 (import "./nat-church.scm" zero one two three four)
 (import "./boolean.scm" if true false)
 
-(comments
-  (claim factorial-half
-    (fix (lambda (X) (-> X Nat Nat)))))
+;; (claim factorial-half
+;;   (fix (lambda (X) (-> X Nat Nat))))
 
 (define (factorial-half self n)
   (if (zero? n)

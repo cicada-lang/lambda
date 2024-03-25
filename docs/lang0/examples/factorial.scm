@@ -2,8 +2,7 @@
 (import "./nat-church.scm" zero one two three four)
 (import "./boolean.scm" if true false)
 
-(comments
-  (claim factorial (-> Nat Nat)))
+;; (claim factorial (-> Nat Nat))
 
 (define (factorial n)
   (if (zero? n)

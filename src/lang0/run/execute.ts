@@ -31,10 +31,6 @@ export function execute(mod: Mod, stmt: Stmt): void | string {
       return
     }
 
-    case "Comments": {
-      return
-    }
-
     case "Compute": {
       const value = evaluate(mod, Env.init(), stmt.exp)
       const exp = readback(ReadbackCtx.init(), value)
@@ -69,10 +65,7 @@ export function execute(mod: Mod, stmt: Stmt): void | string {
         throw new Errors.LangError(`Mod is not loaded: ${stmt.path}`)
       }
 
-      if (!found.mod.isExecuted) {
-        executeMod(found.mod)
-        found.mod.isExecuted = true
-      }
+      executeMod(found.mod)
 
       for (const { name, rename } of stmt.entries) {
         const def = modFind(found.mod, name)
