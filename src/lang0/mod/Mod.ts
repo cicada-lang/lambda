@@ -8,4 +8,5 @@ export type Mod = {
   definitions: Map<string, Definition>
   outputs: Map<number, string>
   stmts: Array<Stmt>
+  isExecuted?: boolean
 }
