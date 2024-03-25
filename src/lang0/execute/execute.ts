@@ -7,12 +7,17 @@ import { evaluate } from "../evaluate/index.js"
 import * as Exps from "../exp/index.js"
 import { type Exp } from "../exp/index.js"
 import { formatExp } from "../format/formatExp.js"
-import { modDefine, modFind, modResolve } from "../mod/index.js"
+import {
+  modDefine,
+  modExecuteStmts,
+  modFind,
+  modResolve,
+} from "../mod/index.js"
 import type { Mod } from "../mod/Mod.js"
 import { readback, ReadbackCtx } from "../readback/index.js"
 import type { Define, Stmt } from "../stmt/Stmt.js"
 
-export async function execute(mod: Mod, stmt: Stmt): Promise<void | string> {
+export function execute(mod: Mod, stmt: Stmt): void | string {
   switch (stmt["@kind"]) {
     case "AssertEqual": {
       for (let i = 0; i < stmt.exps.length - 1; i++) {
@@ -58,9 +63,23 @@ export async function execute(mod: Mod, stmt: Stmt): Promise<void | string> {
     }
 
     case "Import": {
-      const importedMod = await importMod(mod, stmt.path)
+      const url = modResolve(mod, stmt.path)
+      if (url.href === mod.url.href) {
+        throw new Errors.LangError(`I can not circular import: ${stmt.path}`)
+      }
+
+      const found = mod.loadedMods.get(url.href)
+      if (found === undefined) {
+        throw new Errors.LangError(`Mod is not loaded: ${stmt.path}`)
+      }
+
+      if (!found.mod.isExecuted) {
+        modExecuteStmts(found.mod, found.mod.stmts)
+        found.mod.isExecuted = true
+      }
+
       for (const { name, rename } of stmt.entries) {
-        const def = modFind(importedMod, name)
+        const def = modFind(found.mod, name)
         if (def === undefined) {
           throw new Error(
             `I can not import undefined name: ${name}, from path: ${stmt.path}`,
@@ -109,13 +128,4 @@ function assertAllNamesDefined(mod: Mod, stmt: Define): void {
       )
     }
   }
-}
-
-async function importMod(mod: Mod, path: string): Promise<Mod> {
-  const url = modResolve(mod, path)
-  if (url.href === mod.url.href) {
-    throw new Errors.LangError(`I can not circular import: ${path}`)
-  }
-
-  return await mod.loader.load(url)
 }

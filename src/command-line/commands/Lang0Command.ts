@@ -2,7 +2,7 @@ import { Command, CommandRunner } from "@xieyuheng/command-line"
 import { ty } from "@xieyuheng/ty"
 import fs from "fs"
 import Path from "path"
-import { Loader } from "../../lang0/loader/index.js"
+import { run } from "../../lang0/run/index.js"
 
 type Args = { file: string }
 type Opts = {}
@@ -14,16 +14,6 @@ export class Lang0Command extends Command<Args, Opts> {
 
   args = { file: ty.string() }
   opts = {}
-
-  loader: Loader
-
-  constructor() {
-    super()
-    this.loader = new Loader()
-    this.loader.fetcher.register("file", (url) =>
-      fs.promises.readFile(url.pathname, "utf8"),
-    )
-  }
 
   // prettier-ignore
   help(runner: CommandRunner): string {
@@ -41,7 +31,7 @@ export class Lang0Command extends Command<Args, Opts> {
     const url = createURL(argv["file"])
 
     try {
-      await this.loader.load(url)
+      await run(url)
     } catch (error) {
       console.error(error)
       process.exit(1)
