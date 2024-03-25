@@ -2,10 +2,7 @@ import { execute } from "../execute/execute.js"
 import type { Stmt } from "../stmt/Stmt.js"
 import type { Mod } from "./Mod.js"
 
-export async function modExecuteStmts(
-  mod: Mod,
-  stmts: Array<Stmt>,
-): Promise<void> {
+export async function executeMod(mod: Mod, stmts: Array<Stmt>): Promise<void> {
   const offset = mod.stmts.length
   for (const [index, stmt] of stmts.entries()) {
     const output = execute(mod, stmt)

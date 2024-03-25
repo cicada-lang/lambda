@@ -1,6 +1,5 @@
 # lang1
 
-[lang1] rename `modExecuteStmts` to `executeMod`
 [lang1] `run` -- call `load` and `execute`
 [lang1] static import should handled by an extra pass -- instead of injecting a `Loader` to `Mod`
 

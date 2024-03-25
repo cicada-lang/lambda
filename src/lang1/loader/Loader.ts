@@ -1,6 +1,6 @@
 import { Fetcher } from "@cicada-lang/framework/lib/fetcher/index.js"
 import * as Errors from "../errors/index.js"
-import { createMod, modExecuteStmts, type Mod } from "../mod/index.js"
+import { createMod, executeMod, type Mod } from "../mod/index.js"
 import { type Stmt } from "../stmt/index.js"
 import { Parser } from "../syntax/index.js"
 
@@ -28,7 +28,7 @@ export class Loader {
 
     try {
       const stmts = this.parseStmts(text)
-      await modExecuteStmts(mod, stmts)
+      await executeMod(mod, stmts)
       this.cache.set(url.href, { mod, text })
       return mod
     } catch (error) {
