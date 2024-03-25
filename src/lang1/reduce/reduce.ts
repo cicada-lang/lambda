@@ -31,7 +31,7 @@ export function reduce(mod: Mod, exp: Exp): Exp {
     }
 
     case "Let": {
-      return reduce(mod, substitute(exp.bindings, exp.body))
+      return reduce(mod, substitute(exp.substitution, exp.body))
     }
   }
 }

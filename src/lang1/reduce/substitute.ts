@@ -1,11 +1,17 @@
-import { type Binding, type Exp } from "../exp/index.js"
+import { type Exp } from "../exp/index.js"
+import {
+  substitutionAppend,
+  substitutionExtend,
+  substitutionMapExp,
+  type Substitution,
+} from "../substitution/index.js"
 import { freshen } from "../utils/freshen.js"
 import { lookup } from "./lookup.js"
 
-export function substitute(bindings: Array<Binding>, body: Exp): Exp {
+export function substitute(substitution: Substitution, body: Exp): Exp {
   switch (body["@kind"]) {
     case "Var": {
-      const found = lookup(body.name, bindings)
+      const found = lookup(body.name, substitution)
       if (found) {
         return found
       } else {
@@ -22,17 +28,11 @@ export function substitute(bindings: Array<Binding>, body: Exp): Exp {
         ret: {
           "@type": "Exp",
           "@kind": "Let",
-          bindings: [
-            ...bindings,
-            {
-              name: body.name,
-              exp: {
-                "@type": "Exp",
-                "@kind": "Var",
-                name: freshName,
-              },
-            },
-          ],
+          substitution: substitutionExtend(substitution, body.name, {
+            "@type": "Exp",
+            "@kind": "Var",
+            name: freshName,
+          }),
           body: body.ret,
         },
       }
@@ -45,13 +45,13 @@ export function substitute(bindings: Array<Binding>, body: Exp): Exp {
         target: {
           "@type": "Exp",
           "@kind": "Let",
-          bindings,
+          substitution: substitution,
           body: body.target,
         },
         arg: {
           "@type": "Exp",
           "@kind": "Let",
-          bindings,
+          substitution: substitution,
           body: body.arg,
         },
       }
@@ -59,13 +59,12 @@ export function substitute(bindings: Array<Binding>, body: Exp): Exp {
 
     case "Let": {
       return substitute(
-        [
-          ...bindings,
-          ...body.bindings.map(({ name, exp }) => ({
-            name,
-            exp: substitute(bindings, exp),
-          })),
-        ],
+        substitutionAppend(
+          substitution,
+          substitutionMapExp(body.substitution, (exp) =>
+            substitute(substitution, exp),
+          ),
+        ),
         body.body,
       )
     }

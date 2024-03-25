@@ -1,10 +1,11 @@
-import { type Binding, type Exp } from "../exp/index.js"
+import { type Exp } from "../exp/index.js"
+import { type Substitution } from "../substitution/index.js"
 
 export function lookup(
   name: string,
-  bindings: Array<Binding>,
+  substitution: Substitution,
 ): Exp | undefined {
-  for (const binding of [...bindings].reverse()) {
+  for (const binding of substitution.values()) {
     if (binding.name === name) {
       return binding.exp
     }

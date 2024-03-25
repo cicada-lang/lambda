@@ -6,7 +6,11 @@ import {
   v,
   type Sexp,
 } from "@cicada-lang/sexp"
-import { type Binding, type Exp } from "../exp/index.js"
+import { type Exp } from "../exp/index.js"
+import {
+  substitutionFromBindings,
+  type Binding,
+} from "../substitution/index.js"
 
 export function matchExp(sexp: Sexp): Exp {
   return match<Exp>(sexp, [
@@ -29,7 +33,9 @@ export function matchExp(sexp: Sexp): Exp {
       ({ bindings, body }) => ({
         "@type": "Exp",
         "@kind": "Let",
-        bindings: matchList(bindings, matchBinding),
+        substitution: substitutionFromBindings(
+          matchList(bindings, matchBinding),
+        ),
         body: matchExp(body),
       }),
     ],

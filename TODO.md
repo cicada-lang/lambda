@@ -1,7 +1,5 @@
 # lang1
 
-[lang1] use `Map` for `Substitution` instead of `Array<Binding>`
-
 [lang1] use `freeNames` to remove non used bindings in `Substitution`
 
 # docs

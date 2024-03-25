@@ -1,3 +1,5 @@
+import { type Substitution } from "../substitution/index.js"
+
 export type Exp = Var | Fn | Ap | Let
 
 export type Var = {
@@ -20,14 +22,9 @@ export type Ap = {
   arg: Exp
 }
 
-export type Binding = {
-  name: string
-  exp: Exp
-}
-
 export type Let = {
   "@type": "Exp"
   "@kind": "Let"
-  bindings: Array<Binding>
+  substitution: Substitution
   body: Exp
 }
