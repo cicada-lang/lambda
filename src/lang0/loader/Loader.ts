@@ -19,11 +19,11 @@ export class Loader {
     return parser.parseStmts(text)
   }
 
-  async load(url: URL, options?: { text?: string }): Promise<Mod> {
+  async load(url: URL): Promise<Mod> {
     const found = this.cache.get(url.href)
     if (found !== undefined) return found.mod
 
-    const text = options?.text || (await this.fetcher.fetch(url))
+    const text = await this.fetcher.fetch(url)
     const mod = createMod({ url, loader: this })
 
     try {
