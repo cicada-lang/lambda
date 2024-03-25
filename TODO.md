@@ -1,10 +1,5 @@
 # lang1
 
-[lang1] `run` -- call `load` and `execute`
-[lang1] static import should handled by an extra pass -- instead of injecting a `Loader` to `Mod`
-
-# lang1
-
 [lang1] use `Map` for `Substitution` instead of `Array<Binding>`
 
 [lang1] use `freeNames` to remove non used bindings in `Substitution`
