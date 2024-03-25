@@ -1,7 +1,6 @@
 import { builtinNames } from "../builtin/index.js"
 import { Env } from "../env/index.js"
 import { equivalent, EquivalentCtx } from "../equivalent/index.js"
-import * as Errors from "../errors/index.js"
 import { AssertionError, LangError } from "../errors/index.js"
 import { evaluate } from "../evaluate/index.js"
 import * as Exps from "../exp/index.js"
@@ -52,12 +51,12 @@ export function execute(mod: Mod, stmt: Stmt): void | string {
     case "Import": {
       const url = modResolve(mod, stmt.path)
       if (url.href === mod.url.href) {
-        throw new Errors.LangError(`I can not circular import: ${stmt.path}`)
+        throw new LangError(`I can not circular import: ${stmt.path}`)
       }
 
       const found = mod.loadedMods.get(url.href)
       if (found === undefined) {
-        throw new Errors.LangError(`Mod is not loaded: ${stmt.path}`)
+        throw new LangError(`Mod is not loaded: ${stmt.path}`)
       }
 
       executeMod(found.mod)
@@ -65,7 +64,7 @@ export function execute(mod: Mod, stmt: Stmt): void | string {
       for (const { name, rename } of stmt.entries) {
         const def = modFind(found.mod, name)
         if (def === undefined) {
-          throw new Error(
+          throw new LangError(
             `I can not import undefined name: ${name}, from path: ${stmt.path}`,
           )
         }
@@ -101,6 +100,7 @@ function assertAllNamesDefined(mod: Mod, stmt: Define): void {
     new Set([stmt.name, ...builtinNames]),
     stmt.exp,
   )
+
   for (const name of freeNames) {
     if (modFind(mod, name) === undefined) {
       throw new LangError(
