@@ -1,5 +1,6 @@
 # static import
 
+[lang0] `Mod` has `loadedMods`
 [lang0] `run` -- call `load` and `execute`
 [lang0] move `execute` to `run`
 [lang0] remove `(comments)` syntax

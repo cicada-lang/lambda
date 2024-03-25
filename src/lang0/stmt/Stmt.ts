@@ -1,5 +1,4 @@
 import type { Exp } from "../exp/Exp.js"
-import type { Mod } from "../mod/Mod.js"
 
 export type Stmt =
   | AssertEqual
@@ -106,7 +105,6 @@ export type Import = {
   "@kind": "Import"
   path: string
   entries: Array<ImportEntry>
-  loadedMod?: Mod
 }
 
 export function Import(path: string, entries: Array<ImportEntry>): Import {
