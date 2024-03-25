@@ -1,9 +1,5 @@
 # lang0
 
-[lang0] move `execute` to `run`
-
-# lang0
-
 [lang0] remove `(comments)` syntax
 
 # lang1

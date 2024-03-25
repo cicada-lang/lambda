@@ -7,15 +7,11 @@ import { evaluate } from "../evaluate/index.js"
 import * as Exps from "../exp/index.js"
 import { type Exp } from "../exp/index.js"
 import { formatExp } from "../format/formatExp.js"
-import {
-  modDefine,
-  modExecuteStmts,
-  modFind,
-  modResolve,
-} from "../mod/index.js"
+import { modDefine, modFind, modResolve } from "../mod/index.js"
 import type { Mod } from "../mod/Mod.js"
 import { readback, ReadbackCtx } from "../readback/index.js"
 import type { Define, Stmt } from "../stmt/Stmt.js"
+import { executeMod } from "./executeMod.js"
 
 export function execute(mod: Mod, stmt: Stmt): void | string {
   switch (stmt["@kind"]) {
@@ -74,7 +70,7 @@ export function execute(mod: Mod, stmt: Stmt): void | string {
       }
 
       if (!found.mod.isExecuted) {
-        modExecuteStmts(found.mod, found.mod.stmts)
+        executeMod(found.mod)
         found.mod.isExecuted = true
       }
 
