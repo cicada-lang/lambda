@@ -35,10 +35,6 @@ export function matchStmt(sexp: Sexp): Stmt {
         Stmts.Import(matchString(url), matchList(entries, matchImportEntry)),
     ],
     [
-      ["display-free-names", v("exp")],
-      ({ exp }) => Stmts.DisplayFreeNames(matchExp(exp)),
-    ],
-    [
       cons("assert-equal", v("exps")),
       ({ exps }) => Stmts.AssertEqual(matchList(exps, matchExp)),
     ],

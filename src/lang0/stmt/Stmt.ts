@@ -1,12 +1,6 @@
 import type { Exp } from "../exp/Exp.js"
 
-export type Stmt =
-  | AssertEqual
-  | AssertNotEqual
-  | Compute
-  | Define
-  | DisplayFreeNames
-  | Import
+export type Stmt = AssertEqual | AssertNotEqual | Compute | Define | Import
 
 export type AssertEqual = {
   "@type": "Stmt"
@@ -62,20 +56,6 @@ export function Define(name: string, exp: Exp): Define {
     "@type": "Stmt",
     "@kind": "Define",
     name,
-    exp,
-  }
-}
-
-export type DisplayFreeNames = {
-  "@type": "Stmt"
-  "@kind": "DisplayFreeNames"
-  exp: Exp
-}
-
-export function DisplayFreeNames(exp: Exp): DisplayFreeNames {
-  return {
-    "@type": "Stmt",
-    "@kind": "DisplayFreeNames",
     exp,
   }
 }

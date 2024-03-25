@@ -49,11 +49,6 @@ export function execute(mod: Mod, stmt: Stmt): void | string {
       return
     }
 
-    case "DisplayFreeNames": {
-      const freeNames = Exps.freeNames(new Set(), stmt.exp)
-      return `(free-names ${Array.from(freeNames).join(" ")})`
-    }
-
     case "Import": {
       const url = modResolve(mod, stmt.path)
       if (url.href === mod.url.href) {
