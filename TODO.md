@@ -1,7 +1,13 @@
 # static import
 
-[lang1] static import should handled by an extra pass -- instead of injecting a `Loader` to `Mod`
+[lang0] `Mod` has `isExecuted`
+[lang0] `run` -- call `load` and `execute`
+
+[lang0] remove `(comments)` syntax
+
 [lang0] static import should handled by an extra pass -- instead of injecting a `Loader` to `Mod`
+
+[lang1] static import should handled by an extra pass -- instead of injecting a `Loader` to `Mod`
 
 # lang1
 
