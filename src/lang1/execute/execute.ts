@@ -3,7 +3,7 @@ import { modDefine, type Mod } from "../mod/index.js"
 import { reduce } from "../reduce/reduce.js"
 import { type Stmt } from "../stmt/Stmt.js"
 
-export async function execute(mod: Mod, stmt: Stmt): Promise<void | string> {
+export function execute(mod: Mod, stmt: Stmt): void | string {
   switch (stmt["@kind"]) {
     case "Compute": {
       const reducedExp = reduce(mod, stmt.exp)

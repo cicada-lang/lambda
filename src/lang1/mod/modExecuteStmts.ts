@@ -8,7 +8,7 @@ export async function modExecuteStmts(
 ): Promise<void> {
   const offset = mod.stmts.length
   for (const [index, stmt] of stmts.entries()) {
-    const output = await execute(mod, stmt)
+    const output = execute(mod, stmt)
     mod.stmts.push(stmt)
     if (output) {
       mod.outputs.set(offset + index, output)
