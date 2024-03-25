@@ -24,7 +24,11 @@ export class Loader {
     if (found !== undefined) return found.mod
 
     const text = await this.fetcher.fetch(url)
-    const mod = createMod({ url, loader: this })
+    const mod = createMod({
+      url,
+      loader: this,
+      loadedMods: this.cache,
+    })
 
     try {
       const stmts = this.parseStmts(text)
