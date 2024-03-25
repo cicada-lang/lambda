@@ -4,15 +4,11 @@ import { createMod, modExecuteStmts, type Mod } from "../mod/index.js"
 import { type Stmt } from "../stmt/index.js"
 import { Parser } from "../syntax/index.js"
 
-export interface LoaderOptions {
-  onOutput?: (output: string) => void
-}
-
 export class Loader {
   cache: Map<string, { mod: Mod; text: string }> = new Map()
   fetcher = new Fetcher()
 
-  constructor(public options: LoaderOptions) {}
+  constructor() {}
 
   parseStmts(text: string): Array<Stmt> {
     const parser = new Parser()

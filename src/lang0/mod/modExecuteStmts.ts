@@ -12,9 +12,7 @@ export async function modExecuteStmts(
     mod.stmts.push(stmt)
     if (output) {
       mod.outputs.set(offset + index, output)
-      if (mod.loader.options.onOutput) {
-        mod.loader.options.onOutput(output)
-      }
+      console.log(output)
     }
   }
 }

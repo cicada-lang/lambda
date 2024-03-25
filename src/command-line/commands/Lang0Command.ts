@@ -19,7 +19,7 @@ export class Lang0Command extends Command<Args, Opts> {
 
   constructor() {
     super()
-    this.loader = new Loader({ onOutput: console.log })
+    this.loader = new Loader()
     this.loader.fetcher.register("file", (url) =>
       fs.promises.readFile(url.pathname, "utf8"),
     )
