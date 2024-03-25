@@ -13,7 +13,6 @@ export function createMod(options: {
     loader,
     loadedMods,
     definitions: new Map(),
-    outputs: new Map(),
     stmts: [],
   }
 }

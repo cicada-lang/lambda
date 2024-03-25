@@ -6,13 +6,9 @@ export async function modExecuteStmts(
   mod: Mod,
   stmts: Array<Stmt>,
 ): Promise<void> {
-  const offset = mod.stmts.length
-  for (const [index, stmt] of stmts.entries()) {
+  for (const stmt of stmts) {
     const output = await execute(mod, stmt)
     mod.stmts.push(stmt)
-    if (output) {
-      mod.outputs.set(offset + index, output)
-      console.log(output)
-    }
+    if (output) console.log(output)
   }
 }
