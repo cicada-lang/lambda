@@ -1,7 +1,3 @@
-[lang0] remove AssertionError
-[lang0] inline assertEqual & assertNotEqual
-
-
 [lang1] remove AssertionError
 
 # lang1

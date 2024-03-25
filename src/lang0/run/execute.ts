@@ -1,7 +1,7 @@
 import { builtinNames } from "../builtin/index.js"
 import { Env } from "../env/index.js"
 import { equivalent, EquivalentCtx } from "../equivalent/index.js"
-import { AssertionError, LangError } from "../errors/index.js"
+import { LangError } from "../errors/index.js"
 import { evaluate } from "../evaluate/index.js"
 import * as Exps from "../exp/index.js"
 import { type Exp } from "../exp/index.js"
@@ -79,7 +79,7 @@ function assertEqual(mod: Mod, left: Exp, right: Exp): void {
   const leftValue = evaluate(mod, Env.init(), left)
   const rightValue = evaluate(mod, Env.init(), right)
   if (!equivalent(EquivalentCtx.init(), leftValue, rightValue)) {
-    throw new AssertionError(
+    throw new LangError(
       `((fail assert-equal) ${formatExp(left)} ${formatExp(right)})`,
     )
   }
@@ -89,7 +89,7 @@ function assertNotEqual(mod: Mod, left: Exp, right: Exp): void {
   const leftValue = evaluate(mod, Env.init(), left)
   const rightValue = evaluate(mod, Env.init(), right)
   if (equivalent(EquivalentCtx.init(), leftValue, rightValue)) {
-    throw new AssertionError(
+    throw new LangError(
       `((fail assert-not-equal) ${formatExp(left)} ${formatExp(right)})`,
     )
   }
