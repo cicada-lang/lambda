@@ -1,7 +1,4 @@
----
-title: Lambda calculus
-subtitle: lang0
----
+# Lang0
 
 # Features
 

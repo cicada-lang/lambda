@@ -1,8 +1,10 @@
 # docs
 
-[docs/lang1] simple readme like inet
+[docs/lang0] simple README.md like inet
 
-[docs/lang0] simple readme like inet
+[docs/lang1] update NOTE.md
+[docs/lang1] fix freshen -- be like lang0 with `usedNames`
+
 [docs/lang0] 用中文重新整理 lambda encoding 相关的知识。
 [docs/lang0] 用中文重新整理 lambda encoding 和 self type 相关的知识。
 
