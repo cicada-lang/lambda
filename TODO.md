@@ -1,6 +1,5 @@
 # lang1
 
-[lang1] constructors for `Stmt`
 [lang1] `Var` -- check that subscript is not part of a var name
 [lang1] `exp/freeNames`
 [lang1] use `freeNames` to remove non used bindings in `Substitution`

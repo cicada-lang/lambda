@@ -8,9 +8,26 @@ export type Compute = {
   exp: Exp
 }
 
+export function Compute(exp: Exp): Compute {
+  return {
+    "@type": "Stmt",
+    "@kind": "Compute",
+    exp,
+  }
+}
+
 export type Define = {
   "@type": "Stmt"
   "@kind": "Define"
   name: string
   exp: Exp
+}
+
+export function Define(name: string, exp: Exp): Define {
+  return {
+    "@type": "Stmt",
+    "@kind": "Define",
+    name,
+    exp,
+  }
 }
