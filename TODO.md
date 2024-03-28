@@ -1,3 +1,9 @@
+[lang1] `load` -- use `Report` instead of `LangError`
+[lang0] `load` -- use `Report` instead of `LangError`
+[lang1] `Lang1Command` -- catch `Report`
+[lang0] `Lang0Command` -- catch `Report`
+[lang0] add snapshot test for error report
+
 # lang1
 
 [lang1] catch error to get stable error report snapshot
