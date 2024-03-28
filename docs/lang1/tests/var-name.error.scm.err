@@ -1,8 +1,5 @@
-ErrorReport: [matchExp] A name should not include subscripts: x₀
+[matchExp] A name should not include subscripts: x₀
 
  1 |(lambda (x₀) x₀)
  2 |
 
-    at file:///home/xyh/cicada-lang/clique/lib/lang1/run/load.js:40:23
-    at Generator.next (<anonymous>)
-    at fulfilled (file:///home/xyh/cicada-lang/clique/lib/lang1/run/load.js:4:58)
