@@ -3,6 +3,7 @@ import { type Exp } from "../exp/index.js"
 import {
   substitutionAppend,
   substitutionExtend,
+  substitutionIsEmpty,
   substitutionKeepNames,
   substitutionMapExp,
   type Substitution,
@@ -15,6 +16,10 @@ export function substitute(substitution: Substitution, body: Exp): Exp {
     substitution,
     Exps.freeNames(new Set(), body),
   )
+
+  if (substitutionIsEmpty(substitution)) {
+    return body
+  }
 
   switch (body["@kind"]) {
     case "Var": {

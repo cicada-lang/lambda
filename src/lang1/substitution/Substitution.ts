@@ -7,6 +7,12 @@ export type Binding = {
 
 export type Substitution = Map<string, Binding>
 
+export function substitutionIsEmpty (
+  substitution: Substitution,
+): boolean {
+  return substitution.size === 0
+}
+
 export function substitutionFromBindings(
   bindings: Array<Binding>,
 ): Substitution {
