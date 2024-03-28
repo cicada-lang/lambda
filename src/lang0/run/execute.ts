@@ -1,7 +1,6 @@
 import { builtinNames } from "../builtin/index.js"
 import { Env } from "../env/index.js"
 import { equivalent, EquivalentCtx } from "../equivalent/index.js"
-import { LangError } from "../errors/index.js"
 import { evaluate } from "../evaluate/index.js"
 import * as Exps from "../exp/index.js"
 import { type Exp } from "../exp/index.js"
@@ -51,12 +50,12 @@ export function execute(mod: Mod, stmt: Stmt): void | string {
     case "Import": {
       const url = modResolve(mod, stmt.path)
       if (url.href === mod.url.href) {
-        throw new LangError(`I can not circular import: ${stmt.path}`)
+        throw new Error(`I can not circular import: ${stmt.path}`)
       }
 
       const found = mod.loadedMods.get(url.href)
       if (found === undefined) {
-        throw new LangError(`Mod is not loaded: ${stmt.path}`)
+        throw new Error(`Mod is not loaded: ${stmt.path}`)
       }
 
       executeMod(found.mod)
@@ -64,7 +63,7 @@ export function execute(mod: Mod, stmt: Stmt): void | string {
       for (const { name, rename } of stmt.entries) {
         const def = modFind(found.mod, name)
         if (def === undefined) {
-          throw new LangError(
+          throw new Error(
             `I can not import undefined name: ${name}, from path: ${stmt.path}`,
           )
         }
@@ -79,7 +78,7 @@ function assertEqual(mod: Mod, left: Exp, right: Exp): void {
   const leftValue = evaluate(mod, Env.init(), left)
   const rightValue = evaluate(mod, Env.init(), right)
   if (!equivalent(EquivalentCtx.init(), leftValue, rightValue)) {
-    throw new LangError(
+    throw new Error(
       `((fail assert-equal) ${formatExp(left)} ${formatExp(right)})`,
     )
   }
@@ -89,7 +88,7 @@ function assertNotEqual(mod: Mod, left: Exp, right: Exp): void {
   const leftValue = evaluate(mod, Env.init(), left)
   const rightValue = evaluate(mod, Env.init(), right)
   if (equivalent(EquivalentCtx.init(), leftValue, rightValue)) {
-    throw new LangError(
+    throw new Error(
       `((fail assert-not-equal) ${formatExp(left)} ${formatExp(right)})`,
     )
   }
@@ -103,7 +102,7 @@ function assertAllNamesDefined(mod: Mod, stmt: Define): void {
 
   for (const name of freeNames) {
     if (modFind(mod, name) === undefined) {
-      throw new LangError(
+      throw new Error(
         [
           `I find undefined name: ${name}`,
           `  defining: ${stmt.name}`,

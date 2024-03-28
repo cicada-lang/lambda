@@ -1,7 +1,6 @@
 import * as Actions from "../actions/index.js"
 import { findBuiltinValue } from "../builtin/index.js"
 import { type Env } from "../env/index.js"
-import * as Errors from "../errors/index.js"
 import { type Exp } from "../exp/index.js"
 import { modFindValue, type Mod } from "../mod/index.js"
 import * as Values from "../value/index.js"
@@ -21,7 +20,7 @@ export function evaluate(mod: Mod, env: Env, exp: Exp): Value {
       value = findBuiltinValue(mod, env, exp.name)
       if (value !== undefined) return value
 
-      throw new Errors.LangError(`Unknown name: ${exp.name}`)
+      throw new Error(`Unknown name: ${exp.name}`)
     }
 
     case "Fn": {
