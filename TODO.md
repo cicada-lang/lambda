@@ -1,10 +1,5 @@
-[lang0] remove `ErrorReport`
-
-[lang0] add snapshot test for error report
-
 # lang1
 
-[lang1] catch error to get stable error report snapshot
 [lang1] `exp/freeNames`
 [lang1] use `freeNames` to remove non used bindings in `Substitution`
 

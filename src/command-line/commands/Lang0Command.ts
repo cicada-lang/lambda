@@ -33,7 +33,11 @@ export class Lang0Command extends Command<Args, Opts> {
     try {
       await run(url)
     } catch (error) {
-      console.error(error)
+      if (error instanceof Error) {
+        console.error(error.message)
+        process.exit(1)
+      }
+
       process.exit(1)
     }
   }
