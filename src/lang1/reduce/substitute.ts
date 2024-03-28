@@ -53,14 +53,19 @@ export function substitute(substitution: Substitution, body: Exp): Exp {
 
     case "Let": {
       return substitute(
-        substitutionAppend(
-          substitution,
-          substitutionMapExp(body.substitution, (exp) =>
-            substitute(substitution, exp),
-          ),
-        ),
+        composeSubstitution(substitution, body.substitution),
         body.body,
       )
     }
   }
+}
+
+export function composeSubstitution(
+  left: Substitution,
+  right: Substitution,
+): Substitution {
+  return substitutionAppend(
+    left,
+    substitutionMapExp(right, (exp) => substitute(left, exp)),
+  )
 }
