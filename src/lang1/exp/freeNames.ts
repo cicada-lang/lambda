@@ -7,6 +7,14 @@ export function freeNames(boundNames: Set<string>, exp: Exp): Set<string> {
       return boundNames.has(exp.name) ? new Set() : new Set([exp.name])
     }
 
+    case "Lazy": {
+      if (exp.cache) {
+        return freeNames(boundNames, exp.cache)
+      } else {
+        return freeNames(boundNames, exp.exp)
+      }
+    }
+
     case "Fn": {
       return freeNames(new Set([...boundNames, exp.name]), exp.ret)
     }

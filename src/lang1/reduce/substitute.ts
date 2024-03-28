@@ -33,6 +33,14 @@ export function substitute(substitution: Substitution, body: Exp): Exp {
       }
     }
 
+    case "Lazy": {
+      if (body.cache) {
+        return substitute(substitution, body.cache)
+      } else {
+        return substitute(substitution, body.exp)
+      }
+    }
+
     case "Fn": {
       const freshName = freshen(body.name)
       return Exps.Fn(

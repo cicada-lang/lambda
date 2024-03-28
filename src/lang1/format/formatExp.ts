@@ -7,6 +7,14 @@ export function formatExp(exp: Exp): string {
       return exp.name
     }
 
+    case "Lazy": {
+      if (exp.cache) {
+        return formatExp(exp.cache)
+      } else {
+        return formatExp(exp.exp)
+      }
+    }
+
     case "Fn": {
       const { names, ret } = formatFn([exp.name], exp.ret)
       return `(lambda (${names.join(" ")}) ${ret})`

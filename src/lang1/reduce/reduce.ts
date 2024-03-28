@@ -18,13 +18,22 @@ export function reduce(mod: Mod, exp: Exp): Exp {
       }
     }
 
+    case "Lazy": {
+      if (exp.cache) {
+        return exp.cache
+      } else {
+        exp.cache = reduce(mod, exp.exp)
+        return exp.cache
+      }
+    }
+
     case "Fn": {
       return Exps.Fn(exp.name, reduce(mod, exp.ret))
     }
 
     case "Ap": {
       const target = reduce(mod, exp.target)
-      const arg = reduce(mod, exp.arg)
+      const arg = Exps.Lazy(exp.arg)
 
       switch (target["@kind"]) {
         case "Fn": {
@@ -33,7 +42,7 @@ export function reduce(mod: Mod, exp: Exp): Exp {
         }
 
         default: {
-          return Exps.Ap(target, arg)
+          return Exps.Ap(target, reduce(mod, arg))
         }
       }
     }
