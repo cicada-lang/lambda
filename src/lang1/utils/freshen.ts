@@ -1,8 +1,16 @@
 import { stringToSubscript } from "../../utils/stringToSubscript.js"
 
-export let globalNameCounter = 1
+export let globalNameCounters: Map<string, number> = new Map()
 
 export function freshen(name: string): string {
-  const subscript = stringToSubscript(String(globalNameCounter++))
-  return `${name}${subscript}`
+  const globalNameCounter = globalNameCounters.get(name)
+  if (globalNameCounter === undefined) {
+    globalNameCounters.set(name, 1)
+    const subscript = stringToSubscript(String(1))
+    return `${name}${subscript}`
+  } else {
+    globalNameCounters.set(name, globalNameCounter + 1)
+    const subscript = stringToSubscript(String(globalNameCounter + 1))
+    return `${name}${subscript}`
+  }
 }
