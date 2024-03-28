@@ -2,7 +2,7 @@
 
 Lambda calculus with explicit substitution.
 
-- The meaning of scheme's `(let)` is the same as explicit substitution.
+- The meaning of scheme's `(let)` can be viewed as explicit substitution.
 
 ```scheme
 (define name body)
