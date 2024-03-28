@@ -1,6 +1,5 @@
 # lang1
 
-[lang1] `exp/freeNames`
 [lang1] use `freeNames` to remove non used bindings in `Substitution`
 
 # docs
