@@ -38,7 +38,7 @@ export function reduce(mod: Mod, exp: Exp): Exp {
       switch (target["@kind"]) {
         case "Fn": {
           const substitution = substitutionInitial(target.name, arg)
-          return reduce(mod, Exps.Let(substitution, target.ret))
+          return reduce(mod, substitute(substitution, target.ret))
         }
 
         default: {

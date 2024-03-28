@@ -37,7 +37,7 @@ export function substitute(substitution: Substitution, body: Exp): Exp {
       if (body.cache) {
         return substitute(substitution, body.cache)
       } else {
-        return substitute(substitution, body.exp)
+        return Exps.Lazy(substitute(substitution, body.exp))
       }
     }
 
