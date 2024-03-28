@@ -11,6 +11,8 @@ import {
 import { freshen } from "../utils/freshen.js"
 import { lookup } from "./lookup.js"
 
+// NOTE `substitute` should not call `reduce.
+
 export function substitute(substitution: Substitution, body: Exp): Exp {
   substitution = substitutionKeepNames(
     substitution,
