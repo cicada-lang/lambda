@@ -1,6 +1,5 @@
 # lang1
 
-[lang1] `freshen` -- `parseGeneratedName`
 [lang1] constructors for `Exp` and `Stmt` -- for `Var` with checked name
 [lang1] check that subscript is not part of a var name
 [lang1] `exp/freeNames`

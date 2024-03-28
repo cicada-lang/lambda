@@ -2,7 +2,7 @@ export function stringToSubscript(s: string): string {
   return [...s].map((c) => numberSubscripts[c] || c).join("")
 }
 
-const numberSubscripts: Record<string, string> = {
+export const numberSubscripts: Record<string, string> = {
   "0": "₀",
   "1": "₁",
   "2": "₂",
