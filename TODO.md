@@ -1,7 +1,3 @@
-# lang1
-
-[lang1] use `freeNames` to remove non used bindings in `Substitution`
-
 # docs
 
 [docs/lang0] simple readme like inet

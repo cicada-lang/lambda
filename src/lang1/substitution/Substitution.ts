@@ -46,3 +46,17 @@ export function substitutionMapExp(
     ),
   ])
 }
+
+export function substitutionKeepNames(
+  substitution: Substitution,
+  names: Set<string>,
+): Substitution {
+  const newSubstitution = new Map()
+  for (const [name, exp] of substitution) {
+    if (names.has(name)) {
+      newSubstitution.set(name, exp)
+    }
+  }
+
+  return newSubstitution
+}

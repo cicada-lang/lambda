@@ -3,6 +3,7 @@ import { type Exp } from "../exp/index.js"
 import {
   substitutionAppend,
   substitutionExtend,
+  substitutionKeepNames,
   substitutionMapExp,
   type Substitution,
 } from "../substitution/index.js"
@@ -10,6 +11,11 @@ import { freshen } from "../utils/freshen.js"
 import { lookup } from "./lookup.js"
 
 export function substitute(substitution: Substitution, body: Exp): Exp {
+  substitution = substitutionKeepNames(
+    substitution,
+    Exps.freeNames(new Set(), body),
+  )
+
   switch (body["@kind"]) {
     case "Var": {
       const found = lookup(body.name, substitution)
