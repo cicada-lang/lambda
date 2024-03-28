@@ -1,7 +1,5 @@
 # docs
 
-[docs/lang0] simple README.md like inet
-
 [docs/lang1] update NOTE.md
 [docs/lang1] fix freshen -- be like lang0 with `usedNames`
 

@@ -1,17 +1,13 @@
 # Lang1
 
-## Statements
+```scheme
+;; Statement keywords:
 
-```
-define -- (define name body)
-          (define (name arg ...) body)
-```
+(define name body)
+(define (name arg ...) body)
 
-## Expressions
+;; Expression keywords:
 
-```
-var -- name
-ap  -- (target arg ...)
-fn  -- (lambda (name) ret)
-let -- (let ((name exp) ...) body)
+(lambda (name) ret)
+(let ((name exp) ...) body)
 ```

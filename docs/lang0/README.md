@@ -1,28 +1,30 @@
 # Lang0
 
-# Features
+Features:
 
 - Implement call-by-need lazy evaluation.
+- A name must be defined before used, thus no mutual recursion.
+- Allow recursive in top-level definitions by `(fixpoint)`.
 
-- Allow recursive in top-level definitions.
+```scheme
+;; Statement keywords:
 
-  - No mutual recursion, a name must be defined before used.
+(define name body)
+(define (name arg ...) body)
+(import "./file.scm")
+(assert-equal exp ...)
+(assert-not-equal exp ...)
 
-- A simple module system with only one API -- `(import)`.
 
-  - It can import module from local file or remote URL.
+;; Expression keywords:
 
-- Two simple testing statements `(assert-equal)` and `(assert-not-equal)`.
+(lambda (name) ret)
+(fixpoint name body)
+```
 
-  - They can handle beta and eta equivalence.
+## Examples
 
-Note that, when implementing lambda calculus as an interpreter,
-the depth of the call stack is limited by the hosting language.
-To avoid this limitation we should implement lambda calculus by machine like SECD.
-
-# Examples
-
-## Boolean
+### Boolean
 
 ```scheme
 (define (true t f) t)
@@ -38,7 +40,7 @@ To avoid this limitation we should implement lambda calculus by machine like SEC
 (not (not (or true false)))
 ```
 
-## Natural Number by Church encoding
+### Natural Number by Church encoding
 
 [ [WIKIPEDIA](https://en.wikipedia.org/wiki/Church_encoding) ]
 
@@ -56,7 +58,7 @@ To avoid this limitation we should implement lambda calculus by machine like SEC
 (add two two)
 ```
 
-## Factorial
+### Factorial
 
 ```scheme
 (import "./nat-church.scm"
@@ -77,7 +79,7 @@ To avoid this limitation we should implement lambda calculus by machine like SEC
 (factorial three)
 ```
 
-## Factorial by fixpoint combinator
+### Factorial by fixpoint combinator
 
 [ [WIKIPEDIA](https://en.wikipedia.org/wiki/Fixed-point_combinator) ]
 
@@ -117,7 +119,7 @@ To avoid this limitation we should implement lambda calculus by machine like SEC
 (factorial four)
 ```
 
-## Cons the Magnificent
+### Cons the Magnificent
 
 ```scheme
 ;; NOTE Temporarily save `car` and `cdr` to a lambda,
