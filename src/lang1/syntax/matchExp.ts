@@ -1,24 +1,18 @@
-import {
-  cons,
-  match,
-  matchList,
-  matchSymbol,
-  v,
-  type Sexp,
-} from "@cicada-lang/sexp"
+import { cons, match, matchList, v, type Sexp } from "@cicada-lang/sexp"
 import * as Exps from "../exp/index.js"
 import { type Exp } from "../exp/index.js"
 import {
   substitutionFromBindings,
   type Binding,
 } from "../substitution/index.js"
+import { matchName } from "./matchName.js"
 
 export function matchExp(sexp: Sexp): Exp {
   return match<Exp>(sexp, [
     [
       ["lambda", v("names"), v("exp")],
       ({ names, exp }) =>
-        matchList(names, matchSymbol).reduceRight(
+        matchList(names, matchName).reduceRight(
           (fn, name) => Exps.Fn(name, fn),
           matchExp(exp),
         ),
@@ -42,7 +36,7 @@ export function matchExp(sexp: Sexp): Exp {
         ),
     ],
 
-    [v("name"), ({ name }) => Exps.Var(matchSymbol(name))],
+    [v("name"), ({ name }, { span }) => Exps.Var(matchName(name))],
   ])
 }
 
@@ -51,7 +45,7 @@ export function matchBinding(sexp: Sexp): Binding {
     [
       [v("name"), v("exp")],
       ({ name, exp }) => ({
-        name: matchSymbol(name),
+        name: matchName(name),
         exp: matchExp(exp),
       }),
     ],
