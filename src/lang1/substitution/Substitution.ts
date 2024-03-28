@@ -33,7 +33,7 @@ export function substitutionExtend(
   return new Map([...substitution, [name, { name, exp }]])
 }
 
-export function substitutionAppend(
+export function substitutionMerge(
   left: Substitution,
   right: Substitution,
 ): Substitution {

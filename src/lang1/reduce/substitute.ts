@@ -1,11 +1,11 @@
 import * as Exps from "../exp/index.js"
 import { type Exp } from "../exp/index.js"
 import {
-  substitutionAppend,
   substitutionExtend,
   substitutionIsEmpty,
   substitutionKeepNames,
   substitutionMapExp,
+  substitutionMerge,
   type Substitution,
 } from "../substitution/index.js"
 import { freshen } from "../utils/freshen.js"
@@ -64,7 +64,7 @@ export function composeSubstitution(
   left: Substitution,
   right: Substitution,
 ): Substitution {
-  return substitutionAppend(
+  return substitutionMerge(
     left,
     substitutionMapExp(right, (exp) => substitute(left, exp)),
   )
