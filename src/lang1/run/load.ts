@@ -1,7 +1,6 @@
 import { Fetcher } from "@cicada-lang/framework/lib/fetcher/index.js"
 import { ParsingError } from "@cicada-lang/sexp"
 import fs from "node:fs"
-import * as Errors from "../errors/index.js"
 import { createMod, type Mod } from "../mod/index.js"
 import { type Stmt } from "../stmt/index.js"
 import { Parser } from "../syntax/index.js"
@@ -36,7 +35,7 @@ export async function load(
     return mod
   } catch (error) {
     if (error instanceof ParsingError) {
-      throw new Errors.ErrorReport(error.report(text))
+      throw new Error(error.report(text))
     }
 
     throw error
