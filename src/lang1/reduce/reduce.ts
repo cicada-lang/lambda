@@ -1,7 +1,7 @@
 import * as Exps from "../exp/index.js"
 import { type Exp } from "../exp/index.js"
 import { modFind, type Mod } from "../mod/index.js"
-import { doAp } from "./doAp.js"
+import { substitutionInitial } from "../substitution/index.js"
 import { substitute } from "./substitute.js"
 
 // NOTE `reduce` might hit fixpoint on other kind of expressions,
@@ -23,7 +23,19 @@ export function reduce(mod: Mod, exp: Exp): Exp {
     }
 
     case "Ap": {
-      return doAp(mod, reduce(mod, exp.target), reduce(mod, exp.arg))
+      const target = reduce(mod, exp.target)
+      const arg = reduce(mod, exp.arg)
+
+      switch (target["@kind"]) {
+        case "Fn": {
+          const substitution = substitutionInitial(target.name, arg)
+          return reduce(mod, Exps.Let(substitution, target.ret))
+        }
+
+        default: {
+          return Exps.Ap(target, arg)
+        }
+      }
     }
 
     case "Let": {

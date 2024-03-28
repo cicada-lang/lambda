@@ -1,5 +1,7 @@
 import { type Substitution } from "../substitution/index.js"
 
+// export type Exp = Var | Lazy | Fn | Ap | Let
+
 export type Exp = Var | Fn | Ap | Let
 
 export type Var = {
@@ -15,6 +17,22 @@ export function Var(name: string): Var {
     name,
   }
 }
+
+// export type Lazy = {
+//   "@type": "Exp"
+//   "@kind": "Lazy"
+//   exp: Exp
+//   cache?: Exp
+// }
+
+// export function Lazy(exp: Exp, cache?: Exp): Lazy {
+//   return {
+//     "@type": "Exp",
+//     "@kind": "Lazy",
+//     exp,
+//     cache,
+//   }
+// }
 
 export type Fn = {
   "@type": "Exp"
