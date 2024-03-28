@@ -1,5 +1,7 @@
 # Lang1
 
+Lambda calculus with explicit substitution.
+
 ```scheme
 ;; Statement keywords:
 

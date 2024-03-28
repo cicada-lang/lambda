@@ -1,10 +1,11 @@
 # Lang0
 
-Features:
+Lambda calculus.
 
 - Implement call-by-need lazy evaluation.
 - A name must be defined before used, thus no mutual recursion.
-- Allow recursive in top-level definitions by `(fixpoint)`.
+- Allow non-mutual recursive by `(fixpoint)`.
+
 
 ```scheme
 ;; Statement keywords:

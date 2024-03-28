@@ -1,8 +1,3 @@
----
-title: Lambda calculus with explicit substitution
-subtitle: lang1
----
-
 # Note
 
 In a more general sense,
