@@ -8,16 +8,11 @@ Lambda calculus.
 
 
 ```scheme
-;; Statement keywords:
-
 (define name body)
 (define (name arg ...) body)
 (import "./file.scm")
 (assert-equal exp ...)
 (assert-not-equal exp ...)
-
-
-;; Expression keywords:
 
 (lambda (name) ret)
 (fixpoint name body)
