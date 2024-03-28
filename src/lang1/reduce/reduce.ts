@@ -1,3 +1,4 @@
+import * as Exps from "../exp/index.js"
 import { type Exp } from "../exp/index.js"
 import { modFind, type Mod } from "../mod/index.js"
 import { doAp } from "./doAp.js"
@@ -18,12 +19,7 @@ export function reduce(mod: Mod, exp: Exp): Exp {
     }
 
     case "Fn": {
-      return {
-        "@type": "Exp",
-        "@kind": "Fn",
-        name: exp.name,
-        ret: reduce(mod, exp.ret),
-      }
+      return Exps.Fn(exp.name, reduce(mod, exp.ret))
     }
 
     case "Ap": {

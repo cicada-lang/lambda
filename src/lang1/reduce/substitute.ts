@@ -1,3 +1,4 @@
+import * as Exps from "../exp/index.js"
 import { type Exp } from "../exp/index.js"
 import {
   substitutionAppend,
@@ -21,40 +22,20 @@ export function substitute(substitution: Substitution, body: Exp): Exp {
 
     case "Fn": {
       const freshName = freshen(body.name)
-      return {
-        "@type": "Exp",
-        "@kind": "Fn",
-        name: freshName,
-        ret: {
-          "@type": "Exp",
-          "@kind": "Let",
-          substitution: substitutionExtend(substitution, body.name, {
-            "@type": "Exp",
-            "@kind": "Var",
-            name: freshName,
-          }),
-          body: body.ret,
-        },
-      }
+      return Exps.Fn(
+        freshName,
+        Exps.Let(
+          substitutionExtend(substitution, body.name, Exps.Var(freshName)),
+          body.ret,
+        ),
+      )
     }
 
     case "Ap": {
-      return {
-        "@type": "Exp",
-        "@kind": "Ap",
-        target: {
-          "@type": "Exp",
-          "@kind": "Let",
-          substitution: substitution,
-          body: body.target,
-        },
-        arg: {
-          "@type": "Exp",
-          "@kind": "Let",
-          substitution: substitution,
-          body: body.arg,
-        },
-      }
+      return Exps.Ap(
+        Exps.Let(substitution, body.target),
+        Exps.Let(substitution, body.arg),
+      )
     }
 
     case "Let": {

@@ -6,6 +6,7 @@ import {
   v,
   type Sexp,
 } from "@cicada-lang/sexp"
+import * as Exps from "../exp/index.js"
 import { type Exp } from "../exp/index.js"
 import {
   substitutionFromBindings,
@@ -18,50 +19,30 @@ export function matchExp(sexp: Sexp): Exp {
       ["lambda", v("names"), v("exp")],
       ({ names, exp }) =>
         matchList(names, matchSymbol).reduceRight(
-          (fn, name) => ({
-            "@type": "Exp",
-            "@kind": "Fn",
-            name,
-            ret: fn,
-          }),
+          (fn, name) => Exps.Fn(name, fn),
           matchExp(exp),
         ),
     ],
 
     [
       ["let", v("bindings"), v("body")],
-      ({ bindings, body }) => ({
-        "@type": "Exp",
-        "@kind": "Let",
-        substitution: substitutionFromBindings(
-          matchList(bindings, matchBinding),
+      ({ bindings, body }) =>
+        Exps.Let(
+          substitutionFromBindings(matchList(bindings, matchBinding)),
+          matchExp(body),
         ),
-        body: matchExp(body),
-      }),
     ],
 
     [
       cons(v("target"), v("args")),
       ({ target, args }) =>
         matchList(args, matchExp).reduce(
-          (result, arg) => ({
-            "@type": "Exp",
-            "@kind": "Ap",
-            target: result,
-            arg,
-          }),
+          (result, arg) => Exps.Ap(result, arg),
           matchExp(target),
         ),
     ],
 
-    [
-      v("name"),
-      ({ name }) => ({
-        "@type": "Exp",
-        "@kind": "Var",
-        name: matchSymbol(name),
-      }),
-    ],
+    [v("name"), ({ name }) => Exps.Var(matchSymbol(name))],
   ])
 }
 

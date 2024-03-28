@@ -8,11 +8,28 @@ export type Var = {
   name: string
 }
 
+export function Var(name: string): Var {
+  return {
+    "@type": "Exp",
+    "@kind": "Var",
+    name,
+  }
+}
+
 export type Fn = {
   "@type": "Exp"
   "@kind": "Fn"
   name: string
   ret: Exp
+}
+
+export function Fn(name: string, ret: Exp): Fn {
+  return {
+    "@type": "Exp",
+    "@kind": "Fn",
+    name,
+    ret,
+  }
 }
 
 export type Ap = {
@@ -22,9 +39,27 @@ export type Ap = {
   arg: Exp
 }
 
+export function Ap(target: Exp, arg: Exp): Ap {
+  return {
+    "@type": "Exp",
+    "@kind": "Ap",
+    target,
+    arg,
+  }
+}
+
 export type Let = {
   "@type": "Exp"
   "@kind": "Let"
   substitution: Substitution
   body: Exp
+}
+
+export function Let(substitution: Substitution, body: Exp): Let {
+  return {
+    "@type": "Exp",
+    "@kind": "Let",
+    substitution,
+    body,
+  }
 }
