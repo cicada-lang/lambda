@@ -25,6 +25,10 @@ export function substitutionBindings(
   return Array.from(substitution.values())
 }
 
+export function substitutionInitial(name: string, exp: Exp): Substitution {
+  return new Map([[name, { name, exp }]])
+}
+
 export function substitutionExtend(
   substitution: Substitution,
   name: string,
