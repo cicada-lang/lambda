@@ -4,7 +4,7 @@ Lambda calculus.
 
 - Implement call-by-need lazy evaluation.
 - A name must be defined before used, thus no mutual recursion.
-- Allow non-mutual recursive by `(fixpoint)`.
+- Allow direct recursive by `(fixpoint)`.
 
 
 ```scheme
@@ -16,4 +16,5 @@ Lambda calculus.
 
 (lambda (name) ret)
 (fixpoint name body)
+(fix f)
 ```
