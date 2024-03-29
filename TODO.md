@@ -5,8 +5,8 @@
 
 # lang0
 
+[docs/lang0] remove the builtin `(fix)`
 [docs/lang0] recursion only by `(fixpoint)` -- remove by name recursion
-[docs/lang0] remove examples from README.md
 [docs/lang0] 用中文重新整理 lambda encoding 相关的知识。
 [docs/lang0] 用中文重新整理 lambda encoding 和 self type 相关的知识。
 
