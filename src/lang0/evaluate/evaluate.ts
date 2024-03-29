@@ -1,5 +1,4 @@
 import * as Actions from "../actions/index.js"
-import { findBuiltinValue } from "../builtin/index.js"
 import { type Env } from "../env/index.js"
 import { type Exp } from "../exp/index.js"
 import { modFindValue, type Mod } from "../mod/index.js"
@@ -15,9 +14,6 @@ export function evaluate(mod: Mod, env: Env, exp: Exp): Value {
       if (value !== undefined) return value
 
       value = modFindValue(mod, exp.name)
-      if (value !== undefined) return value
-
-      value = findBuiltinValue(mod, env, exp.name)
       if (value !== undefined) return value
 
       throw new Error(`Unknown name: ${exp.name}`)

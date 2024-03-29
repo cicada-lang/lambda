@@ -1,14 +1,13 @@
+# lang0
+
+[docs/lang0] recursion only by `(fixpoint)` -- remove by name recursion
+[docs/lang0] 用中文重新整理 lambda encoding 相关的知识。
+[docs/lang0] 用中文重新整理 lambda encoding 和 self type 相关的知识。
+
 # lang1
 
 [docs/lang1] update NOTE.md and move it to `diary/`
 [docs/lang1] fix `freshen` -- be like lang0 with `usedNames`
-
-# lang0
-
-[docs/lang0] remove the builtin `(fix)`
-[docs/lang0] recursion only by `(fixpoint)` -- remove by name recursion
-[docs/lang0] 用中文重新整理 lambda encoding 相关的知识。
-[docs/lang0] 用中文重新整理 lambda encoding 和 self type 相关的知识。
 
 # lang1
 

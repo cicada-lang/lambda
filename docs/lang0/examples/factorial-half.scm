@@ -3,7 +3,7 @@
 (import "./boolean.scm" if true false)
 
 ;; (claim factorial-half
-;;   (fix (lambda (X) (-> X Nat Nat))))
+;;   (Y (lambda (X) (-> X Nat Nat))))
 
 (define (factorial-half self n)
   (if (zero? n)
