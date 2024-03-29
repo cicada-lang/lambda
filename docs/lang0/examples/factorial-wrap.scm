@@ -27,3 +27,11 @@ factorial-wrap
 (assert-equal ((turing factorial-wrap) two) two)
 (assert-equal ((turing factorial-wrap) three) (mul three two))
 (assert-equal ((turing factorial-wrap) four) (mul four (mul three two)))
+
+;; NOTE `fix` is built-in
+
+(assert-equal ((fix factorial-wrap) zero) one)
+(assert-equal ((fix factorial-wrap) one) one)
+(assert-equal ((fix factorial-wrap) two) two)
+(assert-equal ((fix factorial-wrap) three) (mul three two))
+(assert-equal ((fix factorial-wrap) four) (mul four (mul three two)))

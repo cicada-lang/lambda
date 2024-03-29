@@ -1,5 +1,3 @@
-(import "./fix.scm" Y)
-
 ;; Scott Encoding of Natural Number
 
 ;; # zero & add1 & which-Nat
@@ -62,7 +60,7 @@
       n
       (lambda (prev) (add1 (add prev n))))))
 
-(define add (Y add-wrap))
+(define add (fix add-wrap))
 
 ;; ## Tests
 
@@ -79,7 +77,7 @@
       zero
       (lambda (prev) (add n (mul prev n))))))
 
-(define mul (Y mul-wrap))
+(define mul (fix mul-wrap))
 
 ;; ## Tests
 

@@ -6,6 +6,7 @@ Lambda calculus.
 - A name must be defined before used, thus no mutual recursion.
 - Allow non-mutual recursive by `(fixpoint)`.
 
+
 ```scheme
 (define name body)
 (define (name arg ...) body)
