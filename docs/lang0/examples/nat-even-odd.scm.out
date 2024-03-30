@@ -1,2 +1,0 @@
-(fixpoint even? (lambda (n) (if (zero? n) true (if (zero? (sub1 n)) false (even? (sub1 (sub1 n)))))))
-(fixpoint odd? (lambda (n) (if (zero? n) false (if (zero? (sub1 n)) true (odd? (sub1 (sub1 n)))))))

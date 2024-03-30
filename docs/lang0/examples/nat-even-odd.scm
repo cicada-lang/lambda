@@ -1,22 +1,25 @@
 (import "./boolean.scm" true false if and or not)
 (import "./nat-church.scm" zero add1 sub1 zero?)
 (import "./nat-church.scm" one two three four)
+(import "./fix.scm" Y)
 
-(define (even? n)
-  (if (zero? n) true
-      (if (zero? (sub1 n)) false
-          (even? (sub1 (sub1 n))))))
+(define even?-wrap
+  (lambda (even?)
+    (lambda (n)
+      (if (zero? n) true
+          (if (zero? (sub1 n)) false
+              (even? (sub1 (sub1 n))))))))
 
-(define (odd? n)
-  (if (zero? n) false
-      (if (zero? (sub1 n)) true
-          (odd? (sub1 (sub1 n))))))
+(define even? (Y even?-wrap))
 
-even?
-odd?
+(define odd?-wrap
+  (lambda (odd?)
+    (lambda (n)
+      (if (zero? n) false
+          (if (zero? (sub1 n)) true
+              (odd? (sub1 (sub1 n))))))))
 
-(assert-equal even? even?)
-(assert-equal odd? odd?)
+(define odd? (Y odd?-wrap))
 
 (assert-equal
   (even? zero)
