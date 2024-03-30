@@ -16,6 +16,33 @@
 
 factorial-wrap
 
+(assert-equal
+  (lambda (factorial)
+    (factorial-wrap
+     (factorial-wrap
+      (factorial-wrap
+       factorial))))
+  (lambda (factorial)
+    (lambda (n)
+      (if (zero? n)
+        one
+        (mul
+         n
+         ((lambda (n)
+            (if (zero? n)
+              one
+              (mul
+               n
+               ((lambda (n)
+                  (if (zero? n)
+                    one
+                    (mul
+                     n
+                     (factorial
+                      (sub1 n)))))
+                (sub1 n)))))
+          (sub1 n)))))))
+
 (assert-equal ((Y factorial-wrap) zero) one)
 (assert-equal ((Y factorial-wrap) one) one)
 (assert-equal ((Y factorial-wrap) two) two)
