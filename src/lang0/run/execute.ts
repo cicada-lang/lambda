@@ -1,4 +1,3 @@
-import { builtinNames } from "../builtin/index.js"
 import { Env } from "../env/index.js"
 import { equivalent, EquivalentCtx } from "../equivalent/index.js"
 import { evaluate } from "../evaluate/index.js"
@@ -95,10 +94,7 @@ function assertNotEqual(mod: Mod, left: Exp, right: Exp): void {
 }
 
 function assertAllNamesDefined(mod: Mod, stmt: Define): void {
-  const freeNames = Exps.freeNames(
-    new Set([stmt.name, ...builtinNames]),
-    stmt.exp,
-  )
+  const freeNames = Exps.freeNames(new Set([stmt.name]), stmt.exp)
 
   for (const name of freeNames) {
     if (modFind(mod, name) === undefined) {
