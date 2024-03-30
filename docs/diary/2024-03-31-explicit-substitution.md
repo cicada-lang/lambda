@@ -1,3 +1,8 @@
+---
+title: Explicit substitution
+date: 2024-03-31
+---
+
 # Note
 
 In a more general sense,
