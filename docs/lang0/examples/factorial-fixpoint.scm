@@ -46,7 +46,8 @@ factorial
 (assert-equal
   factorial
   (lambda (n) (factorial n))
-  (lambda (n) ((lambda (n) (factorial n)) n)))
+  (lambda (n) ((lambda (n) (factorial n)) n))
+  (lambda (n) ((lambda (n) ((lambda (n) (factorial n)) n)) n)))
 
 (assert-equal
   (fixpoint factorial

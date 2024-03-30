@@ -30,7 +30,7 @@ export function equivalent(
     }
 
     case "Fixpoint": {
-      return equivalent(ctx, left, right)
+      throw new Error(`[equivalent] Not implemented for Fixpoint.`)
     }
 
     case "Lazy": {
