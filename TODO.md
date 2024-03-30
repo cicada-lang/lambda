@@ -1,7 +1,7 @@
 # lang0
 
-[docs/lang0] note about `(fixpoint)` `(fix)` and single recursion by `(fixpoint)`
-[docs/lang0] 用中文重新整理 lambda encoding 相关的知识。
+[docs/lang0] 回顾目前实现 direct recursion 的方式 -- `(fixpoint)` 和 `(fix)`
+[docs/lang0] 用中文重新整理 lambda encoding 相关的知识，形成一本书。
 [docs/lang0] 用中文重新整理 lambda encoding 和 self type 相关的知识。
 [lang0] 支持直接递归函数与相互递归函数，不能判断等价的地方就不判断。
 

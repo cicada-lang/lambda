@@ -3,9 +3,9 @@
 Lambda calculus.
 
 - Implement call-by-need lazy evaluation.
-- A name must be defined before used, thus no mutual recursion.
+- A name must be defined before used,
+  thus indirect recursion is not allowed.
 - Allow direct recursive by `(fixpoint)`.
-
 
 ```scheme
 (define name body)
