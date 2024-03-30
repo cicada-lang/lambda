@@ -1,4 +1,4 @@
-export type Exp = Var | Fn | Ap | Fixpoint
+export type Exp = Var | Fn | Ap
 
 export type Var = {
   "@type": "Exp"
@@ -43,21 +43,5 @@ export function Ap(target: Exp, arg: Exp): Ap {
     "@kind": "Ap",
     target,
     arg,
-  }
-}
-
-export type Fixpoint = {
-  "@type": "Exp"
-  "@kind": "Fixpoint"
-  name: string
-  body: Exp
-}
-
-export function Fixpoint(name: string, body: Exp): Fixpoint {
-  return {
-    "@type": "Exp",
-    "@kind": "Fixpoint",
-    name,
-    body,
   }
 }

@@ -21,10 +21,6 @@ export function readback(ctx: ReadbackCtx, value: Value): Exp {
       return Exps.Fn(freshName, readback(ctx, ret))
     }
 
-    case "Fixpoint": {
-      return Exps.Fixpoint(value.name, value.body)
-    }
-
     case "Lazy": {
       return readback(ctx, Values.lazyActive(value))
     }

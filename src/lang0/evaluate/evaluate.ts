@@ -32,9 +32,5 @@ export function evaluate(mod: Mod, env: Env, exp: Exp): Value {
       const arg = Values.Lazy(mod, env, exp.arg)
       return Actions.doAp(target, arg)
     }
-
-    case "Fixpoint": {
-      return Values.Fixpoint(mod, env, exp.name, exp.body)
-    }
   }
 }

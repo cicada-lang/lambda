@@ -1,7 +1,6 @@
-import type * as Values from "../value/index.js"
 import { type Value } from "../value/index.js"
 
-export type Neutral = Var | Ap | Fixpoint
+export type Neutral = Var | Ap
 
 export type Var = {
   "@type": "Neutral"
@@ -30,19 +29,5 @@ export function Ap(target: Neutral, arg: Value): Ap {
     "@kind": "Ap",
     target,
     arg,
-  }
-}
-
-export type Fixpoint = {
-  "@type": "Neutral"
-  "@kind": "Fixpoint"
-  fixpoint: Values.Fixpoint
-}
-
-export function Fixpoint(fixpoint: Values.Fixpoint): Fixpoint {
-  return {
-    "@type": "Neutral",
-    "@kind": "Fixpoint",
-    fixpoint,
   }
 }

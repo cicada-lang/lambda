@@ -16,9 +16,5 @@ export function freeNames(boundNames: Set<string>, exp: Exp): Set<string> {
         ...freeNames(boundNames, exp.arg),
       ])
     }
-
-    case "Fixpoint": {
-      return freeNames(new Set([...boundNames, exp.name]), exp.body)
-    }
   }
 }

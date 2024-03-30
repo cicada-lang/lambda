@@ -15,10 +15,6 @@ export function formatExp(exp: Exp): string {
       const { target, args } = formatAp(exp.target, [formatExp(exp.arg)])
       return `(${target} ${args.join(" ")})`
     }
-
-    case "Fixpoint": {
-      return `(fixpoint ${exp.name} ${formatExp(exp.body)})`
-    }
   }
 }
 

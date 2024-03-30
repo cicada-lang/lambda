@@ -3,7 +3,7 @@ import { type Exp } from "../exp/index.js"
 import { type Mod } from "../mod/index.js"
 import { type Neutral } from "../neutral/index.js"
 
-export type Value = NotYet | Fn | Fixpoint | Lazy
+export type Value = NotYet | Fn | Lazy
 
 export type NotYet = {
   "@type": "Value"
@@ -36,31 +36,6 @@ export function Fn(mod: Mod, env: Env, name: string, ret: Exp): Fn {
     env,
     name,
     ret,
-  }
-}
-
-export type Fixpoint = {
-  "@type": "Value"
-  "@kind": "Fixpoint"
-  mod: Mod
-  env: Env
-  name: string
-  body: Exp
-}
-
-export function Fixpoint(
-  mod: Mod,
-  env: Env,
-  name: string,
-  body: Exp,
-): Fixpoint {
-  return {
-    "@type": "Value",
-    "@kind": "Fixpoint",
-    mod,
-    env,
-    name,
-    body,
   }
 }
 

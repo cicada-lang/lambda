@@ -20,10 +20,6 @@ export function matchExp(sexp: Sexp): Exp {
         ),
     ],
     [
-      ["fixpoint", v("name"), v("exp")],
-      ({ name, exp }) => Exps.Fixpoint(matchSymbol(name), matchExp(exp)),
-    ],
-    [
       cons(v("target"), v("args")),
       ({ target, args }) =>
         matchList(args, matchExp).reduce(

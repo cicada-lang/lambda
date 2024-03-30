@@ -1,6 +1,6 @@
 # Lang1
 
-Lambda calculus with explicit substitution.
+Interpreter of lambda calculus with explicit substitution.
 
 - The meaning of scheme's `(let)` can be viewed as explicit substitution.
 

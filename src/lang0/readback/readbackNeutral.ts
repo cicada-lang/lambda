@@ -15,9 +15,5 @@ export function readbackNeutral(ctx: ReadbackCtx, neutral: Neutral): Exp {
         readback(ctx, neutral.arg),
       )
     }
-
-    case "Fixpoint": {
-      return readback(ctx, neutral.fixpoint)
-    }
   }
 }

@@ -1,11 +1,9 @@
 # Lang0
 
-Lambda calculus.
+Interpreter of lambda calculus.
 
 - Implement call-by-need lazy evaluation.
-- A name must be defined before used,
-  thus indirect recursion is not allowed.
-- Allow direct recursive by `(fixpoint)`.
+- TODO Support direct and indirect recursion.
 
 ```scheme
 (define name body)
@@ -15,6 +13,4 @@ Lambda calculus.
 (assert-not-equal exp ...)
 
 (lambda (name) ret)
-(fixpoint name body)
-(fix f)
 ```

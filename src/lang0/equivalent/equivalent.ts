@@ -29,10 +29,6 @@ export function equivalent(
       return equivalent(ctx, Actions.doAp(left, arg), Actions.doAp(right, arg))
     }
 
-    case "Fixpoint": {
-      throw new Error(`[equivalent] Not implemented for Fixpoint.`)
-    }
-
     case "Lazy": {
       return equivalent(ctx, Values.lazyActive(left), right)
     }
@@ -40,10 +36,6 @@ export function equivalent(
 }
 
 function prepare(value: Value): Value {
-  if (value["@kind"] === "Fixpoint") {
-    return prepare(Values.fixpointEta(value))
-  }
-
   if (value["@kind"] === "Lazy") {
     return prepare(Values.lazyActive(value))
   }
