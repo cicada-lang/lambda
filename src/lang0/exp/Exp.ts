@@ -48,7 +48,6 @@ export function Ap(target: Exp, arg: Exp): Ap {
   }
 }
 
-
 export type Let = {
   "@type": "Exp"
   "@kind": "Let"

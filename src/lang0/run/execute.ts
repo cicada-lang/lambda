@@ -4,11 +4,11 @@ import { evaluate } from "../evaluate/index.js"
 import * as Exps from "../exp/index.js"
 import { type Exp } from "../exp/index.js"
 import { formatExp } from "../format/formatExp.js"
-import { modDefine, modFind, modResolve } from "../mod/index.js"
+import { modDefine, modFind } from "../mod/index.js"
 import type { Mod } from "../mod/Mod.js"
 import { readback, ReadbackCtx } from "../readback/index.js"
 import type { Define, Stmt } from "../stmt/Stmt.js"
-import { executeMod } from "./executeMod.js"
+import { importOne } from "./importOne.js"
 
 export function execute(mod: Mod, stmt: Stmt): null | string {
   switch (stmt["@kind"]) {
@@ -47,27 +47,8 @@ export function execute(mod: Mod, stmt: Stmt): null | string {
     }
 
     case "Import": {
-      const url = modResolve(mod, stmt.path)
-      if (url.href === mod.url.href) {
-        throw new Error(`I can not circular import: ${stmt.path}`)
-      }
-
-      const found = mod.loadedMods.get(url.href)
-      if (found === undefined) {
-        throw new Error(`Mod is not loaded: ${stmt.path}`)
-      }
-
-      executeMod(found.mod)
-
-      for (const { name, rename } of stmt.entries) {
-        const def = modFind(found.mod, name)
-        if (def === undefined) {
-          throw new Error(
-            `I can not import undefined name: ${name}, from path: ${stmt.path}`,
-          )
-        }
-
-        modDefine(mod, rename || name, def)
+      for (const entry of stmt.entries) {
+        importOne(mod, stmt.path, entry)
       }
 
       return null
