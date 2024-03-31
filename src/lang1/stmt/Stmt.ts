@@ -1,6 +1,6 @@
 import { type Exp } from "../exp/index.js"
 
-export type Stmt = Compute | Define
+export type Stmt = Compute | Define | Import
 
 export type Compute = {
   "@type": "Stmt"
@@ -29,5 +29,26 @@ export function Define(name: string, exp: Exp): Define {
     "@kind": "Define",
     name,
     exp,
+  }
+}
+
+export type ImportEntry = {
+  name: string
+  rename?: string
+}
+
+export type Import = {
+  "@type": "Stmt"
+  "@kind": "Import"
+  path: string
+  entries: Array<ImportEntry>
+}
+
+export function Import(path: string, entries: Array<ImportEntry>): Import {
+  return {
+    "@type": "Stmt",
+    "@kind": "Import",
+    path,
+    entries,
   }
 }

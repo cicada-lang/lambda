@@ -1,4 +1,4 @@
-import type { Exp } from "../exp/Exp.js"
+import { type Exp } from "../exp/Exp.js"
 
 export type Stmt = AssertEqual | AssertNotEqual | Compute | Define | Import
 

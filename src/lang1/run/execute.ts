@@ -3,7 +3,7 @@ import { modDefine, type Mod } from "../mod/index.js"
 import { reduce } from "../reduce/reduce.js"
 import { type Stmt } from "../stmt/Stmt.js"
 
-export function execute(mod: Mod, stmt: Stmt): void | string {
+export function execute(mod: Mod, stmt: Stmt): null | string {
   switch (stmt["@kind"]) {
     case "Compute": {
       const reducedExp = reduce(mod, stmt.exp)
@@ -16,6 +16,11 @@ export function execute(mod: Mod, stmt: Stmt): void | string {
         name: stmt.name,
         exp: stmt.exp,
       })
+      return null
+    }
+
+    case "Import": {
+      throw new Error("TODO")
     }
   }
 }
