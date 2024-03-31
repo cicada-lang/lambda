@@ -10,14 +10,14 @@ import { readback, ReadbackCtx } from "../readback/index.js"
 import type { Define, Stmt } from "../stmt/Stmt.js"
 import { executeMod } from "./executeMod.js"
 
-export function execute(mod: Mod, stmt: Stmt): void | string {
+export function execute(mod: Mod, stmt: Stmt): null | string {
   switch (stmt["@kind"]) {
     case "AssertEqual": {
       for (let i = 0; i < stmt.exps.length - 1; i++) {
         assertEqual(mod, stmt.exps[i], stmt.exps[i + 1])
       }
 
-      return
+      return null
     }
 
     case "AssertNotEqual": {
@@ -25,7 +25,7 @@ export function execute(mod: Mod, stmt: Stmt): void | string {
         assertNotEqual(mod, stmt.exps[i], stmt.exps[i + 1])
       }
 
-      return
+      return null
     }
 
     case "Compute": {
@@ -43,7 +43,7 @@ export function execute(mod: Mod, stmt: Stmt): void | string {
         exp: stmt.exp,
       })
 
-      return
+      return null
     }
 
     case "Import": {
@@ -69,6 +69,8 @@ export function execute(mod: Mod, stmt: Stmt): void | string {
 
         modDefine(mod, rename || name, def)
       }
+
+      return null
     }
   }
 }
