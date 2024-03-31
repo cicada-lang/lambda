@@ -1,5 +1,5 @@
 import { type Definition } from "../definition/index.js"
-import { Env } from "../env/index.js"
+import { envEmpty } from "../env/index.js"
 import { evaluate } from "../evaluate/index.js"
 import { type Value } from "../value/index.js"
 
@@ -8,6 +8,6 @@ export function evaluateDefinition(definition: Definition): Value {
     return definition.cache
   }
 
-  definition.cache = evaluate(definition.mod, Env.init(), definition.exp)
+  definition.cache = evaluate(definition.mod, envEmpty(), definition.exp)
   return definition.cache
 }

@@ -1,30 +1,19 @@
 import { type Value } from "../value/index.js"
 
-export class Env {
-  values: Map<string, Value>
+export type Env = Map<string, Value>
 
-  constructor(options: { values: Map<string, Value> }) {
-    this.values = options.values
-  }
+export function envEmpty(): Env {
+  return new Map()
+}
 
-  static init(): Env {
-    return new Env({
-      values: new Map(),
-    })
-  }
+export function envNames(env: Env): Array<string> {
+  return Array.from(env.keys())
+}
 
-  get names(): Array<string> {
-    return Array.from(this.values.keys())
-  }
+export function envFindValue(env: Env, name: string): undefined | Value {
+  return env.get(name)
+}
 
-  findValue(name: string): undefined | Value {
-    return this.values.get(name)
-  }
-
-  extend(name: string, value: Value): Env {
-    return new Env({
-      ...this,
-      values: new Map([...this.values, [name, value]]),
-    })
-  }
+export function envExtend(env: Env, name: string, value: Value): Env {
+  return new Map([...env, [name, value]])
 }

@@ -1,5 +1,3 @@
-[lang0] `Env` should not be a class
-
 [lang1] 支持 `(import)`
 [lang1] 支持 `(assert-equal)` 与 `(assert-not-equal)`
 [lang1] 直接用 lang0 的测试

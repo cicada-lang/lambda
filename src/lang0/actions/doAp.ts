@@ -1,3 +1,4 @@
+import { envExtend } from "../env/Env.js"
 import { evaluate } from "../evaluate/index.js"
 import * as Neutrals from "../neutral/index.js"
 import * as Values from "../value/index.js"
@@ -8,7 +9,7 @@ export function doAp(target: Value, arg: Value): Value {
     case "Fn": {
       return evaluate(
         target.mod,
-        target.env.extend(target.name, arg),
+        envExtend(target.env, target.name, arg),
         target.ret,
       )
     }

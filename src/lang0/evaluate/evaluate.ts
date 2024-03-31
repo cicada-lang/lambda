@@ -1,5 +1,5 @@
 import * as Actions from "../actions/index.js"
-import { type Env } from "../env/index.js"
+import { envExtend, envFindValue, type Env } from "../env/index.js"
 import { type Exp } from "../exp/index.js"
 import { modFindValue, type Mod } from "../mod/index.js"
 import { substitutionBindings } from "../substitution/index.js"
@@ -11,7 +11,7 @@ export function evaluate(mod: Mod, env: Env, exp: Exp): Value {
     case "Var": {
       let value = undefined
 
-      value = env.findValue(exp.name)
+      value = envFindValue(env, exp.name)
       if (value !== undefined) return value
 
       value = modFindValue(mod, exp.name)
@@ -33,7 +33,11 @@ export function evaluate(mod: Mod, env: Env, exp: Exp): Value {
     case "Let": {
       let newEnv = env
       for (const binding of substitutionBindings(exp.substitution)) {
-        newEnv = newEnv.extend(binding.name, evaluate(mod, env, binding.exp))
+        newEnv = envExtend(
+          newEnv,
+          binding.name,
+          evaluate(mod, env, binding.exp),
+        )
       }
 
       return evaluate(mod, newEnv, exp.body)

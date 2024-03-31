@@ -1,4 +1,4 @@
-import { Env } from "../env/index.js"
+import { envEmpty } from "../env/index.js"
 import { equivalent, EquivalentCtx } from "../equivalent/index.js"
 import { evaluate } from "../evaluate/index.js"
 import * as Exps from "../exp/index.js"
@@ -29,7 +29,7 @@ export function execute(mod: Mod, stmt: Stmt): void | string {
     }
 
     case "Compute": {
-      const value = evaluate(mod, Env.init(), stmt.exp)
+      const value = evaluate(mod, envEmpty(), stmt.exp)
       const exp = readback(ReadbackCtx.init(), value)
       return formatExp(exp)
     }
@@ -74,8 +74,8 @@ export function execute(mod: Mod, stmt: Stmt): void | string {
 }
 
 function assertEqual(mod: Mod, left: Exp, right: Exp): void {
-  const leftValue = evaluate(mod, Env.init(), left)
-  const rightValue = evaluate(mod, Env.init(), right)
+  const leftValue = evaluate(mod, envEmpty(), left)
+  const rightValue = evaluate(mod, envEmpty(), right)
   if (!equivalent(EquivalentCtx.init(), leftValue, rightValue)) {
     throw new Error(
       `((fail assert-equal) ${formatExp(left)} ${formatExp(right)})`,
@@ -84,8 +84,8 @@ function assertEqual(mod: Mod, left: Exp, right: Exp): void {
 }
 
 function assertNotEqual(mod: Mod, left: Exp, right: Exp): void {
-  const leftValue = evaluate(mod, Env.init(), left)
-  const rightValue = evaluate(mod, Env.init(), right)
+  const leftValue = evaluate(mod, envEmpty(), left)
+  const rightValue = evaluate(mod, envEmpty(), right)
   if (equivalent(EquivalentCtx.init(), leftValue, rightValue)) {
     throw new Error(
       `((fail assert-not-equal) ${formatExp(left)} ${formatExp(right)})`,
