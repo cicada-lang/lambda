@@ -8,6 +8,10 @@ import {
 } from "@cicada-lang/sexp"
 import * as Exps from "../exp/index.js"
 import { type Exp } from "../exp/index.js"
+import {
+  substitutionFromBindings,
+  type Binding,
+} from "../substitution/index.js"
 
 export function matchExp(sexp: Sexp): Exp {
   return match<Exp>(sexp, [
@@ -19,6 +23,16 @@ export function matchExp(sexp: Sexp): Exp {
           matchExp(exp),
         ),
     ],
+
+    [
+      ["let", v("bindings"), v("body")],
+      ({ bindings, body }) =>
+        Exps.Let(
+          substitutionFromBindings(matchList(bindings, matchBinding)),
+          matchExp(body),
+        ),
+    ],
+
     [
       cons(v("target"), v("args")),
       ({ target, args }) =>
@@ -27,6 +41,19 @@ export function matchExp(sexp: Sexp): Exp {
           matchExp(target),
         ),
     ],
+
     [v("name"), ({ name }) => Exps.Var(matchSymbol(name))],
+  ])
+}
+
+export function matchBinding(sexp: Sexp): Binding {
+  return match<Binding>(sexp, [
+    [
+      [v("name"), v("exp")],
+      ({ name, exp }) => ({
+        name: matchSymbol(name),
+        exp: matchExp(exp),
+      }),
+    ],
   ])
 }

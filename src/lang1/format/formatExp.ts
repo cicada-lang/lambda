@@ -55,5 +55,5 @@ function formatAp(
 }
 
 function formatBinding(binding: Binding): string {
-  return `(${binding.name} ${formatExp(binding.exp)})`
+  return `[${binding.name} ${formatExp(binding.exp)}]`
 }

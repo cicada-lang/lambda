@@ -1,4 +1,4 @@
-[lang0] 支持 `(let)` 作为语法糖 -- 向 lang1 靠近
+[lang0] `Env` should not be a class
 
 [lang0] 支持直接递归函数与相互递归函数，不能判断等价的地方就不判断。
 

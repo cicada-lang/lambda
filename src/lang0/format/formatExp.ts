@@ -1,4 +1,6 @@
+import type { Binding } from "../../lang0/substitution/index.js"
 import { type Exp } from "../exp/index.js"
+import { substitutionBindings } from "../substitution/Substitution.js"
 
 export function formatExp(exp: Exp): string {
   switch (exp["@kind"]) {
@@ -14,6 +16,11 @@ export function formatExp(exp: Exp): string {
     case "Ap": {
       const { target, args } = formatAp(exp.target, [formatExp(exp.arg)])
       return `(${target} ${args.join(" ")})`
+    }
+
+    case "Let": {
+      const bindings = substitutionBindings(exp.substitution).map(formatBinding)
+      return `(let (${bindings.join(" ")}) ${formatExp(exp.body)})`
     }
   }
 }
@@ -38,4 +45,8 @@ function formatAp(
   } else {
     return { target: formatExp(target), args }
   }
+}
+
+function formatBinding(binding: Binding): string {
+  return `[${binding.name} ${formatExp(binding.exp)}]`
 }

@@ -1,3 +1,4 @@
+import { substitutionBindings } from "../substitution/index.js"
 import { type Exp } from "../exp/index.js"
 
 export function freeNames(boundNames: Set<string>, exp: Exp): Set<string> {
@@ -14,6 +15,21 @@ export function freeNames(boundNames: Set<string>, exp: Exp): Set<string> {
       return new Set([
         ...freeNames(boundNames, exp.target),
         ...freeNames(boundNames, exp.arg),
+      ])
+    }
+
+    case "Let": {
+      // NOTE All bindings in the substitution are independent.
+      const bindings = substitutionBindings(exp.substitution)
+      const substitutionFreeNames = bindings
+        .map((binding) => Array.from(freeNames(boundNames, binding.exp)))
+        .flatMap((names) => names)
+      return new Set([
+        ...substitutionFreeNames,
+        ...freeNames(
+          new Set([...boundNames, ...bindings.map((binding) => binding.name)]),
+          exp.body,
+        ),
       ])
     }
   }

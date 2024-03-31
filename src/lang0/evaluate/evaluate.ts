@@ -2,6 +2,7 @@ import * as Actions from "../actions/index.js"
 import { type Env } from "../env/index.js"
 import { type Exp } from "../exp/index.js"
 import { modFindValue, type Mod } from "../mod/index.js"
+import { substitutionBindings } from "../substitution/index.js"
 import * as Values from "../value/index.js"
 import { type Value } from "../value/index.js"
 
@@ -27,6 +28,15 @@ export function evaluate(mod: Mod, env: Env, exp: Exp): Value {
       const target = evaluate(mod, env, exp.target)
       const arg = Values.Lazy(mod, env, exp.arg)
       return Actions.doAp(target, arg)
+    }
+
+    case "Let": {
+      let newEnv = env
+      for (const binding of substitutionBindings(exp.substitution)) {
+        newEnv = newEnv.extend(binding.name, evaluate(mod, env, binding.exp))
+      }
+
+      return evaluate(mod, newEnv, exp.body)
     }
   }
 }

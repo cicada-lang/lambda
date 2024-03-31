@@ -1,4 +1,6 @@
-export type Exp = Var | Fn | Ap
+import { type Substitution } from "../substitution/index.js"
+
+export type Exp = Var | Fn | Ap | Let
 
 export type Var = {
   "@type": "Exp"
@@ -43,5 +45,22 @@ export function Ap(target: Exp, arg: Exp): Ap {
     "@kind": "Ap",
     target,
     arg,
+  }
+}
+
+
+export type Let = {
+  "@type": "Exp"
+  "@kind": "Let"
+  substitution: Substitution
+  body: Exp
+}
+
+export function Let(substitution: Substitution, body: Exp): Let {
+  return {
+    "@type": "Exp",
+    "@kind": "Let",
+    substitution,
+    body,
   }
 }
