@@ -2,6 +2,7 @@ import { formatExp } from "../format/formatExp.js"
 import { modDefine, type Mod } from "../mod/index.js"
 import { reduce } from "../reduce/reduce.js"
 import { type Stmt } from "../stmt/Stmt.js"
+import { importOne } from "./importOne.js"
 
 export function execute(mod: Mod, stmt: Stmt): null | string {
   switch (stmt["@kind"]) {
@@ -20,7 +21,11 @@ export function execute(mod: Mod, stmt: Stmt): null | string {
     }
 
     case "Import": {
-      throw new Error("TODO")
+      for (const entry of stmt.entries) {
+        importOne(mod, stmt.path, entry)
+      }
+
+      return null
     }
   }
 }

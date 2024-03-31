@@ -1,4 +1,3 @@
-[lang1] 支持 `(import)`
 [lang1] test `(import)`
 
 > [lang0] 支持直接递归函数与相互递归函数，不能判断等价的地方就不判断。
