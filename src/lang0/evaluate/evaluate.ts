@@ -24,6 +24,10 @@ export function evaluate(mod: Mod, env: Env, exp: Exp): Value {
       return Values.Fn(mod, env, exp.name, exp.ret)
     }
 
+    case "FnRec": {
+      throw new Error("TODO")
+    }
+
     case "Ap": {
       const target = evaluate(mod, env, exp.target)
       const arg = Values.Lazy(mod, env, exp.arg)

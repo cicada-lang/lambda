@@ -11,6 +11,10 @@ export function freeNames(boundNames: Set<string>, exp: Exp): Set<string> {
       return freeNames(new Set([...boundNames, exp.name]), exp.ret)
     }
 
+    case "FnRec": {
+      return freeNames(new Set([...boundNames, exp.name]), exp.ret)
+    }
+
     case "Ap": {
       return new Set([
         ...freeNames(boundNames, exp.target),

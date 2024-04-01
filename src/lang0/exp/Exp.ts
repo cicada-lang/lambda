@@ -1,6 +1,6 @@
 import { type Substitution } from "../substitution/index.js"
 
-export type Exp = Var | Fn | Ap | Let
+export type Exp = Var | Fn | FnRec | Ap | Let
 
 export type Var = {
   "@type": "Exp"
@@ -27,6 +27,22 @@ export function Fn(name: string, ret: Exp): Fn {
   return {
     "@type": "Exp",
     "@kind": "Fn",
+    name,
+    ret,
+  }
+}
+
+export type FnRec = {
+  "@type": "Exp"
+  "@kind": "FnRec"
+  name: string
+  ret: Exp
+}
+
+export function FnRec(name: string, ret: Exp): FnRec {
+  return {
+    "@type": "Exp",
+    "@kind": "FnRec",
     name,
     ret,
   }

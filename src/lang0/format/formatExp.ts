@@ -13,6 +13,11 @@ export function formatExp(exp: Exp): string {
       return `(lambda (${names.join(" ")}) ${ret})`
     }
 
+    case "FnRec": {
+      const { names, ret } = formatFn([exp.name], exp.ret)
+      return `(lambda (${names.join(" ")}) ${ret})`
+    }
+
     case "Ap": {
       const { target, args } = formatAp(exp.target, [formatExp(exp.arg)])
       return `(${target} ${args.join(" ")})`

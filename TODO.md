@@ -1,15 +1,18 @@
-> [lang0] 支持直接递归函数与相互递归函数，不能判断等价的地方就不判断。
+# lang0
 
-[lang0] check occor
-[lang0] `FnRec` as `Exp`
-[lang0] add an extra pass -- `define` before `execute`
+> 支持直接递归函数与相互递归函数，不能判断等价的地方就不判断。
 
-
-[lang1] 支持 `(assert-equal)` 与 `(assert-not-equal)`
-[lang1] 直接用 lang0 的测试
+[lang0] `FnRec` as `Value`
+[lang0] `evaluate` -- `FnRec`
+[lang0] add an extra pass -- `defineMod` before `executeMod`
+[lang0] `doAp` should not apply a `FnRec` when the `arg` is `NotYet`
+[lang0] `defineMod` -- check occor to create `FnRec` instead of `Fn`
 
 [lang0] 用中文重新整理 lambda encoding 相关的知识，形成一本书。
 [lang0] 用中文重新整理 lambda encoding 和 self type 相关的知识。
 
+# lang1
+
 [lang1] fix `freshen` -- be like lang0 with `usedNames`
-[lang1] 支持直接递归函数与相互递归函数，不能判断等价的地方就不判断。
+[lang1] 支持 `(assert-equal)` 与 `(assert-not-equal)`
+[lang1] 直接用 lang0 的测试
