@@ -11,7 +11,7 @@ export function freeNames(boundNames: Set<string>, exp: Exp): Set<string> {
       return freeNames(new Set([...boundNames, exp.name]), exp.ret)
     }
 
-    case "FnRec": {
+    case "FnRecursive": {
       return freeNames(new Set([...boundNames, exp.name]), exp.ret)
     }
 

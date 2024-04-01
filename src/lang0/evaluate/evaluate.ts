@@ -24,7 +24,7 @@ export function evaluate(mod: Mod, env: Env, exp: Exp): Value {
       return Values.Fn(mod, env, exp.name, exp.ret)
     }
 
-    case "FnRec": {
+    case "FnRecursive": {
       throw new Error("TODO")
     }
 

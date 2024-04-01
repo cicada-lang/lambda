@@ -13,7 +13,7 @@ export function formatExp(exp: Exp): string {
       return `(lambda (${names.join(" ")}) ${ret})`
     }
 
-    case "FnRec": {
+    case "FnRecursive": {
       const { names, ret } = formatFn([exp.name], exp.ret)
       return `(lambda (${names.join(" ")}) ${ret})`
     }
