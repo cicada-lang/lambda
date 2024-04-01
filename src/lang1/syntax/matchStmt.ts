@@ -1,4 +1,12 @@
-import { cons, match, matchList, v, type Sexp } from "@cicada-lang/sexp"
+import {
+  cons,
+  match,
+  matchList,
+  matchString,
+  matchSymbol,
+  v,
+  type Sexp,
+} from "@cicada-lang/sexp"
 import * as Exps from "../exp/index.js"
 import * as Stmts from "../stmt/index.js"
 import { type Stmt } from "../stmt/index.js"
@@ -24,6 +32,26 @@ export function matchStmt(sexp: Sexp): Stmt {
       ({ name, exp }) => Stmts.Define(matchName(name), matchExp(exp)),
     ],
 
+    [
+      cons("import", cons(v("url"), v("entries"))),
+      ({ url, entries }) =>
+        Stmts.Import(matchString(url), matchList(entries, matchImportEntry)),
+    ],
+
     [v("exp"), ({ exp }) => Stmts.Compute(matchExp(exp))],
+  ])
+}
+
+function matchImportEntry(sexp: Sexp): Stmts.ImportEntry {
+  return match<Stmts.ImportEntry>(sexp, [
+    [
+      ["rename", v("name"), v("rename")],
+      ({ name, rename }) => ({
+        name: matchSymbol(name),
+        rename: matchSymbol(rename),
+      }),
+    ],
+
+    [v("name"), ({ name }) => ({ name: matchSymbol(name) })],
   ])
 }

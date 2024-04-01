@@ -25,23 +25,28 @@ export function matchStmt(sexp: Sexp): Stmt {
           ),
         ),
     ],
+
     [
       ["define", v("name"), v("exp")],
       ({ name, exp }) => Stmts.Define(matchSymbol(name), matchExp(exp)),
     ],
+
     [
       cons("import", cons(v("url"), v("entries"))),
       ({ url, entries }) =>
         Stmts.Import(matchString(url), matchList(entries, matchImportEntry)),
     ],
+
     [
       cons("assert-equal", v("exps")),
       ({ exps }) => Stmts.AssertEqual(matchList(exps, matchExp)),
     ],
+
     [
       cons("assert-not-equal", v("exps")),
       ({ exps }) => Stmts.AssertNotEqual(matchList(exps, matchExp)),
     ],
+
     [v("exp"), ({ exp }) => Stmts.Compute(matchExp(exp))],
   ])
 }
@@ -55,6 +60,7 @@ function matchImportEntry(sexp: Sexp): Stmts.ImportEntry {
         rename: matchSymbol(rename),
       }),
     ],
+
     [v("name"), ({ name }) => ({ name: matchSymbol(name) })],
   ])
 }

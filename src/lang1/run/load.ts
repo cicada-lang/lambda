@@ -1,7 +1,7 @@
 import { Fetcher } from "@cicada-lang/framework/lib/fetcher/index.js"
 import { ParsingError } from "@cicada-lang/sexp"
 import fs from "node:fs"
-import { createMod, type Mod } from "../mod/index.js"
+import { createMod, modResolve, type Mod } from "../mod/index.js"
 import { type Stmt } from "../stmt/index.js"
 import { Parser } from "../syntax/index.js"
 
@@ -25,12 +25,12 @@ export async function load(
     mod.stmts = parseStmts(text)
     loadedMods.set(url.href, { mod, text })
 
-    // for (const stmt of mod.stmts) {
-    //   if (stmt["@kind"] === "Import") {
-    //     const importedUrl = modResolve(mod, stmt.path)
-    //     await load(importedUrl, loadedMods)
-    //   }
-    // }
+    for (const stmt of mod.stmts) {
+      if (stmt["@kind"] === "Import") {
+        const importedUrl = modResolve(mod, stmt.path)
+        await load(importedUrl, loadedMods)
+      }
+    }
 
     return mod
   } catch (error) {
