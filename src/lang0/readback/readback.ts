@@ -21,6 +21,10 @@ export function readback(ctx: ReadbackCtx, value: Value): Exp {
       return Exps.Fn(freshName, readback(ctx, ret))
     }
 
+    case "FnRecursive": {
+      return Exps.Var(value.recursiveName)
+    }
+
     case "Lazy": {
       return readback(ctx, Values.lazyActive(value))
     }

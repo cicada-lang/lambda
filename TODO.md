@@ -2,9 +2,9 @@
 
 > 支持直接递归函数与相互递归函数，不能判断等价的地方就不判断。
 
-[lang0] `FnRecursive` as `Value`
 [lang0] `evaluate` -- `FnRecursive`
 [lang0] add an extra pass -- `defineMod` before `executeMod`
+[lang0] `equivalent` -- `FnRecursive`
 [lang0] `doAp` should not apply a `FnRecursive` when the `arg` is `NotYet`
 [lang0] `defineMod` -- check occor to create `FnRecursive` instead of `Fn`
 

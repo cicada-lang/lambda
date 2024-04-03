@@ -14,6 +14,10 @@ export function doAp(target: Value, arg: Value): Value {
       )
     }
 
+    case "FnRecursive": {
+      throw new Error()
+    }
+
     case "Lazy": {
       return doAp(Values.lazyActive(target), arg)
     }

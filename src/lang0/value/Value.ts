@@ -3,7 +3,7 @@ import { type Exp } from "../exp/index.js"
 import { type Mod } from "../mod/index.js"
 import { type Neutral } from "../neutral/index.js"
 
-export type Value = NotYet | Fn | Lazy
+export type Value = NotYet | Fn | FnRecursive | Lazy
 
 export type NotYet = {
   "@type": "Value"
@@ -34,6 +34,34 @@ export function Fn(mod: Mod, env: Env, name: string, ret: Exp): Fn {
     "@kind": "Fn",
     mod,
     env,
+    name,
+    ret,
+  }
+}
+
+export type FnRecursive = {
+  "@type": "Value"
+  "@kind": "FnRecursive"
+  mod: Mod
+  env: Env
+  recursiveName: string
+  name: string
+  ret: Exp
+}
+
+export function FnRecursive(
+  mod: Mod,
+  env: Env,
+  recursiveName: string,
+  name: string,
+  ret: Exp,
+): FnRecursive {
+  return {
+    "@type": "Value",
+    "@kind": "FnRecursive",
+    mod,
+    env,
+    recursiveName,
     name,
     ret,
   }

@@ -29,6 +29,10 @@ export function equivalent(
       return equivalent(ctx, Actions.doAp(left, arg), Actions.doAp(right, arg))
     }
 
+    case "FnRecursive": {
+      throw new Error()
+    }
+
     case "Lazy": {
       return equivalent(ctx, Values.lazyActive(left), right)
     }
