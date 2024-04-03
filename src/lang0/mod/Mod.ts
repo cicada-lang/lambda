@@ -6,5 +6,6 @@ export type Mod = {
   loadedMods: Map<string, { mod: Mod; text: string }>
   definitions: Map<string, Definition>
   stmts: Array<Stmt>
+  isDefined?: boolean
   isExecuted?: boolean
 }
