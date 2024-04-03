@@ -25,6 +25,10 @@ export function evaluate(mod: Mod, env: Env, exp: Exp): Value {
     }
 
     case "FnRecursive": {
+      return Values.FnRecursive(mod, env, exp.recursiveName, exp.name, exp.ret)
+    }
+
+    case "FnRecursive": {
       throw new Error("TODO")
     }
 
