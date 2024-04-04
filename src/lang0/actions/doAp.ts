@@ -15,7 +15,15 @@ export function doAp(target: Value, arg: Value): Value {
     }
 
     case "FnRecursive": {
-      throw new Error()
+      if (arg['@kind'] === 'NotYet') {
+        return Values.NotYet(Neutrals.ApRecursive(target, arg.neutral))
+      }
+
+      return evaluate(
+        target.mod,
+        envExtend(target.env, target.name, arg),
+        target.ret,
+      )
     }
 
     case "Lazy": {

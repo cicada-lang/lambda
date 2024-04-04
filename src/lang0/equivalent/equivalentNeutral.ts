@@ -18,5 +18,9 @@ export function equivalentNeutral(
         equivalent(ctx, left.arg, right.arg)
       )
     }
+
+    case "ApRecursive": {
+      throw new Error()
+    }
   }
 }
