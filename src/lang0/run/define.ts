@@ -8,8 +8,6 @@ import { importOne } from "./importOne.js"
 export function define(mod: Mod, stmt: Stmt): null {
   switch (stmt["@kind"]) {
     case "Define": {
-      assertAllNamesDefined(mod, stmt)
-
       modDefine(mod, stmt.name, {
         mod,
         name: stmt.name,
@@ -29,22 +27,6 @@ export function define(mod: Mod, stmt: Stmt): null {
 
     default: {
       return null
-    }
-  }
-}
-
-function assertAllNamesDefined(mod: Mod, stmt: Define): void {
-  const freeNames = Exps.freeNames(new Set([stmt.name]), stmt.exp)
-
-  for (const name of freeNames) {
-    if (modFind(mod, name) === undefined) {
-      throw new Error(
-        [
-          `I find undefined name: ${name}`,
-          `  defining: ${stmt.name}`,
-          `  body: ${formatExp(stmt.exp)}`,
-        ].join("\n"),
-      )
     }
   }
 }
