@@ -1,21 +1,18 @@
-import type { Definition } from "../definition/Definition.js"
-import * as Exps from "../exp/index.js"
+import { expFreeNames } from "../exp/expFreeNames.js"
 import { formatExp } from "../format/formatExp.js"
 import { modFind, type Mod } from "../mod/index.js"
+import type { Define } from "../stmt/Stmt.js"
 
-export function assertAllNamesDefined(mod: Mod, definition: Definition): void {
-  const freeNames = Exps.expFreeNames(
-    new Set([definition.name]),
-    definition.exp,
-  )
+export function assertAllNamesDefined(mod: Mod, stmt: Define): void {
+  const freeNames = expFreeNames(new Set([stmt.name]), stmt.exp)
 
   for (const name of freeNames) {
     if (modFind(mod, name) === undefined) {
       throw new Error(
         [
           `I find undefined name: ${name}`,
-          `  defining: ${definition.name}`,
-          `  body: ${formatExp(definition.exp)}`,
+          `  defining: ${stmt.name}`,
+          `  body: ${formatExp(stmt.exp)}`,
         ].join("\n"),
       )
     }
