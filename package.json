@@ -28,7 +28,8 @@
     "@cicada-lang/framework": "^0.2.0",
     "@cicada-lang/sexp": "^0.1.2",
     "@xieyuheng/command-line": "^0.1.2",
-    "@xieyuheng/ty": "^0.2.1"
+    "@xieyuheng/ty": "^0.2.1",
+    "dedent": "^1.5.1"
   },
   "devDependencies": {
     "@types/node": "^20.12.4",

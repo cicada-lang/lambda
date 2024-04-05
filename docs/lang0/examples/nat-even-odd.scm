@@ -3,21 +3,13 @@
 (import "./nat-church.scm" one two three four)
 (import "./fix.scm" Y)
 
-(define even?
-  (let ([wrap (lambda (even?)
-                (lambda (n)
-                  (if (zero? n) true
-                      (if (zero? (sub1 n)) false
-                          (even? (sub1 (sub1 n)))))))])
-    (Y wrap)))
+(define (even? n)
+  (if (zero? n) true
+      (odd? (sub1 n))))
 
-(define odd?
-  (let ([wrap (lambda (odd?)
-                (lambda (n)
-                  (if (zero? n) false
-                      (if (zero? (sub1 n)) true
-                          (odd? (sub1 (sub1 n)))))))])
-    (Y wrap)))
+(define (odd? n)
+  (if (zero? n) false
+      (even? (sub1 n))))
 
 (assert-equal
   (even? zero)

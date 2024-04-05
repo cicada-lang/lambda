@@ -1,8 +1,8 @@
 import { modOwnDefinitions, type Mod } from "../mod/index.js"
 import { assertAllNamesDefined } from "./assertAllNamesDefined.js"
-import { occurCheck } from "./occurCheck.js"
 import { define } from "./define.js"
 import { execute } from "./execute.js"
+import { occurCheck } from "./occurCheck.js"
 
 export function runMod(mod: Mod): void {
   if (mod.isFinished) return
