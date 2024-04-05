@@ -1,8 +1,20 @@
 import { type Mod } from "../mod/index.js"
-import { defineMod } from "./defineMod.js"
-import { executeMod } from "./executeMod.js"
+import { define } from "./define.js"
+import { execute } from "./execute.js"
 
 export function runMod(mod: Mod): void {
-  defineMod(mod)
-  executeMod(mod)
+  if (mod.isFinished) {
+    return
+  }
+
+  for (const stmt of mod.stmts) {
+    define(mod, stmt)
+  }
+
+  for (const stmt of mod.stmts) {
+    const output = execute(mod, stmt)
+    if (output) console.log(output)
+  }
+
+  mod.isFinished = true
 }
