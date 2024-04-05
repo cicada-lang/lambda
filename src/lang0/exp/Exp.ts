@@ -40,10 +40,15 @@ export type FnRecursive = {
   ret: Exp
 }
 
-export function FnRecursive(recursiveName: string, name: string, ret: Exp): FnRecursive {
+export function FnRecursive(
+  recursiveName: string,
+  name: string,
+  ret: Exp,
+): FnRecursive {
   return {
     "@type": "Exp",
-    "@kind": "FnRecursive",recursiveName,
+    "@kind": "FnRecursive",
+    recursiveName,
     name,
     ret,
   }

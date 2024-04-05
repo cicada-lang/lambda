@@ -1,13 +1,11 @@
 import { envEmpty } from "../env/index.js"
 import { equivalent, EquivalentCtx } from "../equivalent/index.js"
 import { evaluate } from "../evaluate/index.js"
-import * as Exps from "../exp/index.js"
 import { type Exp } from "../exp/index.js"
 import { formatExp } from "../format/formatExp.js"
-import { modFind } from "../mod/index.js"
 import type { Mod } from "../mod/Mod.js"
 import { readback, ReadbackCtx } from "../readback/index.js"
-import type { Define, Stmt } from "../stmt/Stmt.js"
+import type { Stmt } from "../stmt/Stmt.js"
 
 export function execute(mod: Mod, stmt: Stmt): null | string {
   switch (stmt["@kind"]) {
