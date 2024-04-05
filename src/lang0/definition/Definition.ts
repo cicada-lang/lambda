@@ -7,5 +7,6 @@ export type Definition = {
   name: string
   exp: Exp
   freeNames: Set<string>
+  indirectFreeNames?: Set<string>
   cache?: Value
 }
