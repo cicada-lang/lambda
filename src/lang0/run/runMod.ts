@@ -1,6 +1,6 @@
 import { modOwnDefinitions, type Mod } from "../mod/index.js"
 import { assertAllNamesDefined } from "./assertAllNamesDefined.js"
-import { checkOccur } from "./checkOccur.js"
+import { occurCheck } from "./occurCheck.js"
 import { define } from "./define.js"
 import { execute } from "./execute.js"
 
@@ -13,7 +13,7 @@ export function runMod(mod: Mod): void {
     assertAllNamesDefined(mod, definition)
 
   for (const definition of modOwnDefinitions(mod).values())
-    checkOccur(mod, definition)
+    occurCheck(mod, definition)
 
   for (const stmt of mod.stmts) {
     const output = execute(mod, stmt)

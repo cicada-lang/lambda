@@ -2,9 +2,7 @@
 
 > 支持直接递归函数与相互递归函数，不能判断等价的地方就不判断。
 
-[lang0] `expIndirectFreeNames`
-
-[lang0] `checkOccur` -- a pass to create `FnRecursive` from `Fn`
+[lang0] `occurCheck` -- a pass to create `FnRecursive` from `Fn`
 
 - only in the same module for now
 
