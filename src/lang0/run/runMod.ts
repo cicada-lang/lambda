@@ -4,19 +4,12 @@ import { define } from "./define.js"
 import { execute } from "./execute.js"
 
 export function runMod(mod: Mod): void {
-  if (mod.isFinished) {
-    return
-  }
+  if (mod.isFinished) return
 
-  for (const stmt of mod.stmts) {
-    define(mod, stmt)
-  }
+  for (const stmt of mod.stmts) define(mod, stmt)
 
-  for (const stmt of mod.stmts) {
-    if (stmt["@kind"] === "Define") {
-      assertAllNamesDefined(mod, stmt)
-    }
-  }
+  for (const definition of mod.definitions.values())
+    assertAllNamesDefined(mod, definition)
 
   for (const stmt of mod.stmts) {
     const output = execute(mod, stmt)
