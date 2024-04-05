@@ -1,8 +1,7 @@
-import { modDefine, modFind, modResolve } from "../mod/index.js"
 import type { Mod } from "../mod/Mod.js"
+import { modDefine, modFind, modResolve } from "../mod/index.js"
 import type { ImportEntry } from "../stmt/Stmt.js"
-import { executeMod } from "./executeMod.js"
-import { defineMod } from "./defineMod.js"
+import { runMod } from "./runMod.js"
 
 export function importOne(mod: Mod, path: string, entry: ImportEntry): void {
   const url = modResolve(mod, path)
@@ -15,8 +14,7 @@ export function importOne(mod: Mod, path: string, entry: ImportEntry): void {
     throw new Error(`Mod is not loaded: ${path}`)
   }
 
-  defineMod(found.mod)
-  executeMod(found.mod)
+  runMod(found.mod)
 
   const { name, rename } = entry
 
