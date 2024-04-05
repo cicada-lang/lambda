@@ -2,8 +2,9 @@
 
 > 支持直接递归函数与相互递归函数，不能判断等价的地方就不判断。
 
-[lang0] add a pass to handle `checkOccur` -- check occur to create `FnRecursive` instead of `Fn`
+[lang0] add a pass to handle `checkOccur`
 
+- check occur to create `FnRecursive` instead of `Fn`
 - only in the same module for now
 
 [lang0] `equivalent` -- `FnRecursive`
