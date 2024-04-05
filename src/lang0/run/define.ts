@@ -1,3 +1,4 @@
+import { expFreeNames } from "../exp/expFreeNames.js"
 import { modDefine } from "../mod/index.js"
 import type { Mod } from "../mod/Mod.js"
 import type { Stmt } from "../stmt/Stmt.js"
@@ -10,6 +11,7 @@ export function define(mod: Mod, stmt: Stmt): null {
         mod,
         name: stmt.name,
         exp: stmt.exp,
+        freeNames: expFreeNames(new Set(), stmt.exp),
       })
 
       return null
