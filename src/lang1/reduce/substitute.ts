@@ -16,7 +16,7 @@ import { lookup } from "./lookup.js"
 export function substitute(substitution: Substitution, body: Exp): Exp {
   substitution = substitutionKeepNames(
     substitution,
-    Exps.freeNames(new Set(), body),
+    Exps.expFreeNames(new Set(), body),
   )
 
   if (substitutionIsEmpty(substitution)) {

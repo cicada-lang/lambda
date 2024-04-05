@@ -1,7 +1,7 @@
-import { type Exp } from "../exp/index.js"
 import { substitutionBindings } from "../substitution/index.js"
+import { type Exp } from "./index.js"
 
-export function freeNames(boundNames: Set<string>, exp: Exp): Set<string> {
+export function expFreeNames(boundNames: Set<string>, exp: Exp): Set<string> {
   switch (exp["@kind"]) {
     case "Var": {
       return boundNames.has(exp.name) ? new Set() : new Set([exp.name])
@@ -9,20 +9,20 @@ export function freeNames(boundNames: Set<string>, exp: Exp): Set<string> {
 
     case "Lazy": {
       if (exp.cache) {
-        return freeNames(boundNames, exp.cache)
+        return expFreeNames(boundNames, exp.cache)
       } else {
-        return freeNames(boundNames, exp.exp)
+        return expFreeNames(boundNames, exp.exp)
       }
     }
 
     case "Fn": {
-      return freeNames(new Set([...boundNames, exp.name]), exp.ret)
+      return expFreeNames(new Set([...boundNames, exp.name]), exp.ret)
     }
 
     case "Ap": {
       return new Set([
-        ...freeNames(boundNames, exp.target),
-        ...freeNames(boundNames, exp.arg),
+        ...expFreeNames(boundNames, exp.target),
+        ...expFreeNames(boundNames, exp.arg),
       ])
     }
 
@@ -30,11 +30,11 @@ export function freeNames(boundNames: Set<string>, exp: Exp): Set<string> {
       // NOTE All bindings in the substitution are independent.
       const bindings = substitutionBindings(exp.substitution)
       const substitutionFreeNames = bindings
-        .map((binding) => Array.from(freeNames(boundNames, binding.exp)))
+        .map((binding) => Array.from(expFreeNames(boundNames, binding.exp)))
         .flatMap((names) => names)
       return new Set([
         ...substitutionFreeNames,
-        ...freeNames(
+        ...expFreeNames(
           new Set([...boundNames, ...bindings.map((binding) => binding.name)]),
           exp.body,
         ),

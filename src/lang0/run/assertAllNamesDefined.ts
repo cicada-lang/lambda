@@ -4,7 +4,10 @@ import { formatExp } from "../format/formatExp.js"
 import { modFind, type Mod } from "../mod/index.js"
 
 export function assertAllNamesDefined(mod: Mod, definition: Definition): void {
-  const freeNames = Exps.freeNames(new Set([definition.name]), definition.exp)
+  const freeNames = Exps.expFreeNames(
+    new Set([definition.name]),
+    definition.exp,
+  )
 
   for (const name of freeNames) {
     if (modFind(mod, name) === undefined) {

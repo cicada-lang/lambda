@@ -1,2 +1,2 @@
 export * from "./Exp.js"
-export * from "./freeNames.js"
+export * from "./expFreeNames.js"
