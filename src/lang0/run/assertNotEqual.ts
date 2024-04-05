@@ -1,3 +1,4 @@
+import dedent from "dedent"
 import { envEmpty } from "../env/index.js"
 import { equivalent, EquivalentCtx } from "../equivalent/index.js"
 import { evaluate } from "../evaluate/index.js"
@@ -11,6 +12,7 @@ export function assertNotEqual(mod: Mod, left: Exp, right: Exp): void {
   if (equivalent(EquivalentCtx.init(), leftValue, rightValue)) {
     throw new Error(dedent`
       [assertNotEqual] Fail to assert NOT equal.
+      
         left: ${formatExp(left)}
         right: ${formatExp(right)}
       `)
