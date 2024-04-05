@@ -11,14 +11,12 @@ export function occurCheck(mod: Mod, definition: Definition): void {
   if (!indirectFreeNames.has(definition.name)) return
 
   if (definition.exp["@kind"] !== "Fn") {
-    throw new Error(
-      dedent`
-        [occurCheck] Only function can be recursive
+    throw new Error(dedent`
+      [occurCheck] Only function can be recursive.
 
-          non-function exp: ${formatExp(definition.exp)}
-          recursive name: ${definition.name}
-        `,
-    )
+        non-function exp: ${formatExp(definition.exp)}
+        recursive name: ${definition.name}
+      `)
   }
 
   definition.exp = Exps.FnRecursive(

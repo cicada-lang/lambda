@@ -9,8 +9,10 @@ export function assertEqual(mod: Mod, left: Exp, right: Exp): void {
   const leftValue = evaluate(mod, envEmpty(), left)
   const rightValue = evaluate(mod, envEmpty(), right)
   if (!equivalent(EquivalentCtx.init(), leftValue, rightValue)) {
-    throw new Error(
-      `((fail assert-equal) ${formatExp(left)} ${formatExp(right)})`,
-    )
+    throw new Error(dedent`
+      [assertEqual] Fail to assert equal.
+        left: ${formatExp(left)}
+        right: ${formatExp(right)}
+      `)
   }
 }
