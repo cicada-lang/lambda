@@ -9,5 +9,5 @@ Interpreter of lambda calculus with explicit substitution.
 (define (name arg ...) body)
 
 (lambda (name) ret)
-(let ((name exp) ...) body)
+(let ([name exp] ...) body)
 ```

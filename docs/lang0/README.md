@@ -3,7 +3,7 @@
 Interpreter of lambda calculus.
 
 - Implement call-by-need lazy evaluation.
-- TODO Support direct and indirect recursion.
+- Support direct and indirect recursion.
 
 ```scheme
 (define name body)
@@ -13,4 +13,5 @@ Interpreter of lambda calculus.
 (assert-not-equal exp ...)
 
 (lambda (name) ret)
+(let ([name exp] ...) body)
 ```
