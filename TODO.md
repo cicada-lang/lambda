@@ -1,9 +1,13 @@
 # lang0
 
-[lang0] 用中文重新整理 lambda encoding 相关的知识，形成一本书。
-[lang0] 用中文重新整理 lambda encoding 和 self type 相关的知识。
+[lang0] 整理 fixpoint 相关的知识
+[lang0] 整理 lambda encoding 相关的知识
+[lang0] 整理 self type 相关的知识
 
 # lang1
+
+> 不带 Value 的解释器，也许是 cicada 成功的关键，我必须认真探索它。
+> Dance with expressions.
 
 [lang1] fix `freshen` -- be like lang0 with `usedNames`
 [lang1] 支持 `(assert-equal)` 与 `(assert-not-equal)`
