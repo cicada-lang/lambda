@@ -20,7 +20,11 @@ export function equivalentNeutral(
     }
 
     case "ApRecursive": {
-      throw new Error()
+      return (
+        right["@kind"] === "ApRecursive" &&
+        equivalent(ctx, left.fn, right.fn) &&
+        equivalentNeutral(ctx, left.arg, right.arg)
+      )
     }
   }
 }
