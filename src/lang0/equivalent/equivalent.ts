@@ -30,7 +30,11 @@ export function equivalent(
     }
 
     case "FnRecursive": {
-      throw new Error()
+      return (
+        right["@kind"] === "FnRecursive" &&
+        left.name === right.name &&
+        left.mod === right.mod
+      )
     }
 
     case "Lazy": {
