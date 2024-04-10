@@ -11,6 +11,17 @@
 
 factorial
 
+(assert-equal factorial factorial)
+
+(assert-equal
+  factorial
+  (lambda (x) (factorial x))
+  (lambda (y) (factorial y)))
+
+(assert-equal
+  (lambda (x) (factorial x))
+  factorial)
+
 (assert-equal (factorial zero) one)
 (assert-equal (factorial one) one)
 (assert-equal (factorial two) two)

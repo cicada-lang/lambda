@@ -2,7 +2,8 @@
 
 > 支持直接递归函数与相互递归函数，不能判断等价的地方就不判断。
 
-[lang0] test about equivalent between recursive functions
+[lang0] 学习 prolog 处理递归 term unification without occor check 的方式，
+实现更好的 definitional equivalence。
 
 [lang0] 用中文重新整理 lambda encoding 相关的知识，形成一本书。
 [lang0] 用中文重新整理 lambda encoding 和 self type 相关的知识。

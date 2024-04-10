@@ -11,6 +11,9 @@
   (if (zero? n) false
       (even? (sub1 n))))
 
+(assert-equal even? even?)
+(assert-equal odd? odd?)
+
 (assert-equal
   (even? zero)
   (even? two)

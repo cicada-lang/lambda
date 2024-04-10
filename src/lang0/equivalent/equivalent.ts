@@ -10,8 +10,12 @@ export function equivalent(
   left: Value,
   right: Value,
 ): boolean {
-  left = prepare(left)
-  right = prepare(right)
+  left = Values.lazyActiveDeep(left)
+  right = Values.lazyActiveDeep(right)
+
+  if (right["@kind"] === "FnRecursive" && left["@kind"] === "FnRecursive") {
+    return left.name === right.name && left.mod === right.mod
+  }
 
   switch (left["@kind"]) {
     case "NotYet": {
@@ -21,7 +25,8 @@ export function equivalent(
       )
     }
 
-    case "Fn": {
+    case "Fn":
+    case "FnRecursive": {
       const freshName = freshen(ctx.usedNames, left.name)
       ctx = ctx.useName(freshName)
       const v = Neutrals.Var(freshName)
@@ -29,24 +34,8 @@ export function equivalent(
       return equivalent(ctx, Actions.doAp(left, arg), Actions.doAp(right, arg))
     }
 
-    case "FnRecursive": {
-      return (
-        right["@kind"] === "FnRecursive" &&
-        left.name === right.name &&
-        left.mod === right.mod
-      )
-    }
-
     case "Lazy": {
       return equivalent(ctx, Values.lazyActive(left), right)
     }
   }
-}
-
-function prepare(value: Value): Value {
-  if (value["@kind"] === "Lazy") {
-    return prepare(Values.lazyActive(value))
-  }
-
-  return value
 }

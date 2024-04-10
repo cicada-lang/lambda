@@ -11,3 +11,11 @@ export function lazyActive(lazy: Values.Lazy): Value {
   lazy.cache = value
   return value
 }
+
+export function lazyActiveDeep(value: Value): Value {
+  if (value["@kind"] === "Lazy") {
+    return lazyActiveDeep(lazyActive(value))
+  }
+
+  return value
+}

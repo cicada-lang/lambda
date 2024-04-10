@@ -15,6 +15,8 @@ export function doAp(target: Value, arg: Value): Value {
     }
 
     case "FnRecursive": {
+      arg = Values.lazyActiveDeep(arg)
+
       if (arg["@kind"] === "NotYet") {
         return Values.NotYet(Neutrals.ApRecursive(target, arg.neutral))
       }
