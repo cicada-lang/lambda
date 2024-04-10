@@ -14,6 +14,13 @@
 (assert-equal even? even?)
 (assert-equal odd? odd?)
 
+;; TODO Should be equal:
+(assert-not-equal
+  even?
+  (lambda (n)
+    (if (zero? n) true
+        (odd? (sub1 n)))))
+
 (assert-equal
   (even? zero)
   (even? two)
