@@ -1,10 +1,5 @@
 # lang0
 
-> 支持直接递归函数与相互递归函数，不能判断等价的地方就不判断。
-
-[lang0] 学习 prolog 处理递归 term unification without occor check 的方式，
-实现更好的 definitional equivalence。
-
 [lang0] 用中文重新整理 lambda encoding 相关的知识，形成一本书。
 [lang0] 用中文重新整理 lambda encoding 和 self type 相关的知识。
 
@@ -13,6 +8,21 @@
 [lang1] fix `freshen` -- be like lang0 with `usedNames`
 [lang1] 支持 `(assert-equal)` 与 `(assert-not-equal)`
 [lang1] 直接用 lang0 的测试
+
+> 支持直接递归函数与相互递归函数，不能判断等价的地方就不判断。
+
+[lang1] definitional equivalence -- 学习 prolog 处理递归 term unification without occor check 的方式。
+
+- 将所有（包括递归定义的）函数名视作 logic variable。
+- 将所有 bound variable 也视作 logic variable，
+  递归过程中遇到两个 bound variable 时，
+  生成相同的 fresh name 同时 bind 上去。
+- 用 unification without occor-check 来判断 definitional equivalence。
+
+```prolog
+Even = lambda(N, ap(if(ap(Zero, N), True, ap(Odd, ap(Sub1, N))))),
+Odd = lambda(M, ap(if(ap(Zero, M), False, ap(Even, ap(Sub1, M))))).
+```
 
 # lang2
 
