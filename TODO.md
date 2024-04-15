@@ -1,11 +1,3 @@
-# lang2
-
-> Like lang0 but with JS-like syntax.
-
-[lang2] `syntax/` -- use parser combinators
-[lang0] can change parser
-[lang2] `run` use lang0's `run`
-
 # lang0
 
 [lang0] 整理 fixpoint 相关的知识
@@ -36,11 +28,19 @@ Even = lambda(N, ap(if(ap(Zero, N), True, ap(Odd, ap(Sub1, N))))),
 Odd = lambda(M, ap(if(ap(Zero, M), False, ap(Even, ap(Sub1, M))))).
 ```
 
-# mugda
+# lang2 (mugda)
 
 > move mugda to clique
 
 copy code from from mugda as lang2
+
+# JS-like syntax
+
+> Use parser combinators.
+
+recursive function + datatype
+
+- using `<typector>::<datactor>` as syntax.
 
 # pie
 
