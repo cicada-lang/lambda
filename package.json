@@ -29,15 +29,15 @@
     "@cicada-lang/sexp": "^0.1.2",
     "@xieyuheng/command-line": "^0.1.2",
     "@xieyuheng/ty": "^0.2.1",
-    "dedent": "^1.5.1",
+    "dedent": "^1.5.3",
     "regexp-match-indices": "^1.0.2"
   },
   "devDependencies": {
-    "@types/node": "^20.12.5",
+    "@types/node": "^20.12.7",
     "@xieyuheng/test-runner": "^0.2.10",
     "prettier": "^3.2.5",
     "prettier-plugin-organize-imports": "^3.2.4",
-    "typescript": "^5.4.4"
+    "typescript": "^5.4.5"
   },
   "license": "GPL-3.0-or-later"
 }
