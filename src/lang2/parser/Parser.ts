@@ -45,7 +45,7 @@ export function loop<A>(
   }
 }
 
-export function literal(label: string, value: string): Parser<string> {
+export function literal(label: string, value?: string): Parser<string> {
   return (tokens) => {
     const [token] = tokens
     if (token === undefined) {
@@ -56,9 +56,12 @@ export function literal(label: string, value: string): Parser<string> {
       throw new Error("[literal]")
     }
 
-    if (token.value !== value) {
-      throw new Error("[literal]")
+    if (value !== undefined) {
+      if (token.value !== value) {
+        throw new Error("[literal]")
+      }
     }
+
 
     return [token.value, tokens.slice(1)]
   }

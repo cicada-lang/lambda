@@ -12,20 +12,7 @@ import {
 type Sexp = string | Array<Sexp>
 
 function parseSexp(tokens: Array<Token>): ParserResult<Sexp> {
-  return choose<Sexp>([parseSymbol, parseList])(tokens)
-}
-
-function parseSymbol(tokens: Array<Token>): ParserResult<string> {
-  const [token] = tokens
-  if (token === undefined) {
-    throw new Error("[parseSymbol]")
-  }
-
-  if (token.label !== "identifier") {
-    throw new Error("[parseSymbol]")
-  }
-
-  return [token.value, tokens.slice(1)]
+  return choose<Sexp>([literal("identifier"), parseList])(tokens)
 }
 
 function parseList(tokens: Array<Token>): ParserResult<Array<Sexp>> {
