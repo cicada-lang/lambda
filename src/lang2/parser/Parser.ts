@@ -17,3 +17,30 @@ export function choose<A>(parsers: Array<Parser<A>>): Parser<A> {
     throw new Error(`[choose]`)
   }
 }
+
+export function loop<A>(
+  parser: Parser<A>,
+  options: {
+    start?: Parser<any>
+    end: Parser<any>
+  },
+): Parser<Array<A>> {
+  return (tokens) => {
+    const list: Array<A> = []
+    if (options.start) {
+      const [_, remain] = options.start(tokens)
+      tokens = remain
+    }
+
+    while (true) {
+      try {
+        const [_, remain] = options.end(tokens)
+        return [list, remain]
+      } catch (_error) {
+        const [element, remain] = parser(tokens)
+        list.push(element)
+        tokens = remain
+      }
+    }
+  }
+}

@@ -1,7 +1,7 @@
 import assert from "node:assert"
 import { test } from "node:test"
 import { createLexer } from "./Lexer.js"
-import { choose, type ParserResult, type Token } from "./index.js"
+import { choose, loop, type ParserResult, type Token } from "./index.js"
 
 type Sexp = string | Array<Sexp>
 
@@ -22,32 +22,37 @@ function parseSymbol(tokens: Array<Token>): ParserResult<string> {
   return [token.value, tokens.slice(1)]
 }
 
-function parseList(tokens: Array<Token>): ParserResult<Array<Sexp>> {
+function parseOpenParenthesis(tokens: Array<Token>): ParserResult<undefined> {
   const token = tokens[0]
   if (token === undefined) {
-    throw new Error("[parseList] 1")
+    throw new Error("[parseOpenParenthesis] 1")
   }
 
   if (token.label !== "symbol" || token.value !== "(") {
-    throw new Error("[parseList] 2")
+    throw new Error("[parseOpenParenthesis] 2")
   }
 
-  tokens = tokens.slice(1)
-  const list: Array<Sexp> = []
-  while (true) {
-    const token = tokens[0]
-    if (token === undefined) {
-      throw new Error("[parseList] 3")
-    }
+  return [undefined, tokens.slice(1)]
+}
 
-    if (token.label === "symbol" && token.value === ")") {
-      return [list, tokens.slice(1)]
-    }
-
-    const [sexp, remain] = parseSexp(tokens)
-    tokens = remain
-    list.push(sexp)
+function parseEndParenthesis(tokens: Array<Token>): ParserResult<undefined> {
+  const token = tokens[0]
+  if (token === undefined) {
+    throw new Error("[parseEndParenthesis] 1")
   }
+
+  if (token.label !== "symbol" || token.value !== ")") {
+    throw new Error("[parseEndParenthesis] 2")
+  }
+
+  return [undefined, tokens.slice(1)]
+}
+
+function parseList(tokens: Array<Token>): ParserResult<Array<Sexp>> {
+  return loop(parseSexp, {
+    start: parseOpenParenthesis,
+    end: parseEndParenthesis,
+  })(tokens)
 }
 
 const lexer = createLexer({

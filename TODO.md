@@ -2,7 +2,7 @@
 
 > Like lang0 but with JS-like syntax.
 
-[lang2] `sequence`
+[lang2] `loopUntil`
 [lang2] parser combinators
 
 # lang0
