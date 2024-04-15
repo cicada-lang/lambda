@@ -2,9 +2,9 @@
 
 > Like lang0 but with JS-like syntax.
 
-[lang2] createLexerFromTokenTable
-[lang2] Parser
-[lang2] ParserResult
+[lang2] refactor `createLexer`
+[lang2] `Parser`
+[lang2] `ParserResult`
 [lang2] parser combinators
 
 # lang0
