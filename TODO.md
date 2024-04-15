@@ -1,3 +1,15 @@
+# lang2
+
+> Like lang0 but with JS-like syntax.
+
+[lang2] Lexer
+[lang2] Token
+[lang2] TokenTable
+[lang2] createLexerFromTokenTable
+[lang2] Parser
+[lang2] ParserResult
+[lang2] parser combinators
+
 # lang0
 
 [lang0] 整理 fixpoint 相关的知识
@@ -28,15 +40,15 @@ Even = lambda(N, ap(if(ap(Zero, N), True, ap(Odd, ap(Sub1, N))))),
 Odd = lambda(M, ap(if(ap(Zero, M), False, ap(Even, ap(Sub1, M))))).
 ```
 
-# lang2
+# mugda
 
 > move mugda to clique
 
-[lang2] copy code from from mugda as lang2
+copy code from from mugda as lang2
 
-# lang3
+# pie
 
-[lang3] pie with explicit substitution.
+pie with explicit substitution.
 
 - 当 everything is expression 时，
   inference rule 的表达会有什么变化？
