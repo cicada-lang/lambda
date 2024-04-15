@@ -1,11 +1,11 @@
 import assert from "node:assert"
 import { test } from "node:test"
 import { createLexer } from "./Lexer.js"
-import type { Token } from "./index.js"
+import { type ParserResult, type Token } from "./index.js"
 
 type Sexp = string | Array<Sexp>
 
-function parseSexp(tokens: Array<Token>): Sexp {
+function parseSexp(tokens: Array<Token>): ParserResult<Sexp> {
   try {
     return parseSymbol(tokens)
   } catch (_) {
@@ -13,44 +13,44 @@ function parseSexp(tokens: Array<Token>): Sexp {
   }
 }
 
-function parseSymbol(tokens: Array<Token>): string {
-  const token = tokens.shift()
+function parseSymbol(tokens: Array<Token>): ParserResult<string> {
+  const [token] = tokens
   if (token === undefined) {
     throw new Error("[parseSymbol]")
   }
 
   if (token.label !== "identifier") {
-    tokens.unshift(token)
     throw new Error("[parseSymbol]")
   }
 
-  return token.value
+  return [token.value, tokens.slice(1)]
 }
 
-function parseList(tokens: Array<Token>): Array<Sexp> {
-  const token = tokens.shift()
+function parseList(tokens: Array<Token>): ParserResult<Array<Sexp>> {
+  const token = tokens[0]
   if (token === undefined) {
     throw new Error("[parseList] 1")
   }
 
   if (token.label !== "symbol" || token.value !== "(") {
-    tokens.unshift(token)
     throw new Error("[parseList] 2")
   }
 
+  tokens = tokens.slice(1)
   const list: Array<Sexp> = []
   while (true) {
-    const token = tokens.shift()
+    const token = tokens[0]
     if (token === undefined) {
       throw new Error("[parseList] 3")
     }
 
     if (token.label === "symbol" && token.value === ")") {
-      return list
+      return [list, tokens.slice(1)]
     }
 
-    tokens.unshift(token)
-    list.push(parseSexp(tokens))
+    const [sexp, remain] = parseSexp(tokens)
+    tokens = remain
+    list.push(sexp)
   }
 }
 
@@ -64,25 +64,28 @@ const lexer = createLexer({
 test("Parser", () => {
   {
     const tokens = lexer("a")
-    assert.deepStrictEqual(parseSexp(tokens), "a")
+    assert.deepStrictEqual(parseSexp(tokens), ["a", []])
   }
 
   {
     const tokens = lexer("(a)")
-    assert.deepStrictEqual(parseSexp(tokens), ["a"])
+    assert.deepStrictEqual(parseSexp(tokens), [["a"], []])
   }
 
   {
     const tokens = lexer("(a b c)")
-    assert.deepStrictEqual(parseSexp(tokens), ["a", "b", "c"])
+    assert.deepStrictEqual(parseSexp(tokens), [["a", "b", "c"], []])
   }
 
   {
     const tokens = lexer("((a b c) (a b c) (a b c))")
     assert.deepStrictEqual(parseSexp(tokens), [
-      ["a", "b", "c"],
-      ["a", "b", "c"],
-      ["a", "b", "c"],
+      [
+        ["a", "b", "c"],
+        ["a", "b", "c"],
+        ["a", "b", "c"],
+      ],
+      [],
     ])
   }
 })
