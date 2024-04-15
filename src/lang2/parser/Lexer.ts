@@ -21,6 +21,10 @@ export function createLexer(table: TokenTable): Lexer {
   return (text) => {
     const tokens: Array<Token> = new Array()
 
+    if (text.trim().length === 0) {
+      return tokens
+    }
+
     let i = 0
 
     while (i < text.length) {
