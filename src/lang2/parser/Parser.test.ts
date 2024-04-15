@@ -4,7 +4,8 @@ import { createLexer } from "./Lexer.js"
 import {
   choose,
   literal,
-  loop,
+  loopUntil,
+  startsWith,
   type ParserResult,
   type Token,
 } from "./index.js"
@@ -16,10 +17,10 @@ function parseSexp(tokens: Array<Token>): ParserResult<Sexp> {
 }
 
 function parseList(tokens: Array<Token>): ParserResult<Array<Sexp>> {
-  return loop(parseSexp, {
-    start: literal("symbol", "("),
-    end: literal("symbol", ")"),
-  })(tokens)
+  return startsWith(
+    literal("symbol", "("),
+    loopUntil(parseSexp, literal("symbol", ")")),
+  )(tokens)
 }
 
 const lexer = createLexer({

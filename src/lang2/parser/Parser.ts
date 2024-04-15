@@ -18,23 +18,15 @@ export function choose<A>(parsers: Array<Parser<A>>): Parser<A> {
   }
 }
 
-export function loop<A>(
+export function loopUntil<A>(
   parser: Parser<A>,
-  options: {
-    start?: Parser<any>
-    end: Parser<any>
-  },
+  end: Parser<any>,
 ): Parser<Array<A>> {
   return (tokens) => {
     const list: Array<A> = []
-    if (options.start) {
-      const [_, remain] = options.start(tokens)
-      tokens = remain
-    }
-
     while (true) {
       try {
-        const [_, remain] = options.end(tokens)
+        const [_, remain] = end(tokens)
         return [list, remain]
       } catch (_error) {
         const [element, remain] = parser(tokens)
@@ -62,7 +54,16 @@ export function literal(label: string, value?: string): Parser<string> {
       }
     }
 
-
     return [token.value, tokens.slice(1)]
+  }
+}
+
+export function startsWith<A>(
+  start: Parser<any>,
+  parser: Parser<A>,
+): Parser<A> {
+  return (tokens) => {
+    const [_, remain] = start(tokens)
+    return parser(remain)
   }
 }
