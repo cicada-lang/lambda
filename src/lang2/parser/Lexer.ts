@@ -26,23 +26,7 @@ export function createLexer(table: TokenTable): Lexer {
     while (i < text.length) {
       const remain = text.slice(i)
       const result = matchTable(remain, table)
-      if (result !== undefined) {
-        const { label, value, span, forword } = result
-
-        if (forword === 0) {
-          throw new Error(
-            [
-              `[createLexer/lexer] No progress during at: ${i}`,
-              `  remain: ${reportRemain(remain)}`,
-              `  label: ${result.label}`,
-            ].join("\n"),
-          )
-        }
-
-        tokens.push({ label, value, span: spanShift(span, i) })
-
-        i += forword
-      } else {
+      if (result === undefined) {
         throw new Error(
           [
             "[createLexer/lexer] All regexp in table fail to match remaining input.",
@@ -54,6 +38,22 @@ export function createLexer(table: TokenTable): Lexer {
           ].join("\n"),
         )
       }
+
+      const { label, value, span, forword } = result
+
+      if (forword === 0) {
+        throw new Error(
+          [
+            `[createLexer/lexer] No progress during at: ${i}`,
+            `  remain: ${reportRemain(remain)}`,
+            `  label: ${result.label}`,
+          ].join("\n"),
+        )
+      }
+
+      tokens.push({ label, value, span: spanShift(span, i) })
+
+      i += forword
     }
 
     return tokens
@@ -70,19 +70,33 @@ function reportRemain(remain: string): string {
 function matchTable(
   text: string,
   table: TokenTable,
-): undefined | (Token & { forword: number }) {
+): (Token & { forword: number }) | undefined {
   for (const [label, regexp] of Object.entries(table)) {
-    const result = execWithIndices(regexp, text)
-    if (result !== null) {
-      // NOTE The first capture is viewed as the value of the token.
-      const value = result[1]
-      if (value !== undefined) {
-        const main = result[0]
-        const forword = main.length
-        const [lo, hi] = result.indices[1]
-        const span = { lo, hi }
-        return { label, value, span, forword }
-      }
+    const result = matchTokenEntry(text, label, regexp)
+    if (result !== undefined) {
+      return result
     }
   }
+}
+
+function matchTokenEntry(
+  text: string,
+  label: string,
+  regexp: RegExp,
+): (Token & { forword: number }) | undefined {
+  const result = execWithIndices(regexp, text)
+  if (result === null) {
+    return undefined
+  }
+
+  const value = result[1]
+  if (value === undefined) {
+    return undefined
+  }
+
+  const main = result[0]
+  const forword = main.length
+  const [lo, hi] = result.indices[1]
+  const span = { lo, hi }
+  return { label, value, span, forword }
 }
