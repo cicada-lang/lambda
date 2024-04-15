@@ -13,7 +13,11 @@ import {
 type Sexp = string | Array<Sexp>
 
 function parseSexp(tokens: Array<Token>): ParserResult<Sexp> {
-  return choose<Sexp>([literal("identifier"), parseList])(tokens)
+  return choose<Sexp>([parseSymbol, parseList])(tokens)
+}
+
+function parseSymbol(tokens: Array<Token>): ParserResult<string> {
+  return literal("identifier")(tokens)
 }
 
 function parseList(tokens: Array<Token>): ParserResult<Array<Sexp>> {
