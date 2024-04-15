@@ -2,9 +2,8 @@
 
 > Like lang0 but with JS-like syntax.
 
-[lang2] Lexer
-[lang2] Token
 [lang2] TokenTable
+[lang2] Lexer
 [lang2] createLexerFromTokenTable
 [lang2] Parser
 [lang2] ParserResult
