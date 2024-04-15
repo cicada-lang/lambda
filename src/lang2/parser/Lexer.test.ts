@@ -9,7 +9,7 @@ const lexer = createLexer({
   symbol: /^\s*([^_\p{Letter}0-9\s])\s*/u,
 })
 
-test("lexer", () => {
+test("Lexer", () => {
   assert.deepStrictEqual(lexer(""), [])
   assert.deepStrictEqual(lexer("  "), [])
   assert.deepStrictEqual(lexer("a ->"), [
