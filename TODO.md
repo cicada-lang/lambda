@@ -2,7 +2,9 @@
 
 > Like lang0 but with JS-like syntax.
 
-[lang2] parser combinator
+[lang2] `syntax/` -- use parser combinators
+[lang0] can change parser
+[lang2] `run` use lang0's `run`
 
 # lang0
 
