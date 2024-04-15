@@ -1,16 +1,12 @@
 import assert from "node:assert"
 import { test } from "node:test"
 import { createLexer } from "./Lexer.js"
-import { type ParserResult, type Token } from "./index.js"
+import { choose, type ParserResult, type Token } from "./index.js"
 
 type Sexp = string | Array<Sexp>
 
 function parseSexp(tokens: Array<Token>): ParserResult<Sexp> {
-  try {
-    return parseSymbol(tokens)
-  } catch (_) {
-    return parseList(tokens)
-  }
+  return choose([parseSymbol, parseList])(tokens)
 }
 
 function parseSymbol(tokens: Array<Token>): ParserResult<string> {
