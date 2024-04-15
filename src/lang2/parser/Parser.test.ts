@@ -1,12 +1,18 @@
 import assert from "node:assert"
 import { test } from "node:test"
 import { createLexer } from "./Lexer.js"
-import { choose, loop, type ParserResult, type Token } from "./index.js"
+import {
+  choose,
+  literal,
+  loop,
+  type ParserResult,
+  type Token,
+} from "./index.js"
 
 type Sexp = string | Array<Sexp>
 
 function parseSexp(tokens: Array<Token>): ParserResult<Sexp> {
-  return choose([parseSymbol, parseList])(tokens)
+  return choose<Sexp>([parseSymbol, parseList])(tokens)
 }
 
 function parseSymbol(tokens: Array<Token>): ParserResult<string> {
@@ -22,36 +28,10 @@ function parseSymbol(tokens: Array<Token>): ParserResult<string> {
   return [token.value, tokens.slice(1)]
 }
 
-function parseOpenParenthesis(tokens: Array<Token>): ParserResult<undefined> {
-  const token = tokens[0]
-  if (token === undefined) {
-    throw new Error("[parseOpenParenthesis] 1")
-  }
-
-  if (token.label !== "symbol" || token.value !== "(") {
-    throw new Error("[parseOpenParenthesis] 2")
-  }
-
-  return [undefined, tokens.slice(1)]
-}
-
-function parseEndParenthesis(tokens: Array<Token>): ParserResult<undefined> {
-  const token = tokens[0]
-  if (token === undefined) {
-    throw new Error("[parseEndParenthesis] 1")
-  }
-
-  if (token.label !== "symbol" || token.value !== ")") {
-    throw new Error("[parseEndParenthesis] 2")
-  }
-
-  return [undefined, tokens.slice(1)]
-}
-
 function parseList(tokens: Array<Token>): ParserResult<Array<Sexp>> {
   return loop(parseSexp, {
-    start: parseOpenParenthesis,
-    end: parseEndParenthesis,
+    start: literal("symbol", "("),
+    end: literal("symbol", ")"),
   })(tokens)
 }
 
