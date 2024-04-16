@@ -84,10 +84,10 @@ f =
 我们可以先定义形成无穷嵌套所需要的 `wrap` 函数：
 
 ```scheme
-f
-= (wrap f)
-= (wrap (wrap f))
-= (wrap (wrap (wrap ...)))
+f =
+(wrap f) =
+(wrap (wrap f)) =
+(wrap (wrap (wrap ...)))
 ```
 
 具体对 `factorial` 而言，我们可以定义 `factorial-wrap`：
