@@ -10,16 +10,16 @@
 ;; which can find fixpoint of any function.
 ;;     (f (Y f)) = (Y f)
 ;; Once we have `Y`, we can achieve the following recursive definition
-;;     f
-;;     = (wrap f)
-;;     = (wrap (wrap f))
-;;     = (wrap (wrap (wrap ...)))
+;;     f =
+;;     (wrap f) =
+;;     (wrap (wrap f)) =
+;;     (wrap (wrap (wrap ...))) =
 ;; by non-recursively lambda term.
-;;     f
-;;     = (Y wrap)
-;;     = (wrap (Y wrap))
-;;     = (wrap (wrap (Y wrap)))
-;;     = (wrap (wrap (wrap ...)))
+;;     f =
+;;     (Y wrap) =
+;;     (wrap (Y wrap)) =
+;;     (wrap (wrap (Y wrap))) =
+;;     (wrap (wrap (wrap ...)))
 
 ;; The following `Y` is one way of defining `Y`.
 
