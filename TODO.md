@@ -1,8 +1,8 @@
 # lang0
 
-[lang0] 整理 fixpoint 相关的知识
-[lang0] 整理 lambda encoding 相关的知识
-[lang0] 整理 self type 相关的知识
+[lang0] docs/fixpoint -- 使用 Y 来实现递归函数
+[lang0] docs/lambda-encoding
+[lang0] docs/self-type
 
 # lang1
 
