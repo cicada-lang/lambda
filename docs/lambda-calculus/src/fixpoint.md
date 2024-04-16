@@ -16,20 +16,20 @@ subtitle: Fixpoint
 一旦有了 `Y`，我们就能用非递归的 Lambda 表达式来实现下面的递归定义：
 
 ```scheme
-f
-= (wrap f)
-= (wrap (wrap f))
-= (wrap (wrap (wrap ...)))
+f =
+(wrap f) =
+(wrap (wrap f)) =
+(wrap (wrap (wrap ...)))
 ```
 
 实现方式如下：
 
 ```scheme
-f
-= (Y wrap)
-= (wrap (Y wrap))
-= (wrap (wrap (Y wrap)))
-= (wrap (wrap (wrap ...)))
+f =
+(Y wrap) =
+(wrap (Y wrap)) =
+(wrap (wrap (Y wrap))) =
+(wrap (wrap (wrap ...)))
 ```
 
 `Y` 的定义并不难：
@@ -172,11 +172,11 @@ f
 但是把它作用于它自身时，实际上会得到递归的效果：
 
 ```scheme
-(factorial-half factorial-half)
-= (lambda (n)
-    (if (zero? n)
-      one
-      (mul n (factorial-half factorial-half (sub1 n)))))
+(factorial-half factorial-half) =
+(lambda (n)
+  (if (zero? n)
+    one
+    (mul n (factorial-half factorial-half (sub1 n)))))
 ```
 
 注意，这里的两个实现递归函数的技巧，
