@@ -1,6 +1,5 @@
 # lang0
 
-[lang0] docs/fixpoint -- 使用 Y 来实现递归函数
 [lang0] docs/lambda-encoding
 [lang0] docs/self-type
 

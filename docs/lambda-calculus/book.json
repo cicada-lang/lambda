@@ -6,8 +6,8 @@
   "date": "2024-04-11",
   "src": "src",
   "contents": [
-    "fixpoint.md",
     "encoding.md",
+    "fixpoint.md",
     "self-type.md",
   ]
 }

@@ -54,3 +54,11 @@ factorial-wrap
 (assert-equal ((turing factorial-wrap) two) two)
 (assert-equal ((turing factorial-wrap) three) (mul three two))
 (assert-equal ((turing factorial-wrap) four) (mul four (mul three two)))
+
+(define factorial (Y factorial-wrap))
+
+(assert-equal (factorial zero) one)
+(assert-equal (factorial one) one)
+(assert-equal (factorial two) two)
+(assert-equal (factorial three) (mul three two))
+(assert-equal (factorial four) (mul four (mul three two)))
