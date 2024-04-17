@@ -2,10 +2,9 @@
 
 > Use parser combinators.
 
-[lang2] `stmt`
 [lang2] `syntax/parseStmt`
 
-recursive function + datatype
+[lang2] recursive function + datatype
 
 - using `<typector>::<datactor>` as syntax.
 
