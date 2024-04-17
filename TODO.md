@@ -2,6 +2,9 @@
 
 > Use parser combinators.
 
+[lang2] `docs/lang2` -- examples
+[lang2] Exp -- Block
+[lang2] Exp -- Where
 [lang2] `syntax/parseStmt`
 
 [lang2] recursive function + datatype
