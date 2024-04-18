@@ -1,7 +1,5 @@
 # A group of little languages
 
-I use [S-expression](https://github.com/cicada-lang/sexp) as syntax to express ideas clearly.
-
 - [**lang0**](./docs/lang0/README.md) -- Interpreter of lambda calculus.
 - [**lang1**](./docs/lang1/README.md) -- Interpreter of lambda calculus with explicit substitution.
 
