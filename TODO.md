@@ -1,16 +1,3 @@
-# lang2 -- JS-like syntax
-
-> Use parser combinators.
-
-[lang2] `docs/lang2` -- examples
-[lang2] Exp -- Block
-[lang2] Exp -- Where
-[lang2] `syntax/parseStmt`
-
-[lang2] recursive function + datatype
-
-- using `<typector>::<datactor>` as syntax.
-
 # lang0
 
 [lang0] docs/lambda-encoding
@@ -39,6 +26,12 @@
 Even = lambda(N, ap(if(ap(Zero, N), True, ap(Odd, ap(Sub1, N))))),
 Odd = lambda(M, ap(if(ap(Zero, M), False, ap(Even, ap(Sub1, M))))).
 ```
+
+# lang2
+
+[lang2] recursive function + datatype
+
+- using `<typector>/<datactor>` as syntax.
 
 # mugda
 
