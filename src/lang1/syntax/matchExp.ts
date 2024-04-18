@@ -1,4 +1,4 @@
-import { cons, match, matchList, v, type Sexp } from "@cicada-lang/sexp"
+import { cons, match, matchList, v, type Sexp } from "../../sexp/index.js"
 import * as Exps from "../exp/index.js"
 import { type Exp } from "../exp/index.js"
 import {

@@ -53,7 +53,6 @@ f =
 注意，`Y` 并不是唯一一个可以用来找到任何函数不动点的函数。
 另外一个类似的函数 `turing` 定义如下：
 
-
 ```scheme
 (define (turing-half x y) (y (x x y)))
 (define turing (turing-half turing-half))

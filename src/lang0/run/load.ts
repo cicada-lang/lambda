@@ -1,6 +1,6 @@
 import { Fetcher } from "@cicada-lang/framework/lib/fetcher/index.js"
-import { ParsingError } from "@cicada-lang/sexp"
 import fs from "node:fs"
+import { ParsingError } from "../../sexp/index.js"
 import { createMod, modResolve, type Mod } from "../mod/index.js"
 import { type Stmt } from "../stmt/index.js"
 import { Parser } from "../syntax/index.js"

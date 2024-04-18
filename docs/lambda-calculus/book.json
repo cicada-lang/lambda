@@ -5,9 +5,5 @@
   "authors": ["谢宇恒"],
   "date": "2024-04-11",
   "src": "src",
-  "contents": [
-    "lambda-encoding.md",
-    "fixpoint.md",
-    "self-type.md"
-  ]
+  "contents": ["lambda-encoding.md", "fixpoint.md", "self-type.md"]
 }

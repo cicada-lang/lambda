@@ -1,4 +1,4 @@
-import { ParsingError, matchSymbol, type Sexp } from "@cicada-lang/sexp"
+import { ParsingError, matchSymbol, type Sexp } from "../../sexp/index.js"
 import { numberSubscripts } from "../../utils/stringToSubscript.js"
 
 export function matchName(sexp: Sexp): string {
