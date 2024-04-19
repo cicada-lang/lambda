@@ -31,9 +31,10 @@ Odd = lambda(M, ap(if(ap(Zero, M), False, ap(Even, ap(Sub1, M))))).
 
 # lang2
 
-[lang2] lang1 + datatype
+> lang1 + datatype
+> - using `<typector>/<datactor>` as syntax.
 
-- using `<typector>/<datactor>` as syntax.
+[lang2] 常识翻译一些 cicada 的 JS 风格代码。
 
 # pie
 

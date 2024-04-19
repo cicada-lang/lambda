@@ -1,0 +1,31 @@
+(claim point type)
+(define point
+  (interface
+    [.x nat]
+    [.y nat]))
+
+(claim a point)
+(define a
+  (object
+    [.x (nat/add1 (nat/zero))]
+    [.y (nat/zero)]))
+
+(claim b point)
+(define b
+  (object
+    [.x (nat/zero)]
+    [.y (nat/add1 (nat/zero))]))
+
+(assert-equal (nat-prev b.y) (nat/zero))
+
+;; so bad
+
+(claim point-add (-> point point point))
+(define (point-add x y)
+  (object
+    [x (nat-add (send x .x) (send y .x))]
+    [y (nat-add (send x .y) (send y .y))]))
+
+o.f(a).g(b, c)
+
+(send o (.f a) (.g b c))
