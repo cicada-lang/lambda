@@ -85,22 +85,7 @@ subtitle: Lambda Encoding
 对自然数的三种编码方式如下，
 每一个都在历史上由某个人提出。
 
-**Church 编码**：
-
-```scheme
-(define zero (lambda (base step) base))
-(define (add1 prev) (lambda (base step) (step (prev base step))))
-(define (iter-Nat n base step) (n base step))
-```
-
-满足如下公理：
-
-```scheme
-(iter-Nat zero base step) = zero
-(iter-Nat (add1 prev) base step) = (step (prev base step))
-```
-
-**Scott 编码**：
+## Scott 编码
 
 ```scheme
 (define zero (lambda (base step) base))
@@ -115,7 +100,119 @@ subtitle: Lambda Encoding
 (which-Nat (add1 prev) base step) = (step prev)
 ```
 
-**Parigot 编码**：
+`which-Nat` 就是对自然数做模式匹配，
+然后判断分别如何对匹配到的结果做不同处理，
+`base` 就是匹配到 `zero` 时的结果，
+`step` 就是匹配到 `(add1 prev)` 时的结果。
+我们可以用 `which-Nat` 来定义 `sub1`。
+
+```scheme
+(define (sub1 n)
+  (which-Nat n
+    zero
+    (lambda (prev) prev)))
+```
+
+也可以用 `which-Nat` 加递归来定义 `add` 和 `mul`。
+别忘了我们可以用不动点组合子 `Y` 来实现递归函数。
+
+```scheme
+(define (add-wrap add)
+  (lambda (m n)
+    (which-Nat m
+      n
+      (lambda (prev) (add1 (add prev n))))))
+
+(define add (Y add-wrap))
+
+(define (mul-wrap mul)
+  (lambda (m n)
+    (which-Nat m
+      zero
+      (lambda (prev) (add n (mul prev n))))))
+
+(define mul (Y mul-wrap))
+```
+
+## Church 编码
+
+```scheme
+(define zero (lambda (base step) base))
+(define (add1 prev) (lambda (base step) (step (prev base step))))
+(define (iter-Nat n base step) (n base step))
+```
+
+满足如下公理：
+
+```scheme
+(iter-Nat zero base step) = zero
+(iter-Nat (add1 prev) base step) = (step (iter-Nat prev base step))
+```
+
+`(iter-Nat n base step)` 的效果是以 `base` 为基础将 `step` 迭代作用 `n` 次。
+此时 `step` 有一个参数，即 `iter-Nat` 递归作用于前一个数所得到的结果。
+这种带有递归作用的组合子称为递归组合子。
+`iter-Nat` 本身带有递归了，
+用它来定义 `add` 与 `mul` 就不再需要递归了。
+
+```scheme
+(define (add m n) (iter-Nat m n add1))
+(define (mul m n) (iter-Nat m zero (add n)))
+```
+
+上面两个定义中，我们都是以所定义函数的第一个参数为递归组合子的对象，
+为了保持一致，我们先定义参数个数相反的 `power-of`，再定义乘方 `power`。
+
+```scheme
+(define (power-of m n) (iter-Nat m one (mul n)))
+(define (power m n) (power-of n m))
+```
+
+虽然 `iter-Nat` 可以做迭代，
+但是它的 `step` 拿不到迭代的次数，
+它只有一个参数即让一次迭代的结果。
+
+想要定义 `sub1` 来拿到 `(add1 prev)` 中的 `prev`，
+就不能像 Scott 编码中使用 `which-Nat` 那么简单。
+但是我们还是可以定义 `sub1`，
+方案是讲下面这个对数对的操作迭代 `n` 次，
+
+```
+0  (0 . 0)
+1  (0 . 1)
+2  (1 . 2)
+3  (2 . 3)
+...
+n  (n-1 . n)
+```
+
+```scheme
+(define (shift-add1 x)
+  (cons (cdr x) (add1 (cdr x))))
+
+(define (sub1 n)
+  (car (iter-Nat n (cons zero zero) shift-add1)))
+```
+
+有了 `sub1` 就可以用迭代来定义 `sub`。
+
+```scheme
+(define (sub m n) (iter-Nat n m sub1))
+```
+
+判断是否是 `zero` 的定义很简单，与 `sub1` 不同，我们不需要拿到 `prev`。
+
+```scheme
+(define (zero? n) (iter-Nat n true (lambda (x) false)))
+```
+
+有了 `zero?` 和 `sub` 就可以判断 `m` 是否小于等于 `n`。
+
+```scheme
+(define (lteq m n) (zero? (sub m n)))
+```
+
+## Parigot 编码
 
 ```scheme
 (define zero (lambda (base step) base))
@@ -127,7 +224,51 @@ subtitle: Lambda Encoding
 
 ```scheme
 (rec-Nat zero base step) = zero
-(rec-Nat (add1 prev) base step) = (step prev (prev base step))
+(rec-Nat (add1 prev) base step) = (step prev (rec-Nat prev base step))
+```
+
+对自然数来说 `rec-Nat` 是一个完整的递归组合子，
+`(rec-Nat n base step)` 的效果是以 `base` 为基础步骤，
+将 `step` 递归作用 `n` 次，
+此时 `step` 有两个参数，
+一个是当前的递归层数 `prev`，
+一个是 `rec-Nat` 递归作用于前一个数所得到的结果，
+这种作为递归作用结果的参数通常被命名为 `almost`。
+
+使用 `rec-Nat` 我们可以用与之前 `iter-Nat` 类似的方式定义 `add` 和 `mul`。
+
+```scheme
+(define (add m n)
+  (rec-Nat m
+    n
+    (lambda (prev almost) (add1 almost))))
+
+(define (mul m n)
+  (rec-Nat m
+    zero
+    (lambda (prev almost) (add n almost))))
+```
+
+也可以用与之前 `which-Nat` 类似的方式定义 `sub1`。
+
+```scheme
+(define (sub1 n)
+  (rec-Nat n
+    zero
+    (lambda (prev almost) prev)))
+```
+
+还可以直接给出 `factorial` 的递归定义，
+这是 `which-Nat` 和 `iter-Nat` 都不能直接做到的。
+
+- `which-Nat` 可以用 `Y` 的技巧做到；
+- `iter-Nat` 可以用增加参数将递归转化为迭代的技巧做到。
+
+```scheme
+(define (factorial n)
+  (rec-Nat n
+    one
+    (lambda (prev almost) (mul (add1 prev) almost))))
 ```
 
 # 编码一般的递归数据类型
