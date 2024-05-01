@@ -28,10 +28,6 @@ export function evaluate(mod: Mod, env: Env, exp: Exp): Value {
       return Values.FnRecursive(mod, env, exp.recursiveName, exp.name, exp.ret)
     }
 
-    case "FnRecursive": {
-      throw new Error("TODO")
-    }
-
     case "Ap": {
       const target = evaluate(mod, env, exp.target)
       const arg = Values.Lazy(mod, env, exp.arg)
