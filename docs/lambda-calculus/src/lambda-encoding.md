@@ -93,6 +93,13 @@ subtitle: Lambda Encoding
 (define (iter-Nat n base step) (n base step))
 ```
 
+满足如下公理：
+
+```scheme
+(iter-Nat zero base step) = zero
+(iter-Nat (add1 prev) base step) = (step (prev base step))
+```
+
 **Scott 编码**：
 
 ```scheme
@@ -101,12 +108,26 @@ subtitle: Lambda Encoding
 (define (which-Nat n base step) (n base step))
 ```
 
+满足如下公理：
+
+```scheme
+(which-Nat zero base step) = zero
+(which-Nat (add1 prev) base step) = (step prev)
+```
+
 **Parigot 编码**：
 
 ```scheme
 (define zero (lambda (base step) base))
 (define (add1 prev) (lambda (base step) (step prev (prev base step))))
 (define (rec-Nat n base step) (n base step))
+```
+
+满足如下公理：
+
+```scheme
+(rec-Nat zero base step) = zero
+(rec-Nat (add1 prev) base step) = (step prev (prev base step))
 ```
 
 # 编码一般的递归数据类型

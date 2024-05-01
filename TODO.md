@@ -1,6 +1,5 @@
 # lang0
 
-[lang0] docs/lambda-encoding -- 每种自然数编码满足的公理
 [lang0] docs/lambda-encoding -- 每种自然数编码适合用来实现的函数
 [lang0] docs/lambda-encoding -- 尝试总结规律
 [lang0] docs/lambda-encoding -- 以 List 和 Binary-Tree 为例，给出一般的编码
