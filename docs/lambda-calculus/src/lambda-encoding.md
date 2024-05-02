@@ -99,6 +99,7 @@ subtitle: Lambda Encoding
   (define (add1 prev) (lambda (base step) (step (prev base step))))
   (define (iter-Nat n base step) (n base step))
   ```
+
 - Parigot 编码
 
   ```scheme
