@@ -82,8 +82,45 @@ subtitle: Lambda Encoding
 然后总结出任意数据类型的编码方式。
 
 对自然数的三种编码方式如下，
-每一个都在历史上由某个人提出。
-注意，这三种编码方式下自然数作为 Lambda 表达式的形态各不相同，不能混用。
+每一个都在历史上由某个人提出：
+
+- Scott 编码
+
+  ```scheme
+  (define zero (lambda (base step) base))
+  (define (add1 prev) (lambda (base step) (step prev)))
+  (define (which-Nat n base step) (n base step))
+  ```
+
+- Church 编码
+
+  ```scheme
+  (define zero (lambda (base step) base))
+  (define (add1 prev) (lambda (base step) (step (prev base step))))
+  (define (iter-Nat n base step) (n base step))
+  ```
+- Parigot 编码
+
+  ```scheme
+  (define zero (lambda (base step) base))
+  (define (add1 prev) (lambda (base step) (step prev (prev base step))))
+  (define (rec-Nat n base step) (n base step))
+  ```
+
+注意：
+
+- 这三种编码方式下自然数作为 Lambda 表达式的形态各不相同，不能混用。
+
+- 这三种编码方式有一个共同点，
+  即给出编码数据构造子 `zero` 与 `add1` 的 Lambda 表达式之后，
+  都会给出一个解构数据的函数 -- `which-Nat`、`iter-Nat`、`rec-Nat`，
+  而编码解构数据函数的方式都是用简单的函数作用 -- `(n base step)`：
+
+  ```scheme
+  (define (which-Nat n base step) (n base step))
+  (define (iter-Nat n base step) (n base step))
+  (define (rec-Nat n base step) (n base step))
+  ```
 
 ## Scott 编码
 
@@ -273,4 +310,85 @@ n  (n-1 . n)
 
 # 编码一般的递归数据类型
 
-TODO 以 List 为例。
+从上面的最简单数据类型 -- 自然数的例子中，
+我们已经能总结出来一般的递归数据类型应该如何编码了。
+
+假设我们有 `datatype` 语法关键词能够用来定义数据类型，
+那么自然数 `Nat` 可以定义如下：
+
+```scheme
+(datatype Nat
+  [zero Nat]
+  [add1 ([prev Nat]) Nat])
+```
+
+回顾 Parigot 编码。
+
+```scheme
+(define zero (lambda (base step) base))
+(define (add1 prev) (lambda (base step) (step prev (prev base step))))
+(define (rec-Nat n base step) (n base step))
+```
+
+假设我们有用于模式匹配的语法关键词 `match`，
+并且能够定义递归函数，
+那么我们可以直接定义 `rec-Nat`。
+
+```scheme
+(define (rec-Nat n base step)
+  (match n
+    [zero base]
+    [(add1 prev) (step prev (rec-Nat prev base step))]))
+```
+
+我们把这个过程反过来，看看能不能推出 `List` 的 Lambda 编码。
+
+首先用 `datatype` 定义 `List`：
+
+```scheme
+(datatype (List E)
+  [nil (List E)]
+  [:: ([head E] [tail (List E)]) (List E)])
+```
+
+然后用 `match` 定义 `rec-List`：
+
+```scheme
+(define (rec-List target nil-case ::-case)
+  (match target
+    [nil nil-case]
+    [(:: head tail)
+     (::-case head tail
+      (rec-List tail nil-case ::-case))]))
+```
+
+最后给出 `List` 的 Lambda 编码：
+
+```scheme
+(define nil
+  (lambda (nil-case ::-case)
+    nil-case))
+
+(define (:: head tail)
+  (lambda (nil-case ::-case)
+    (::-case head tail
+      (tail nil-case ::-case))))
+
+(define (rec-List target nil-case ::-case)
+  (target nil-case ::-case))
+```
+
+成功！方法总结如下：
+
+- 原来代表数据构造子的 Lambda 表达式就是先接收参数，
+  然后返回一个以所有的 cases 为参数，并在其中做选择的函数；
+
+- 其中每个 case 都要以这个 case 下解构出来的所有数据为参数，
+  并且还要给每个递归位置加上一个多出来的 almost 参数；
+
+- 之后数据解构子就可以用简单的函数作用来编码了。
+
+当然最稳妥的方法还是像上面的过程一样，
+先用伪关键词 `datatype` 来定义数据构造子，
+再用伪关键词 `match` 来定义数据解构子，
+然后再转写成 Lambda 编码。

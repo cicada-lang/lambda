@@ -1,16 +1,18 @@
+[lang0] 修改 `import` 的参数顺序，路径放到末尾
+[lang1] 修改 `import` 的参数顺序，路径放到末尾
+
 # lang0
 
-[lang0] docs/lambda-encoding -- 尝试总结规律，以 List 和 Binary-Tree 为例，给出一般的编码
 [lang0] docs/lambda-encoding -- 也许，以 Exp 为例，给出一般的编码
 [lang0] docs/self-type
 
 # lang1
 
+[lang1] 支持 `(assert-equal)` 与 `(assert-not-equal)`
+
 [lang1] fix `freshen` -- be like lang0 with `usedNames`
 
 [lang1] 支持直接递归函数与相互递归函数，不能判断等价的地方就不判断。
-
-[lang1] 支持 `(assert-equal)` 与 `(assert-not-equal)`
 
 [lang1] definitional equivalence -- 学习 prolog 处理递归 term unification without occor check 的方式。
 
