@@ -35,7 +35,6 @@ subtitle: Lambda Encoding
 可以先把 `cons` 的两个参数保存在一个 Lambda 中，
 把这个 Lambda 作用于不同的函数，就可以取出来保存的 `car` 和 `cdr`。
 
-
 ```scheme
 (define (cons car cdr) (lambda (f) (f car cdr)))
 (define (car pair) (pair (lambda (car cdr) car)))
