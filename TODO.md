@@ -3,7 +3,7 @@
 
 # lang0
 
-[lang0] docs/lambda-encoding -- 也许，以 Exp 为例，给出一般的编码
+[lang0] docs/lambda-encoding -- Exp Lambda 编码的例子，外加解释器
 [lang0] docs/self-type
 
 # lang1

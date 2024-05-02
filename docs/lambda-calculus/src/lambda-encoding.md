@@ -378,7 +378,23 @@ n  (n-1 . n)
   (target nil-case ::-case))
 ```
 
-成功！方法总结如下：
+成功！可以定义一些列表处理函数了：
+
+```scheme
+(define (length l)
+  (rec-List l
+    zero
+    (lambda (head target almost)
+      (add1 almost))))
+
+(define (append left right)
+  (rec-List left
+    right
+    (lambda (head target almost)
+      (:: head almost))))
+```
+
+方法总结如下：
 
 - 原来代表数据构造子的 Lambda 表达式就是先接收参数，
   然后返回一个以所有的 cases 为参数，并在其中做选择的函数；
@@ -392,3 +408,37 @@ n  (n-1 . n)
 先用伪关键词 `datatype` 来定义数据构造子，
 再用伪关键词 `match` 来定义数据解构子，
 然后再转写成 Lambda 编码。
+
+# 用 Lambda 编码实现 Lambda 演算的解释器
+
+下面我们用 Lambda 编码，
+外加 De Bruijn index，
+来实现一个 Lambda 演算的解释器。
+
+我们重复上面对 `List` 所做的过程，
+首先假装用 `datatype` 定义 `Exp`：
+
+```scheme
+(datatype Exp
+  [var ([index Nat]) Exp]
+  [ap ([target Exp] [arg Exp]) Exp]
+  [fn ([ret Exp]) Exp])
+```
+
+然后假装用 `match` 来定义 `rec-Exp`：
+
+```scheme
+TODO
+```
+
+`Exp` 的 Lambda 编码：
+
+```scheme
+TODO
+```
+
+解释器作为 `Exp` 处理函数：
+
+```scheme
+TODO
+```
