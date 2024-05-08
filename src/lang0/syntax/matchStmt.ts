@@ -1,8 +1,8 @@
 import {
   cons,
+  listToArray,
   match,
   matchList,
-  listToArray,
   matchString,
   matchSymbol,
   v,
