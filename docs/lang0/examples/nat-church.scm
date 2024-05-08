@@ -92,7 +92,7 @@
 
 ;; # zero?
 
-(import "./boolean.scm" true false if and or not)
+(import true false if and or not "./boolean.scm")
 
 (define (zero? n) (iter-Nat n true (lambda (x) false)))
 
@@ -105,7 +105,7 @@
 ;; The `sub1` about is `O(n)`,
 ;; while `sub1` for Scott encoding is `O(3)`.
 
-(import "./cons.scm" cons car cdr)
+(import cons car cdr "./cons.scm")
 
 (define (shift-add1 x)
   (cons (cdr x) (add1 (cdr x))))

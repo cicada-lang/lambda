@@ -10,7 +10,7 @@
 (define (rec-List target nil-case ::-case)
   (target nil-case ::-case))
 
-(import "./nat-church.scm" zero add1)
+(import zero add1 "./nat-church.scm")
 
 (define (length l)
   (rec-List l
@@ -18,7 +18,7 @@
     (lambda (head target almost)
       (add1 almost))))
 
-(import "./boolean.scm" true)
+(import true "./boolean.scm")
 
 (assert-equal (length nil) zero)
 (assert-equal (length (:: true nil)) (add1 zero))

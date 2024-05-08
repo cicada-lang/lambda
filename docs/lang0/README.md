@@ -8,7 +8,7 @@ Interpreter of lambda calculus.
 ```scheme
 (define name body)
 (define (name arg ...) body)
-(import "./file.scm")
+(import name ... "./file.scm")
 (assert-equal exp ...)
 (assert-not-equal exp ...)
 

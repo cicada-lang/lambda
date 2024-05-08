@@ -1,7 +1,7 @@
-(import "./nat-church.scm" zero? add mul sub1)
-(import "./nat-church.scm" zero one two three four)
-(import "./boolean.scm" if true false)
-(import "./fix.scm" Y turing)
+(import zero? add mul sub1 "./nat-church.scm")
+(import zero one two three four "./nat-church.scm")
+(import if true false "./boolean.scm")
+(import Y turing "./fix.scm")
 
 ;; (claim factorial-wrap (-> (-> Nat Nat) (-> Nat Nat)))
 ;; (claim (Y factorial-wrap) (-> Nat Nat))

@@ -1,6 +1,6 @@
-(import "./nat-church.scm" zero? add mul sub1)
-(import "./nat-church.scm" zero one two three four)
-(import "./boolean.scm" if true false)
+(import zero? add mul sub1 "./nat-church.scm")
+(import zero one two three four "./nat-church.scm")
+(import if true false "./boolean.scm")
 
 ;; (claim factorial-half
 ;;   (fix (lambda (X) (-> X Nat Nat))))

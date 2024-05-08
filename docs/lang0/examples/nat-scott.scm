@@ -1,4 +1,4 @@
-(import "./fix.scm" Y)
+(import Y "./fix.scm")
 
 ;; Scott Encoding of Natural Number
 

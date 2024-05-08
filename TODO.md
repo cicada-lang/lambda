@@ -1,5 +1,3 @@
-[lang0] 修改 `import` 的参数顺序，路径放到末尾
-
 # lang0
 
 [lang0] docs/lambda-encoding -- Exp Lambda 编码的例子，外加解释器

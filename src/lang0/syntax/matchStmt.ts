@@ -2,6 +2,7 @@ import {
   cons,
   match,
   matchList,
+  listToArray,
   matchString,
   matchSymbol,
   v,
@@ -32,9 +33,13 @@ export function matchStmt(sexp: Sexp): Stmt {
     ],
 
     [
-      cons("import", cons(v("url"), v("entries"))),
-      ({ url, entries }) =>
-        Stmts.Import(matchString(url), matchList(entries, matchImportEntry)),
+      cons("import", v("body")),
+      ({ body }) => {
+        const sexps = listToArray(body)
+        const url = sexps[sexps.length - 1]
+        const entries = sexps.slice(0, sexps.length - 1)
+        return Stmts.Import(matchString(url), entries.map(matchImportEntry))
+      },
     ],
 
     [

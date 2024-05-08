@@ -1,4 +1,4 @@
-(import "./compose.scm" id compose (rename compose c))
+(import id compose (rename compose c) "./compose.scm")
 
 (assert-equal
   (compose

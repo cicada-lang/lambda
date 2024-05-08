@@ -1,7 +1,7 @@
-(import "./boolean.scm" true false if and or not)
-(import "./nat-church.scm" zero add1 sub1 zero?)
-(import "./nat-church.scm" one two three four)
-(import "./fix.scm" Y)
+(import true false if and or not "./boolean.scm")
+(import zero add1 sub1 zero? "./nat-church.scm")
+(import one two three four "./nat-church.scm")
+(import Y "./fix.scm")
 
 (define (even? n)
   (if (zero? n) true
