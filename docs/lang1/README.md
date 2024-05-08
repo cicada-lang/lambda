@@ -7,7 +7,7 @@ Interpreter of lambda calculus with explicit substitution.
 ```scheme
 (define name body)
 (define (name arg ...) body)
-(import "./file.scm")
+(import name ... "./file.scm")
 
 (lambda (name) ret)
 (let ([name exp] ...) body)

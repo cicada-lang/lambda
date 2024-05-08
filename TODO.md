@@ -1,5 +1,4 @@
 [lang0] 修改 `import` 的参数顺序，路径放到末尾
-[lang1] 修改 `import` 的参数顺序，路径放到末尾
 
 # lang0
 

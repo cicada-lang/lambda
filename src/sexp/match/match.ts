@@ -47,7 +47,22 @@ export function matchList<A>(sexp: Sexp, matcher: (sexp: Sexp) => A): Array<A> {
   }
 
   throw new ParsingError(
-    `I expect the sexp to be a list: ${formatSexp(sexp)}`,
+    `[matchList] I expect the sexp to be a list: ${formatSexp(sexp)}`,
+    sexp.span,
+  )
+}
+
+export function listToArray<A>(sexp: Sexp): Array<Sexp> {
+  if (sexp.kind === "Null") {
+    return []
+  }
+
+  if (sexp.kind === "Cons") {
+    return [sexp.head, ...listToArray(sexp.tail)]
+  }
+
+  throw new ParsingError(
+    `[listToArray] I expect the sexp to be a list: ${formatSexp(sexp)}`,
     sexp.span,
   )
 }
