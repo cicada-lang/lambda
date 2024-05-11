@@ -23,17 +23,6 @@ npm run build   # Compile `src/` to `lib/`
 npm run test    # Run test
 ```
 
-## Community
-
-GitHub:
-
-- Organization: [github.com/cicada-lang](https://github.com/cicada-lang)
-
-Telegram:
-
-- English chat group: [CicadaLanguage](https://t.me/CicadaLanguage)
-- Chinese chat group: [CicadaLanguageCN](https://t.me/CicadaLanguageCN)
-
 ## Contributions
 
 To make a contribution, fork this project and create a pull request.
