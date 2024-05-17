@@ -3,12 +3,12 @@ import { type Exp } from "../exp/index.js"
 import {
   substitutionExtend,
   substitutionIsEmpty,
-  substitutionTakeNames,
   substitutionMapExp,
   substitutionMerge,
+  substitutionTakeNames,
   type Substitution,
 } from "../substitution/index.js"
-import { freshen } from "../utils/freshen.js"
+import { globalFreshen } from "../utils/globalFreshen.js"
 import { lookup } from "./lookup.js"
 
 // NOTE `substitute` should not call `reduce.
@@ -42,7 +42,7 @@ export function substitute(substitution: Substitution, body: Exp): Exp {
     }
 
     case "Fn": {
-      const freshName = freshen(body.name)
+      const freshName = globalFreshen(body.name)
       return Exps.Fn(
         freshName,
         Exps.Let(

@@ -5,7 +5,7 @@ import {
 
 export let globalNameCounters: Map<string, number> = new Map()
 
-export function freshen(name: string): string {
+export function globalFreshen(name: string): string {
   name = nameWithoutSubscript(name)
   const globalNameCounter = globalNameCounters.get(name)
   if (globalNameCounter === undefined) {
