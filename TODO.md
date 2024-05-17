@@ -1,5 +1,6 @@
-[lang0] move `utils/freshen` to top level
 [lang1] fix `freshen` -- be like lang0 with `usedNames`
+
+- move `lang0/utils/freshen` to top level
 
 # lang1
 
