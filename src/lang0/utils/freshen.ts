@@ -1,9 +1,6 @@
 import { stringToSubscript } from "../../utils/stringToSubscript.js"
 
-export function freshen(
-  usedNames: Array<string> | Set<string>,
-  name: string,
-): string {
+export function freshen(usedNames: Set<string>, name: string): string {
   usedNames = new Set(usedNames)
   let counter = 1
   let freshName = name
