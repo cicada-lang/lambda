@@ -55,7 +55,7 @@ export function substitutionMapExp(
   ])
 }
 
-export function substitutionKeepNames(
+export function substitutionTakeNames(
   substitution: Substitution,
   names: Set<string>,
 ): Substitution {

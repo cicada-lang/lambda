@@ -3,7 +3,7 @@ import { type Exp } from "../exp/index.js"
 import {
   substitutionExtend,
   substitutionIsEmpty,
-  substitutionKeepNames,
+  substitutionTakeNames,
   substitutionMapExp,
   substitutionMerge,
   type Substitution,
@@ -14,7 +14,7 @@ import { lookup } from "./lookup.js"
 // NOTE `substitute` should not call `reduce.
 
 export function substitute(substitution: Substitution, body: Exp): Exp {
-  substitution = substitutionKeepNames(
+  substitution = substitutionTakeNames(
     substitution,
     Exps.expFreeNames(new Set(), body),
   )
