@@ -75,3 +75,30 @@
    (lambda (x y z)
      (refl (nat-mul x (nat-mul y z))
            (nat-mul (nat-mul x y) z)))])
+
+(define-object nat-semigroup
+  .element nat
+  .mul (lambda (x y) (nat-mul x y))
+  .mul-associative (lambda (x y z)
+                     (refl (nat-mul x (nat-mul y z))
+                           (nat-mul (nat-mul x y) z))))
+
+(define nat-semigroup
+  (object
+    .element nat
+    .mul (lambda (x y) (nat-mul x y))
+    .mul-associative (lambda (x y z)
+                       (refl (nat-mul x (nat-mul y z))
+                             (nat-mul (nat-mul x y) z)))))
+
+(define nat-semigroup
+  {.element nat
+   .mul (lambda (x y) (nat-mul x y))
+   .mul-associative (lambda (x y z)
+                      (refl (nat-mul x (nat-mul y z))
+                            (nat-mul (nat-mul x y) z)))})
+
+{.name "Xie Yuheng"
+ .age 32
+ .country {.name "China"
+           .containte "Asia"}}
