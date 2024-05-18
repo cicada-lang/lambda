@@ -1,0 +1,4 @@
+(reexport-all "./lookup.cic")
+(reexport-all "./reduce.cic")
+;; (reexport-all "./do-ap.cic")
+;; (reexport-all "./substitute.cic")

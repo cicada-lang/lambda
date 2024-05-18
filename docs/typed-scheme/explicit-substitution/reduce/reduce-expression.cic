@@ -1,0 +1,24 @@
+(import expression var-exp fn-exp ap-exp let-exp "../expression/index.cic")
+(import module-find module "../module/index.cic")
+(import do-ap "./do-ap.cic")
+(import substitute "./substitute.cic")
+
+(export reduce)
+
+;; NOTE `reduce` might hit fixpoint on other kind of expressions,
+;; but it will always remove `let-exp`.
+
+(claim reduce (-> module expression expression))
+
+(define (reduce mod exp)
+  (match exp
+    [(var-exp name)
+     (match (mod-find mod name)
+       [(just def) exp]
+       [nothing (reduce mod def.exp)])]
+    [(fn-exp name ret)
+     (fn-exp exp.name (reduce mod ret))]
+    [(ap-exp target arg)
+     (do-ap mod (reduce mod target) (reduce mod arg))]
+    [(let-exp bindings body)
+     (reduce mod (substitute body bindings))]))

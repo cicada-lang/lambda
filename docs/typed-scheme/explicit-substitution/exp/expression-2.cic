@@ -1,0 +1,11 @@
+(export expression binding)
+
+(datatype expression
+  (var-exp ((name string)) expression)
+  (fn-exp ((name string) (ret expression)) expression)
+  (ap-exp ((target expression) (arg expression)) expression)
+  (let-exp ((bindings (list binding)) (body expression)) expression))
+
+(interface binding
+  (name string)
+  (body expression))

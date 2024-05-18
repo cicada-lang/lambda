@@ -1,0 +1,11 @@
+(export exp binding)
+
+(datatype exp
+  [var-exp ([name string]) exp]
+  [fn-exp ([name string] [ret exp]) exp]
+  [ap-exp ([target exp] [arg exp]) exp]
+  [let-exp ([bindings (list binding)] [body exp]) exp])
+
+(interface binding
+  [name string]
+  [body exp])
