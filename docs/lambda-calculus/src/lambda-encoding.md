@@ -134,7 +134,7 @@ subtitle: Lambda Encoding
 满足如下公理：
 
 ```scheme
-(which-Nat zero base step) = zero
+(which-Nat zero base step) = base
 (which-Nat (add1 prev) base step) = (step prev)
 ```
 
@@ -183,7 +183,7 @@ subtitle: Lambda Encoding
 满足如下公理：
 
 ```scheme
-(iter-Nat zero base step) = zero
+(iter-Nat zero base step) = base
 (iter-Nat (add1 prev) base step) = (step (iter-Nat prev base step))
 ```
 
@@ -261,7 +261,7 @@ n  (n-1 . n)
 满足如下公理：
 
 ```scheme
-(rec-Nat zero base step) = zero
+(rec-Nat zero base step) = base
 (rec-Nat (add1 prev) base step) = (step prev (rec-Nat prev base step))
 ```
 
