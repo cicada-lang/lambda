@@ -29,11 +29,11 @@
     "regexp-match-indices": "^1.0.2"
   },
   "devDependencies": {
-    "@types/node": "^20.12.12",
+    "@types/node": "^22.1.0",
     "@xieyuheng/test-runner": "^0.2.10",
-    "prettier": "^3.2.5",
-    "prettier-plugin-organize-imports": "^3.2.4",
-    "typescript": "^5.4.5"
+    "prettier": "^3.3.3",
+    "prettier-plugin-organize-imports": "^4.0.0",
+    "typescript": "^5.5.4"
   },
   "license": "GPL-3.0-or-later"
 }
