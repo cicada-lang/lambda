@@ -1,4 +1,4 @@
-import type { Binding } from "../../lang0/substitution/index.js"
+import type { Binding } from "../../lang/substitution/index.js"
 import { type Exp } from "../exp/index.js"
 import { substitutionBindings } from "../substitution/Substitution.js"
 

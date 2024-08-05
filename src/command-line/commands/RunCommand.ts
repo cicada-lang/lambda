@@ -2,7 +2,7 @@ import { Command, CommandRunner } from "@xieyuheng/command-line"
 import { ty } from "@xieyuheng/ty"
 import fs from "fs"
 import Path from "path"
-import { run } from "../../lang0/run/index.js"
+import { run } from "../../lang/run/index.js"
 
 type Args = { file: string }
 type Opts = {}
