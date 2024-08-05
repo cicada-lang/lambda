@@ -15,10 +15,10 @@
     "build": "tsc",
     "build:watch": "tsc --watch",
     "test:node": "node --test",
-    "test:lang0:tests": "test-runner snapshot './bin/lambda.js run' 'docs/lang0/**/*.scm' --exclude 'docs/lang0/**/*.error.scm'",
-    "test:lang0:tests-error": "test-runner snapshot-error './bin/lambda.js run' 'docs/lang0/**/*.error.scm'",
-    "test:lang0": "npm run test:lang0:tests && npm run test:lang0:tests-error",
-    "test": "npm run test:node && npm run test:lang0",
+    "test:lang:tests": "test-runner snapshot './bin/lambda.js run' 'docs/lang/**/*.scm' --exclude 'docs/lang/**/*.error.scm'",
+    "test:lang:tests-error": "test-runner snapshot-error './bin/lambda.js run' 'docs/lang/**/*.error.scm'",
+    "test:lang": "npm run test:lang:tests && npm run test:lang:tests-error",
+    "test": "npm run test:node && npm run test:lang",
     "format": "prettier src docs --write"
   },
   "dependencies": {
