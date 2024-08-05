@@ -1,7 +1,7 @@
 {
-  "name": "@cicada-lang/clique",
+  "name": "@cicada-lang/lambda",
   "version": "0.3.0",
-  "repository": "github:cicada-lang/clique",
+  "repository": "github:cicada-lang/lambda",
   "type": "module",
   "main": "./lib/index.js",
   "files": [
@@ -9,17 +9,17 @@
     "lib"
   ],
   "bin": {
-    "clique": "bin/clique.js"
+    "lambda": "bin/lambda.js"
   },
   "scripts": {
     "build": "tsc",
     "build:watch": "tsc --watch",
     "test:node": "node --test",
-    "test:lang0:tests": "test-runner snapshot './bin/clique.js lang0' 'docs/lang0/**/*.scm' --exclude 'docs/lang0/**/*.error.scm'",
-    "test:lang0:tests-error": "test-runner snapshot-error './bin/clique.js lang0' 'docs/lang0/**/*.error.scm'",
+    "test:lang0:tests": "test-runner snapshot './bin/lambda.js lang0' 'docs/lang0/**/*.scm' --exclude 'docs/lang0/**/*.error.scm'",
+    "test:lang0:tests-error": "test-runner snapshot-error './bin/lambda.js lang0' 'docs/lang0/**/*.error.scm'",
     "test:lang0": "npm run test:lang0:tests && npm run test:lang0:tests-error",
-    "test:lang1:tests": "test-runner snapshot './bin/clique.js lang1' 'docs/lang1/**/*.scm' --exclude 'docs/lang1/**/*.error.scm'",
-    "test:lang1:tests-error": "test-runner snapshot-error './bin/clique.js lang1' 'docs/lang1/**/*.error.scm'",
+    "test:lang1:tests": "test-runner snapshot './bin/lambda.js lang1' 'docs/lang1/**/*.scm' --exclude 'docs/lang1/**/*.error.scm'",
+    "test:lang1:tests-error": "test-runner snapshot-error './bin/lambda.js lang1' 'docs/lang1/**/*.error.scm'",
     "test:lang1": "npm run test:lang1:tests && npm run test:lang1:tests-error",
     "test": "npm run test:node && npm run test:lang0 && npm run test:lang1",
     "format": "prettier src docs --write"

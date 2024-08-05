@@ -1,7 +1,6 @@
-# A group of little languages
+# Lambda Calculus
 
-- [**lang0**](./docs/lang0/README.md) -- Interpreter of lambda calculus.
-- [**lang1**](./docs/lang1/README.md) -- Interpreter of lambda calculus with explicit substitution.
+An implementation of [lambda calculus](https://en.wikipedia.org/wiki/Lambda_calculus).
 
 ## Usages
 
@@ -10,10 +9,10 @@
 Install it by the following command:
 
 ```sh
-npm install -g @cicada-lang/clique
+npm install -g @cicada-lang/lambda
 ```
 
-The command-line program is called `clique`.
+The command-line program is called `lambda`.
 
 ## Development
 
