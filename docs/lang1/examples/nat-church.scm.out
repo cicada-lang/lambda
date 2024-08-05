@@ -1,8 +1,0 @@
-(lambda (base₆ step₁₁) (step₁₁ (step₁₁ (step₁₁ (step₁₁ (step₁₁ (step₁₁ (step₁₁ base₆))))))))
-(lambda (base₁₂ step₂₃) (step₂₃ (step₂₃ (step₂₃ (step₂₃ (step₂₃ (step₂₃ (step₂₃ base₁₂))))))))
-(lambda (base₂₆ step₅₁) (step₅₁ (step₅₁ (step₅₁ (step₅₁ (step₅₁ (step₅₁ base₂₆)))))))
-(lambda (base₃₀ step₅₉) (step₅₉ (step₅₉ (step₅₉ (step₅₉ (step₅₉ (step₅₉ base₃₀)))))))
-(lambda (base₄₁ step₈₁) (step₈₁ (step₈₁ (step₈₁ (step₈₁ (step₈₁ (step₈₁ (step₈₁ base₄₁))))))))
-(lambda (base₄₇ step₉₃) (step₉₃ (step₉₃ (step₉₃ (step₉₃ (step₉₃ (step₉₃ (step₉₃ base₄₇))))))))
-(lambda (base₆₀ step₁₁₉) (step₁₁₉ (step₁₁₉ (step₁₁₉ (step₁₁₉ (step₁₁₉ (step₁₁₉ base₆₀)))))))
-(lambda (base₆₄ step₁₂₇) (step₁₂₇ (step₁₂₇ (step₁₂₇ (step₁₂₇ (step₁₂₇ (step₁₂₇ base₆₄)))))))

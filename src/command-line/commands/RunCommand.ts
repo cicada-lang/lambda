@@ -2,15 +2,15 @@ import { Command, CommandRunner } from "@xieyuheng/command-line"
 import { ty } from "@xieyuheng/ty"
 import fs from "fs"
 import Path from "path"
-import { run } from "../../lang1/run/index.js"
+import { run } from "../../lang0/run/index.js"
 
 type Args = { file: string }
 type Opts = {}
 
-export class Lang1Command extends Command<Args, Opts> {
-  name = "lang1"
+export class RunCommand extends Command<Args, Opts> {
+  name = "run"
 
-  description = "Run a lang1 file"
+  description = "Run a file"
 
   args = { file: ty.string() }
   opts = {}
@@ -20,7 +20,7 @@ export class Lang1Command extends Command<Args, Opts> {
     const { blue } = this.colors
 
     return [
-      `The ${blue(this.name)} command run a lang1 file.`,
+      `The ${blue(this.name)} command run a file.`,
       ``,
       blue(`  ${runner.name} ${this.name} <file>`),
       ``,
@@ -38,7 +38,7 @@ export class Lang1Command extends Command<Args, Opts> {
         process.exit(1)
       }
 
-      throw error
+      process.exit(1)
     }
   }
 }
