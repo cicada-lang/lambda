@@ -1,12 +1,13 @@
 import {
   CommandRunner,
   CommandRunners,
+  Commands,
 } from "@xieyuheng/command-line"
-import * as Commands from "./commands/index.ts"
+import { RunCommand } from "./commands/index.ts"
 
 export function createCommandRunner(): CommandRunner {
   return new CommandRunners.CommonCommandRunner({
     defaultCommand: new Commands.CommonHelp(),
-    commands: [new Commands.RunCommand(), new Commands.CommonHelp()],
+    commands: [new RunCommand(), new Commands.CommonHelp()],
   })
 }
