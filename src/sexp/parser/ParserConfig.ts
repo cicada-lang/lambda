@@ -1,4 +1,4 @@
-import { InternalError } from "../errors/index.js"
+import { InternalError } from "../errors/index.ts"
 
 export interface ParserOptions {
   quotes: Array<{ mark: string; symbol: string }>

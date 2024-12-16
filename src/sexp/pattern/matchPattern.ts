@@ -1,7 +1,7 @@
-import { ParsingError } from "../errors/index.js"
-import { type Pattern } from "../pattern/index.js"
-import { type Sexp } from "../sexp/index.js"
-import { equal } from "../utils/equal.js"
+import { ParsingError } from "../errors/index.ts"
+import { type Pattern } from "../pattern/index.ts"
+import { type Sexp } from "../sexp/index.ts"
+import { equal } from "../utils/equal.ts"
 
 export function matchPatternOrFail(
   pattern: Pattern,

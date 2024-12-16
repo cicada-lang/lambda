@@ -1,4 +1,4 @@
-import { equal } from "./equal.js"
+import { equal } from "./equal.ts"
 
 export function assert(value: any): void {
   if (!value) {

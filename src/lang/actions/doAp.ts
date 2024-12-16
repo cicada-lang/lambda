@@ -1,8 +1,8 @@
-import { envExtend } from "../env/Env.js"
-import { evaluate } from "../evaluate/index.js"
-import * as Neutrals from "../neutral/index.js"
-import * as Values from "../value/index.js"
-import { type Value } from "../value/index.js"
+import { envExtend } from "../env/Env.ts"
+import { evaluate } from "../evaluate/index.ts"
+import * as Neutrals from "../neutral/index.ts"
+import * as Values from "../value/index.ts"
+import { type Value } from "../value/index.ts"
 
 export function doAp(target: Value, arg: Value): Value {
   switch (target["@kind"]) {

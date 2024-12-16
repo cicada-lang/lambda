@@ -1,1 +1,1 @@
-export * from "./Neutral.js"
+export * from "./Neutral.ts"

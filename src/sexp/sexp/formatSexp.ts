@@ -1,4 +1,4 @@
-import { unfoldFormatCons, type Sexp } from "../sexp/index.js"
+import { unfoldFormatCons, type Sexp } from "../sexp/index.ts"
 
 export function formatSexp(sexp: Sexp): string {
   switch (sexp.kind) {

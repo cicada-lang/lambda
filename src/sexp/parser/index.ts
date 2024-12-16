@@ -1,2 +1,2 @@
-export * from "./Parser.js"
-export * from "./ParserConfig.js"
+export * from "./Parser.ts"
+export * from "./ParserConfig.ts"

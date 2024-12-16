@@ -1,4 +1,4 @@
-import { formatSexp, type Sexp } from "../sexp/index.js"
+import { formatSexp, type Sexp } from "../sexp/index.ts"
 
 export function unfoldFormatCons(sexp: Sexp): {
   heads: Array<string>

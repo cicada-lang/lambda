@@ -1,4 +1,4 @@
-import { type Substitution } from "../substitution/index.js"
+import { type Substitution } from "../substitution/index.ts"
 
 export type Exp = Var | Fn | FnRecursive | Ap | Let
 

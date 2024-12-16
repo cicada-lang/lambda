@@ -1,3 +1,3 @@
-export * from "./readback.js"
-export * from "./ReadbackCtx.js"
-export * from "./readbackNeutral.js"
+export * from "./readback.ts"
+export * from "./ReadbackCtx.ts"
+export * from "./readbackNeutral.ts"

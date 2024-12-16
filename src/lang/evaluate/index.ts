@@ -1,2 +1,2 @@
-export * from "./evaluate.js"
-export * from "./evaluateDefinition.js"
+export * from "./evaluate.ts"
+export * from "./evaluateDefinition.ts"

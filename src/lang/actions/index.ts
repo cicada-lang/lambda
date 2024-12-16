@@ -1,1 +1,1 @@
-export * from "./doAp.js"
+export * from "./doAp.ts"

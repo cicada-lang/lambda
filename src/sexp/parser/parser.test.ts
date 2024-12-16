@@ -1,7 +1,7 @@
 import assert from "node:assert"
 import { test } from "node:test"
-import { ParsingError } from "../errors/index.js"
-import { Parser } from "../parser/index.js"
+import { ParsingError } from "../errors/index.ts"
+import { Parser } from "../parser/index.ts"
 import {
   cons,
   evaluate,
@@ -9,9 +9,9 @@ import {
   str,
   v,
   type PatternExp,
-} from "../pattern-exp/index.js"
-import { matchPatternOrFail } from "../pattern/index.js"
-import { type Sexp } from "../sexp/index.js"
+} from "../pattern-exp/index.ts"
+import { matchPatternOrFail } from "../pattern/index.ts"
+import { type Sexp } from "../sexp/index.ts"
 
 const parser = new Parser({
   quotes: [

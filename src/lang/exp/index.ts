@@ -1,3 +1,3 @@
-export * from "./Exp.js"
-export * from "./expFreeNames.js"
-export * from "./expIndirectFreeNames.js"
+export * from "./Exp.ts"
+export * from "./expFreeNames.ts"
+export * from "./expIndirectFreeNames.ts"

@@ -1,7 +1,7 @@
-import { type Env } from "../env/index.js"
-import { type Exp } from "../exp/index.js"
-import { type Mod } from "../mod/index.js"
-import { type Neutral } from "../neutral/index.js"
+import { type Env } from "../env/index.ts"
+import { type Exp } from "../exp/index.ts"
+import { type Mod } from "../mod/index.ts"
+import { type Neutral } from "../neutral/index.ts"
 
 export type Value = NotYet | Fn | FnRecursive | Lazy
 

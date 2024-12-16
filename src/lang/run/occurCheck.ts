@@ -1,9 +1,9 @@
 import dedent from "dedent"
-import type { Definition } from "../definition/Definition.js"
-import { expIndirectFreeNames } from "../exp/expIndirectFreeNames.js"
-import * as Exps from "../exp/index.js"
-import { formatExp } from "../format/formatExp.js"
-import type { Mod } from "../mod/index.js"
+import type { Definition } from "../definition/Definition.ts"
+import { expIndirectFreeNames } from "../exp/expIndirectFreeNames.ts"
+import * as Exps from "../exp/index.ts"
+import { formatExp } from "../format/formatExp.ts"
+import type { Mod } from "../mod/index.ts"
 
 export function occurCheck(mod: Mod, definition: Definition): void {
   const indirectFreeNames = expIndirectFreeNames(mod, definition.exp)

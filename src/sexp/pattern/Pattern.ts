@@ -1,6 +1,6 @@
-import { ParsingError } from "../errors/index.js"
-import { type Sexp } from "../sexp/index.js"
-import { equal } from "../utils/equal.js"
+import { ParsingError } from "../errors/index.ts"
+import { type Sexp } from "../sexp/index.ts"
+import { equal } from "../utils/equal.ts"
 
 export type Pattern = Var | Cons | Null | Num | Str | Sym
 

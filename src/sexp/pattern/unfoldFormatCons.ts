@@ -1,4 +1,4 @@
-import { formatPattern, type Pattern } from "../pattern/index.js"
+import { formatPattern, type Pattern } from "../pattern/index.ts"
 
 export function unfoldFormatCons(pattern: Pattern): {
   heads: Array<string>

@@ -1,1 +1,1 @@
-export * from "./Substitution.js"
+export * from "./Substitution.ts"

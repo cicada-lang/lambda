@@ -1,9 +1,9 @@
-import { ParsingError } from "../errors/index.js"
-import { Lexer } from "../lexer/index.js"
-import { ParserConfig, type ParserOptions } from "../parser/index.js"
-import { type Sexp } from "../sexp/index.js"
-import { Token } from "../token/index.js"
-import { Parsing } from "./Parsing.js"
+import { ParsingError } from "../errors/index.ts"
+import { Lexer } from "../lexer/index.ts"
+import { ParserConfig, type ParserOptions } from "../parser/index.ts"
+import { type Sexp } from "../sexp/index.ts"
+import { Token } from "../token/index.ts"
+import { Parsing } from "./Parsing.ts"
 
 export class Parser {
   lexer: Lexer

@@ -1,8 +1,8 @@
-import { ParsingError } from "../errors/index.js"
-import { evaluate, type PatternExp } from "../pattern-exp/index.js"
-import { formatPattern, matchPattern, type Pattern } from "../pattern/index.js"
-import { formatSexp, type Sexp } from "../sexp/index.js"
-import { Span } from "../span/index.js"
+import { ParsingError } from "../errors/index.ts"
+import { evaluate, type PatternExp } from "../pattern-exp/index.ts"
+import { formatPattern, matchPattern, type Pattern } from "../pattern/index.ts"
+import { formatSexp, type Sexp } from "../sexp/index.ts"
+import { Span } from "../span/index.ts"
 
 export function matchSymbol(sexp: Sexp): string {
   if (sexp.kind !== "Sym") {

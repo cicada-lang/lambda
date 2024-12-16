@@ -1,8 +1,8 @@
-import { expFreeNames } from "../exp/expFreeNames.js"
-import { modDefine } from "../mod/index.js"
-import type { Mod } from "../mod/Mod.js"
-import type { Stmt } from "../stmt/Stmt.js"
-import { importOne } from "./importOne.js"
+import { expFreeNames } from "../exp/expFreeNames.ts"
+import { modDefine } from "../mod/index.ts"
+import type { Mod } from "../mod/Mod.ts"
+import type { Stmt } from "../stmt/Stmt.ts"
+import { importOne } from "./importOne.ts"
 
 export function define(mod: Mod, stmt: Stmt): null {
   switch (stmt["@kind"]) {

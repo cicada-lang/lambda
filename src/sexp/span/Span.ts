@@ -1,7 +1,7 @@
-import { Position } from "../position/index.js"
-import { color, type ColorMode } from "../utils/color.js"
-import { intervalOverlap } from "../utils/interval.js"
-import { isBrowser } from "../utils/isBrowser.js"
+import { Position } from "../position/index.ts"
+import { color, type ColorMode } from "../utils/color.ts"
+import { intervalOverlap } from "../utils/interval.ts"
+import { isBrowser } from "../utils/isBrowser.ts"
 
 export class Span {
   constructor(

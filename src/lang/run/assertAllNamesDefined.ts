@@ -1,6 +1,6 @@
-import type { Definition } from "../definition/Definition.js"
-import { formatExp } from "../format/formatExp.js"
-import { modFind, type Mod } from "../mod/index.js"
+import type { Definition } from "../definition/Definition.ts"
+import { formatExp } from "../format/formatExp.ts"
+import { modFind, type Mod } from "../mod/index.ts"
 
 export function assertAllNamesDefined(mod: Mod, definition: Definition): void {
   for (const name of definition.freeNames) {

@@ -1,5 +1,5 @@
-import type { Definition } from "../definition/Definition.js"
-import type { Mod } from "./Mod.js"
+import type { Definition } from "../definition/Definition.ts"
+import type { Mod } from "./Mod.ts"
 
 export function modOwnDefinitions(mod: Mod): Map<string, Definition> {
   const ownDefinitions = new Map()

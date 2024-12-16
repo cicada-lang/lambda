@@ -1,1 +1,1 @@
-export * from "./Span.js"
+export * from "./Span.ts"

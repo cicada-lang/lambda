@@ -1,9 +1,9 @@
 import { Fetcher } from "@cicada-lang/framework/lib/fetcher/index.js"
 import fs from "node:fs"
-import { ParsingError } from "../../sexp/index.js"
-import { createMod, modResolve, type Mod } from "../mod/index.js"
-import { type Stmt } from "../stmt/index.js"
-import { Parser } from "../syntax/index.js"
+import { ParsingError } from "../../sexp/index.ts"
+import { createMod, modResolve, type Mod } from "../mod/index.ts"
+import { type Stmt } from "../stmt/index.ts"
+import { Parser } from "../syntax/index.ts"
 
 const fetcher = new Fetcher()
 

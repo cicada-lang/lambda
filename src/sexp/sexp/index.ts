@@ -1,3 +1,3 @@
-export * from "./formatSexp.js"
-export * from "./Sexp.js"
-export * from "./unfoldFormatCons.js"
+export * from "./formatSexp.ts"
+export * from "./Sexp.ts"
+export * from "./unfoldFormatCons.ts"

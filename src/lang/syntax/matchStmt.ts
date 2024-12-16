@@ -7,11 +7,11 @@ import {
   matchSymbol,
   v,
   type Sexp,
-} from "../../sexp/index.js"
-import * as Exps from "../exp/index.js"
-import * as Stmts from "../stmt/index.js"
-import { type Stmt } from "../stmt/index.js"
-import { matchExp } from "./matchExp.js"
+} from "../../sexp/index.ts"
+import * as Exps from "../exp/index.ts"
+import * as Stmts from "../stmt/index.ts"
+import { type Stmt } from "../stmt/index.ts"
+import { matchExp } from "./matchExp.ts"
 
 export function matchStmt(sexp: Sexp): Stmt {
   return match<Stmt>(sexp, [

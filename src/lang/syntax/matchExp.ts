@@ -5,13 +5,13 @@ import {
   matchSymbol,
   v,
   type Sexp,
-} from "../../sexp/index.js"
-import * as Exps from "../exp/index.js"
-import { type Exp } from "../exp/index.js"
+} from "../../sexp/index.ts"
+import * as Exps from "../exp/index.ts"
+import { type Exp } from "../exp/index.ts"
 import {
   substitutionFromBindings,
   type Binding,
-} from "../substitution/index.js"
+} from "../substitution/index.ts"
 
 export function matchExp(sexp: Sexp): Exp {
   return match<Exp>(sexp, [

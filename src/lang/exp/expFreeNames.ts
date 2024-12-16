@@ -1,5 +1,5 @@
-import { substitutionBindings } from "../substitution/index.js"
-import { type Exp } from "./index.js"
+import { substitutionBindings } from "../substitution/index.ts"
+import { type Exp } from "./index.ts"
 
 export function expFreeNames(boundNames: Set<string>, exp: Exp): Set<string> {
   switch (exp["@kind"]) {

@@ -1,6 +1,6 @@
-import type { Definition } from "../definition/Definition.js"
-import type { Mod } from "./Mod.js"
-import { modFind } from "./modFind.js"
+import type { Definition } from "../definition/Definition.ts"
+import type { Mod } from "./Mod.ts"
+import { modFind } from "./modFind.ts"
 
 export function modDefine(
   mod: Mod,

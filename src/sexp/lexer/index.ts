@@ -1,1 +1,1 @@
-export * from "./Lexer.js"
+export * from "./Lexer.ts"

@@ -1,6 +1,6 @@
-import { Parser as SexpParser } from "../../sexp/index.js"
-import { type Stmt } from "../stmt/index.js"
-import { matchStmt } from "./matchStmt.js"
+import { Parser as SexpParser } from "../../sexp/index.ts"
+import { type Stmt } from "../stmt/index.ts"
+import { matchStmt } from "./matchStmt.ts"
 
 export class Parser extends SexpParser {
   constructor() {

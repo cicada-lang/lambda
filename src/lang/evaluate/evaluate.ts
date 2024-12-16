@@ -1,10 +1,10 @@
-import * as Actions from "../actions/index.js"
-import { envExtend, envFindValue, type Env } from "../env/index.js"
-import { type Exp } from "../exp/index.js"
-import { modFindValue, type Mod } from "../mod/index.js"
-import { substitutionBindings } from "../substitution/index.js"
-import * as Values from "../value/index.js"
-import { type Value } from "../value/index.js"
+import * as Actions from "../actions/index.ts"
+import { envExtend, envFindValue, type Env } from "../env/index.ts"
+import { type Exp } from "../exp/index.ts"
+import { modFindValue, type Mod } from "../mod/index.ts"
+import { substitutionBindings } from "../substitution/index.ts"
+import * as Values from "../value/index.ts"
+import { type Value } from "../value/index.ts"
 
 export function evaluate(mod: Mod, env: Env, exp: Exp): Value {
   switch (exp["@kind"]) {

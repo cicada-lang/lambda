@@ -1,6 +1,6 @@
 import assert from "node:assert"
 import { test } from "node:test"
-import { freshen } from "./freshen.js"
+import { freshen } from "./freshen.ts"
 
 test("freshen create new string not in set", () => {
   assert.deepStrictEqual(freshen(new Set(["x"]), "x"), "x₁")

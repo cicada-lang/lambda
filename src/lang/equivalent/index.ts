@@ -1,3 +1,3 @@
-export * from "./equivalent.js"
-export * from "./EquivalentCtx.js"
-export * from "./equivalentNeutral.js"
+export * from "./equivalent.ts"
+export * from "./EquivalentCtx.ts"
+export * from "./equivalentNeutral.ts"

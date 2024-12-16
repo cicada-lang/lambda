@@ -1,7 +1,7 @@
-import type { Mod } from "../mod/Mod.js"
-import { modDefine, modFind, modResolve } from "../mod/index.js"
-import type { ImportEntry } from "../stmt/Stmt.js"
-import { runMod } from "./runMod.js"
+import type { Mod } from "../mod/Mod.ts"
+import { modDefine, modFind, modResolve } from "../mod/index.ts"
+import type { ImportEntry } from "../stmt/Stmt.ts"
+import { runMod } from "./runMod.ts"
 
 export function importOne(mod: Mod, path: string, entry: ImportEntry): void {
   const url = modResolve(mod, path)

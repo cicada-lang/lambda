@@ -1,2 +1,2 @@
-export * from "./lazyActive.js"
-export * from "./Value.js"
+export * from "./lazyActive.ts"
+export * from "./Value.ts"

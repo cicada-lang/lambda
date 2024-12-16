@@ -1,4 +1,4 @@
-import { type FnRecursive, type Value } from "../value/index.js"
+import { type FnRecursive, type Value } from "../value/index.ts"
 
 export type Neutral = Var | Ap | ApRecursive
 

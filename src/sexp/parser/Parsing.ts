@@ -1,10 +1,10 @@
-import { InternalError, ParsingError } from "../errors/index.js"
-import { Parser } from "../parser/index.js"
-import { Position } from "../position/index.js"
-import * as Sexps from "../sexp/index.js"
-import { type Sexp } from "../sexp/index.js"
-import { Span } from "../span/index.js"
-import { Token } from "../token/index.js"
+import { InternalError, ParsingError } from "../errors/index.ts"
+import { Parser } from "../parser/index.ts"
+import { Position } from "../position/index.ts"
+import * as Sexps from "../sexp/index.ts"
+import { type Sexp } from "../sexp/index.ts"
+import { Span } from "../span/index.ts"
+import { Token } from "../token/index.ts"
 
 type Result = { sexp: Sexp; remain: Array<Token> }
 

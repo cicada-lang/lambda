@@ -1,6 +1,6 @@
-import { type Exp } from "../exp/index.js"
-import { type Mod } from "../mod/index.js"
-import { type Value } from "../value/index.js"
+import { type Exp } from "../exp/index.ts"
+import { type Mod } from "../mod/index.ts"
+import { type Value } from "../value/index.ts"
 
 export type Definition = {
   mod: Mod

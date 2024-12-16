@@ -1,1 +1,1 @@
-export * from "./formatExp.js"
+export * from "./formatExp.ts"

@@ -1,5 +1,5 @@
-import { equivalent, EquivalentCtx } from "../equivalent/index.js"
-import { type Neutral } from "../neutral/index.js"
+import { equivalent, EquivalentCtx } from "../equivalent/index.ts"
+import { type Neutral } from "../neutral/index.ts"
 
 export function equivalentNeutral(
   ctx: EquivalentCtx,

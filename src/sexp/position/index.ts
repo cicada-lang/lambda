@@ -1,1 +1,1 @@
-export * from "./Position.js"
+export * from "./Position.ts"

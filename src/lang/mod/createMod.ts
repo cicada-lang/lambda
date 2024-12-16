@@ -1,4 +1,4 @@
-import { type Mod } from "./Mod.js"
+import { type Mod } from "./Mod.ts"
 
 export function createMod(options: {
   url: URL

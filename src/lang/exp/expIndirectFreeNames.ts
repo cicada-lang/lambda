@@ -1,8 +1,8 @@
-import { setPop } from "../../utils/setPop.js"
-import type { Mod } from "../mod/index.js"
-import { modOwnDefinitions } from "../mod/modOwnDefinitions.js"
-import type { Exp } from "./Exp.js"
-import { expFreeNames } from "./expFreeNames.js"
+import { setPop } from "../../utils/setPop.ts"
+import type { Mod } from "../mod/index.ts"
+import { modOwnDefinitions } from "../mod/modOwnDefinitions.ts"
+import type { Exp } from "./Exp.ts"
+import { expFreeNames } from "./expFreeNames.ts"
 
 export function expIndirectFreeNames(mod: Mod, exp: Exp): Set<string> {
   const ownDefinitions = modOwnDefinitions(mod)

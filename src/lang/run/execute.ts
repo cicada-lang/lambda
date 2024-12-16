@@ -1,11 +1,11 @@
-import { envEmpty } from "../env/index.js"
-import { evaluate } from "../evaluate/index.js"
-import { formatExp } from "../format/formatExp.js"
-import type { Mod } from "../mod/Mod.js"
-import { readback, ReadbackCtx } from "../readback/index.js"
-import type { Stmt } from "../stmt/Stmt.js"
-import { assertEqual } from "./assertEqual.js"
-import { assertNotEqual } from "./assertNotEqual.js"
+import { envEmpty } from "../env/index.ts"
+import { evaluate } from "../evaluate/index.ts"
+import { formatExp } from "../format/formatExp.ts"
+import type { Mod } from "../mod/Mod.ts"
+import { readback, ReadbackCtx } from "../readback/index.ts"
+import type { Stmt } from "../stmt/Stmt.ts"
+import { assertEqual } from "./assertEqual.ts"
+import { assertNotEqual } from "./assertNotEqual.ts"
 
 export function execute(mod: Mod, stmt: Stmt): null | string {
   switch (stmt["@kind"]) {

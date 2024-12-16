@@ -1,6 +1,6 @@
-import { ParserConfig, type ParserOptions } from "../parser/index.js"
-import { Token } from "../token/index.js"
-import { Lexing } from "./Lexing.js"
+import { ParserConfig, type ParserOptions } from "../parser/index.ts"
+import { Token } from "../token/index.ts"
+import { Lexing } from "./Lexing.ts"
 
 export class Lexer {
   config: ParserConfig
