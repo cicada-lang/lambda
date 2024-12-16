@@ -1,4 +1,4 @@
-import { Fetcher } from "@cicada-lang/framework/lib/fetcher/index.js"
+import { Fetcher } from "@cicada-lang/framework"
 import fs from "node:fs"
 import { ParsingError } from "../../sexp/index.ts"
 import { createMod, modResolve, type Mod } from "../mod/index.ts"

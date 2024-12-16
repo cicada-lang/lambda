@@ -1,7 +1,7 @@
 import {
   CommandRunner,
   CommandRunners,
-} from "@xieyuheng/command-line/lib/index.js"
+} from "@xieyuheng/command-line"
 import * as Commands from "./commands/index.ts"
 
 export function createCommandRunner(): CommandRunner {
