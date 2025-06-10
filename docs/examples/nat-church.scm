@@ -12,22 +12,22 @@
 ;; We know
 
 ;; (claim zero
-;;   (forall (X)
+;;   (nu (X)
 ;;     (-> X (-> X X) X)))
 
 ;; Thus
 
 ;; (define Nat
-;;   (forall (X)
+;;   (nu (X)
 ;;     (-> X (-> X X) X)))
 
 ;; (claim add1
 ;;   (-> Nat Nat)
-;;   (forall (X)
+;;   (nu (X)
 ;;     (-> Nat (-> X (-> X X) X))))
 
 ;; (claim iter-Nat
-;;   (forall (X)
+;;   (nu (X)
 ;;     (-> Nat (-> X (-> X X) X))))
 
 ;; # one to ten

@@ -11,20 +11,20 @@
 ;; ## Typing
 
 ;; (claim zero
-;;   (forall (X)
+;;   (nu (X)
 ;;     (-> X (-> Nat X) X)))
 
 ;; (define Nat
-;;   (forall (X)
+;;   (nu (X)
 ;;     (-> X (-> Nat X) X)))
 
 ;; (claim add1
 ;;   (-> Nat Nat)
-;;   (forall (X)
+;;   (nu (X)
 ;;     (-> Nat (-> X (-> Nat X) X))))
 
 ;; (claim which-Nat
-;;   (forall (X)
+;;   (nu (X)
 ;;     (-> Nat (-> X (-> Nat X) X))))
 
 ;; # one to ten

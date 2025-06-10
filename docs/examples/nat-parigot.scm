@@ -9,16 +9,16 @@
 ;; ## Typing
 
 ;; (claim zero
-;;   (forall (X)
+;;   (nu (X)
 ;;     (-> X (-> Nat X X) X)))
 
 ;; (define Nat
-;;   (forall (X)
+;;   (nu (X)
 ;;     (-> X (-> Nat X X) X)))
 
 ;; (claim add1
 ;;   (-> Nat Nat)
-;;   (forall (X)
+;;   (nu (X)
 ;;     (-> Nat (-> X (-> Nat X X) X))))
 
 ;; # one to ten
