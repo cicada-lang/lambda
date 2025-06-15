@@ -1,4 +1,4 @@
-re-org our way of writing interpreter -- mini dependencies
+re-org our way of writing interpreter -- minimize dependencies
 
 # x-data
 
