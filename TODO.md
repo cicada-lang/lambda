@@ -1,4 +1,5 @@
-# docs
+re-org our way of writing interpreter -- mini dependencies
 
-[docs] docs/lambda-encoding -- Exp Lambda 编码的例子，外加解释器
-[docs] docs/self-type
+# x-data
+
+use x-data -- to replace sexp

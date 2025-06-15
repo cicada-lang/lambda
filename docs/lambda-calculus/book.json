@@ -1,9 +1,0 @@
-{
-  "kind": "Book",
-  "title": "Lambda 演算",
-  "version": "0.0.1",
-  "authors": ["谢宇恒"],
-  "date": "2024-04-11",
-  "src": "src",
-  "contents": ["lambda-encoding.md", "fixpoint.md", "self-type.md"]
-}
