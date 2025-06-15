@@ -31,7 +31,7 @@
     "regexp-match-indices": "^1.0.2"
   },
   "devDependencies": {
-    "@types/node": "^22.15.30",
+    "@types/node": "^24.0.1",
     "@xieyuheng/test-runner": "^0.2.10",
     "prettier": "^3.5.3",
     "prettier-plugin-organize-imports": "^4.1.0",
