@@ -1,4 +1,4 @@
-#!/usr/bin/env -S node --no-warnings
+#!/usr/bin/env -S node
 
 import { Commander } from "@xieyuheng/commander"
 import { runCommand } from "./commands/runCommand.ts"
