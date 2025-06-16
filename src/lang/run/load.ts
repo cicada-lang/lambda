@@ -1,13 +1,8 @@
-import { Fetcher } from "@cicada-lang/framework"
 import fs from "node:fs"
 import { ParsingError } from "../../sexp/index.ts"
 import { createMod, modResolve, type Mod } from "../mod/index.ts"
 import { type Stmt } from "../stmt/index.ts"
 import { Parser } from "../syntax/index.ts"
-
-const fetcher = new Fetcher()
-
-fetcher.register("file", (url) => fs.promises.readFile(url.pathname, "utf8"))
 
 export async function load(
   url: URL,
@@ -18,7 +13,7 @@ export async function load(
     return found.mod
   }
 
-  const text = await fetcher.fetch(url)
+  const text = await fs.promises.readFile(url.pathname, "utf8")
 
   try {
     const mod = createMod({ url, loadedMods })

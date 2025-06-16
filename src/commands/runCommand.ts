@@ -1,5 +1,4 @@
 import { type Command } from "@xieyuheng/commander"
-import ty from "@xieyuheng/ty"
 import fs from "fs"
 import Path from "path"
 import { run } from "../lang/run/index.ts"
@@ -33,14 +32,14 @@ export const runCommand: Command = {
 }
 
 function createURL(path: string): URL {
-  if (ty.url().isValid(path)) {
+  try {
     return new URL(path)
-  }
+  } catch (_) {
+    if (fs.existsSync(path) && fs.lstatSync(path).isFile()) {
+      const fullPath = Path.resolve(path)
+      return new URL(`file:${fullPath}`)
+    }
 
-  if (fs.existsSync(path) && fs.lstatSync(path).isFile()) {
-    const fullPath = Path.resolve(path)
-    return new URL(`file:${fullPath}`)
+    throw new Error(`I can not create URL from path: ${path}`)
   }
-
-  throw new Error(`I can not create URL from path: ${path}`)
 }

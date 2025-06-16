@@ -22,7 +22,6 @@
     "format": "prettier src --write"
   },
   "dependencies": {
-    "@cicada-lang/framework": "^0.2.0",
     "@xieyuheng/commander": "^0.1.3",
     "dedent": "^1.6.0",
     "regexp-match-indices": "^1.0.2"
