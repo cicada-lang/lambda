@@ -1,0 +1,12 @@
+#!/usr/bin/env -S node --no-warnings
+
+import { Commander } from "@xieyuheng/commander"
+import { runCommand } from "./commands/runCommand.ts"
+
+async function main() {
+  const commander = new Commander()
+  commander.use(runCommand)
+  await commander.run(process.argv)
+}
+
+main()

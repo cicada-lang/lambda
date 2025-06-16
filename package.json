@@ -10,24 +10,23 @@
     "lib"
   ],
   "bin": {
-    "lambda": "bin/lambda.js"
+    "lambda": "lib/main.js"
   },
   "scripts": {
     "build": "tsc",
     "build:watch": "tsc --watch",
     "test:node": "node --test",
-    "test:lang:tests": "test-runner snapshot './bin/lambda.js run' 'docs/tests/**/*.scm' --exclude 'docs/tests/**/*.error.scm'",
-    "test:lang:examples": "test-runner snapshot './bin/lambda.js run' 'docs/examples/**/*.scm' --exclude 'docs/examples/**/*.error.scm'",
-    "test:lang:tests-error": "test-runner snapshot-error './bin/lambda.js run' 'docs/tests/**/*.error.scm'",
-    "test:lang:examples-error": "test-runner snapshot-error './bin/lambda.js run' 'docs/examples/**/*.error.scm'",
+    "test:lang:tests": "test-runner snapshot 'node ./lib/main.js run' 'docs/tests/**/*.scm' --exclude 'docs/tests/**/*.error.scm'",
+    "test:lang:examples": "test-runner snapshot 'node ./lib/main.js run' 'docs/examples/**/*.scm' --exclude 'docs/examples/**/*.error.scm'",
+    "test:lang:tests-error": "test-runner snapshot-error 'node ./lib/main.js run' 'docs/tests/**/*.error.scm'",
+    "test:lang:examples-error": "test-runner snapshot-error 'node ./lib/main.js run' 'docs/examples/**/*.error.scm'",
     "test:lang": "npm run test:lang:tests && npm run test:lang:tests-error && npm run test:lang:examples && npm run test:lang:examples-error",
     "test": "npm run test:node && npm run test:lang",
     "format": "prettier src docs --write"
   },
   "dependencies": {
     "@cicada-lang/framework": "^0.2.0",
-    "@xieyuheng/command-line": "^0.1.3",
-    "@xieyuheng/ty": "^0.3.1",
+    "@xieyuheng/commander": "^0.1.3",
     "dedent": "^1.6.0",
     "regexp-match-indices": "^1.0.2"
   },

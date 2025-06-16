@@ -1,34 +1,23 @@
-import { Command, CommandRunner } from "@xieyuheng/command-line"
+import { type Command } from "@xieyuheng/commander"
 import ty from "@xieyuheng/ty"
 import fs from "fs"
 import Path from "path"
-import { run } from "../../lang/run/index.ts"
+import { run } from "../lang/run/index.ts"
 
-type Args = { file: string }
-type Opts = {}
-
-export class RunCommand extends Command<Args, Opts> {
-  name = "run"
-
-  description = "Run a file"
-
-  args = { file: ty.string() }
-  opts = {}
-
-  // prettier-ignore
-  help(runner: CommandRunner): string {
-    const { blue } = this.colors
-
+export const runCommand: Command = {
+  name: "run",
+  description: "Run a file",
+  help(commander) {
     return [
-      `The ${blue(this.name)} command run a file.`,
+      `The ${this.name} command run a file.`,
       ``,
-      blue(`  ${runner.name} ${this.name} <file>`),
+      `  ${commander.name} ${this.name} <file>`,
       ``,
     ].join("\n")
-  }
+  },
 
-  async execute(argv: Args & Opts): Promise<void> {
-    const url = createURL(argv["file"])
+  async run(commander) {
+    const url = createURL(String(commander.args[0]))
 
     try {
       await run(url)
@@ -40,7 +29,7 @@ export class RunCommand extends Command<Args, Opts> {
 
       process.exit(1)
     }
-  }
+  },
 }
 
 function createURL(path: string): URL {
