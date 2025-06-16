@@ -1,4 +1,4 @@
-import { type Command } from "@xieyuheng/commander"
+import { type Command } from "@xieyuheng/commander.js"
 import fs from "fs"
 import Path from "path"
 import { run } from "../lang/run/index.ts"
