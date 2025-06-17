@@ -5,7 +5,7 @@ import * as Values from "../value/index.ts"
 import { type Value } from "../value/index.ts"
 
 export function doAp(target: Value, arg: Value): Value {
-  switch (target["@kind"]) {
+  switch (target.kind) {
     case "Fn": {
       return evaluate(
         target.mod,
@@ -14,10 +14,10 @@ export function doAp(target: Value, arg: Value): Value {
       )
     }
 
-    case "FnRecursive": {
+    case "FnRec": {
       arg = Values.lazyActiveDeep(arg)
 
-      if (arg["@kind"] === "NotYet") {
+      if (arg.kind === "NotYet") {
         return Values.NotYet(Neutrals.ApRecursive(target, arg.neutral))
       }
 

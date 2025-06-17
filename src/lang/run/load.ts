@@ -21,7 +21,7 @@ export async function load(
     loadedMods.set(url.href, { mod, text })
 
     for (const stmt of mod.stmts) {
-      if (stmt["@kind"] === "Import") {
+      if (stmt.kind === "Import") {
         const importedUrl = modResolve(mod, stmt.path)
         await load(importedUrl, loadedMods)
       }

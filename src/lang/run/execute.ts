@@ -8,7 +8,7 @@ import { assertEqual } from "./assertEqual.ts"
 import { assertNotEqual } from "./assertNotEqual.ts"
 
 export function execute(mod: Mod, stmt: Stmt): null | string {
-  switch (stmt["@kind"]) {
+  switch (stmt.kind) {
     case "AssertEqual": {
       for (let i = 0; i < stmt.exps.length - 1; i++) {
         assertEqual(mod, stmt.exps[i], stmt.exps[i + 1])

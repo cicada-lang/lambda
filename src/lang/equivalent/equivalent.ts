@@ -13,20 +13,20 @@ export function equivalent(
   left = Values.lazyActiveDeep(left)
   right = Values.lazyActiveDeep(right)
 
-  if (right["@kind"] === "FnRecursive" && left["@kind"] === "FnRecursive") {
+  if (right.kind === "FnRec" && left.kind === "FnRec") {
     return left.name === right.name && left.mod === right.mod
   }
 
-  switch (left["@kind"]) {
+  switch (left.kind) {
     case "NotYet": {
       return (
-        right["@kind"] === "NotYet" &&
+        right.kind === "NotYet" &&
         equivalentNeutral(ctx, left.neutral, right.neutral)
       )
     }
 
     case "Fn":
-    case "FnRecursive": {
+    case "FnRec": {
       const freshName = freshen(ctx.usedNames, left.name)
       ctx = ctx.useName(freshName)
       const v = Neutrals.Var(freshName)

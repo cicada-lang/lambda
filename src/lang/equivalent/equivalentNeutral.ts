@@ -6,14 +6,14 @@ export function equivalentNeutral(
   left: Neutral,
   right: Neutral,
 ): boolean {
-  switch (left["@kind"]) {
+  switch (left.kind) {
     case "Var": {
-      return right["@kind"] === "Var" && right.name === left.name
+      return right.kind === "Var" && right.name === left.name
     }
 
     case "Ap": {
       return (
-        right["@kind"] === "Ap" &&
+        right.kind === "Ap" &&
         equivalentNeutral(ctx, left.target, right.target) &&
         equivalent(ctx, left.arg, right.arg)
       )
@@ -21,7 +21,7 @@ export function equivalentNeutral(
 
     case "ApRecursive": {
       return (
-        right["@kind"] === "ApRecursive" &&
+        right.kind === "ApRecursive" &&
         equivalent(ctx, left.fn, right.fn) &&
         equivalentNeutral(ctx, left.arg, right.arg)
       )

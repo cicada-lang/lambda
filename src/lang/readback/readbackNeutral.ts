@@ -4,7 +4,7 @@ import { type Neutral } from "../neutral/index.ts"
 import { readback, ReadbackCtx } from "../readback/index.ts"
 
 export function readbackNeutral(ctx: ReadbackCtx, neutral: Neutral): Exp {
-  switch (neutral["@kind"]) {
+  switch (neutral.kind) {
     case "Var": {
       return Exps.Var(neutral.name)
     }

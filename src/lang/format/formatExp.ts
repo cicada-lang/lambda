@@ -3,7 +3,7 @@ import { type Exp } from "../exp/index.ts"
 import { substitutionBindings } from "../substitution/Substitution.ts"
 
 export function formatExp(exp: Exp): string {
-  switch (exp["@kind"]) {
+  switch (exp.kind) {
     case "Var": {
       return exp.name
     }
@@ -13,7 +13,7 @@ export function formatExp(exp: Exp): string {
       return `(lambda (${names.join(" ")}) ${ret})`
     }
 
-    case "FnRecursive": {
+    case "FnRec": {
       const { names, ret } = formatFn([exp.name], exp.ret)
       return `(lambda (${names.join(" ")}) ${ret})`
     }
@@ -34,7 +34,7 @@ function formatFn(
   names: Array<string>,
   ret: Exp,
 ): { names: Array<string>; ret: string } {
-  if (ret["@kind"] === "Fn") {
+  if (ret.kind === "Fn") {
     return formatFn([...names, ret.name], ret.ret)
   } else {
     return { names, ret: formatExp(ret) }
@@ -45,7 +45,7 @@ function formatAp(
   target: Exp,
   args: Array<string>,
 ): { target: string; args: Array<string> } {
-  if (target["@kind"] === "Ap") {
+  if (target.kind === "Ap") {
     return formatAp(target.target, [formatExp(target.arg), ...args])
   } else {
     return { target: formatExp(target), args }

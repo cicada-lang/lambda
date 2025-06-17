@@ -8,7 +8,7 @@ import * as Values from "../value/index.ts"
 import { type Value } from "../value/index.ts"
 
 export function readback(ctx: ReadbackCtx, value: Value): Exp {
-  switch (value["@kind"]) {
+  switch (value.kind) {
     case "NotYet": {
       return readbackNeutral(ctx, value.neutral)
     }
@@ -21,8 +21,8 @@ export function readback(ctx: ReadbackCtx, value: Value): Exp {
       return Exps.Fn(freshName, readback(ctx, ret))
     }
 
-    case "FnRecursive": {
-      return Exps.Var(value.recursiveName)
+    case "FnRec": {
+      return Exps.Var(value.recName)
     }
 
     case "Lazy": {

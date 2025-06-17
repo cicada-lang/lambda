@@ -7,7 +7,7 @@ import * as Values from "../value/index.ts"
 import { type Value } from "../value/index.ts"
 
 export function evaluate(mod: Mod, env: Env, exp: Exp): Value {
-  switch (exp["@kind"]) {
+  switch (exp.kind) {
     case "Var": {
       let value = undefined
 
@@ -24,8 +24,8 @@ export function evaluate(mod: Mod, env: Env, exp: Exp): Value {
       return Values.Fn(mod, env, exp.name, exp.ret)
     }
 
-    case "FnRecursive": {
-      return Values.FnRecursive(mod, env, exp.recursiveName, exp.name, exp.ret)
+    case "FnRec": {
+      return Values.FnRec(mod, env, exp.recName, exp.name, exp.ret)
     }
 
     case "Ap": {

@@ -3,25 +3,25 @@ import { type Exp } from "../exp/index.ts"
 import { type Mod } from "../mod/index.ts"
 import { type Neutral } from "../neutral/index.ts"
 
-export type Value = NotYet | Fn | FnRecursive | Lazy
+export type Value = NotYet | Fn | FnRec | Lazy
 
 export type NotYet = {
   "@type": "Value"
-  "@kind": "NotYet"
+  kind: "NotYet"
   neutral: Neutral
 }
 
 export function NotYet(neutral: Neutral): NotYet {
   return {
     "@type": "Value",
-    "@kind": "NotYet",
+    kind: "NotYet",
     neutral,
   }
 }
 
 export type Fn = {
   "@type": "Value"
-  "@kind": "Fn"
+  kind: "Fn"
   mod: Mod
   env: Env
   name: string
@@ -31,7 +31,7 @@ export type Fn = {
 export function Fn(mod: Mod, env: Env, name: string, ret: Exp): Fn {
   return {
     "@type": "Value",
-    "@kind": "Fn",
+    kind: "Fn",
     mod,
     env,
     name,
@@ -39,29 +39,29 @@ export function Fn(mod: Mod, env: Env, name: string, ret: Exp): Fn {
   }
 }
 
-export type FnRecursive = {
+export type FnRec = {
   "@type": "Value"
-  "@kind": "FnRecursive"
+  kind: "FnRec"
   mod: Mod
   env: Env
-  recursiveName: string
+  recName: string
   name: string
   ret: Exp
 }
 
-export function FnRecursive(
+export function FnRec(
   mod: Mod,
   env: Env,
-  recursiveName: string,
+  recName: string,
   name: string,
   ret: Exp,
-): FnRecursive {
+): FnRec {
   return {
     "@type": "Value",
-    "@kind": "FnRecursive",
+    kind: "FnRec",
     mod,
     env,
-    recursiveName,
+    recName,
     name,
     ret,
   }
@@ -69,7 +69,7 @@ export function FnRecursive(
 
 export type Lazy = {
   "@type": "Value"
-  "@kind": "Lazy"
+  kind: "Lazy"
   mod: Mod
   env: Env
   exp: Exp
@@ -79,7 +79,7 @@ export type Lazy = {
 export function Lazy(mod: Mod, env: Env, exp: Exp, cache?: Value): Lazy {
   return {
     "@type": "Value",
-    "@kind": "Lazy",
+    kind: "Lazy",
     mod,
     env,
     exp,

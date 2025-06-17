@@ -1,24 +1,24 @@
-import { type FnRecursive, type Value } from "../value/index.ts"
+import { type FnRec, type Value } from "../value/index.ts"
 
 export type Neutral = Var | Ap | ApRecursive
 
 export type Var = {
   "@type": "Neutral"
-  "@kind": "Var"
+  kind: "Var"
   name: string
 }
 
 export function Var(name: string): Var {
   return {
     "@type": "Neutral",
-    "@kind": "Var",
+    kind: "Var",
     name,
   }
 }
 
 export type Ap = {
   "@type": "Neutral"
-  "@kind": "Ap"
+  kind: "Ap"
   target: Neutral
   arg: Value
 }
@@ -26,7 +26,7 @@ export type Ap = {
 export function Ap(target: Neutral, arg: Value): Ap {
   return {
     "@type": "Neutral",
-    "@kind": "Ap",
+    kind: "Ap",
     target,
     arg,
   }
@@ -34,15 +34,15 @@ export function Ap(target: Neutral, arg: Value): Ap {
 
 export type ApRecursive = {
   "@type": "Neutral"
-  "@kind": "ApRecursive"
-  fn: FnRecursive
+  kind: "ApRecursive"
+  fn: FnRec
   arg: Neutral
 }
 
-export function ApRecursive(fn: FnRecursive, arg: Neutral): ApRecursive {
+export function ApRecursive(fn: FnRec, arg: Neutral): ApRecursive {
   return {
     "@type": "Neutral",
-    "@kind": "ApRecursive",
+    kind: "ApRecursive",
     fn,
     arg,
   }

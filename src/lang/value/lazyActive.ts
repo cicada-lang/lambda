@@ -13,7 +13,7 @@ export function lazyActive(lazy: Values.Lazy): Value {
 }
 
 export function lazyActiveDeep(value: Value): Value {
-  if (value["@kind"] === "Lazy") {
+  if (value.kind === "Lazy") {
     return lazyActiveDeep(lazyActive(value))
   }
 
