@@ -107,9 +107,7 @@ class BracketStartHandler extends CharHandler {
   kind = "BracketStart" as const
 
   canHandle(char: string): boolean {
-    return this.lexer.config.parentheses
-      .map(({ start }) => start)
-      .includes(char)
+    return this.lexer.config.brackets.map(({ start }) => start).includes(char)
   }
 
   handle(char: string): string {
@@ -122,7 +120,7 @@ class BracketEndHandler extends CharHandler {
   kind = "BracketEnd" as const
 
   canHandle(char: string): boolean {
-    return this.lexer.config.parentheses.map(({ end }) => end).includes(char)
+    return this.lexer.config.brackets.map(({ end }) => end).includes(char)
   }
 
   handle(char: string): string {

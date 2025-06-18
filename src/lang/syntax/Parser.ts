@@ -10,7 +10,7 @@ export class Parser extends SexpParser {
         { mark: ",", symbol: "unquote" },
         { mark: "`", symbol: "quasiquote" },
       ],
-      parentheses: [
+      brackets: [
         { start: "(", end: ")" },
         { start: "[", end: "]" },
       ],

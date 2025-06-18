@@ -121,7 +121,7 @@ export class Parsing {
         throw new ParsingError(`Missing BracketEnd`, start.span)
       }
 
-      if (!this.parser.config.matchParentheses(start.value, remain[0].value)) {
+      if (!this.parser.config.matchBrackets(start.value, remain[0].value)) {
         throw new ParsingError(`I expect a matching BracketEnd`, remain[0].span)
       }
 
@@ -129,7 +129,7 @@ export class Parsing {
     }
 
     if (tokens[0].kind === "BracketEnd") {
-      if (!this.parser.config.matchParentheses(start.value, tokens[0].value)) {
+      if (!this.parser.config.matchBrackets(start.value, tokens[0].value)) {
         throw new ParsingError(`I expect a matching BracketEnd`, tokens[0].span)
       }
 

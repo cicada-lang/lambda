@@ -9,7 +9,7 @@ const lexer = new Lexer({
     { mark: ",", symbol: "unquote" },
     { mark: "`", symbol: "quasiquote" },
   ],
-  parentheses: [
+  brackets: [
     { start: "(", end: ")" },
     { start: "[", end: "]" },
     { start: "{", end: "}" },
@@ -55,7 +55,7 @@ test("quotes", () => {
   ])
 })
 
-test("parentheses", () => {
+test("brackets", () => {
   assertTokens("()", [
     { kind: "BracketStart", value: "(" },
     { kind: "BracketEnd", value: ")" },
