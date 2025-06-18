@@ -71,7 +71,7 @@ export class Parsing {
         }
       }
 
-      case "ParenthesisStart": {
+      case "BracketStart": {
         return this.parseList(
           tokens[0],
           tokens.slice(1),
@@ -79,8 +79,8 @@ export class Parsing {
         )
       }
 
-      case "ParenthesisEnd": {
-        throw new ParsingError(`I found extra ParenthesisEnd`, tokens[0].span)
+      case "BracketEnd": {
+        throw new ParsingError(`I found extra BracketEnd`, tokens[0].span)
       }
 
       case "Quote": {
@@ -111,32 +111,26 @@ export class Parsing {
     list: Sexps.Cons | Sexps.Null,
   ): Result {
     if (tokens[0] === undefined) {
-      throw new ParsingError(`Missing ParenthesisEnd`, start.span)
+      throw new ParsingError(`Missing BracketEnd`, start.span)
     }
 
     if (tokens[0].kind === "Symbol" && tokens[0].value === ".") {
       const { sexp, remain } = this.parse(tokens.slice(1))
 
       if (remain[0] === undefined) {
-        throw new ParsingError(`Missing ParenthesisEnd`, start.span)
+        throw new ParsingError(`Missing BracketEnd`, start.span)
       }
 
       if (!this.parser.config.matchParentheses(start.value, remain[0].value)) {
-        throw new ParsingError(
-          `I expect a matching ParenthesisEnd`,
-          remain[0].span,
-        )
+        throw new ParsingError(`I expect a matching BracketEnd`, remain[0].span)
       }
 
       return { sexp, remain: remain.slice(1) }
     }
 
-    if (tokens[0].kind === "ParenthesisEnd") {
+    if (tokens[0].kind === "BracketEnd") {
       if (!this.parser.config.matchParentheses(start.value, tokens[0].value)) {
-        throw new ParsingError(
-          `I expect a matching ParenthesisEnd`,
-          tokens[0].span,
-        )
+        throw new ParsingError(`I expect a matching BracketEnd`, tokens[0].span)
       }
 
       list.span = tokens[0].span

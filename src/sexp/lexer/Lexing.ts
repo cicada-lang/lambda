@@ -12,8 +12,8 @@ export class Lexing implements Iterator<Token> {
     //   try `NumberHandler` before `SymbolHandler`.
     new SpaceHandler(this),
     new QuoteHandler(this),
-    new ParenthesisStartHandler(this),
-    new ParenthesisEndHandler(this),
+    new BracketStartHandler(this),
+    new BracketEndHandler(this),
     new CommentHandler(this),
     new StringHandler(this),
     new NumberHandler(this),
@@ -103,8 +103,8 @@ class SpaceHandler extends CharHandler {
   }
 }
 
-class ParenthesisStartHandler extends CharHandler {
-  kind = "ParenthesisStart" as const
+class BracketStartHandler extends CharHandler {
+  kind = "BracketStart" as const
 
   canHandle(char: string): boolean {
     return this.lexer.config.parentheses
@@ -118,8 +118,8 @@ class ParenthesisStartHandler extends CharHandler {
   }
 }
 
-class ParenthesisEndHandler extends CharHandler {
-  kind = "ParenthesisEnd" as const
+class BracketEndHandler extends CharHandler {
+  kind = "BracketEnd" as const
 
   canHandle(char: string): boolean {
     return this.lexer.config.parentheses.map(({ end }) => end).includes(char)

@@ -57,40 +57,40 @@ test("quotes", () => {
 
 test("parentheses", () => {
   assertTokens("()", [
-    { kind: "ParenthesisStart", value: "(" },
-    { kind: "ParenthesisEnd", value: ")" },
+    { kind: "BracketStart", value: "(" },
+    { kind: "BracketEnd", value: ")" },
   ])
 
   assertTokens("( )", [
-    { kind: "ParenthesisStart", value: "(" },
-    { kind: "ParenthesisEnd", value: ")" },
+    { kind: "BracketStart", value: "(" },
+    { kind: "BracketEnd", value: ")" },
   ])
 
   assertTokens("(a)(b)", [
-    { kind: "ParenthesisStart", value: "(" },
+    { kind: "BracketStart", value: "(" },
     { kind: "Symbol", value: "a" },
-    { kind: "ParenthesisEnd", value: ")" },
-    { kind: "ParenthesisStart", value: "(" },
+    { kind: "BracketEnd", value: ")" },
+    { kind: "BracketStart", value: "(" },
     { kind: "Symbol", value: "b" },
-    { kind: "ParenthesisEnd", value: ")" },
+    { kind: "BracketEnd", value: ")" },
   ])
 
   assertTokens("([{x}])", [
-    { kind: "ParenthesisStart", value: "(" },
-    { kind: "ParenthesisStart", value: "[" },
-    { kind: "ParenthesisStart", value: "{" },
+    { kind: "BracketStart", value: "(" },
+    { kind: "BracketStart", value: "[" },
+    { kind: "BracketStart", value: "{" },
     { kind: "Symbol", value: "x" },
-    { kind: "ParenthesisEnd", value: "}" },
-    { kind: "ParenthesisEnd", value: "]" },
-    { kind: "ParenthesisEnd", value: ")" },
+    { kind: "BracketEnd", value: "}" },
+    { kind: "BracketEnd", value: "]" },
+    { kind: "BracketEnd", value: ")" },
   ])
 
   assertTokens("(head . tail)", [
-    { kind: "ParenthesisStart", value: "(" },
+    { kind: "BracketStart", value: "(" },
     { kind: "Symbol", value: "head" },
     { kind: "Symbol", value: "." },
     { kind: "Symbol", value: "tail" },
-    { kind: "ParenthesisEnd", value: ")" },
+    { kind: "BracketEnd", value: ")" },
   ])
 
   assertTokens("abc", [{ kind: "Symbol", value: "abc" }])

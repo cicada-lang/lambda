@@ -4,8 +4,8 @@ export type TokenKind =
   | "Symbol"
   | "String"
   | "Number"
-  | "ParenthesisStart"
-  | "ParenthesisEnd"
+  | "BracketStart"
+  | "BracketEnd"
   | "Quote"
 
 export class Token {
