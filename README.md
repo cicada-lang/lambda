@@ -1,4 +1,4 @@
-# Lambda Calculus
+# Lambda.js
 
 An interpreter of [lambda calculus](https://en.wikipedia.org/wiki/Lambda_calculus).
 
@@ -23,10 +23,10 @@ An interpreter of [lambda calculus](https://en.wikipedia.org/wiki/Lambda_calculu
 Install it by the following command:
 
 ```sh
-npm install -g @cicada-lang/lambda
+npm install -g @cicada-lang/lambda.js
 ```
 
-The command-line program is called `lambda`.
+The command-line program is called `lambda.js`.
 
 ## Development
 

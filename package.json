@@ -1,7 +1,7 @@
 {
-  "name": "@cicada-lang/lambda",
+  "name": "@cicada-lang/lambda.js",
   "version": "0.3.1",
-  "repository": "github:cicada-lang/lambda",
+  "repository": "github:cicada-lang/lambda.js",
   "license": "GPL-3.0-or-later",
   "type": "module",
   "main": "./lib/index.js",
@@ -10,7 +10,7 @@
     "lib"
   ],
   "bin": {
-    "lambda": "lib/main.js"
+    "lambda.js": "lib/main.js"
   },
   "scripts": {
     "build": "tsc",
