@@ -16,17 +16,11 @@ An interpreter of [lambda calculus](https://en.wikipedia.org/wiki/Lambda_calculu
 (let ([name exp] ...) body)
 ```
 
-## Usages
-
-### Command line tool
-
-Install it by the following command:
+## Install
 
 ```sh
-npm install -g @cicada-lang/lambda.js
+npm install @xieyuheng/x-data.js
 ```
-
-The command-line program is called `lambda.js`.
 
 ## Development
 
