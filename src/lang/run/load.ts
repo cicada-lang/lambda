@@ -1,8 +1,7 @@
 import fs from "node:fs"
 import { ParsingError } from "../../sexp/index.ts"
 import { createMod, modResolve, type Mod } from "../mod/index.ts"
-import { type Stmt } from "../stmt/index.ts"
-import { Parser } from "../syntax/index.ts"
+import { parseStmts } from "../syntax/index.ts"
 
 export async function load(
   url: URL,
@@ -35,9 +34,4 @@ export async function load(
 
     throw error
   }
-}
-
-function parseStmts(text: string): Array<Stmt> {
-  const parser = new Parser()
-  return parser.parseStmts(text)
 }

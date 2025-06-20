@@ -2,7 +2,7 @@ import { Parser as SexpParser } from "../../sexp/index.ts"
 import { type Stmt } from "../stmt/index.ts"
 import { matchStmt } from "./matchStmt.ts"
 
-export class Parser extends SexpParser {
+class Parser extends SexpParser {
   constructor() {
     super({
       quotes: [
@@ -17,8 +17,9 @@ export class Parser extends SexpParser {
       comments: [";"],
     })
   }
+}
 
-  parseStmts(text: string): Array<Stmt> {
-    return this.parseSexps(text).map(matchStmt)
-  }
+export function parseStmts(text: string): Array<Stmt> {
+  const parser = new Parser()
+  return parser.parseSexps(text).map(matchStmt)
 }
