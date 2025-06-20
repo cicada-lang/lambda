@@ -1,3 +1,3 @@
-parseStmts as a function
-remove @type fields
+review diary
+`parseStmts` as a function -- not a method
 remove `sexp/`

@@ -6,21 +6,18 @@ import { type Neutral } from "../neutral/index.ts"
 export type Value = NotYet | Fn | FnRec | Lazy
 
 export type NotYet = {
-  "@type": "Value"
   kind: "NotYet"
   neutral: Neutral
 }
 
 export function NotYet(neutral: Neutral): NotYet {
   return {
-    "@type": "Value",
     kind: "NotYet",
     neutral,
   }
 }
 
 export type Fn = {
-  "@type": "Value"
   kind: "Fn"
   mod: Mod
   env: Env
@@ -30,7 +27,6 @@ export type Fn = {
 
 export function Fn(mod: Mod, env: Env, name: string, ret: Exp): Fn {
   return {
-    "@type": "Value",
     kind: "Fn",
     mod,
     env,
@@ -40,7 +36,6 @@ export function Fn(mod: Mod, env: Env, name: string, ret: Exp): Fn {
 }
 
 export type FnRec = {
-  "@type": "Value"
   kind: "FnRec"
   mod: Mod
   env: Env
@@ -57,7 +52,6 @@ export function FnRec(
   ret: Exp,
 ): FnRec {
   return {
-    "@type": "Value",
     kind: "FnRec",
     mod,
     env,
@@ -68,7 +62,6 @@ export function FnRec(
 }
 
 export type Lazy = {
-  "@type": "Value"
   kind: "Lazy"
   mod: Mod
   env: Env
@@ -78,7 +71,6 @@ export type Lazy = {
 
 export function Lazy(mod: Mod, env: Env, exp: Exp, cache?: Value): Lazy {
   return {
-    "@type": "Value",
     kind: "Lazy",
     mod,
     env,
