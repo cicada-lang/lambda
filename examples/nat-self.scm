@@ -6,12 +6,12 @@
 ;; because we want to infer application of `ind-Nat`.
 
 ;; (claim ind-Nat
-;;   (Pi ([target Nat]
-;;        [motive (-> Nat Type)]
-;;        [base (motive zero)]
-;;        [step (Pi ([prev Nat])
+;;   (Pi ((target Nat)
+;;        (motive (-> Nat Type))
+;;        (base (motive zero))
+;;        (step (Pi ((prev Nat))
 ;;                (-> (motive prev)
-;;                    (motive (add1 prev))))])
+;;                    (motive (add1 prev))))))
 ;;     (motive target)))
 
 ;; (define (ind-Nat target motive base step) (target motive base step))
@@ -23,11 +23,11 @@
 ;; let's try to solve `zero` from this equation.
 
 ;; (claim (ind-Nat zero)
-;;   (Pi ([motive (-> Nat Type)]
-;;        [base (motive zero)]
-;;        [step (Pi ([prev Nat])
+;;   (Pi ((motive (-> Nat Type))
+;;        (base (motive zero))
+;;        (step (Pi ((prev Nat))
 ;;                (-> (motive prev)
-;;                    (motive (add1 prev))))])
+;;                    (motive (add1 prev))))))
 ;;     (motive zero)))
 
 ;; (assert-equal
@@ -38,21 +38,21 @@
 ;; (define zero (lambda (motive base step) base))
 
 ;; (claim zero
-;;   (Pi ([motive (-> Nat Type)]
-;;        [base (motive zero)]
-;;        [step (Pi ([prev Nat])
+;;   (Pi ((motive (-> Nat Type))
+;;        (base (motive zero))
+;;        (step (Pi ((prev Nat))
 ;;                (-> (motive prev)
-;;                    (motive (add1 prev))))])
+;;                    (motive (add1 prev))))))
 ;;     (motive zero)))
 
 ;; The type of `zero` is `Nat`, thus we have:
 
 ;; (define Nat
-;;   (Pi ([motive (-> Nat Type)]
-;;        [base (motive zero)]
-;;        [step (Pi ([prev Nat])
+;;   (Pi ((motive (-> Nat Type))
+;;        (base (motive zero))
+;;        (step (Pi ((prev Nat))
 ;;                (-> (motive prev)
-;;                    (motive (add1 prev))))])
+;;                    (motive (add1 prev))))))
 ;;     (motive target)))
 
 ;; But target is a free variable.
@@ -63,12 +63,12 @@
 
 ;; (claim add1
 ;;   (-> Nat Nat)
-;;   (Pi ([prev Nat]
-;;        [motive (-> Nat Type)]
-;;        [base (motive zero)]
-;;        [step (Pi ([prev Nat])
+;;   (Pi ((prev Nat)
+;;        (motive (-> Nat Type))
+;;        (base (motive zero))
+;;        (step (Pi ((prev Nat))
 ;;                (-> (motive prev)
-;;                    (motive (add1 prev))))])
+;;                    (motive (add1 prev))))))
 ;;     (motive (add1 prev))))
 
 ;; # define Nat as a self type
@@ -78,11 +78,11 @@
 
 ;; (define Nat
 ;;   (Self (target)
-;;     (Pi ([motive (-> Nat Type)]
-;;          [base (motive zero)]
-;;          [step (Pi ([prev Nat])
+;;     (Pi ((motive (-> Nat Type))
+;;          (base (motive zero))
+;;          (step (Pi ((prev Nat))
 ;;                  (-> (motive prev)
-;;                      (motive (add1 prev))))])
+;;                      (motive (add1 prev))))))
 ;;       (motive target))))
 
 ;; # check zero
@@ -95,62 +95,62 @@
 ;;  (check ()
 ;;    zero
 ;;    (Self (target)
-;;      (Pi ([motive (-> Nat Type)]
-;;           [base (motive zero)]
-;;           [step (Pi ([prev Nat])
+;;      (Pi ((motive (-> Nat Type))
+;;           (base (motive zero))
+;;           (step (Pi ((prev Nat))
 ;;                   (-> (motive prev)
-;;                       (motive (add1 prev))))])
+;;                       (motive (add1 prev))))))
 ;;        (motive target))))
 ;;  (check ()
 ;;    (lambda (motive base step) base)
 ;;    (Self (target)
-;;      (Pi ([motive (-> Nat Type)]
-;;           [base (motive zero)]
-;;           [step (Pi ([prev Nat])
+;;      (Pi ((motive (-> Nat Type))
+;;           (base (motive zero))
+;;           (step (Pi ((prev Nat))
 ;;                   (-> (motive prev)
-;;                       (motive (add1 prev))))])
+;;                       (motive (add1 prev))))))
 ;;        (motive target))))
-;;  (check ([target Nat zero])
+;;  (check ((target Nat zero))
 ;;    (lambda (motive base step) base)
-;;    (Pi ([motive (-> Nat Type)]
-;;         [base (motive zero)]
-;;         [step (Pi ([prev Nat])
+;;    (Pi ((motive (-> Nat Type))
+;;         (base (motive zero))
+;;         (step (Pi ((prev Nat))
 ;;                 (-> (motive prev)
-;;                     (motive (add1 prev))))])
+;;                     (motive (add1 prev))))))
 ;;      (motive target)))
-;;  (check ([target Nat zero]
-;;          [motive (-> Nat Type)]
-;;          [base (motive zero)]
-;;          [step (Pi ([prev Nat])
+;;  (check ((target Nat zero)
+;;          (motive (-> Nat Type))
+;;          (base (motive zero))
+;;          (step (Pi ((prev Nat))
 ;;                  (-> (motive prev)
-;;                      (motive (add1 prev))))])
+;;                      (motive (add1 prev))))))
 ;;    base
 ;;    (motive target))
 ;;  (lookup-and-equal-type
-;;   ([target Nat zero]
-;;    [motive (-> Nat Type)]
-;;    [base (motive zero)]
-;;    [step (Pi ([prev Nat])
+;;   ((target Nat zero)
+;;    (motive (-> Nat Type))
+;;    (base (motive zero))
+;;    (step (Pi ((prev Nat))
 ;;            (-> (motive prev)
-;;                (motive (add1 prev))))])
+;;                (motive (add1 prev))))))
 ;;   base
 ;;   (motive target))
 ;;  (equal-type
-;;   ([target Nat zero]
-;;    [motive (-> Nat Type)]
-;;    [base (motive zero)]
-;;    [step (Pi ([prev Nat])
+;;   ((target Nat zero)
+;;    (motive (-> Nat Type))
+;;    (base (motive zero))
+;;    (step (Pi ((prev Nat))
 ;;            (-> (motive prev)
-;;                (motive (add1 prev))))])
+;;                (motive (add1 prev))))))
 ;;   (motive zero)
 ;;   (motive target))
 ;;  (equal-type
-;;   ([target Nat zero]
-;;    [motive (-> Nat Type)]
-;;    [base (motive zero)]
-;;    [step (Pi ([prev Nat])
+;;   ((target Nat zero)
+;;    (motive (-> Nat Type))
+;;    (base (motive zero))
+;;    (step (Pi ((prev Nat))
 ;;            (-> (motive prev)
-;;                (motive (add1 prev))))])
+;;                (motive (add1 prev))))))
 ;;   (motive zero)
 ;;   (motive zero)))
 
@@ -171,74 +171,74 @@
 ;;      (lambda (motive base step)
 ;;        (step prev (prev motive base step))))
 ;;    (-> Nat Nat))
-;;  (check ([prev Nat])
+;;  (check ((prev Nat))
 ;;    (lambda (motive base step)
 ;;      (step prev (prev motive base step)))
 ;;    Nat)
-;;  (check ([prev Nat])
+;;  (check ((prev Nat))
 ;;    (lambda (motive base step)
 ;;      (step prev (prev motive base step)))
 ;;    (Self (target)
-;;      (Pi ([motive (-> Nat Type)]
-;;           [base (motive zero)]
-;;           [step (Pi ([prev Nat])
+;;      (Pi ((motive (-> Nat Type))
+;;           (base (motive zero))
+;;           (step (Pi ((prev Nat))
 ;;                   (-> (motive prev)
-;;                       (motive (add1 prev))))])
+;;                       (motive (add1 prev))))))
 ;;        (motive target))))
-;;  (check ([prev Nat]
-;;          [target Nat (lambda (motive base step)
-;;                        (step prev (prev motive base step)))])
+;;  (check ((prev Nat)
+;;          (target Nat (lambda (motive base step)
+;;                        (step prev (prev motive base step)))))
 ;;    (lambda (motive base step)
 ;;      (step prev (prev motive base step)))
-;;    (Pi ([motive (-> Nat Type)]
-;;         [base (motive zero)]
-;;         [step (Pi ([prev Nat])
+;;    (Pi ((motive (-> Nat Type))
+;;         (base (motive zero))
+;;         (step (Pi ((prev Nat))
 ;;                 (-> (motive prev)
-;;                     (motive (add1 prev))))])
+;;                     (motive (add1 prev))))))
 ;;      (motive target)))
-;;  (check ([prev Nat]
-;;          [target Nat (lambda (motive base step)
-;;                        (step prev (prev motive base step)))]
-;;          [motive (-> Nat Type)]
-;;          [base (motive zero)]
-;;          [step (Pi ([prev Nat])
+;;  (check ((prev Nat)
+;;          (target Nat (lambda (motive base step)
+;;                        (step prev (prev motive base step))))
+;;          (motive (-> Nat Type))
+;;          (base (motive zero))
+;;          (step (Pi ((prev Nat))
 ;;                  (-> (motive prev)
-;;                      (motive (add1 prev))))])
+;;                      (motive (add1 prev))))))
 ;;    (step prev (prev motive base step))
 ;;    (motive target))
-;;  (check ([prev Nat]
-;;          [target Nat (lambda (motive base step)
-;;                        (step prev (prev motive base step)))]
-;;          [motive (-> Nat Type)]
-;;          [base (motive zero)]
-;;          [step (Pi ([prev Nat])
+;;  (check ((prev Nat)
+;;          (target Nat (lambda (motive base step)
+;;                        (step prev (prev motive base step))))
+;;          (motive (-> Nat Type))
+;;          (base (motive zero))
+;;          (step (Pi ((prev Nat))
 ;;                  (-> (motive prev)
-;;                      (motive (add1 prev))))])
+;;                      (motive (add1 prev))))))
 ;;    ;; (check (...) (prev motive base step) (motive prev))
 ;;    (motive (add1 prev))
 ;;    (motive target))
-;;  (check ([prev Nat]
-;;          [target Nat (lambda (motive base step)
-;;                        (step prev (prev motive base step)))]
-;;          [motive (-> Nat Type)]
-;;          [base (motive zero)]
-;;          [step (Pi ([prev Nat])
+;;  (check ((prev Nat)
+;;          (target Nat (lambda (motive base step)
+;;                        (step prev (prev motive base step))))
+;;          (motive (-> Nat Type))
+;;          (base (motive zero))
+;;          (step (Pi ((prev Nat))
 ;;                  (-> (motive prev)
-;;                      (motive (add1 prev))))])
+;;                      (motive (add1 prev))))))
 ;;    (motive ((lambda (prev)
 ;;               (lambda (motive base step)
 ;;                 (step prev (prev motive base step))))
 ;;             prev))
 ;;    (motive (lambda (motive base step)
 ;;              (step prev (prev motive base step)))))
-;;  (check ([prev Nat]
-;;          [target Nat (lambda (motive base step)
-;;                        (step prev (prev motive base step)))]
-;;          [motive (-> Nat Type)]
-;;          [base (motive zero)]
-;;          [step (Pi ([prev Nat])
+;;  (check ((prev Nat)
+;;          (target Nat (lambda (motive base step)
+;;                        (step prev (prev motive base step))))
+;;          (motive (-> Nat Type))
+;;          (base (motive zero))
+;;          (step (Pi ((prev Nat))
 ;;                  (-> (motive prev)
-;;                      (motive (add1 prev))))])
+;;                      (motive (add1 prev))))))
 ;;    (motive (lambda (motive base step)
 ;;              (step prev (prev motive base step))))
 ;;    (motive (lambda (motive base step)

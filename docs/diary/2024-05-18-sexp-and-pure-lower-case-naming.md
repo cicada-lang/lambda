@@ -10,14 +10,14 @@ date: 2024-05-18
 (export exp binding)
 
 (datatype exp
-  [var-exp ([name string]) exp]
-  [fn-exp ([name string] [ret exp]) exp]
-  [ap-exp ([target exp] [arg exp]) exp]
-  [let-exp ([bindings (list binding)] [body exp]) exp])
+  (var-exp ((name string)) exp)
+  (fn-exp ((name string) (ret exp)) exp)
+  (ap-exp ((target exp) (arg exp)) exp)
+  (let-exp ((bindings (list binding)) (body exp)) exp))
 
 (interface binding
-  [name string]
-  [body exp])
+  (name string)
+  (body exp))
 ```
 
 ```scheme
@@ -35,16 +35,16 @@ date: 2024-05-18
 
 (define (reduce a-mod an-exp)
   (match an-exp
-    [(var-exp name)
+    ((var-exp name)
      (match (mod-find a-mod name)
-       [(just defintion) an-exp]
-       [nothing (reduce a-mod defintion.exp)])]
-    [(fn-exp name ret)
-     (fn-exp an-exp.name (reduce a-mod ret))]
-    [(ap-exp target arg)
-     (do-ap a-mod (reduce a-mod target) (reduce a-mod arg))]
-    [(let-exp bindings body)
-     (reduce a-mod (substitute body bindings))]))
+       ((just defintion) an-exp)
+       (nothing (reduce a-mod defintion.exp))))
+    ((fn-exp name ret)
+     (fn-exp an-exp.name (reduce a-mod ret)))
+    ((ap-exp target arg)
+     (do-ap a-mod (reduce a-mod target) (reduce a-mod arg)))
+    ((let-exp bindings body)
+     (reduce a-mod (substitute body bindings)))))
 ```
 
 感觉并不好用，因为在命名变量的时候，
