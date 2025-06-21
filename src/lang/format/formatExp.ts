@@ -1,6 +1,6 @@
-import type { Binding } from "../../lang/substitution/index.ts"
+import type { Binding } from "../../lang/subst/index.ts"
 import { type Exp } from "../exp/index.ts"
-import { substitutionBindings } from "../substitution/Substitution.ts"
+import { substBindings } from "../subst/Subst.ts"
 
 export function formatExp(exp: Exp): string {
   switch (exp.kind) {
@@ -24,7 +24,7 @@ export function formatExp(exp: Exp): string {
     }
 
     case "Let": {
-      const bindings = substitutionBindings(exp.substitution).map(formatBinding)
+      const bindings = substBindings(exp.subst).map(formatBinding)
       return `(let (${bindings.join(" ")}) ${formatExp(exp.body)})`
     }
   }
