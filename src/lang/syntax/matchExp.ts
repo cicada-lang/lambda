@@ -1,11 +1,4 @@
-import {
-  cons,
-  match,
-  matchList,
-  matchSymbol,
-  v,
-  type Sexp,
-} from "../../sexp/index.ts"
+import * as X from "@xieyuheng/x-data.js"
 import * as Exps from "../exp/index.ts"
 import { type Exp } from "../exp/index.ts"
 import {
@@ -13,47 +6,39 @@ import {
   type Binding,
 } from "../substitution/index.ts"
 
-export function matchExp(sexp: Sexp): Exp {
-  return match<Exp>(sexp, [
-    [
-      ["lambda", v("names"), v("exp")],
-      ({ names, exp }) =>
-        matchList(names, matchSymbol).reduceRight(
-          (fn, name) => Exps.Fn(name, fn),
-          matchExp(exp),
-        ),
-    ],
+const expMatcher: X.Matcher<Exp> = X.matcherChoice<Exp>([
+  X.matcher("`(lambda ,names ,exp)", ({ names, exp }) =>
+    X.dataToArray(names)
+      .map(X.dataToString)
+      .reduceRight((fn, name) => Exps.Fn(name, fn), matchExp(exp)),
+  ),
 
-    [
-      ["let", v("bindings"), v("body")],
-      ({ bindings, body }) =>
-        Exps.Let(
-          substitutionFromBindings(matchList(bindings, matchBinding)),
-          matchExp(body),
-        ),
-    ],
+  X.matcher("`(let ,bindings ,body)", ({ bindings, body }) =>
+    Exps.Let(
+      substitutionFromBindings(X.dataToArray(bindings).map(matchBinding)),
+      matchExp(body),
+    ),
+  ),
 
-    [
-      cons(v("target"), v("args")),
-      ({ target, args }) =>
-        matchList(args, matchExp).reduce(
-          (result, arg) => Exps.Ap(result, arg),
-          matchExp(target),
-        ),
-    ],
+  X.matcher("(cons target args)", ({ target, args }) =>
+    X.dataToArray(args)
+      .map(matchExp)
+      .reduce((result, arg) => Exps.Ap(result, arg), matchExp(target)),
+  ),
 
-    [v("name"), ({ name }) => Exps.Var(matchSymbol(name))],
-  ])
+  X.matcher("name", ({ name }) => Exps.Var(X.dataToString(name))),
+])
+
+export function matchExp(data: X.Data): Exp {
+  return X.match(expMatcher, data)
 }
 
-export function matchBinding(sexp: Sexp): Binding {
-  return match<Binding>(sexp, [
-    [
-      [v("name"), v("exp")],
-      ({ name, exp }) => ({
-        name: matchSymbol(name),
-        exp: matchExp(exp),
-      }),
-    ],
-  ])
+export function matchBinding(data: X.Data): Binding {
+  return X.match(
+    X.matcher("`(,name ,exp)", ({ name, exp }) => ({
+      name: X.dataToString(name),
+      exp: matchExp(exp),
+    })),
+    data,
+  )
 }

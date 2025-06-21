@@ -1,6 +1,0 @@
-export * from "./errors/index.ts"
-export * from "./match/index.ts"
-export * from "./parser/index.ts"
-export * from "./pattern-exp/index.ts"
-export * from "./sexp/index.ts"
-export * from "./span/index.ts"

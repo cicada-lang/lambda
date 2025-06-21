@@ -1,5 +1,5 @@
+import { ParsingError } from "@xieyuheng/x-data.js"
 import fs from "node:fs"
-import { ParsingError } from "../../sexp/index.ts"
 import { createMod, modResolve, type Mod } from "../mod/index.ts"
 import { parseStmts } from "../syntax/index.ts"
 
