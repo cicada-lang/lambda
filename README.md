@@ -13,7 +13,7 @@ An interpreter of [lambda calculus](https://en.wikipedia.org/wiki/Lambda_calculu
 (assert-not-equal exp ...)
 
 (lambda (name) ret)
-(let ([name exp] ...) body)
+(let ((name exp) ...) body)
 ```
 
 ## Usages
