@@ -1,39 +1,39 @@
-;; (define nil
-;;   (lambda (nil-case ::-case)
-;;     nil-case))
+(define null
+  (lambda (null-case cons-case)
+    null-case))
 
-;; (define (:: head tail)
-;;   (lambda (nil-case ::-case)
-;;     (::-case head tail
-;;       (tail nil-case ::-case))))
+(define (cons head tail)
+  (lambda (null-case cons-case)
+    (cons-case head tail
+      (tail null-case cons-case))))
 
-;; (define (rec-List target nil-case ::-case)
-;;   (target nil-case ::-case))
+(define (rec-List target null-case cons-case)
+  (target null-case cons-case))
 
-;; (import zero add1 "./nat-church.scm")
+(import zero add1 "./nat-church.scm")
 
-;; (define (length l)
-;;   (rec-List l
-;;     zero
-;;     (lambda (head target almost)
-;;       (add1 almost))))
+(define (length l)
+  (rec-List l
+    zero
+    (lambda (head target almost)
+      (add1 almost))))
 
-;; (import true "./boolean.scm")
+(import true "./boolean.scm")
 
-;; (assert-equal (length nil) zero)
-;; (assert-equal (length (:: true nil)) (add1 zero))
-;; (assert-equal (length (:: true (:: true nil))) (add1 (add1 zero)))
+(assert-equal (length null) zero)
+(assert-equal (length (cons true null)) (add1 zero))
+(assert-equal (length (cons true (cons true null))) (add1 (add1 zero)))
 
-;; (define (append left right)
-;;   (rec-List left
-;;     right
-;;     (lambda (head target almost)
-;;       (:: head almost))))
+(define (append left right)
+  (rec-List left
+    right
+    (lambda (head target almost)
+      (cons head almost))))
 
-;; (assert-equal (append nil nil) nil)
-;; (assert-equal (append nil (:: true nil)) (:: true nil))
-;; (assert-equal (append (:: true nil) nil) (:: true nil))
-;; (assert-equal (append (:: true nil) (:: true nil)) (:: true (:: true nil)))
-;; (assert-equal (append (:: true (:: true nil))
-;;                       (:: true (:: true nil)))
-;;               (:: true (:: true (:: true (:: true nil)))))
+(assert-equal (append null null) null)
+(assert-equal (append null (cons true null)) (cons true null))
+(assert-equal (append (cons true null) null) (cons true null))
+(assert-equal (append (cons true null) (cons true null)) (cons true (cons true null)))
+(assert-equal (append (cons true (cons true null))
+                      (cons true (cons true null)))
+              (cons true (cons true (cons true (cons true null)))))
